@@ -20,22 +20,25 @@ const Header: NextPage = () => {
               <a>ウェブのあれこれ</a>
             </Link>
           </h1>
+          {/* <p>
+            <img src="chrara.png" alt="" />
+          </p> */}
         </div>
         <div css={headerBottom}>
           <ul css={headerBottomWrapper}>
             <li>
               <Link href="/">
-                <a>テスト1</a>
+                <a title="ブログページ">Blog</a>
               </Link>
             </li>
             <li>
               <Link href="/">
-                <a>テスト2</a>
+                <a title="自己紹介">About me</a>
               </Link>
             </li>
             <li>
               <Link href="/">
-                <a>テスト3</a>
+                <a title="アプリ倉庫">App strage</a>
               </Link>
             </li>
           </ul>
@@ -75,9 +78,10 @@ const headerTop = css`
 
 const headerBottom = css`
   height: 50px;
-  background-color: aquamarine;
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
+  background-color: #fff;
+  box-shadow: 0px 2px 15px -5px rgba(0, 0, 0, 0.1);
 `
 
 const headerBottomWrapper = css`

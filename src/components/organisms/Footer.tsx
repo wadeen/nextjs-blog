@@ -2,6 +2,8 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 
+
+
 const Footer: NextPage = () => {
   return (
     <div css={footer}>
@@ -15,7 +17,8 @@ export default Footer
 const footer = css`
   width: 100%;
   height: 40px;
-  background-color: teal;
+  /* background-color: teal; */
+  background-color: $main;
   small {
     display: flex;
     align-items: center;

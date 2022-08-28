@@ -12,6 +12,7 @@
           "order": "asc"
         }
       }
-    ]
+    ],
+    "@next/next/no-img-element": "off"
   }
 }
