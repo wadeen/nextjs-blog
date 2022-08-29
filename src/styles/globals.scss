@@ -2,6 +2,7 @@
 //  Google fonts: https://fonts.google.com/
 @import url('https://fonts.googleapis.com/css2?family=Capriola&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
 
+// 全ページ共通
 html {
   /* フォントサイズ：1rem=10px */
   font-size: 62.5%;
@@ -16,19 +17,28 @@ html {
       '游ゴシック体', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ',
       Meiryo, 'MS Pゴシック', 'MS PGothic', sans-serif;
     margin: 0 auto;
-    color: #333333;
+    color: var(--cMain);
     background-color: whitesmoke;
     #wrapper {
       flex: 1;
-      //   width: min(100%, 1200px);
-      //   margin: 0 auto;
-      //   padding: 0 20px;
+      width: min(100%, 1240px);
+      margin: 80px auto;
+      padding: 0 20px;
+      background-color: aquamarine;
     }
   }
 }
 
+// Next.js body
 #__next {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+// 変数定義
+:root {
+  --cMain: #333;
+  --cBorder: #686464;
+  --cFooter: rgb(5, 136, 136);
 }

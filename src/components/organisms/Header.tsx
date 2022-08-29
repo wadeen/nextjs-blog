@@ -3,8 +3,11 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const Header: NextPage = () => {
+  const router = useRouter()
+
   return (
     <>
       <Head>
@@ -28,17 +31,36 @@ const Header: NextPage = () => {
           <ul css={headerBottomWrapper}>
             <li>
               <Link href="/">
-                <a title="ブログページ">Blog</a>
+                <a
+                  title="ブログページ"
+                  className={router.pathname === '/' ? 'is-current' : ''}
+                >
+                  Blog
+                </a>
               </Link>
             </li>
             <li>
-              <Link href="/">
-                <a title="自己紹介">About me</a>
+              <Link href="/about">
+                <a
+                  title="自己紹介"
+                  className={
+                    router.pathname.startsWith('/about') ? 'is-current' : ''
+                  }
+                >
+                  About me
+                </a>
               </Link>
             </li>
             <li>
-              <Link href="/">
-                <a title="アプリ倉庫">App strage</a>
+              <Link href="/strage">
+                <a
+                  title="アプリ倉庫"
+                  className={
+                    router.pathname.startsWith('/strage') ? 'is-current' : ''
+                  }
+                >
+                  App strage
+                </a>
               </Link>
             </li>
           </ul>
@@ -78,8 +100,8 @@ const headerTop = css`
 
 const headerBottom = css`
   height: 50px;
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
+  border-top: 1px solid var(--cBorder);
+  border-bottom: 1px solid var(--cBorder);
   background-color: #fff;
   box-shadow: 0px 2px 15px -5px rgba(0, 0, 0, 0.1);
 `
@@ -94,17 +116,30 @@ const headerBottomWrapper = css`
   height: 100%;
   li {
     width: 200px;
-    border-left: 1px solid gray;
+    border-left: 1px solid var(--cBorder);
     height: 100%;
     text-align: center;
     line-height: 48px;
     &:last-child {
-      border-right: 1px solid gray;
+      border-right: 1px solid var(--cBorder);
     }
     a {
       display: block;
       width: 100%;
       height: 100%;
+      transition: background-color 0.3s ease;
+      &:hover {
+        background-color: var(--cBorder);
+        color: #fff;
+        /* opacity: .85; */
+      }
+      // カレントページの時にマーキング
+      &.is-current {
+        /* position: relative; */
+        color: red;
+        pointer-events: none;
+        text-decoration: underline;
+      }
     }
   }
 `

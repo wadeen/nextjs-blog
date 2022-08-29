@@ -17,8 +17,7 @@ export default Footer
 const footer = css`
   width: 100%;
   height: 40px;
-  /* background-color: teal; */
-  background-color: $main;
+  background-color: var(--cFooter);
   small {
     display: flex;
     align-items: center;
