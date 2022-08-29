@@ -10,12 +10,6 @@ const Header: NextPage = () => {
 
   return (
     <>
-      <Head>
-        {/* <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/earlyaccess/nikukyu.css"
-        /> */}
-      </Head>
       <div css={header}>
         <div css={headerTop}>
           <h1>

@@ -49,7 +49,7 @@ export default PostSingle
 const list = css`
   background-color: #fff;
   border-radius: 8px;
-  width: calc((100% - 30px) / 2);
+  width: calc((100% - 20px) / 2);
   position: relative;
   min-height: 123px;
   transition: opacity 0.3s ease, box-shadow 0.3s ease;
