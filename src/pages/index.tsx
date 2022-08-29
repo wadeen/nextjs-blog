@@ -9,10 +9,12 @@ const Home = ({ data }: { data: micrcmsData[] }) => {
   return (
     <div css={article}>
       <div css={main}>
-        {data.map((post: micrcmsData) => (
-          // 最新ページから取り出した一覧記事
-          <PostSingle key={post.id} post={post} />
-        ))}
+        <ul css={postLists}>
+          {data.map((post: micrcmsData) => (
+            // 最新ページから取り出した一覧記事
+            <PostSingle key={post.id} post={post} />
+          ))}
+        </ul>
       </div>
       <div css={aside}>サイドバー</div>
     </div>
@@ -49,3 +51,9 @@ const aside = css`
   background-color: orange;
   width: 250px;
 `
+
+const postLists = css`
+  display: flex;
+  /* align-items: center; */
+  gap: 30px;
+`;

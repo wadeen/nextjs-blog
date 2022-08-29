@@ -1,6 +1,7 @@
 export type micrcmsData = {
   category: {
     id: string
+    name: string
     createdAt: string
     updatedAt: string
     publishedAt: string
@@ -8,14 +9,12 @@ export type micrcmsData = {
   }
   content: string
   createdAt: string
-  eyecatch: {
-    url: string
-    height: number
-    width: number
-  }
+  eyecatch: string
   id: string
   publishedAt: string
   revisedAt: string
   title: string
   updatedAt: string
+  date: string
+  update: string
 }
