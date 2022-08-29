@@ -5,38 +5,41 @@ import QueryBuilderIcon from '@mui/icons-material/QueryBuilder'
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
+import Link from 'next/link'
 import { micrcmsData } from 'types/micrcmsData'
 
 const PostSingle = ({ post }: { post: micrcmsData }) => {
   dayjs.extend(utc)
   dayjs.extend(timezone)
 
-  console.log(post.title.length)
-
   return (
     <li css={list}>
-      <p css={eyecatch}>{post.eyecatch}</p>
-      <div css={textList}>
-        <h2>{post.title}</h2>
-        <ul css={info}>
-          <li>
-            <span css={icon}>
-              <QueryBuilderIcon />
-            </span>
-            {dayjs
-              // 更新日ない場合は作成日を表示
-              .utc(post.update || post.date)
-              .tz('Asia/Tokyo')
-              .format('YYYY/MM/DD')}
-          </li>
-          <li>
-            <span css={icon}>
-              <FolderCopyIcon />
-            </span>
-            {post.category.name}
-          </li>
-        </ul>
-      </div>
+      <Link href="/">
+        <a css={link}>
+          <img css={eyecatch} src={post.eyecatch.url} alt="絵文字アイコン" />
+          <div css={textList}>
+            <h2>{post.title}</h2>
+            <ul css={info}>
+              <li>
+                <span css={icon}>
+                  <QueryBuilderIcon />
+                </span>
+                {dayjs
+                  // 更新日ない場合は作成日を表示
+                  .utc(post.update || post.date)
+                  .tz('Asia/Tokyo')
+                  .format('YYYY/MM/DD')}
+              </li>
+              <li>
+                <span css={icon}>
+                  <FolderCopyIcon />
+                </span>
+                {post.category.name}
+              </li>
+            </ul>
+          </div>
+        </a>
+      </Link>
     </li>
   )
 }
@@ -44,19 +47,31 @@ const PostSingle = ({ post }: { post: micrcmsData }) => {
 export default PostSingle
 
 const list = css`
-  display: flex;
-  align-items: center;
   background-color: #fff;
   border-radius: 8px;
   width: calc((100% - 30px) / 2);
-  padding: 20px 20px 35px;
-  column-gap: 20px;
   position: relative;
   min-height: 123px;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.1);
+    opacity: 0.9;
+  }
+`
+
+const link = css`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 20px 35px;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 `
 
 const eyecatch = css`
-  font-size: 4rem;
+  width: 80px;
+  height: 80px;
 `
 
 const textList = css`
@@ -67,7 +82,6 @@ const textList = css`
     font-weight: 700;
   }
 `
-
 const info = css`
   display: flex;
   align-items: center;

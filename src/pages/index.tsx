@@ -37,13 +37,11 @@ export const getStaticProps: GetStaticProps = async () => {
 
 // css
 const article = css`
-  background-color: tomato;
   display: flex;
   column-gap: 30px;
 `
 
 const main = css`
-  background-color: aqua;
   width: calc(100% - 280px);
 `
 
@@ -56,4 +54,4 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-`;
+`

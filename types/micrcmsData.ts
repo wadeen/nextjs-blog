@@ -9,7 +9,11 @@ export type micrcmsData = {
   }
   content: string
   createdAt: string
-  eyecatch: string
+  eyecatch: {
+    url: string
+    width: number
+    height: number
+  }
   id: string
   publishedAt: string
   revisedAt: string
