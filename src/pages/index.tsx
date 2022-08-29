@@ -54,6 +54,6 @@ const aside = css`
 
 const postLists = css`
   display: flex;
-  /* align-items: center; */
+  flex-wrap: wrap;
   gap: 30px;
 `;
