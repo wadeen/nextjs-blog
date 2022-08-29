@@ -1,21 +1,21 @@
 export type micrcmsData = {
   category: {
-    id: String
-    createdAt: String
-    updatedAt: String
-    publishedAt: String
-    revisedAt: String
+    id: string
+    createdAt: string
+    updatedAt: string
+    publishedAt: string
+    revisedAt: string
   }
-  content: DOMStringList
-  createdAt: String
+  content: string
+  createdAt: string
   eyecatch: {
-    url: String
-    height: Number
-    width: Number
+    url: string
+    height: number
+    width: number
   }
-  id: String
-  publishedAt: String
-  revisedAt: String
-  title: String
-  updatedAt: String
+  id: string
+  publishedAt: string
+  revisedAt: string
+  title: string
+  updatedAt: string
 }
