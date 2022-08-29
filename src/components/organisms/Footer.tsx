@@ -2,8 +2,6 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 
-
-
 const Footer: NextPage = () => {
   return (
     <div css={footer}>

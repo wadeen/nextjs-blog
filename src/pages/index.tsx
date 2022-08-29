@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import type { GetStaticProps } from 'next'
-import { client } from '../../libs/client'
-import { micrcmsData } from '../../types/micrcmsData'
-import PostSingle from '../components/organisms/Post/PostSingle'
+import { client } from 'libs/client'
+import PostSingle from 'src/components/organisms/Post/PostSingle'
+import { micrcmsData } from 'types/micrcmsData'
 
 const Home = ({ data }: { data: micrcmsData[] }) => {
   return (
@@ -41,9 +41,9 @@ const article = css`
 `
 
 const main = css`
-  background-color: aqua ;
+  background-color: aqua;
   width: calc(100% - 280px);
-`;
+`
 
 const aside = css`
   background-color: orange;

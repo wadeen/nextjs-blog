@@ -1,4 +1,4 @@
-import { micrcmsData } from '../../../../types/micrcmsData'
+import { micrcmsData } from 'types/micrcmsData'
 const PostSingle = ({ post }: { post: micrcmsData }) => {
   return <div>{post.id}</div>
 }
