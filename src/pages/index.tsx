@@ -3,14 +3,14 @@ import { css } from '@emotion/react'
 import type { GetStaticProps } from 'next'
 import { client } from 'libs/client'
 import PostSingle from 'src/components/organisms/Post/PostSingle'
-import { micrcmsData } from 'types/micrcmsData'
+import { microcmsData } from 'types/microcmsData'
 
-const Home = ({ data }: { data: micrcmsData[] }) => {
+const Home = ({ data }: { data: microcmsData[] }) => {
   return (
     <div css={article}>
       <div css={main}>
         <ul css={postLists}>
-          {data.map((post: micrcmsData) => (
+          {data.map((post: microcmsData) => (
             // 最新ページから取り出した一覧記事
             <PostSingle key={post.id} post={post} />
           ))}

@@ -11,10 +11,10 @@ const Header: NextPage = () => {
   return (
     <>
       <Head>
-        <link
-          href="https://fonts.googleapis.com/earlyaccess/nikukyu.css"
+        {/* <link
           rel="stylesheet"
-        />
+          href="https://fonts.googleapis.com/earlyaccess/nikukyu.css"
+        /> */}
       </Head>
       <div css={header}>
         <div css={headerTop}>
@@ -33,7 +33,12 @@ const Header: NextPage = () => {
               <Link href="/">
                 <a
                   title="ブログページ"
-                  className={router.pathname === '/' ? 'is-current' : ''}
+                  className={
+                    router.pathname === '/' ||
+                    router.pathname.startsWith('/posts')
+                      ? 'is-current'
+                      : ''
+                  }
                 >
                   Blog
                 </a>

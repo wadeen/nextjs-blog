@@ -6,15 +6,15 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import Link from 'next/link'
-import { micrcmsData } from 'types/micrcmsData'
+import { microcmsData } from 'types/microcmsData'
 
-const PostSingle = ({ post }: { post: micrcmsData }) => {
+const PostSingle = ({ post }: { post: microcmsData }) => {
   dayjs.extend(utc)
   dayjs.extend(timezone)
 
   return (
     <li css={list}>
-      <Link href="/">
+      <Link href={`/posts/${post.id}`}>
         <a css={link}>
           <img css={eyecatch} src={post.eyecatch.url} alt="絵文字アイコン" />
           <div css={textList}>
