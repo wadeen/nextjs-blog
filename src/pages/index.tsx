@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import type { GetStaticProps } from 'next'
 import AsideBasic from '../components/organisms/aside/asideBasic'
 import { client } from 'libs/client'
-import PostSingle from 'src/components/organisms/post/PostSingle'
+import PostSingle from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBody'
 import { microcmsData } from 'types/microcmsData'
@@ -26,8 +26,7 @@ const Home = ({ data }: { data: microcmsData[] }) => {
       <BlogLayoutBody>
         <ul css={postLists}>
           {data.map((post: microcmsData) => (
-            // 最新ページから取り出した一覧記事
-            <PostSingle key={post.id} post={post} />
+            <PostSingle key={post.id} post={post} /> // 最新ページから取り出した一覧記事
           ))}
         </ul>
       </BlogLayoutBody>

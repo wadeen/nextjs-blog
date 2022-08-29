@@ -12,11 +12,19 @@ const Header: NextPage = () => {
     <>
       <div css={header}>
         <div css={headerTop}>
-          <h1>
-            <Link href="/">
-              <a>ウェブのあれこれ</a>
-            </Link>
-          </h1>
+          {router.pathname === '/' ? (
+            <h1>
+              <Link href="/">
+                <a>ウェブのあれこれ</a>
+              </Link>
+            </h1>
+          ) : (
+            <h2>
+              <Link href="/">
+                <a>ウェブのあれこれ</a>
+              </Link>
+            </h2>
+          )}
           {/* <p>
             <img src="chrara.png" alt="" />
           </p> */}
@@ -78,7 +86,7 @@ const header = css`
 const headerTop = css`
   height: 90px;
   background-color: #fff;
-  h1 {
+  h1,h2 {
     display: flex;
     height: 100%;
     font-weight: 500;
