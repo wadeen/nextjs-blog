@@ -20,7 +20,6 @@
 
 // 全ページ共通
 html {
-  padding-top: 145px; // ヘッダー固定分
   /* フォントサイズ：1rem=10px */
   font-size: 62.5%;
   width: 100%;
@@ -28,6 +27,7 @@ html {
   min-height: 100vh;
   scroll-behavior: smooth;
   body {
+    padding-top: 145px; // ヘッダー固定分
     /* body全体フォントサイズ：標準16px： */
     font-size: 1.6rem;
     font-family: 'Capriola', 'Noto Sans JP', 'Yu Gothic', YuGothic,
@@ -48,7 +48,7 @@ html {
 #__next {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - 145px);
 }
 
 // 変数定義

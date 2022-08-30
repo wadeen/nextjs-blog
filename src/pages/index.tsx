@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import type { GetStaticPaths, GetStaticProps } from 'next'
+import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideBasic from '../components/organisms/aside/asideBasic'
 import { client } from 'libs/client'
 import { Pagination } from 'src/components/organisms/micrcmsCustom/Pagination'
@@ -31,13 +32,14 @@ const Home = ({
   return (
     <BlogLayout>
       <BlogLayoutBody>
+        <ArticleTitle text={'最新の記事一覧'} />
         <ul css={postLists}>
           {data.map((post: microcmsData) => (
             <PostSingle key={post.id} post={post} /> // 最新ページから取り出した一覧記事
           ))}
         </ul>
         <Pagination totalCount={20} />
-      </BlogLayoutBody> 
+      </BlogLayoutBody>
       <AsideBasic />
     </BlogLayout>
   )
