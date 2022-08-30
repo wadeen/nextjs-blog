@@ -11,7 +11,7 @@ import { client } from 'libs/client'
 import { Pagination } from 'src/components/organisms/micrcmsCustom/Pagination'
 import PostSingle from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
-import BlogLayoutBody from 'src/components/templates/BlogLayoutBody'
+import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import { microcmsData } from 'types/microcmsData'
 
 // SSG

@@ -1,8 +1,9 @@
+import SearchForm from '../../organisms/aside/SearchForm'
 import AsideBasic from './AsideBase'
 const AsideArchive = () => {
   return (
     <AsideBasic>
-      <div>記事一覧(カテゴリやHome等)のサイドバーテンプレート</div>
+      <SearchForm />
     </AsideBasic>
   )
 }

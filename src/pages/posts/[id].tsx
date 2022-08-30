@@ -4,8 +4,8 @@ import { client } from '../../../libs/client'
 import { microcmsData } from '../../../types/microcmsData'
 import PostSingle from '../../components/organisms/post/PostSingle'
 import BlogLayout from 'src/components/templates/BlogLayout'
-import BlogLayoutBody from 'src/components/templates/BlogLayoutBody'
-import AsideArchive from 'src/components/templates/aside/AsideArchive'
+import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
+import AsidePost from 'src/components/templates/aside/AsidePost'
 
 // SSG
 export const getStaticProps = async (context: { params: microcmsData }) => {
@@ -46,7 +46,7 @@ const Post = ({ post }: { post: microcmsData }) => {
         <BlogLayoutBody>
           <PostSingle post={post} />
         </BlogLayoutBody>
-        <AsideArchive />
+        <AsidePost />
       </BlogLayout>
     </>
   )

@@ -1,9 +1,11 @@
+import SearchForm from '../../organisms/aside/SearchForm'
+import AsideBasic from './AsideBase'
 const AsidePost = () => {
   return (
-    <div>
-    投稿ページのサイドバーテンプレート
-    </div>
-  );
+    <AsideBasic>
+      <SearchForm />
+    </AsideBasic>
+  )
 }
 
-export default AsidePost;
+export default AsidePost
