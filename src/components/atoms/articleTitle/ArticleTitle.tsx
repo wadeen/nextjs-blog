@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import NextPage from 'next'
-const ArticleTitle = ({ text }: {text: string}) => <p css={topTitle}>{text}</p>
+const ArticleTitle = ({ text }: { text: string }) => (
+  <p css={topTitle}>{text}</p>
+)
 
 export default ArticleTitle
 
@@ -11,6 +13,8 @@ const topTitle = css`
   margin-bottom: 20px;
   padding-left: 25px;
   position: relative;
+  font-family: var(--fontMain);
+
   &::before {
     content: '';
     display: block;

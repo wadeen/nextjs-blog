@@ -1,61 +1,58 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Head from 'next/head'
+import { useRouter } from 'next/router';
 import { client } from '../../../../libs/client'
 import { microcmsData } from '../../../../types/microcmsData'
+import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle';
 import AsideBasic from '../../../components/organisms/aside/asideBasic'
 import { Pagination } from 'src/components/organisms/micrcmsCustom/Pagination'
 import PostSingle from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBody'
 
-// SSG
-// const PER_PAGE = 5
-// export const getStaticProps = async (context: { params: microcmsData }) => {
-//   const id = context.params.id
+const PER_PAGE = 10
 
-//   const data = await client.get({ endpoint: 'posts', contentId: id })
+// SSG: データの取得
+export const getStaticProps = async (context: any) => {
+  //  ✋
+  const id = context.params.id
+  console.log('id', id)
+  const data = await client.get({
+    endpoint: 'posts',
+    // offset: ... * 10 ← "PER_PAGE"の数&"limit"と合わせる
+    queries: { offset: (id - 1) * 10, limit: 10 },
+  })
 
-//   // const data = await client.get({
-//   //   endpoint: 'posts',
-//   //   // @ts-ignore //✋
-//   //   queries: { offset: (id - 1) * 5, limit: 5 },
-//   //   contentId: id,
-//   // })
-//   return {
-//     props: {
-//       post: data,
-//       totalCount: data.totalCount,
-//     },
-//   }
-// }
+  return {
+    props: {
+      data: data.contents,
+      totalCount: data.totalCount,
+    },
+  }
+}
 
-// export const getStaticPaths = async () => {
-//   const data = await client.get({ endpoint: 'posts' })
+// 動的ページの作成
+export const getStaticPaths = async () => {
+  const repos = await client.get({ endpoint: 'posts' })
+  const pageNumbers = []
+  const range = (start: number, end: number) =>
+    [...Array(end - start + 1)].map((_, i) => start + i)
+  const paths = range(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
+    (repo) => `/posts/page/${repo}`
+  )
+  return { paths, fallback: false }
+}
 
-//   // const pageNumbers = []
-//   // // @ts-ignore //✋
-//   const range = (start: any, end: any) =>
-//     [...Array(end - start + 1)].map((_, i) => start + i)
-//   console.log('range', range)
-//   // // @ts-ignore //✋
-//   const paths = range(1, Math.ceil(data.totalCount / PER_PAGE)).map(
-//     (post) => console.log('post', post)
-//     // `/posts/page/${post}`
-//   )
-
-//   // const paths = data.contents.map(
-//   //   (content: microcmsData) => `/posts/page/${content.id}`
-//   // )
-
-//   return {
-//     paths,
-//     fallback: false,
-//   }
-// }
-
-// const PostPage = ({ post }: { post: microcmsData }) => {
-const PostPage = ({ post }: any) => {
+const PostPage = ({
+  data,
+  totalCount,
+}: {
+  data: microcmsData[]
+  totalCount: number
+}) => {
+  const router = useRouter()
+  {console.log(router)}
   return (
     <>
       {/* ToDo: OGPは外に出す(新しくコンポーネントを作成する予定.全体的に */}
@@ -63,12 +60,13 @@ const PostPage = ({ post }: any) => {
 
       <BlogLayout>
         <BlogLayoutBody>
-          {/* <ul css={postLists}>
-            {post.map((post: microcmsData) => (
+        <ArticleTitle text={`記事一覧 　${router.query.id}ページ目`} />
+          <ul css={postLists}>
+            {data.map((post: microcmsData) => (
               <PostSingle key={post.id} post={post} /> // 最新ページから取り出した一覧記事
             ))}
-          </ul> */}
-          {/* <Pagination totalCount={20} /> */}
+          </ul>
+          <Pagination totalCount={totalCount} />
         </BlogLayoutBody>
         <AsideBasic />
       </BlogLayout>

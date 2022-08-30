@@ -1,6 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import type { GetStaticPaths, GetStaticProps } from 'next'
+import type {
+  GetStaticPaths,
+  GetStaticProps,
+  InferGetStaticPropsType,
+} from 'next'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideBasic from '../components/organisms/aside/asideBasic'
 import { client } from 'libs/client'
@@ -14,10 +18,13 @@ import { microcmsData } from 'types/microcmsData'
 export const getStaticProps: GetStaticProps = async () => {
   const data = await client.get({
     endpoint: 'posts',
+    // @ts-ignore
+    queries: { limit: 20, offset: 0},
   })
   return {
     props: {
       data: data.contents,
+      totalCount: data.totalCount,
     },
   }
 }
@@ -25,20 +32,17 @@ export const getStaticProps: GetStaticProps = async () => {
 const Home = ({
   data,
   totalCount,
-}: {
-  data: microcmsData[]
-  totalCount: any
-}) => {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <BlogLayout>
       <BlogLayoutBody>
         <ArticleTitle text={'最新の記事一覧'} />
         <ul css={postLists}>
           {data.map((post: microcmsData) => (
-            <PostSingle key={post.id} post={post} /> // 最新ページから取り出した一覧記事
+            <PostSingle key={post.id} post={post} /> // 最新ページから取り出した記事
           ))}
         </ul>
-        <Pagination totalCount={20} />
+        <Pagination totalCount={totalCount} />
       </BlogLayoutBody>
       <AsideBasic />
     </BlogLayout>

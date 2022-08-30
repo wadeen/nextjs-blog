@@ -86,9 +86,7 @@ const textList = css`
     line-height: 1.3;
     font-weight: 700;
     font-feature-settings: 'palt';
-    font-family: 'Noto Sans JP', 'Yu Gothic', YuGothic, '游ゴシック体',
-      'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
-      'MS Pゴシック', 'MS PGothic', sans-serif;
+    font-family: var(--fontMain);
   }
 `
 const info = css`

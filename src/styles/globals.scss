@@ -30,9 +30,7 @@ html {
     padding-top: 145px; // ヘッダー固定分
     /* body全体フォントサイズ：標準16px： */
     font-size: 1.6rem;
-    font-family: 'Capriola', 'Noto Sans JP', 'Yu Gothic', YuGothic,
-      '游ゴシック体', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ',
-      Meiryo, 'MS Pゴシック', 'MS PGothic', sans-serif;
+    font-family: var(--fontEn);
     margin: 0 auto;
     color: var(--cMain);
     background-color: whitesmoke;
@@ -53,8 +51,18 @@ html {
 
 // 変数定義
 :root {
+  // colors
   --cMain: #333;
   --cBorder: #686464;
   --cFooter: rgb(5, 136, 136);
+  --cPagination: rgb(5, 136, 136);
   --cLink: #0645ad;
+
+  // fonts
+  --fontMain: 'Noto Sans JP', 'Yu Gothic', YuGothic, '游ゴシック体',
+  'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
+  'MS Pゴシック', 'MS PGothic', sans-serif;
+  --fontEn: 'Capriola', 'Noto Sans JP', 'Yu Gothic', YuGothic,
+  '游ゴシック体', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ',
+  Meiryo, 'MS Pゴシック', 'MS PGothic', sans-serif;
 }
