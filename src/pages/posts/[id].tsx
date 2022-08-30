@@ -25,6 +25,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = data.contents.map(
     (content: microcmsData) => `/posts/${content.id}`
   )
+
   return {
     paths,
     fallback: false,

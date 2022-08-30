@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import type { GetStaticProps } from 'next'
+import type { GetStaticPaths, GetStaticProps } from 'next'
 import AsideBasic from '../components/organisms/aside/asideBasic'
 import { client } from 'libs/client'
+import { Pagination } from 'src/components/organisms/micrcmsCustom/Pagination'
 import PostSingle from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBody'
@@ -20,7 +21,13 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const Home = ({ data }: { data: microcmsData[] }) => {
+const Home = ({
+  data,
+  totalCount,
+}: {
+  data: microcmsData[]
+  totalCount: any
+}) => {
   return (
     <BlogLayout>
       <BlogLayoutBody>
@@ -29,7 +36,8 @@ const Home = ({ data }: { data: microcmsData[] }) => {
             <PostSingle key={post.id} post={post} /> // 最新ページから取り出した一覧記事
           ))}
         </ul>
-      </BlogLayoutBody>
+        <Pagination totalCount={20} />
+      </BlogLayoutBody> 
       <AsideBasic />
     </BlogLayout>
   )

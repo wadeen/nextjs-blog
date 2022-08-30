@@ -3,16 +3,24 @@ import { css } from '@emotion/react'
 import FolderCopyIcon from '@mui/icons-material/FolderCopy'
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder'
 import UpdateIcon from '@mui/icons-material/Update'
-// import cheerio from 'cheerio'
+import cheerio from 'cheerio'
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
-// import hljs from 'highlight.js'
+import hljs from 'highlight.js'
 import { microcmsData } from 'types/microcmsData'
+import 'highlight.js/styles/hybrid.css'
 
 const PostSingle = ({ post }: { post: microcmsData }) => {
   dayjs.extend(utc)
   dayjs.extend(timezone)
+
+  const contentBody = cheerio.load(post.content) // eslint-disable-line
+  contentBody('pre code').each((_, elm) => {
+    const result = hljs.highlightAuto(contentBody(elm).text())
+    contentBody(elm).html(result.value)
+    contentBody(elm).addClass('hljs')
+  })
 
   return (
     <div css={container}>
@@ -38,7 +46,7 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
         )}
       </ul>
       <div
-        dangerouslySetInnerHTML={{ __html: post.content }}
+        dangerouslySetInnerHTML={{ __html: contentBody.html() }}
         css={content}
       ></div>
     </div>
@@ -57,6 +65,7 @@ const title = css`
   font-size: 3rem;
   letter-spacing: 0.04em;
   font-weight: 700;
+  line-height: 1.4;
   display: flex;
   align-items: center;
   img {
@@ -69,7 +78,7 @@ const title = css`
 const category = css`
   font-size: 1.4rem;
   text-align: right;
-  margin-top: 20px;
+  margin-top: 10px;
 `
 
 const dateList = css`
@@ -90,8 +99,26 @@ const content = css`
   letter-spacing: 0.06em;
   line-height: 1.4;
   font-feature-settings: 'palt';
+
+  iframe {
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+    display: flex;
+    align-items: center;
+  }
+
   img {
     width: 100%;
     margin: 20px 0;
+  }
+  pre {
+    margin: 20px 0;
+  }
+  a {
+    color: var(--cLink);
+    text-decoration: underline;
   }
 `
