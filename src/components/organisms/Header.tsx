@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-import Head from 'next/head'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -25,9 +25,9 @@ const Header: NextPage = () => {
               </Link>
             </h2>
           )}
-          {/* <p>
-            <img src="chrara.png" alt="" />
-          </p> */}
+          <p css={cahra}>
+            <Image src="/images/chara.png" width={220} height={190} alt="" />
+          </p>
         </div>
         <div css={headerBottom}>
           <ul css={headerBottomWrapper}>
@@ -85,12 +85,15 @@ const header = css`
   top: 0;
   width: 100%;
   box-shadow: 0px 2px 15px 2px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
   z-index: 10;
 `
 
 const headerTop = css`
+  width: min(100%, 1200px);
+  margin: 0 auto;
   height: 100px;
-  background-color: #fff;
+  position: relative;
   h1,
   h2 {
     display: flex;
@@ -98,7 +101,6 @@ const headerTop = css`
     font-weight: 500;
     font-size: 3.4rem;
     font-family: 'Nikukyu';
-    width: min(100%, 1200px);
     margin: 0 auto;
     line-height: 90px;
     padding: 0 30px;
@@ -154,4 +156,10 @@ const headerBottomWrapper = css`
       }
     }
   }
+`
+
+const cahra = css`
+  position: absolute;
+  top: -82px;
+  right: 130px;
 `

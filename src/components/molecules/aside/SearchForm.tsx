@@ -1,19 +1,32 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import SearchIcon from '@mui/icons-material/Search'
+import { useState } from 'react'
 
 const SearchForm = () => {
+  const [inputSearchText, setInputSearchText] = useState('')
+
+  const onClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+  }
+
   return (
-    <div css={container}>
-      <input type="text" />
-      <button type="button">
+    <form css={container}>
+      <input
+        type="text"
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setInputSearchText(e.target.value)
+        }
+        value={inputSearchText}
+      />
+      <button type="submit" onClick={onClickSearch}>
         <SearchIcon
           fontSize="large"
           style={{ marginTop: '2px', marginLeft: '-3px' }}
         />
         検索
       </button>
-    </div>
+    </form>
   )
 }
 
