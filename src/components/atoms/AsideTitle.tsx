@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { NextPage } from 'next'
-import { ReactNode } from 'react'
 
 const AsideTitle = ({ text }: { text: string }) => {
   return <h2 css={title}>{text}</h2>

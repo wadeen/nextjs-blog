@@ -14,12 +14,26 @@ const Header: NextPage = () => {
         <div css={headerTop}>
           {router.pathname === '/' ? (
             <h1>
+              <Image
+                src="/images/star.svg"
+                width={60}
+                height={60}
+                alt=""
+                className="starIcon"
+              />
               <Link href="/">
                 <a>ウェブのあれこれ</a>
               </Link>
             </h1>
           ) : (
             <h2>
+              <Image
+                src="/images/star.svg"
+                width={60}
+                height={60}
+                alt=""
+                className="starIcon"
+              />
               <Link href="/">
                 <a>ウェブのあれこれ</a>
               </Link>
@@ -106,6 +120,9 @@ const headerTop = css`
     margin: 0 auto;
     line-height: 90px;
     padding: 0 30px;
+    .starIcon {
+      right: 120px;
+    }
     a {
       transition: opacity 0.3s ease;
       &:hover {

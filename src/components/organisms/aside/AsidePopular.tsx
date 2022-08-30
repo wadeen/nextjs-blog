@@ -3,15 +3,15 @@ import { css } from '@emotion/react'
 
 import { NextPage } from 'next'
 import AsideTitle from '../../atoms/AsideTitle'
-const AsideCategory: NextPage = () => {
+const AsidePopular: NextPage = () => {
   return (
     <div css={container}>
-      <AsideTitle text={'Category'} />
+      <AsideTitle text={'Popular'} />
     </div>
   )
 }
 
-export default AsideCategory
+export default AsidePopular
 
 const container = css`
   background-color: #fff;

@@ -13,15 +13,20 @@ const AsideProfile = () => {
       <div css={wrapper}>
         <p css={imgBox}>
           <Image
-            src="/images/me.jpeg"
+            src="/images/profile/me.jpeg"
             width={1200}
             height={1200}
-            alt=""
+            alt="わでぃんのプロフィール写真"
             className="chara"
           />
         </p>
         <p css={imgBox}>
-          <Image src="/images/chara.png" width={1200} height={1200} alt="" />
+          <Image
+            src="/images/profile/chara.png"
+            width={1200}
+            height={1200}
+            alt="わでぃんのプロフィールアイコン画像"
+          />
         </p>
       </div>
       <p css={nameInfo}>わでぃん</p>
