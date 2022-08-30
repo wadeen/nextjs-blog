@@ -93,6 +93,7 @@ const dateList = css`
   }
 `
 
+//  ブログ記事中身
 const content = css`
   border-top: 1px dashed var(--cBorder);
   margin: 30px 0;
@@ -103,9 +104,38 @@ const content = css`
   font-feature-settings: 'palt';
   font-family: var(--fontMain);
 
+  h2 {
+    font-size: 3.2rem;
+    background-color: whitesmoke;
+    padding-left: 10px;
+    border-left: 8px solid var(--cSub);
+    font-weight: 700;
+    margin: 10px 0;
+    line-height: 1.8;
+  }
+
+  h3 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    border-bottom: 1px dashed var(--cSub);
+    margin: 10px 0;
+  }
+
+  h4 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+
+  h5 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 10px 0;
+  }
+
   iframe {
     text-align: center;
-    margin: 0 auto;
+    margin: 20px auto;
     width: 100%;
     height: 100%;
     min-height: 450px;
@@ -113,13 +143,87 @@ const content = css`
     align-items: center;
   }
 
+  sub {
+    display: inline-block;
+    font-size: 1.4rem;
+    background: whitesmoke;
+    color: #000;
+    padding: 15px;
+    border-radius: 2px;
+    bottom: -20px;
+    font-weight: 500;
+    font-family: var(--fontEn);
+  }
+
   img {
     width: 100%;
     margin: 20px 0;
   }
+
   pre {
     margin: 20px 0;
   }
+
+  blockquote {
+    display: block;
+    background-color: #f7faf9;
+    padding: 40px;
+    border-radius: 6px;
+    margin: 20px 0;
+    position: relative;
+    color: #848484;
+    height: 100%;
+    &::before {
+      content: '“';
+      font-family: var(--fontEn);
+      font-size: 6rem;
+      font-weight: 500;
+      position: absolute;
+      top: 0;
+      left: 10px;
+    }
+    &::after {
+      content: '”';
+      font-family: var(--fontEn);
+      font-size: 6rem;
+      font-weight: 500;
+      position: absolute;
+      right: 10px;
+      bottom: -50px;
+    }
+  }
+
+  ul {
+    border: 1px solid #e2943a;
+    padding: 30px;
+    border-radius: 6px;
+    margin: 20px 0;
+    li {
+      font-weight: 500;
+      padding-left: 1em;
+      text-indent: -1em;
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #e2943a;
+        border-radius: 50%;
+        margin-right: 12px;
+      }
+      &:first-child {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #e2943a;
+        margin-bottom: 15px;
+        border-bottom: 1px dashed #e2943a;
+        &::before {
+          display: none;
+        }
+      }
+    }
+  }
+
   a {
     color: var(--cLink);
     text-decoration: underline;
