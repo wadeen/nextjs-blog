@@ -1,16 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { ReactNode } from 'react'
 
-const AsideBasic = () => {
-  return (
-    <aside css={aside}>
-      サイドバーです
-      <h2>タイトル</h2>
-    </aside>
-  )
+// 
+const AsideBase = ({ children }: { children: ReactNode }) => {
+  return <aside css={aside}>{children}</aside>
 }
 
-export default AsideBasic
+export default AsideBase
 
 const aside = css`
   width: min(100%, 300px);

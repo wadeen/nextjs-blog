@@ -6,7 +6,7 @@ import type {
   InferGetStaticPropsType,
 } from 'next'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
-import AsideBasic from '../components/organisms/aside/asideBasic'
+import AsideArchive from '../components/templates/aside/AsideArchive'
 import { client } from 'libs/client'
 import { Pagination } from 'src/components/organisms/micrcmsCustom/Pagination'
 import PostSingle from 'src/components/organisms/post/PostArchive'
@@ -42,7 +42,7 @@ const Home = ({
         </ul>
         <Pagination totalCount={totalCount} />
       </BlogLayoutBody>
-      <AsideBasic />
+      <AsideArchive />
     </BlogLayout>
   )
 }

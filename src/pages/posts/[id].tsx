@@ -2,10 +2,10 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { client } from '../../../libs/client'
 import { microcmsData } from '../../../types/microcmsData'
-import AsideBasic from '../../components/organisms/aside/asideBasic'
 import PostSingle from '../../components/organisms/post/PostSingle'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBody'
+import AsideArchive from 'src/components/templates/aside/AsideArchive'
 
 // SSG
 export const getStaticProps = async (context: { params: microcmsData }) => {
@@ -46,7 +46,7 @@ const Post = ({ post }: { post: microcmsData }) => {
         <BlogLayoutBody>
           <PostSingle post={post} />
         </BlogLayoutBody>
-        <AsideBasic />
+        <AsideArchive />
       </BlogLayout>
     </>
   )

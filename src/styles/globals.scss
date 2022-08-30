@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-/*
+/**
  *  Nikukyu (Japanese) https://fonts.google.com/earlyaccess
-    Google fonts: https://fonts.google.com/
- */
+ *  Google fonts: https://fonts.google.com/
+ **/
 @import url('https://fonts.googleapis.com/css2?family=Capriola&family=Noto+Sans+JP:wght@400;500;700;900&display=swap');
 @font-face {
   font-family: 'Nikukyu';
@@ -20,15 +20,13 @@
 
 // 全ページ共通
 html {
-  /* フォントサイズ：1rem=10px */
-  font-size: 62.5%;
+  font-size: 62.5%; // フォントサイズ：1rem=10px
   width: 100%;
   height: 100%;
   min-height: 100vh;
   scroll-behavior: smooth;
   body {
     padding-top: 145px; // ヘッダー固定分
-    /* body全体フォントサイズ：標準16px： */
     font-size: 1.6rem;
     font-family: var(--fontEn);
     margin: 0 auto;
@@ -49,7 +47,7 @@ html {
   min-height: calc(100vh - 145px);
 }
 
-// 変数定義
+// variables
 :root {
   // colors
   --cMain: #333;
@@ -61,9 +59,9 @@ html {
 
   // fonts
   --fontMain: 'Noto Sans JP', 'Yu Gothic', YuGothic, '游ゴシック体',
-  'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
-  'MS Pゴシック', 'MS PGothic', sans-serif;
-  --fontEn: 'Capriola', 'Noto Sans JP', 'Yu Gothic', YuGothic,
-  '游ゴシック体', 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ',
-  Meiryo, 'MS Pゴシック', 'MS PGothic', sans-serif;
+    'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
+    'MS Pゴシック', 'MS PGothic', sans-serif;
+  --fontEn: 'Capriola', 'Noto Sans JP', 'Yu Gothic', YuGothic, '游ゴシック体',
+    'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
+    'MS Pゴシック', 'MS PGothic', sans-serif;
 }
