@@ -10,7 +10,7 @@ const Header: NextPage = () => {
 
   return (
     <>
-      <div css={header}>
+      <header css={header}>
         <div css={headerTop}>
           {router.pathname === '/' ? (
             <h1>
@@ -72,7 +72,7 @@ const Header: NextPage = () => {
             </li>
           </ul>
         </div>
-      </div>
+      </header>
     </>
   )
 }
@@ -80,13 +80,19 @@ export default Header
 
 const header = css`
   width: 100%;
-  height: 140px;
+  height: 145px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0px 2px 15px 2px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 `
 
 const headerTop = css`
-  height: 90px;
+  height: 100px;
   background-color: #fff;
-  h1,h2 {
+  h1,
+  h2 {
     display: flex;
     height: 100%;
     font-weight: 500;
@@ -94,7 +100,7 @@ const headerTop = css`
     font-family: 'Nikukyu';
     width: min(100%, 1200px);
     margin: 0 auto;
-    line-height: 80px;
+    line-height: 90px;
     padding: 0 30px;
     a {
       transition: opacity 0.3s ease;
@@ -106,11 +112,10 @@ const headerTop = css`
 `
 
 const headerBottom = css`
-  height: 50px;
+  height: 45px;
   border-top: 1px solid var(--cBorder);
   border-bottom: 1px solid var(--cBorder);
   background-color: #fff;
-  box-shadow: 0px 2px 15px -5px rgba(0, 0, 0, 0.1);
 `
 
 const headerBottomWrapper = css`
@@ -126,7 +131,7 @@ const headerBottomWrapper = css`
     border-left: 1px solid var(--cBorder);
     height: 100%;
     text-align: center;
-    line-height: 48px;
+    line-height: 45px;
     &:last-child {
       border-right: 1px solid var(--cBorder);
     }

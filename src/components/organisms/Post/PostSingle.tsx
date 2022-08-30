@@ -68,6 +68,10 @@ const title = css`
   line-height: 1.4;
   display: flex;
   align-items: center;
+  font-feature-settings: 'palt';
+  font-family: 'Noto Sans JP', 'Yu Gothic', YuGothic, '游ゴシック体',
+    'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
+    'MS Pゴシック', 'MS PGothic', sans-serif;
   img {
     width: 60px;
     height: 60px;
@@ -97,8 +101,11 @@ const content = css`
   padding: 30px 0;
   font-size: 1.6rem;
   letter-spacing: 0.06em;
-  line-height: 1.4;
+  line-height: 1.6;
   font-feature-settings: 'palt';
+  font-family: 'Noto Sans JP', 'Yu Gothic', YuGothic, '游ゴシック体',
+    'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
+    'MS Pゴシック', 'MS PGothic', sans-serif;
 
   iframe {
     text-align: center;
@@ -120,5 +127,9 @@ const content = css`
   a {
     color: var(--cLink);
     text-decoration: underline;
+    transition: opacity 0.3s ease;
+    &:hover {
+      opacity: 0.8;
+    }
   }
 `

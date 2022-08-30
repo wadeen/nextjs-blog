@@ -20,6 +20,7 @@
 
 // 全ページ共通
 html {
+  padding-top: 145px; // ヘッダー固定分
   /* フォントサイズ：1rem=10px */
   font-size: 62.5%;
   width: 100%;
@@ -39,7 +40,6 @@ html {
       flex: 1;
       width: min((100% - 40px), 1240px);
       margin: 80px auto;
-      // background-color: aquamarine;
     }
   }
 }
