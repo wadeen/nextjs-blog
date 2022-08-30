@@ -18,8 +18,6 @@ import { microcmsData } from 'types/microcmsData'
 export const getStaticProps: GetStaticProps = async () => {
   const data = await client.get({
     endpoint: 'posts',
-    // @ts-ignore
-    queries: { limit: 20, offset: 0},
   })
   return {
     props: {

@@ -1,5 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { client } from '../../../libs/client'
@@ -21,7 +19,11 @@ export const getStaticProps = async (context: { params: microcmsData }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await client.get({ endpoint: 'posts' })
+  const data = await client.get({
+    endpoint: 'posts',
+    // API取得件数:デフォルト10件(上限5MB)
+    queries: { limit: 100 },
+  })
   const paths = data.contents.map(
     (content: microcmsData) => `/posts/${content.id}`
   )

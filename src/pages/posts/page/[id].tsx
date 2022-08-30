@@ -1,10 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from 'next'
 import Head from 'next/head'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
 import { microcmsData } from '../../../../types/microcmsData'
-import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle';
+import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
 import AsideBasic from '../../../components/organisms/aside/asideBasic'
 import { Pagination } from 'src/components/organisms/micrcmsCustom/Pagination'
 import PostSingle from 'src/components/organisms/post/PostArchive'
@@ -14,15 +19,18 @@ import BlogLayoutBody from 'src/components/templates/BlogLayoutBody'
 const PER_PAGE = 10
 
 // SSG: データの取得
-export const getStaticProps = async (context: any) => {
-  //  ✋
-  const id = context.params.id
-  console.log('id', id)
+export const getStaticProps: GetStaticProps = async (context: any) => {
+  //✋any
+  const pageId = context?.params?.id
+
   const data = await client.get({
     endpoint: 'posts',
     // offset: ... * 10 ← "PER_PAGE"の数&"limit"と合わせる
-    queries: { offset: (id - 1) * 10, limit: 10 },
+    queries: { offset: (pageId - 1) * 10, limit: 10 },
+    // queries: { offset: (pageId - 1) * 100, limit: 100 },
   })
+
+  console.log(data.totalCount)
 
   return {
     props: {
@@ -47,20 +55,18 @@ export const getStaticPaths = async () => {
 const PostPage = ({
   data,
   totalCount,
-}: {
-  data: microcmsData[]
-  totalCount: number
-}) => {
+}: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
-  {console.log(router)}
   return (
     <>
       {/* ToDo: OGPは外に出す(新しくコンポーネントを作成する予定.全体的に */}
-      <Head>{/* <title>{post.title} | Webのあれこれ</title> */}</Head>
+      <Head>
+        <title>記事一覧 | Webのあれこれ</title>
+      </Head>
 
       <BlogLayout>
         <BlogLayoutBody>
-        <ArticleTitle text={`記事一覧 　${router.query.id}ページ目`} />
+          <ArticleTitle text={`記事一覧 　${router.query.id}ページ目`} />
           <ul css={postLists}>
             {data.map((post: microcmsData) => (
               <PostSingle key={post.id} post={post} /> // 最新ページから取り出した一覧記事
