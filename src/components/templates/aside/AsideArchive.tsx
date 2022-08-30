@@ -1,7 +1,8 @@
 import { Spacer } from '../../atoms/articleTitle/Spacer'
-import SearchForm from '../../molecules/aside/SearchForm'
+import SearchForm from '../../organisms/aside/SearchForm'
 import AsideBasic from './AsideBase'
-import AsideProfile from 'src/components/molecules/aside/AsideProfile'
+import AsideCategory from 'src/components/organisms/aside/AsideCategory'
+import AsideProfile from 'src/components/organisms/aside/AsideProfile'
 const AsideArchive = () => {
   return (
     <AsideBasic>
@@ -9,6 +10,7 @@ const AsideArchive = () => {
       <Spacer size={30} />
       <AsideProfile />
       <Spacer size={30} />
+      <AsideCategory />
     </AsideBasic>
   )
 }

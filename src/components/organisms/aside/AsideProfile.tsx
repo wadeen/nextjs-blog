@@ -35,10 +35,10 @@ const AsideProfile = () => {
       </div>
 
       <div css={sns}>
-        <p>SNSアカウント</p>
+        <p>Follow me!</p>
         <ul>
           <li>
-            <Link href="/">
+            <Link href="https://github.com/wadeen" target="_blank">
               <a>
                 <GitHubIcon />
                 Github
@@ -46,7 +46,7 @@ const AsideProfile = () => {
             </Link>
           </li>
           <li>
-            <Link href="/">
+            <Link href="https://twitter.com/wadeen_net" target="_blank">
               <a>
                 <TwitterIcon />
                 Twitter
@@ -62,7 +62,6 @@ const AsideProfile = () => {
 export default AsideProfile
 
 const container = css`
-  background-color: #fff;
   border-radius: 6px;
 `
 
@@ -99,6 +98,7 @@ const sns = css`
   font-weight: 500;
   p {
     margin-bottom: 6px;
+    font-weight: 500;
   }
   ul {
     display: flex;
@@ -106,13 +106,12 @@ const sns = css`
     line-height: 30px;
     li {
       width: 50%;
+      color: #fff;
       &:first-child {
         background-color: #333;
-        color: #fff;
       }
       &:last-child {
         background-color: #1d9bf0;
-        color: #fff;
       }
       a {
         display: flex;
