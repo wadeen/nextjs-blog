@@ -25,9 +25,9 @@ const Header: NextPage = () => {
               </Link>
             </h2>
           )}
-          <p css={cahra}>
-            <Image src="/images/chara.png" width={220} height={190} alt="" />
-          </p>
+          {/* <p css={cahra}>
+            <Image src="/images/chara.png" width={120} height={100} alt="" />
+          </p> */}
         </div>
         <div css={headerBottom}>
           <ul css={headerBottomWrapper}>
@@ -97,6 +97,8 @@ const headerTop = css`
   h1,
   h2 {
     display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     font-weight: 500;
     font-size: 3.4rem;
@@ -145,11 +147,9 @@ const headerBottomWrapper = css`
       &:hover {
         background-color: var(--cBorder);
         color: #fff;
-        /* opacity: .85; */
       }
       // カレントページの時にマーキング
       &.is-current {
-        /* position: relative; */
         color: red;
         pointer-events: none;
         text-decoration: underline;
@@ -160,6 +160,6 @@ const headerBottomWrapper = css`
 
 const cahra = css`
   position: absolute;
-  top: -82px;
-  right: 130px;
+  top: 0;
+  right: 330px;
 `

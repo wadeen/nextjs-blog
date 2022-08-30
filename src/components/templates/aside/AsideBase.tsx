@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import { ReactNode } from 'react'
 
-// 
+//
 const AsideBase = ({ children }: { children: ReactNode }) => {
   return <aside css={aside}>{children}</aside>
 }
