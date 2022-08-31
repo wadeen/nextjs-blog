@@ -113,7 +113,7 @@ const sns = css`
     li {
       width: 50%;
       color: #fff;
-      &:first-child {
+      &:first-of-type {
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px;
         background-color: #333;

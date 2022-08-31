@@ -8,10 +8,13 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import hljs from 'highlight.js'
+import { renderToc } from '../../../../libs/render-toc'
+import { TableOfContents } from '../../molecules/TableOfContents'
 import { microcmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
 
 const PostSingle = ({ post }: { post: microcmsData }) => {
+  //✋any
   dayjs.extend(utc)
   dayjs.extend(timezone)
 
@@ -21,6 +24,9 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
     contentBody(elm).html(result.value)
     contentBody(elm).addClass('hljs')
   })
+
+  //目次
+  const toc = renderToc(post.content)
 
   return (
     <div css={container}>
@@ -45,6 +51,7 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
           </li>
         )}
       </ul>
+      {post.toc_visible && <TableOfContents toc={toc} />}
       <div
         dangerouslySetInnerHTML={{ __html: contentBody.html() }}
         css={content}
@@ -88,6 +95,8 @@ const dateList = css`
   column-gap: 20px;
   margin-top: 10px;
   justify-content: flex-end;
+  border-bottom: 1px dashed var(--cBorder);
+  padding-bottom: 20px;
   li {
     font-size: 1.4rem;
   }
@@ -95,9 +104,7 @@ const dateList = css`
 
 //  ブログ記事中身
 const content = css`
-  border-top: 1px dashed var(--cBorder);
-  margin: 30px 0;
-  padding: 30px 0;
+  margin: 40px 0;
   font-size: 1.6rem;
   letter-spacing: 0.06em;
   line-height: 1.6;

@@ -22,4 +22,5 @@ export type microcmsData = {
   updatedAt: string
   date: string
   update: string
+  toc_visible: boolean
 }

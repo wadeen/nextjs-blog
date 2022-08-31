@@ -1,10 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import {
-  GetStaticProps,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from 'next'
+import { InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
