@@ -45,7 +45,7 @@ const AsideProfile = () => {
           <li>
             <Link href="https://github.com/wadeen" target="_blank">
               <a>
-                <GitHubIcon />
+                <GitHubIcon style={{ marginRight: '6px' }} />
                 Github
               </a>
             </Link>
@@ -53,7 +53,7 @@ const AsideProfile = () => {
           <li>
             <Link href="https://twitter.com/wadeen_net" target="_blank">
               <a>
-                <TwitterIcon />
+                <TwitterIcon style={{ marginRight: '6px' }} />
                 Twitter
               </a>
             </Link>
@@ -99,12 +99,13 @@ const imgBox = css`
 
 const sns = css`
   text-align: center;
-  margin-top: 10px;
+  margin-top: 14px;
   font-weight: 500;
   p {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     font-weight: 500;
   }
+
   ul {
     display: flex;
     height: 30px;
@@ -113,9 +114,13 @@ const sns = css`
       width: 50%;
       color: #fff;
       &:first-child {
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
         background-color: #333;
       }
       &:last-child {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
         background-color: #1d9bf0;
       }
       a {
