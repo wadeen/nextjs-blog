@@ -30,12 +30,14 @@ export default function CategoryId({
   return (
     <BlogLayout>
       <BlogLayoutBase>
-        <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の検索結果`} />
+        <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
         <ul css={postLists}>
           {blog.map((post: microcmsData) => (
             <PostSingle key={post.id} post={post} /> // 最新ページから取り出した記事
           ))}
         </ul>
+
+        {/* Pagination 未対応→ v1.1で実装 */}
         {/* <CategoryPagination
           category={blog[0].category.id}
           totalCount={totalCount}
@@ -75,17 +77,6 @@ export const getStaticPaths = async () => {
   const paths = repos.contents.map((content: any) => `/category/${content.id}`)
   return { paths, fallback: false }
 }
-
-// export const getStaticPaths = async () => {
-//   const repos = await client.get({ endpoint: 'categories' })
-//   const pageNumbers = []
-//   const range = (start: number, end: number) =>
-//     [...Array(end - start + 1)].map((_, i) => start + i)
-//   const paths = range(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) =>
-//     repos.contents.map((content: any) => `/category/${content.id}/${repo}`)
-//   )
-//   return { paths, fallback: false }
-// }
 
 // css
 const postLists = css`

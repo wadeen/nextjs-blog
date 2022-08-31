@@ -7,6 +7,8 @@ const AsidePopular: NextPage = () => {
   return (
     <div css={container}>
       <AsideTitle text={'Popular'} />
+      {/* 人気記事については、v1.1で実装 */}
+      <p>現在準備中です</p>
     </div>
   )
 }
@@ -14,5 +16,5 @@ const AsidePopular: NextPage = () => {
 export default AsidePopular
 
 const container = css`
-  background-color: #fff;
+  /* background-color: #fff; */
 `

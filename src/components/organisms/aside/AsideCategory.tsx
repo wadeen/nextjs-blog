@@ -1,37 +1,59 @@
-import { GetStaticProps, InferGetStaticPropsType } from 'next'
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
+import axios from 'axios'
+import { NextPage } from 'next'
 import Link from 'next/link'
-import { client } from '../../../../libs/client'
+import { useState, useEffect } from 'react'
 import { microcmsData } from '../../../../types/microcmsData'
 import AsideTitle from 'src/components/atoms/AsideTitle'
 
-// SSG
-export const getStaticProps: GetStaticProps = async () => {
-  const categoryData = await client.get({ endpoint: 'categories' })
-  // console.log('categoryData', categoryData)
-  return {
-    props: {
-      category: categoryData.contents,
-    },
-  }
-}
+const AsideCategory: NextPage = () => {
+  const [category, setCategory] = useState([])
 
-const AsideCategory = ({ category }: any) => {
-  // }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  // console.log('category', category)
+  useEffect(() => {
+    axios
+      .get('https://nextjs-blog-wadeen.microcms.io/api/v1/categories', {
+        headers: {
+          'X-MICROCMS-API-KEY': process.env
+            .NEXT_PUBLIC_MICROCMS_API_KEY as string,
+        },
+      })
+      .then((res) => {
+        setCategory(res.data.contents)
+      })
+      .catch((err) => console.log(err))
+  }, [])
+
   return (
     <>
       <AsideTitle text={'Category'} />
-      <ul>
-        {/* {category.map((category: any) => (
-          <li key={category.id}>
-            <Link href={`/category/${category.id}`}>
-              <a>{category.name}</a>
+      <ul css={categoryList}>
+        {category.map((categoryName: microcmsData) => (
+          <li key={categoryName.id}>
+            <Link href={`/category/${categoryName.id}`}>
+              <a>{categoryName.name}</a>
             </Link>
           </li>
-        ))} */}
+        ))}
       </ul>
     </>
   )
 }
 
 export default AsideCategory
+
+const categoryList = css`
+  li {
+    font-size: 1.6rem;
+    line-height: 2;
+    letter-spacing: 0.04em;
+    background-color: #fff;
+    padding-left: 15px;
+    border-radius: 4px;
+    border: 1px solid var(--cSub);
+    border-left: 6px solid var(--cSub);
+    &:not(:last-of-type) {
+      margin-bottom: 10px;
+    }
+  }
+`

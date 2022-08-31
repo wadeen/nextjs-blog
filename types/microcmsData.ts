@@ -15,6 +15,7 @@ export type microcmsData = {
     height: number
   }
   id: string
+  name: string
   publishedAt: string
   revisedAt: string
   title: string
