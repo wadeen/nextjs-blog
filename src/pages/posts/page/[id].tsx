@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
 import { microcmsData } from '../../../../types/microcmsData'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
-import { Pagination } from 'src/components/organisms/micrcmsCustom/Pagination'
+import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostSingle from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
@@ -27,8 +27,6 @@ export const getStaticProps = async (context: any) => {
     endpoint: 'posts',
     queries: { offset: (pageId - 1) * 10, limit: 10 },
   })
-
-  console.log(data.totalCount)
 
   return {
     props: {
@@ -70,7 +68,7 @@ const PostPage = ({
               <PostSingle key={post.id} post={post} /> // 最新ページから取り出した一覧記事
             ))}
           </ul>
-          <Pagination totalCount={totalCount} />
+          <BasicPagination totalCount={totalCount} />
         </BlogLayoutBody>
         <AsidePost />
       </BlogLayout>

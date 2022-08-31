@@ -17,6 +17,6 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "libs/GoogleCodePrettify.js", "src/components/organisms/micrcmsCustom/Pagination.js", "src/pages/posts/page/[id].tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "libs/GoogleCodePrettify.js", "src/components/organisms/pagination/BasicPagination.js", "src/pages/posts/page/[id].tsx"],
   "exclude": ["node_modules"]
 }

@@ -8,7 +8,7 @@ import type {
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
 import { client } from 'libs/client'
-import { Pagination } from 'src/components/organisms/micrcmsCustom/Pagination'
+import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostSingle from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
@@ -40,7 +40,7 @@ const Home = ({
             <PostSingle key={post.id} post={post} /> // 最新ページから取り出した記事
           ))}
         </ul>
-        <Pagination totalCount={totalCount} />
+        <BasicPagination totalCount={totalCount} />
       </BlogLayoutBody>
       <AsideArchive />
     </BlogLayout>

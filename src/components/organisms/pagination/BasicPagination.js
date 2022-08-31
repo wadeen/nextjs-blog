@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
-export const Pagination = ({ totalCount }) => {
+export const BasicPagination = ({ totalCount }) => {
   const PER_PAGE = 10
   const router = useRouter()
 
