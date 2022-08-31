@@ -58,7 +58,7 @@ export default PostSingle
 const container = css`
   background-color: #fff;
   border-radius: 8px;
-  padding: 30px 30px 80px;
+  padding: 30px 30px;
 `
 
 const title = css`
@@ -105,17 +105,17 @@ const content = css`
   font-family: var(--fontMain);
 
   h2 {
-    font-size: 3.2rem;
+    font-size: 3rem;
     background-color: whitesmoke;
     padding-left: 10px;
-    border-left: 8px solid var(--cSub);
+    border-left: 7px solid var(--cSub);
     font-weight: 700;
     margin: 10px 0;
-    line-height: 1.8;
+    line-height: 2;
   }
 
   h3 {
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     font-weight: 700;
     border-bottom: 1px dashed var(--cSub);
     margin: 10px 0;
@@ -211,7 +211,7 @@ const content = css`
         border-radius: 50%;
         margin-right: 12px;
       }
-      &:first-child {
+      &:first-of-type {
         font-size: 2rem;
         font-weight: 700;
         color: #e2943a;

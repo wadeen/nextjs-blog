@@ -19,15 +19,13 @@ import AsidePost from 'src/components/templates/aside/AsidePost'
 const PER_PAGE = 10
 
 // SSG: データの取得
-export const getStaticProps: GetStaticProps = async (context: any) => {
+export const getStaticProps = async (context: any) => {
   //✋any
   const pageId = context?.params?.id
 
   const data = await client.get({
     endpoint: 'posts',
-    // offset: ... * 10 ← "PER_PAGE"の数&"limit"と合わせる
     queries: { offset: (pageId - 1) * 10, limit: 10 },
-    // queries: { offset: (pageId - 1) * 100, limit: 100 },
   })
 
   console.log(data.totalCount)
