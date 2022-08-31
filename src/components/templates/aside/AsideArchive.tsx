@@ -1,5 +1,5 @@
 import { Spacer } from '../../atoms/articleTitle/Spacer'
-import SearchForm from '../../organisms/aside/SearchForm'
+import SearchForm from '../../molecules/aside/SearchForm'
 import AsideBasic from './AsideBase'
 import AsideCategory from 'src/components/organisms/aside/AsideCategory'
 import AsidePopular from 'src/components/organisms/aside/AsidePopular'

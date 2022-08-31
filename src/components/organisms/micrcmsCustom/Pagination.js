@@ -40,7 +40,7 @@ const pagination = css`
   column-gap: 20px;
   li {
     // Homeの時に"1"のみcurrent
-    &:first-child {
+    &:first-of-type {
       .is-first-current {
         background-color: var(--cPagination);
         color: #fff;
