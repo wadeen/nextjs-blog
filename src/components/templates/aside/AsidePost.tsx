@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 
 import { useRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
+import { microcmsData } from '../../../../types/microcmsData';
 import { stateToc } from '../../../store/stateToc'
 import { Spacer } from '../../atoms/articleTitle/Spacer'
 import { AsideTableOfContents } from '../../molecules/AsideTableOfContents'
@@ -12,20 +13,38 @@ import AsidePopular from '../../organisms/aside/AsidePopular'
 import AsideProfile from '../../organisms/aside/AsideProfile'
 import AsideBase from './AsideBase'
 
-const AsidePost = () => {
+const AsidePost = ({ post }: { post: microcmsData }) => {
   return (
     <AsideBase>
-      <AsideProfile />
-      <Spacer size={30} />
-      <AsideCategory />
-      <Spacer size={30} />
-      <AsidePopular />
-      <Spacer size={30} />
-      <div css={sticky}>
-        <SearchForm />
-        <Spacer size={30} />
-        <AsideTableOfContents />
-      </div>
+      {post.toc_visible ? (
+        <>
+          {/* 目次ありの場合 */}
+          <AsideProfile />
+          <Spacer size={30} />
+          <AsideCategory />
+          <Spacer size={30} />
+          <AsidePopular />
+          <Spacer size={30} />
+          <div css={sticky}>
+            <SearchForm />
+            <Spacer size={30} />
+            <AsideTableOfContents />
+          </div>
+        </>
+      ) : (
+        <>
+          {/* 目次なしの場合 */}
+          <AsideProfile />
+          <Spacer size={30} />
+          <AsideCategory />
+          <Spacer size={30} />
+          <div css={sticky}>
+            <SearchForm />
+            <Spacer size={30} />
+            <AsidePopular />
+          </div>
+        </>
+      )}
     </AsideBase>
   )
 }

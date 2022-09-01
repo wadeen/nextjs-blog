@@ -10,13 +10,13 @@ import AsideProfile from 'src/components/organisms/aside/AsideProfile'
 const AsideArchive = () => {
   return (
     <AsideBase>
+      <SearchForm />
+      <Spacer size={30} />
       <AsideProfile />
       <Spacer size={30} />
-        <SearchForm />
-        <Spacer size={30} />
-        <AsideCategory />
-        <Spacer size={30} />
-        <AsidePopular />
+      <AsideCategory />
+      <Spacer size={30} />
+      <AsidePopular />
     </AsideBase>
   )
 }

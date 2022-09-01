@@ -46,7 +46,7 @@ const Post = ({ post }: { post: microcmsData }) => {
         <BlogLayoutBody>
           <PostSingle post={post} />
         </BlogLayoutBody>
-        <AsidePost />
+        <AsidePost post={post}/>
       </BlogLayout>
     </>
   )

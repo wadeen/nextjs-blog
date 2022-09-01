@@ -24,13 +24,13 @@ export const AsideTableOfContents: NextPage = () => {
 
 const container = css`
   background-color: #fff;
-  margin: 20px 0;
+  margin: 10px 0;
   padding: 20px;
   border-radius: 6px;
   border: 2px solid var(--cSub);
   h2 {
     font-size: 2.2rem;
-    font-weight: 500;
+    font-weight: 700;
     border-left: 3px solid var(--cSub);
     padding-left: 10px;
     line-height: 1.5;

@@ -6,11 +6,11 @@ import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
 import { microcmsData } from '../../../../types/microcmsData'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
+import AsideArchive from '../../../components/templates/aside/AsideArchive'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostSingle from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
-import AsidePost from 'src/components/templates/aside/AsidePost'
 
 const PER_PAGE = 10
 
@@ -66,7 +66,7 @@ const PostPage = ({
           </ul>
           <BasicPagination totalCount={totalCount} />
         </BlogLayoutBody>
-        <AsidePost />
+        <AsideArchive />
       </BlogLayout>
     </>
   )
