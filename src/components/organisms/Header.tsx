@@ -4,14 +4,25 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
 
 const Header: NextPage = () => {
   const router = useRouter()
 
+  const [scrollHeight, setScrollHeight] = useState(false)
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      let height = window.pageYOffset
+      height > 100 ? setScrollHeight(true) : setScrollHeight(false)
+    })
+  }, [scrollHeight])
+
   return (
     <>
       <header css={header}>
-        <div css={headerTop}>
+        {/* @ts-ignore */}
+        <div css={headerTop} className={scrollHeight && 'is-hide'}>
           {router.pathname === '/' ? (
             <h1>
               <Image
@@ -39,9 +50,6 @@ const Header: NextPage = () => {
               </Link>
             </h2>
           )}
-          {/* <p css={cahra}>
-            <Image src="/images/chara.png" width={120} height={100} alt="" />
-          </p> */}
         </div>
         <div css={headerBottom}>
           <ul css={headerBottomWrapper}>
@@ -94,7 +102,7 @@ export default Header
 
 const header = css`
   width: 100%;
-  height: 145px;
+  /* height: 145px; */
   position: fixed;
   top: 0;
   width: 100%;
@@ -108,6 +116,10 @@ const headerTop = css`
   margin: 0 auto;
   height: 100px;
   position: relative;
+  transition: margin-top .3s ease;
+  &.is-hide {
+    margin-top: -100px;
+  }
   h1,
   h2 {
     display: flex;
@@ -116,7 +128,7 @@ const headerTop = css`
     height: 100%;
     font-weight: 500;
     font-size: 3.4rem;
-    font-family: 'Nikukyu';
+    font-family: 'Nikukyu', sans-serif;
     margin: 0 auto;
     line-height: 90px;
     padding: 0 30px;
@@ -173,10 +185,4 @@ const headerBottomWrapper = css`
       }
     }
   }
-`
-
-const cahra = css`
-  position: absolute;
-  top: 0;
-  right: 330px;
 `

@@ -32,9 +32,8 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
   })
 
   //目次
-  // const toc = renderToc(post.content);
   useEffect(() => {
-    // @ts-ignore
+    // @ts-ignore ✋
     setToc(renderToc(post.content))
   }, [setToc, post.content])
 

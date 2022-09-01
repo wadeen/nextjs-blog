@@ -75,8 +75,8 @@ const link = css`
 `
 
 const eyecatch = css`
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
 `
 
 const textList = css`

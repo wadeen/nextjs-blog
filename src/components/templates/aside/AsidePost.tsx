@@ -55,7 +55,7 @@ const sticky = css`
   display: block;
   width: 100%;
   position: sticky;
-  top: 160px;
+  top: 80px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   padding-bottom: 250px;
