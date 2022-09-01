@@ -1,18 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-import { toc } from '../../../types/toc'
+import { memo } from 'react'
+import { useRecoilState } from 'recoil'
+import { tocType } from '../../../types/tocType'
+import { stateToc } from '../../store/stateToc'
 
-export const TableOfContents: NextPage<{ toc: toc[] }> = ({ toc }) => {
+export const TableOfContents: NextPage<any> = (): any => {
+  //✋ any
+
+  const [toc, setToc] = useRecoilState(stateToc) // Recoil
+
+  // const aaa = toc.map((aaa) => console.log(aaa))
+  // export const TableOfContents: NextPage<{ toc: tocType[] }> = ({ toc }) => {
+
   return (
     <div css={container}>
       <h2>目次</h2>
       <ul>
-        {toc.map((data) => (
+        {/* ✋ any */}
+        {/* @ts-ignore */}
+        {/* {toc.map((data) => (
           <li key={data.id}>
             <a href={`#${data.id}`}>{data.text}</a>
           </li>
-        ))}
+        ))} */}
       </ul>
     </div>
   )

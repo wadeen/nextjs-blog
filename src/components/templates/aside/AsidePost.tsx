@@ -1,28 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 
+import { useRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
+import { stateToc } from '../../../store/stateToc'
 import { Spacer } from '../../atoms/articleTitle/Spacer'
 import SearchForm from '../../molecules/aside/SearchForm'
 import AsideCategory from '../../organisms/aside/AsideCategory'
 import AsidePopular from '../../organisms/aside/AsidePopular'
 import AsideProfile from '../../organisms/aside/AsideProfile'
 import AsideBase from './AsideBase'
-// import { TableOfContents } from 'src/components/molecules/TableOfContents'
+import { TableOfContents } from 'src/components/molecules/TableOfContents'
+
 const AsidePost = () => {
-  // 目次
   return (
     <AsideBase>
       <AsideProfile />
       <Spacer size={30} />
+      <AsideCategory />
+      <Spacer size={30} />
+      <AsidePopular />
+      <Spacer size={30} />
       <div css={sticky}>
         <SearchForm />
         <Spacer size={30} />
-        <AsideCategory />
-        <Spacer size={30} />
-        <AsidePopular />
-        {/* <Spacer size={30} />} */}
-        {/* { <TableOfContents toc={toc} /> */}
+        <TableOfContents />
       </div>
     </AsideBase>
   )

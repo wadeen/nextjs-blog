@@ -8,16 +8,21 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import hljs from 'highlight.js'
+import { useEffect } from 'react'
+import { useRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
+import { stateToc } from '../../../store/stateToc'
 import { TableOfContents } from '../../molecules/TableOfContents'
 import { microcmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
 
 const PostSingle = ({ post }: { post: microcmsData }) => {
-  //✋any
+  const [toc, setToc] = useRecoilState(stateToc) // Recoil
+
   dayjs.extend(utc)
   dayjs.extend(timezone)
 
+  // pre > code シンタックスハイライト
   const contentBody = cheerio.load(post.content) // eslint-disable-line
   contentBody('pre code').each((_, elm) => {
     const result = hljs.highlightAuto(contentBody(elm).text())
@@ -26,7 +31,11 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
   })
 
   //目次
-  const toc = renderToc(post.content)
+  // const toc = renderToc(post.content);
+  useEffect(() => {
+    // @ts-ignore
+    setToc(renderToc(post.content))
+  }, [setToc, post.content])
 
   return (
     <div css={container}>
@@ -51,7 +60,8 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
           </li>
         )}
       </ul>
-      {post.toc_visible && <TableOfContents toc={toc} />}
+
+      {post.toc_visible && <TableOfContents />}
       <div
         dangerouslySetInnerHTML={{ __html: contentBody.html() }}
         css={content}
