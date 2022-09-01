@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { CircularProgress } from '@mui/material'
 import axios from 'axios'
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -8,34 +9,54 @@ import { microcmsData } from '../../../../types/microcmsData'
 import AsideTitle from 'src/components/atoms/AsideTitle'
 
 const AsideCategory: NextPage = () => {
-  const [category, setCategory] = useState([])
+  const [category, setCategory] = useState([]) // ✋型設定
+  const [loading, setLoading] = useState(true)
+  const [getCategory, setGetCategory] = useState(true)
 
   useEffect(() => {
     axios
-      .get('https://nextjs-blog-wadeen.microcms.io/api/v1/categories', {
-        headers: {
-          'X-MICROCMS-API-KEY': process.env
-            .NEXT_PUBLIC_MICROCMS_API_KEY as string,
-        },
-      })
+      .get(
+        `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categories`, // ✋型設定
+        {
+          headers: {
+            'X-MICROCMS-API-KEY': process.env
+              .NEXT_PUBLIC_MICROCMS_API_KEY as string,
+          },
+        }
+      )
       .then((res) => {
         setCategory(res.data.contents)
+        setLoading(false)
       })
-      .catch((err) => console.log(err))
+      .catch((err) => {
+        console.log(err)
+        setLoading(false)
+        setGetCategory(false)
+      })
   }, [])
 
   return (
     <>
       <AsideTitle text={'Category'} />
-      <ul css={categoryList}>
-        {category.map((categoryName: microcmsData) => (
-          <li key={categoryName.id}>
-            <Link href={`/category/${categoryName.id}`}>
-              <a>{categoryName.name}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+
+      {loading ? (
+        <p css={loadingIcon}>
+          <CircularProgress />
+        </p>
+      ) : // カテゴリの取得結果の判定
+      getCategory ? (
+        <ul css={categoryList}>
+          {category.map((categoryName: microcmsData) => (
+            <li key={categoryName.id}>
+              <Link href={`/category/${categoryName.id}`}>
+                <a>{categoryName.name}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>カテゴリの取得に失敗しました。</p>
+      )}
     </>
   )
 }
@@ -64,4 +85,11 @@ const categoryList = css`
       margin-bottom: 10px;
     }
   }
+`
+
+const loadingIcon = css`
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
