@@ -35,6 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Post = ({ post }: { post: microcmsData }) => {
+  //✋
   return (
     <>
       {/* ToDo: OGPは外に出す(新しくコンポーネントを作成する予定.全体的に */}
@@ -46,7 +47,7 @@ const Post = ({ post }: { post: microcmsData }) => {
         <BlogLayoutBody>
           <PostSingle post={post} />
         </BlogLayoutBody>
-        <AsidePost post={post}/>
+        <AsidePost post={post} />
       </BlogLayout>
     </>
   )

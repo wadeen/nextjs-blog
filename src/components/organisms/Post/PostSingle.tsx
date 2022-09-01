@@ -8,6 +8,7 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import hljs from 'highlight.js'
+import Link from 'next/link'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
@@ -44,8 +45,12 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
         {post.title}
       </h1>
       <p css={category}>
-        <FolderCopyIcon />
-        カテゴリ: {post.category.name}
+        <Link href={`/category/${post.category.id}`}>
+          <a>
+            <FolderCopyIcon />
+            カテゴリ: {post.category.name}
+          </a>
+        </Link>
       </p>
       <ul css={dateList}>
         <li>
@@ -98,6 +103,12 @@ const category = css`
   font-size: 1.4rem;
   text-align: right;
   margin-top: 10px;
+  a {
+    transition: opacity 0.3s ease;
+    &:hover {
+      opacity: 0.7;
+    }
+  }
 `
 
 const dateList = css`

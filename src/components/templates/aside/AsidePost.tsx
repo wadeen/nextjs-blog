@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 
 import { useRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
-import { microcmsData } from '../../../../types/microcmsData';
+import { microcmsData } from '../../../../types/microcmsData'
 import { stateToc } from '../../../store/stateToc'
 import { Spacer } from '../../atoms/articleTitle/Spacer'
 import { AsideTableOfContents } from '../../molecules/AsideTableOfContents'
@@ -58,7 +58,6 @@ const sticky = css`
   top: 160px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  height: 100vh;
   padding-bottom: 250px;
   -ms-overflow-style: none;
   scrollbar-width: none;
