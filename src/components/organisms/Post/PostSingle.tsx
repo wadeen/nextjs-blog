@@ -137,31 +137,28 @@ const content = css`
     padding-left: 10px;
     border-left: 7px solid var(--cSub);
     font-weight: 700;
-    margin: 10px 0;
+    margin: 10px 0 20px;
     line-height: 2;
-
-    scroll-margin-top: 150px; //調整
+    scroll-margin-top: 80px;
   }
 
   h3 {
     font-size: 2.6rem;
     font-weight: 700;
     border-bottom: 1px dashed var(--cSub);
-    margin: 10px 0;
-
-    scroll-margin-top: 150px; //調整！
+    margin: 10px 0 20px;
+    scroll-margin-top: 80px;
   }
 
   h4 {
     font-size: 2.2rem;
     font-weight: 700;
-    margin: 10px 0;
+    margin: 10px 0 20px;
   }
 
   h5 {
     font-size: 2rem;
     font-weight: 700;
-    margin: 10px 0;
   }
 
   iframe {
