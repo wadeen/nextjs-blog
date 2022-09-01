@@ -150,4 +150,5 @@ const info = css`
   font-size: 1.4rem;
   letter-spacing: 0.04em;
   line-height: 1.4;
+  font-family: var(--fontMain);
 `

@@ -119,6 +119,8 @@ const content = css`
     font-weight: 700;
     margin: 10px 0;
     line-height: 2;
+
+    scroll-margin-top: 150px; //調整
   }
 
   h3 {
@@ -126,6 +128,8 @@ const content = css`
     font-weight: 700;
     border-bottom: 1px dashed var(--cSub);
     margin: 10px 0;
+
+    scroll-margin-top: 150px; //調整！
   }
 
   h4 {
