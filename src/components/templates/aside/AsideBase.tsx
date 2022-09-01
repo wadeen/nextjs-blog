@@ -11,5 +11,4 @@ export default AsideBase
 
 const aside = css`
   width: min(100%, 300px);
-  height: 100%;
 `

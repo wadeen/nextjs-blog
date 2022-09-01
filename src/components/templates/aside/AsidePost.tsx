@@ -21,8 +21,8 @@ const AsidePost = () => {
         <AsideCategory />
         <Spacer size={30} />
         <AsidePopular />
-        {/* <Spacer size={30} /> */}
-        {/* <TableOfContents toc={toc} /> */}
+        {/* <Spacer size={30} />} */}
+        {/* { <TableOfContents toc={toc} /> */}
       </div>
     </AsideBase>
   )
@@ -33,14 +33,12 @@ export default AsidePost
 const sticky = css`
   display: block;
   width: 100%;
-  height: 100%;
   position: sticky;
-  width: 100%;
   top: 160px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   height: 100vh;
-  /* padding-bottom: 250px; */
+  padding-bottom: 250px;
   -ms-overflow-style: none;
   scrollbar-width: none;
   &::-webkit-scrollbar {

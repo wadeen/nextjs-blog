@@ -17,4 +17,6 @@ export default AsidePopular
 
 const container = css`
   /* background-color: #fff; */
+  display: block;
+  width: 100%;
 `
