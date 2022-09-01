@@ -5,7 +5,7 @@ import { useRecoilState } from 'recoil'
 import { stateToc } from '../../store/stateToc'
 import { tocType } from 'types/tocType'
 
-export const TableOfContents: NextPage = () => {
+export const AsideTableOfContents: NextPage = () => {
   const [toc, setToc] = useRecoilState(stateToc) // Recoil
 
   return (
@@ -23,24 +23,24 @@ export const TableOfContents: NextPage = () => {
 }
 
 const container = css`
-  background-color: #f3f5f8;
-  margin: 50px 0 30px;
-  padding: 40px 50px;
+  background-color: #fff;
+  margin: 20px 0;
+  padding: 20px;
   border-radius: 6px;
   border: 2px solid var(--cSub);
   h2 {
-    font-size: 2.6rem;
-    font-weight: 700;
-    border-left: 4px solid var(--cSub);
+    font-size: 2.2rem;
+    font-weight: 500;
+    border-left: 3px solid var(--cSub);
     padding-left: 10px;
     line-height: 1.5;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
   }
   ul {
     li {
-      font-size: 1.6rem;
+      font-size: 1.4rem;
       line-height: 1.5;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       font-weight: 500;
       font-family: var(--fontMain);
       display: flex;

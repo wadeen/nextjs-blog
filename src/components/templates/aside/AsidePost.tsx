@@ -5,12 +5,12 @@ import { useRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
 import { stateToc } from '../../../store/stateToc'
 import { Spacer } from '../../atoms/articleTitle/Spacer'
+import { AsideTableOfContents } from '../../molecules/AsideTableOfContents'
 import SearchForm from '../../molecules/aside/SearchForm'
 import AsideCategory from '../../organisms/aside/AsideCategory'
 import AsidePopular from '../../organisms/aside/AsidePopular'
 import AsideProfile from '../../organisms/aside/AsideProfile'
 import AsideBase from './AsideBase'
-import { TableOfContents } from 'src/components/molecules/TableOfContents'
 
 const AsidePost = () => {
   return (
@@ -24,7 +24,7 @@ const AsidePost = () => {
       <div css={sticky}>
         <SearchForm />
         <Spacer size={30} />
-        <TableOfContents />
+        <AsideTableOfContents />
       </div>
     </AsideBase>
   )
