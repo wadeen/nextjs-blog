@@ -3,7 +3,6 @@ import { css } from '@emotion/react'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import Image from 'next/image'
-import Link from 'next/link'
 import AsideTitle from '../../atoms/AsideTitle'
 
 const AsideProfile = () => {
@@ -43,20 +42,24 @@ const AsideProfile = () => {
         <p>Follow me!</p>
         <ul>
           <li>
-            <Link href="https://github.com/wadeen" target="_blank">
-              <a>
-                <GitHubIcon style={{ marginRight: '6px' }} />
-                Github
-              </a>
-            </Link>
+            <a
+              href="https://github.com/wadeen"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <GitHubIcon style={{ marginRight: '6px' }} />
+              Github
+            </a>
           </li>
           <li>
-            <Link href="https://twitter.com/wadeen_net" target="_blank">
-              <a>
-                <TwitterIcon style={{ marginRight: '6px' }} />
-                Twitter
-              </a>
-            </Link>
+            <a
+              href="https://twitter.com/wadeen_net"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <TwitterIcon style={{ marginRight: '6px' }} />
+              Twitter
+            </a>
           </li>
         </ul>
       </div>
