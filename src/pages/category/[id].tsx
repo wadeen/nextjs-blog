@@ -19,11 +19,13 @@ export default function CategoryId({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   if (blog.length === 0) {
     return (
-      <div>
+      <div css={failed}>
         カテゴリに該当する記事はありません。
-        <Link href="/">
-          <a>記事一覧ページへ戻る</a>
-        </Link>
+        <p>
+          <Link href="/">
+            <a>記事一覧ページへ戻る</a>
+          </Link>
+        </p>
       </div>
     )
   }
@@ -83,4 +85,18 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+`
+
+const failed = css`
+  p {
+    margin-top: 40px;
+    a {
+      color: var(--cLink);
+      text-decoration: underline;
+      transition: opacity 0.3s ease;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
 `
