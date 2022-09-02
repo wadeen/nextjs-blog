@@ -6,10 +6,11 @@ import UpdateIcon from '@mui/icons-material/Update'
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
+import { NextPage } from 'next'
 import Link from 'next/link'
 import { microcmsData } from 'types/microcmsData'
 
-const PostSingle = ({ post }: { post: microcmsData }) => {
+const PostSingle: NextPage<{ post: microcmsData }> = ({ post }) => {
   dayjs.extend(utc)
   dayjs.extend(timezone)
 

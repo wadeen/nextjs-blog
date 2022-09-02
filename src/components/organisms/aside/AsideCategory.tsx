@@ -50,7 +50,6 @@ const categoryList = css`
     line-height: 2;
     letter-spacing: 0.04em;
     background-color: #fff;
-    padding-left: 15px;
     border-radius: 4px;
     border: 1px solid var(--cSub);
     border-left: 6px solid var(--cSub);
@@ -61,6 +60,7 @@ const categoryList = css`
       display: block;
       width: 100%;
       height: 100%;
+      padding-left: 15px;
     }
     &:not(:last-of-type) {
       margin-bottom: 10px;
