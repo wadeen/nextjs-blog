@@ -1,39 +1,29 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { EmotionJSX } from '@emotion/react/types/jsx-namespace' // ✋
 import { CircularProgress } from '@mui/material'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useRecoilState } from 'recoil'
 import useSWR from 'swr'
+import { microcmsApi } from '../../types/microcmsApi'
 import { microcmsData } from '../../types/microcmsData'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
-import { searchState } from '../store/searchState'
 import Failed from 'src/components/atoms/Failed'
-import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
+// import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 
-const fetcher = (url: string, value: string): any => {
-  //✋ any
+const fetcher = (url: string, value: string) => {
   return fetch(`${url}?keyword=${value}`).then((res) => res.json())
 }
 
-const Search = () => {
+const Search: NextPage = () => {
   const router = useRouter()
 
-  type Props = {
-    contents: microcmsData[]
-    limit: number
-    offset: number
-    totalCount: number
-  }
-
   // apiから検索結果の受け取り
-  const { data, error } = useSWR<Props>(
+  const { data, error } = useSWR<microcmsApi>(
     ['/api/search', router.query.keyword],
     fetcher
   )

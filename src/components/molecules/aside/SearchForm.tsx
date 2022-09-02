@@ -2,13 +2,12 @@
 import { css } from '@emotion/react'
 import SearchIcon from '@mui/icons-material/Search'
 import { useRouter } from 'next/router'
-import { useState, useCallback } from 'react'
+import { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
 import { searchState } from '../../../store/searchState'
 
 const SearchForm = () => {
   const [value, setValue] = useRecoilState(searchState)
-
   const router = useRouter()
 
   const onChangeValue = useCallback(
