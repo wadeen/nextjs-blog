@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace' // ✋
 import { CircularProgress } from '@mui/material'
 import { NextPage } from 'next'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 import useSWR from 'swr'
@@ -32,7 +33,7 @@ const Search = () => {
   }
 
   // apiから検索結果の受け取り
-  const { data, error } = useSWR<Props>( //✋ any
+  const { data, error } = useSWR<Props>(
     ['/api/search', router.query.keyword],
     fetcher
   )
@@ -50,12 +51,22 @@ const Search = () => {
       <BlogLayout>
         <BlogLayoutBody>
           <ArticleTitle text={`"${router.query.keyword}" の検索結果`} />
-          <ul css={postLists}>
-            {/* @ts-ignore ✋ */}
-            {data.contents.map((post: microcmsData) => (
-              <PostArchive key={post.id} post={post} />
-            ))}
-          </ul>
+          {/* 検索記事の有無を判定 */}
+          {data.contents.length === 0 ? (
+            <div css={notPost}>
+              <p>[{router.query.keyword}]に関する記事はありませんでした。</p>
+              <Link href="/">
+                <a>記事一覧へ戻る</a>
+              </Link>
+            </div>
+          ) : (
+            <ul css={postLists}>
+              {data.contents.map((post: microcmsData) => (
+                <PostArchive key={post.id} post={post} />
+              ))}
+            </ul>
+          )}
+          {/* ページネーションは v1.1 ~で実装 */}
           {/* <BasicPagination totalCount={totalCount} /> */}
         </BlogLayoutBody>
         <AsideArchive />
@@ -78,4 +89,19 @@ const loadingIcon = css`
   display: flex;
   align-items: center;
   justify-content: center;
+`
+
+const notPost = css`
+  margin-top: 60px;
+  p {
+    margin-bottom: 30px;
+  }
+  a {
+    color: var(--cLink);
+    text-decoration: underline;
+    transition: opacity 0.3s ease;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 `
