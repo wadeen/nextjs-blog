@@ -1,45 +1,50 @@
+// @ts-nocheck
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import dayjs from 'dayjs'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+import { collection, onSnapshot } from 'firebase/firestore'
 import { NextPage } from 'next'
+import { useEffect, useState } from 'react'
+import { db } from '../../../../libs/firebase'
+import { comments } from '../../../../types/comments'
+import CommentAdd from './CommentAdd'
 
 const Comment: NextPage = () => {
+  const [comments, setComments] = useState<any>([])
+
+  useEffect(() => {
+    const commentsData = collection(db, 'comments')
+    onSnapshot(commentsData, (snapshot: any) => {
+      setComments(snapshot.docs.map((doc: any) => doc.data()))
+    })
+  }, [])
+
+  // 日時調整
+  dayjs.extend(utc)
+  dayjs.extend(timezone)
+
   return (
     <div css={comment}>
       <h2>この記事へのコメント</h2>
       <ul css={commentList}>
-        <li>
-          <p css={commentName}>
-            {true ? (
-              <a href="" target="_blank">
-                匿名さん
-              </a>
-            ) : (
-              <>匿名さん</>
-            )}
-          </p>
-          <p>
-            kフォアkフォアfかjfkl亜jkfじゃkljf化jflかjflkじゃklfdJALkjファlkjfkljflかjklfじゃklfじゃlkfjdlかjflあjklfjlkjfkぁjklじゃlふぁjkfdjflhfkljdfじょfhghじゃほphksjqkffhqihlkjfkjkj
-            lhipjflkafkj
-          </p>
-          <p css={commentDate}>2022.04.24</p>
-        </li>
-        <li>
-          <p css={commentName}>匿名さん</p>
-          <p>
-            kフォアkフォアfかjfkl亜jkfじゃkljf化jflかjflkじゃklfdJALkjファlkjfkljflかjklfじゃklfじゃlkfjdlかjflあjklfjlkjfkぁjklじゃlふぁjkfdjflhfkljdfじょfhghじゃほphksjqkffhqihlkjfkjkj
-            lhipjflkafkj
-          </p>
-          <p css={commentDate}>2022.04.24</p>
-        </li>
-        <li>
-          <p css={commentName}>匿名さん</p>
-          <p>
-            kフォアkフォアfかjfkl亜jkfじゃkljf化jflかjflkじゃklfdJALkjファlkjfkljflかjklfじゃklfじゃlkfjdlかjflあjklfjlkjfkぁjklじゃlふぁjkfdjflhfkljdfじょfhghじゃほphksjqkffhqihlkjfkjkj
-            lhipjflkafkj
-          </p>
-          <p css={commentDate}>2022.04.24</p>
-        </li>
+        {comments.map(({ name, link, date, text }: any) => {
+          const firestoreCommentDate = new Date(date.seconds * 1000)
+          const firestoreComment = dayjs
+            .utc(firestoreCommentDate)
+            .tz('Asia/Tokyo')
+            .format('YYYY.MM.DD')
+          return (
+            <li key={date.seconds}>
+              <p css={commentName}>{name}</p>
+              <p>{text}</p>
+              <p css={commentDate}>{firestoreComment}</p>
+            </li>
+          )
+        })}
       </ul>
+      <CommentAdd />
     </div>
   )
 }
@@ -47,12 +52,11 @@ const Comment: NextPage = () => {
 export default Comment
 
 // css
-
 const comment = css`
   margin: 30px 0;
   width: 100%;
 
-  background-color: #faf2e8;
+  background-color: #f4f1ee;
   border-radius: 8px;
   padding: 30px 30px;
   border: 1px solid var(--cBorder);
@@ -68,6 +72,7 @@ const comment = css`
 const commentList = css`
   letter-spacing: 0.04em;
   line-height: 1.4;
+  margin-bottom: 60px;
   li {
     position: relative;
     margin-bottom: 30px;

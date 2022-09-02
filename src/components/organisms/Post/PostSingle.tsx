@@ -20,6 +20,7 @@ import 'highlight.js/styles/hybrid.css'
 const PostSingle = ({ post }: { post: microcmsData }) => {
   const [toc, setToc] = useRecoilState(stateToc) // Recoil
 
+  // 日時調整
   dayjs.extend(utc)
   dayjs.extend(timezone)
 
