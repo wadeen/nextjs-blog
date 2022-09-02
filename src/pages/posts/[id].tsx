@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { client } from '../../../libs/client'
 import { microcmsData } from '../../../types/microcmsData'
 import PostSingle from '../../components/organisms/post/PostSingle'
+import Comment from 'src/components/organisms/comment/Comment'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsidePost from 'src/components/templates/aside/AsidePost'
@@ -45,6 +46,7 @@ const Post = ({ post }: { post: microcmsData }) => {
       <BlogLayout>
         <BlogLayoutBody>
           <PostSingle post={post} />
+          <Comment />
         </BlogLayoutBody>
         <AsidePost post={post} />
       </BlogLayout>
