@@ -22,9 +22,9 @@ const SearchForm = () => {
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault()
       router.push(`/search/?keyword=${value}`)
-      setValue("");
+      setValue('')
     },
-    [value, router, value]
+    [value, router, setValue]
   )
 
   const handleKeyDown = useCallback(
@@ -32,9 +32,10 @@ const SearchForm = () => {
       if (e.key === 'Enter') {
         e.preventDefault()
         router.push(`/search/?keyword=${value}`)
+        setValue('')
       }
     },
-    [value, router]
+    [value, router, setValue]
   )
 
   return (
