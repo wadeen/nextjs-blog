@@ -1,25 +1,61 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import SearchIcon from '@mui/icons-material/Search'
-import { useState } from 'react'
+import { useRouter } from 'next/router'
+import { useState, useCallback } from 'react'
+import { useRecoilState } from 'recoil'
+import { searchState } from '../../../store/searchState'
 
 const SearchForm = () => {
-  const [inputSearchText, setInputSearchText] = useState('')
+  // const [inputSearchText, setInputSearchText] = useState('')
+  const [value, setValue] = useRecoilState(searchState)
 
-  const onClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
-  }
+  const router = useRouter()
+
+  // const onClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
+  //   e.preventDefault()
+  // }
+
+  const onChangeValue = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setValue(e.target.value)
+    },
+    [setValue]
+  )
+
+  const handleClickSubmitButton = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement>) => {
+      e.preventDefault()
+      router.push(`/search/?keyword=${value}`)
+    },
+    [value, router]
+  )
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === 'Enter') {
+        e.preventDefault()
+        router.push(`/search/?keyword=${value}`)
+      }
+    },
+    [value, router]
+  )
 
   return (
     <form css={container}>
       <input
         type="text"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setInputSearchText(e.target.value)
-        }
-        value={inputSearchText}
+        // onChange={(e: React.ChangeEvent<HTMLInputElement>) =>setInputSearchText(e.target.value)}
+        // value={inputSearchText}
+        value={value}
+        onChange={onChangeValue}
+        onKeyDown={handleKeyDown}
       />
-      <button type="submit" onClick={onClickSearch}>
+      <button
+        type="submit"
+        // onClick={onClickSearch}
+        onClick={handleClickSubmitButton}
+      >
         <SearchIcon
           fontSize="large"
           style={{ marginTop: '2px', marginLeft: '-3px' }}

@@ -9,7 +9,7 @@ import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
 import { client } from 'libs/client'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
-import PostSingle from 'src/components/organisms/post/PostArchive'
+import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import { microcmsData } from 'types/microcmsData'
@@ -37,7 +37,7 @@ const Home = ({
         <ArticleTitle text={'最新の記事一覧'} />
         <ul css={postLists}>
           {data.map((post: microcmsData) => (
-            <PostSingle key={post.id} post={post} /> // 最新ページから取り出した記事
+            <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
           ))}
         </ul>
         <BasicPagination totalCount={totalCount} />

@@ -8,7 +8,7 @@ import { microcmsData } from '../../../../types/microcmsData'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../../../components/templates/aside/AsideArchive'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
-import PostSingle from 'src/components/organisms/post/PostArchive'
+import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 
@@ -61,7 +61,7 @@ const PostPage = ({
           <ArticleTitle text={`記事一覧 　${router.query.id}ページ目`} />
           <ul css={postLists}>
             {data.map((post: microcmsData) => (
-              <PostSingle key={post.id} post={post} /> // 最新ページから取り出した一覧記事
+              <PostArchive key={post.id} post={post} /> // 最新ページから取り出した一覧記事
             ))}
           </ul>
           <BasicPagination totalCount={totalCount} />
