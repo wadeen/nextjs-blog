@@ -6,7 +6,7 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { microcmsData } from '../../../../types/microcmsData'
-import AsideTitle from 'src/components/atoms/AsideTitle'
+import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 
 const AsideCategory: NextPage = () => {
   const [category, setCategory] = useState([]) // ✋型設定

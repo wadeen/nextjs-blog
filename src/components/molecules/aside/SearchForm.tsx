@@ -7,14 +7,9 @@ import { useRecoilState } from 'recoil'
 import { searchState } from '../../../store/searchState'
 
 const SearchForm = () => {
-  // const [inputSearchText, setInputSearchText] = useState('')
   const [value, setValue] = useRecoilState(searchState)
 
   const router = useRouter()
-
-  // const onClickSearch = (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.preventDefault()
-  // }
 
   const onChangeValue = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,8 +22,9 @@ const SearchForm = () => {
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault()
       router.push(`/search/?keyword=${value}`)
+      setValue("");
     },
-    [value, router]
+    [value, router, value]
   )
 
   const handleKeyDown = useCallback(
@@ -45,17 +41,11 @@ const SearchForm = () => {
     <form css={container}>
       <input
         type="text"
-        // onChange={(e: React.ChangeEvent<HTMLInputElement>) =>setInputSearchText(e.target.value)}
-        // value={inputSearchText}
         value={value}
         onChange={onChangeValue}
         onKeyDown={handleKeyDown}
       />
-      <button
-        type="submit"
-        // onClick={onClickSearch}
-        onClick={handleClickSubmitButton}
-      >
+      <button type="submit" onClick={handleClickSubmitButton}>
         <SearchIcon
           fontSize="large"
           style={{ marginTop: '2px', marginLeft: '-3px' }}

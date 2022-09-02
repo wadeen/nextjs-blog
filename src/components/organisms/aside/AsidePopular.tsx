@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 
 import { NextPage } from 'next'
-import AsideTitle from '../../atoms/AsideTitle'
+import AsideTitle from '../../atoms/aside/AsideTitle'
 const AsidePopular: NextPage = () => {
   return (
     <div css={container}>

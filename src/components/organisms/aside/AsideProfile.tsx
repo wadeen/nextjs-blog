@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import TwitterIcon from '@mui/icons-material/Twitter'
 import Image from 'next/image'
-import AsideTitle from '../../atoms/AsideTitle'
+import AsideTitle from '../../atoms/aside/AsideTitle'
 
 const AsideProfile = () => {
   return (

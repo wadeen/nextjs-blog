@@ -6,6 +6,7 @@ import { client } from '../../../libs/client'
 import BlogLayout from '../../components/templates/BlogLayout'
 import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
 import AsideArchive from '../../components/templates/aside/AsideArchive'
+import Failed from 'src/components/atoms/Failed'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
 import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
 import PostSingle from 'src/components/organisms/post/PostArchive'
@@ -19,14 +20,7 @@ export default function CategoryId({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   if (blog.length === 0) {
     return (
-      <div css={failed}>
-        カテゴリに該当する記事はありません。
-        <p>
-          <Link href="/">
-            <a>記事一覧ページへ戻る</a>
-          </Link>
-        </p>
-      </div>
+      <Failed text={"カテゴリに該当する記事はありません。"}/>
     )
   }
   return (
@@ -85,18 +79,4 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-`
-
-const failed = css`
-  p {
-    margin-top: 40px;
-    a {
-      color: var(--cLink);
-      text-decoration: underline;
-      transition: opacity 0.3s ease;
-      &:hover {
-        opacity: 0.8;
-      }
-    }
-  }
 `
