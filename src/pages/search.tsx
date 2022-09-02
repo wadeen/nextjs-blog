@@ -22,9 +22,9 @@ const fetcher = (url: string, value: string) => {
 const Search: NextPage = () => {
   const router = useRouter()
 
-  // apiから検索結果の受け取り
+  // apiでの検索結果を取得
   const { data, error } = useSWR<microcmsApi>(
-    ['/api/search', router.query.keyword],
+    ['api/search', router.query.keyword],
     fetcher
   )
 

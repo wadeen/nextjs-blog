@@ -1,64 +1,45 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { CircularProgress } from '@mui/material'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { useState, useEffect } from 'react'
 import { microcmsData } from '../../../../types/microcmsData'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 
 const AsideCategory: NextPage = () => {
-  const [category, setCategory] = useState([]) // ✋型設定
-  const [loading, setLoading] = useState(true)
-  const [getCategory, setGetCategory] = useState(true)
+  const { error, data } = useQuery(['category'], () =>
+    axios.get(
+      `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categories`,
+      {
+        headers: {
+          'X-MICROCMS-API-KEY': process.env
+            .NEXT_PUBLIC_MICROCMS_API_KEY as string,
+        },
+      }
+    )
+  )
 
-  useEffect(() => {
-    axios
-      .get(
-        `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categories`, // ✋型設定
-        {
-          headers: {
-            'X-MICROCMS-API-KEY': process.env
-              .NEXT_PUBLIC_MICROCMS_API_KEY as string,
-          },
-        }
-      )
-      .then((res) => {
-        setCategory(res.data.contents)
-        setLoading(false)
-      })
-      .catch((err) => {
-        console.log(err)
-        setLoading(false)
-        setGetCategory(false)
-      })
-  }, [])
+  if (error) {
+    // @ts-ignore
+    console.log(error.message)
+  }
 
-  return (
+  // カテゴリの取得結果の判定
+  return data ? (
     <>
       <AsideTitle text={'Category'} />
-
-      {loading ? (
-        <p css={loadingIcon}>
-          <CircularProgress />
-        </p>
-      ) : // カテゴリの取得結果の判定
-      getCategory ? (
-        <ul css={categoryList}>
-          {category.map((categoryName: microcmsData) => (
-            <li key={categoryName.id}>
-              <Link href={`/category/${categoryName.id}`}>
-                <a>{categoryName.name}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>カテゴリの取得に失敗しました。</p>
-      )}
+      <ul css={categoryList}>
+        {data.data.contents.map((category: microcmsData) => (
+          <li key={category.id}>
+            <Link href={`/category/${category.id}`}>
+              <a>{category.name}</a>
+            </Link>
+          </li>
+        ))}
+      </ul>
     </>
-  )
+  ) : null
 }
 
 export default AsideCategory
