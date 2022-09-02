@@ -58,9 +58,12 @@ const list = css`
   position: relative;
   min-height: 123px;
   transition: opacity 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--cBorder);
+  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.05);
   &:hover {
-    box-shadow: 1px 2px 10px 2px rgba(0, 0, 0, 0.1);
-    opacity: 0.9;
+    box-shadow: 2px 3px 10px 2px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--cSub);
+    opacity: 0.85;
   }
 `
 
