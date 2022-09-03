@@ -47,9 +47,10 @@ const container = css`
   gap: 5px 0;
   small {
     a {
-      color: var(--cLink);
       margin: 0 5px;
-      text-decoration: underline;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 `
