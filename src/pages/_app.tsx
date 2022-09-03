@@ -10,16 +10,16 @@ const queryClient = new QueryClient()
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Layout>
-      <QueryClientProvider client={queryClient}>
-        <RecoilRoot>
+    <RecoilRoot>
+      <Layout>
+        <QueryClientProvider client={queryClient}>
           <Head>
             <title>Webのあれこれ</title>
           </Head>
           <Component {...pageProps} />
-        </RecoilRoot>
-      </QueryClientProvider>
-    </Layout>
+        </QueryClientProvider>
+      </Layout>
+    </RecoilRoot>
   )
 }
 

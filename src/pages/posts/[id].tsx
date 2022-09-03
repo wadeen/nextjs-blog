@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps } from 'next'
+import { GetStaticPaths } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { client } from '../../../libs/client'
@@ -57,7 +57,7 @@ const Post = ({ post }: { post: microcmsData }) => {
       </Head>
 
       <BlogLayout>
-        <BlogLayoutBody>
+        <BlogLayoutBody >
           <PostSingle post={post} />
           <Comment />
         </BlogLayoutBody>

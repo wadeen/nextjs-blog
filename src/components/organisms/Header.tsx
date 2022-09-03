@@ -9,7 +9,8 @@ import { useEffect, useState } from 'react'
 const Header: NextPage = () => {
   const router = useRouter()
 
-  const [scrollHeight, setScrollHeight] = useState(false)
+  const [scrollHeight, setScrollHeight] = useState(false) // 基準高さでクラス付与
+  const [isPost, setIsPost] = useState(false) // 投稿ページのみ戻るボタンあり
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -17,6 +18,12 @@ const Header: NextPage = () => {
       height > 100 ? setScrollHeight(true) : setScrollHeight(false)
     })
   }, [scrollHeight])
+
+  useEffect(() => {
+    router.pathname === '/posts/[id]' ? setIsPost(true) : setIsPost(false)
+  }, [router])
+
+  console.log(router.locale)
 
   return (
     <>
@@ -93,6 +100,24 @@ const Header: NextPage = () => {
               </Link>
             </li>
           </ul>
+          {isPost && (
+            <button
+              css={back}
+              aria-label="戻る"
+              type="button"
+              onClick={() => {
+                router.push('/')
+                // router.back() // 投稿記事：外部流入に対応できないため使用しない予定
+              }}
+            >
+              <Image
+                src="/images/icon/back.svg"
+                width={50}
+                height={50}
+                alt="前のページへ戻る"
+              />
+            </button>
+          )}
         </div>
       </header>
     </>
@@ -116,7 +141,7 @@ const headerTop = css`
   margin: 0 auto;
   height: 100px;
   position: relative;
-  transition: margin-top .3s ease;
+  transition: margin-top 0.3s ease;
   &.is-hide {
     margin-top: -100px;
   }
@@ -149,6 +174,7 @@ const headerBottom = css`
   border-top: 1px solid var(--cBorder);
   border-bottom: 1px solid var(--cBorder);
   background-color: #fff;
+  position: relative;
 `
 
 const headerBottomWrapper = css`
@@ -184,5 +210,21 @@ const headerBottomWrapper = css`
         text-decoration: underline;
       }
     }
+  }
+`
+
+const back = css`
+  position: absolute;
+  top: 46%;
+  left: calc(50% - 370px);
+  transform: translate(-50%, -50%);
+  height: 43px;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  img {
+    height: 100%;
   }
 `

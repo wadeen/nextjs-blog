@@ -16,7 +16,7 @@ const Share: NextPage = () => {
           rel="noreferrer"
         >
           <Image
-            src="/images/sns/twitter.svg"
+            src="/images/icon/twitter.svg"
             width={72}
             height={72}
             alt="ツイッターで共有する"

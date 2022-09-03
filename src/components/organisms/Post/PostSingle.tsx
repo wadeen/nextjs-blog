@@ -9,6 +9,7 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import hljs from 'highlight.js'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
@@ -19,6 +20,7 @@ import 'highlight.js/styles/hybrid.css'
 
 const PostSingle = ({ post }: { post: microcmsData }) => {
   const [toc, setToc] = useRecoilState(stateToc) // Recoil
+  const router = useRouter()
 
   // 日時調整
   dayjs.extend(utc)
