@@ -23,8 +23,6 @@ const Header: NextPage = () => {
     router.pathname === '/posts/[id]' ? setIsPost(true) : setIsPost(false)
   }, [router])
 
-  console.log(router.locale)
-
   return (
     <>
       <header css={header}>

@@ -57,9 +57,9 @@ const Post = ({ post }: { post: microcmsData }) => {
       </Head>
 
       <BlogLayout>
-        <BlogLayoutBody >
+        <BlogLayoutBody>
           <PostSingle post={post} />
-          <Comment />
+          {/* <Comment /> */}
         </BlogLayoutBody>
         <AsidePost post={post} />
       </BlogLayout>
