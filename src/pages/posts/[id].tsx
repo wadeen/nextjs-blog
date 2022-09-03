@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 import { client } from '../../../libs/client'
 import { microcmsData } from '../../../types/microcmsData'
 import PostSingle from '../../components/organisms/post/PostSingle'
@@ -36,11 +37,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Post = ({ post }: { post: microcmsData }) => {
+  const router = useRouter()
+  const baseUrl = process.env.NEXT_PUBLIC_HOST
   return (
     <>
-      {/* ToDo: OGPは外に出す(新しくコンポーネントを作成する予定.全体的に */}
       <Head>
         <title>{post.title} | Webのあれこれ</title>
+        <meta property="og:url" content={`${baseUrl}`} />
+        <meta property="og:type" content=" website" />
+        <meta property="og:title" content="Webのあれこれ" />
+        <meta
+          property="og:description"
+          content=" ディスクリプションのテキストが入ります。"
+        />
+        <meta property="og:site_name" content="Webのあれこれ" />
+        <meta property="og:image" content="https://placehold.jp/1200x630.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@wadeen_net" />
       </Head>
 
       <BlogLayout>

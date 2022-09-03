@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import { useRecoilState } from 'recoil'
-import { stateToc } from '../../store/stateToc'
+import { stateToc } from '../../../store/stateToc'
 import { tocType } from 'types/tocType'
 
 export const AsideTableOfContents: NextPage = () => {
