@@ -1,4 +1,3 @@
-// @ts-nocheck
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import dayjs from 'dayjs'
@@ -29,7 +28,7 @@ const Comment: NextPage = () => {
     <div css={comment}>
       <h2>この記事へのコメント</h2>
       <ul css={commentList}>
-        {comments.map(({ name, link, date, text }: any) => {
+        {comments.map(({ name, date, text }: any) => {
           const firestoreCommentDate = new Date(date.seconds * 1000)
           const firestoreComment = dayjs
             .utc(firestoreCommentDate)
@@ -55,7 +54,7 @@ export default Comment
 const comment = css`
   margin: 30px 0;
   width: 100%;
-
+  font-family: var(--fontMain);
   background-color: #f4f1ee;
   border-radius: 8px;
   padding: 30px 30px;
@@ -75,7 +74,7 @@ const commentList = css`
   margin-bottom: 60px;
   li {
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
   }
 `
 
