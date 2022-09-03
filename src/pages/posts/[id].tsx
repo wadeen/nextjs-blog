@@ -59,7 +59,9 @@ const Post = ({ post }: { post: microcmsData }) => {
       <BlogLayout>
         <BlogLayoutBody>
           <PostSingle post={post} />
-          {/* <Comment /> */}
+          {/* v1.1で公開予定
+           <Comment /> 
+          */}
         </BlogLayoutBody>
         <AsidePost post={post} />
       </BlogLayout>

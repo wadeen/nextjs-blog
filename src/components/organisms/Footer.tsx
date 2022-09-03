@@ -5,7 +5,22 @@ import { NextPage } from 'next'
 const Footer: NextPage = () => {
   return (
     <div css={footer}>
-      <small>&copy; 2022 wadeen</small>
+      <div css={container}>
+        <small>&copy; 2022 wadeen</small>
+        <small>
+          <a href="https://openmoji.org/" target="_blank" rel="noreferrer">
+            `OpenMoji`
+          </a>
+          is licensed under
+          <a
+            href="https://creativecommons.org/licenses/by-sa/4.0/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            CC BY-SA 4.0
+          </a>
+        </small>
+      </div>
     </div>
   )
 }
@@ -13,15 +28,28 @@ const Footer: NextPage = () => {
 export default Footer
 
 const footer = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  height: 40px;
+  height: 80px;
   background-color: var(--cFooter);
+`
+
+const container = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  letter-spacing: 0.03em;
+  color: #fff;
+  gap: 5px 0;
   small {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-size: 1.4rem;
-    height: 100%;
+    a {
+      color: var(--cLink);
+      margin: 0 5px;
+      text-decoration: underline;
+    }
   }
 `
