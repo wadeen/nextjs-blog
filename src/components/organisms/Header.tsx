@@ -165,6 +165,7 @@ const headerTop = css`
     padding: 0 30px;
     ${mq[1]} {
       font-size: 2.6rem;
+      line-height: 60px;
     }
     .starIcon {
       ${mq[1]} {
@@ -186,6 +187,9 @@ const headerBottom = css`
   border-bottom: 1px solid var(--cBorder);
   background-color: #fff;
   position: relative;
+  ${mq[1]} {
+    height: 40px;
+  }
 `
 
 const headerBottomWrapper = css`
@@ -206,7 +210,8 @@ const headerBottomWrapper = css`
     text-align: center;
     line-height: 45px;
     ${mq[1]} {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+      line-height: 40px;
     }
     &:last-child {
       border-right: 1px solid var(--cBorder);

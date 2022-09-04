@@ -2,6 +2,7 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { mq } from 'src/components/Breakpoints'
 
 export const BasicPagination = ({ totalCount }) => {
   const PER_PAGE = 10
@@ -38,6 +39,9 @@ const pagination = css`
   align-items: center;
   justify-content: center;
   column-gap: 20px;
+  ${mq[1]} {
+    margin-top: 40px;
+  }
   li {
     // Homeの時に"1"のみcurrent
     &:first-of-type {
@@ -60,6 +64,9 @@ const link = css`
   border-radius: 3px;
   transition: opacity 0.3s ease;
   font-size: 2rem;
+  ${mq[1]} {
+    font-size: 1.8rem;
+  }
   &.is-current {
     background-color: var(--cPagination);
     color: #fff;

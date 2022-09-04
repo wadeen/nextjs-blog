@@ -65,6 +65,9 @@ const list = css`
   ${mq[2]} {
     width: calc((100% - 10px) / 2);
   }
+  ${mq[1]} {
+    width: 100%;
+  }
   &:hover {
     box-shadow: 2px 3px 10px 2px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--cSub);
@@ -92,6 +95,10 @@ const eyecatch = css`
     width: 64px;
     height: 64px;
   }
+  ${mq[1]} {
+    width: 56px;
+    height: 56px;
+  }
 `
 
 const textList = css`
@@ -102,6 +109,9 @@ const textList = css`
     font-weight: 700;
     font-feature-settings: 'palt';
     font-family: var(--fontMain);
+    ${mq[1]} {
+      font-size: 1.8rem;
+    }
   }
 `
 const info = css`
