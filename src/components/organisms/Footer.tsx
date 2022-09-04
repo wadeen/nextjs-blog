@@ -9,7 +9,7 @@ const Footer: NextPage = () => {
         <small>&copy; 2022 wadeen</small>
         <small>
           <a href="https://openmoji.org/" target="_blank" rel="noreferrer">
-            `OpenMoji`
+            OpenMoji
           </a>
           is licensed under
           <a
@@ -32,7 +32,7 @@ const footer = css`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 80px;
+  height: 60px;
   background-color: var(--cFooter);
 `
 
