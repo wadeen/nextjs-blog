@@ -1,7 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { InferGetStaticPropsType } from 'next'
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from 'next'
 import { client } from '../../../libs/client'
+import { microcmsApi } from '../../../types/microcmsApi'
 import Seo from '../../components/Seo'
 import BlogLayout from '../../components/templates/BlogLayout'
 import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
@@ -45,14 +50,15 @@ export default function CategoryId({
 }
 
 // SSG: データの取得
-export const getStaticProps = async (context: any) => {
-  //✋any
-  const id = context.params.id
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
+  const id = context?.params?.id
   const data = await client.get({
     endpoint: 'posts',
     queries: {
       filters: `category[equals]${id}`,
-      // offset: (id - 1) * 10,
+      // offset: (id - 1) * 10, // ページネーション設定後にON
       limit: 100,
     },
   })
@@ -70,7 +76,9 @@ export const getStaticPaths = async () => {
   const repos = await client.get({
     endpoint: 'categories',
   })
-  const paths = repos.contents.map((content: any) => `/category/${content.id}`)
+  const paths = repos.contents.map(
+    (content: microcmsApi) => `/category/${content.id}`
+  )
   return { paths, fallback: false }
 }
 

@@ -43,7 +43,7 @@ export const CategoryPagination: NextPage<Props> = ({
   )
 }
 
- // css
+// css
 const pagination = css`
   margin-top: 60px;
   display: flex;

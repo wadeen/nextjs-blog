@@ -1,6 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { InferGetStaticPropsType } from 'next'
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from 'next'
 import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
 import { microcmsData } from '../../../../types/microcmsData'
@@ -16,13 +20,14 @@ import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 const PER_PAGE = 10
 
 // SSG: データの取得
-export const getStaticProps = async (context: any) => {
-  //✋any
-  const pageId = context?.params?.id
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
+  const id: any = context?.params?.id
 
   const data = await client.get({
     endpoint: 'posts',
-    queries: { offset: (pageId - 1) * 10, limit: 10 },
+    queries: { offset: Number(id - 1) * 10, limit: 10 },
   })
 
   return {

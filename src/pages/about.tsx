@@ -91,6 +91,7 @@ const About: NextPage = () => {
 
 export default About
 
+// css
 const container = css`
   background-color: #fff;
   padding: 40px;
@@ -172,7 +173,7 @@ const profileText = css`
     ${mq[1]} {
       font-size: 1.4rem;
     }
-    &:first-child {
+    &:first-of-type {
       font-weight: 700;
       font-size: 2.2rem;
       margin-bottom: 8px;

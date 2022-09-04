@@ -1,4 +1,4 @@
-import { GetStaticPaths } from 'next'
+import { GetStaticPaths, NextPage } from 'next'
 import { client } from '../../../libs/client'
 import { microcmsData } from '../../../types/microcmsData'
 import PostSingle from '../../components/organisms/post/PostSingle'
@@ -33,7 +33,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-const Post = ({ post }: { post: microcmsData }) => {
+const Post: NextPage<{ post: microcmsData }> = ({ post }) => {
   return (
     <BlogLayout>
       <BlogLayoutBody>

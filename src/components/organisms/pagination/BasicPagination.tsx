@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { mq } from 'src/components/Breakpoints'
 
-const BasicPagination: NextPage<{ totalCount: number }> = ({ totalCount }) => {
+export const BasicPagination: NextPage<{ totalCount: number }> = ({ totalCount }) => {
   const PER_PAGE = 10
   const router = useRouter()
 
@@ -36,7 +36,6 @@ const BasicPagination: NextPage<{ totalCount: number }> = ({ totalCount }) => {
   )
 }
 
-export default BasicPagination
 
 // css
 const pagination = css`

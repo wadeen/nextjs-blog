@@ -1,5 +1,4 @@
 import { NextPage } from 'next'
-import { useRouter } from 'next/router'
 import Seo from 'src/components/Seo'
 const Strage: NextPage = () => {
   return (

@@ -4,4 +4,5 @@ export type microcmsApi = {
   limit: number
   offset: number
   totalCount: number
+  id: string
 }
