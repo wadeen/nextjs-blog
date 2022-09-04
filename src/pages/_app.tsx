@@ -13,9 +13,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     <RecoilRoot>
       <Layout>
         <QueryClientProvider client={queryClient}>
-          <Head>
-            <title>Webのあれこれ</title>
-          </Head>
           <Component {...pageProps} />
         </QueryClientProvider>
       </Layout>

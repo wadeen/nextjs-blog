@@ -9,6 +9,7 @@ import { microcmsApi } from '../../types/microcmsApi'
 import { microcmsData } from '../../types/microcmsData'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
+import Seo from 'src/components/Seo'
 import Failed from 'src/components/atoms/Failed'
 // import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
@@ -20,6 +21,7 @@ const fetcher = (url: string, value: string) => {
 }
 
 const Search: NextPage = () => {
+  const baseUrl = process.env.NEXT_PUBLIC_HOST
   const router = useRouter()
 
   // apiでの検索結果を取得
@@ -39,6 +41,7 @@ const Search: NextPage = () => {
   return (
     <>
       <BlogLayout>
+        <Seo ogpTitle={`${router.query.keyword} の検索結果`} />
         <BlogLayoutBody>
           <ArticleTitle text={`"${router.query.keyword}" の検索結果`} />
           {/* 検索記事の有無を判定 */}

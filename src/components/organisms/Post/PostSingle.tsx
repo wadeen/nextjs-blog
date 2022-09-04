@@ -8,19 +8,19 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import hljs from 'highlight.js'
+import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
 import { stateToc } from '../../../store/stateToc'
+import Seo from '../../Seo'
 import { TableOfContents } from '../../molecules/TableOfContents'
 import { microcmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
 
 const PostSingle = ({ post }: { post: microcmsData }) => {
   const [toc, setToc] = useRecoilState(stateToc) // Recoil
-  const router = useRouter()
 
   // 日時調整
   dayjs.extend(utc)
@@ -42,6 +42,16 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
 
   return (
     <div css={container}>
+      <Seo
+        //自動OGP生成をする(v1.1 ~)🌟
+        ogpImage="https://placehold.jp/3d4070/ffffff/1200x630.png"
+        ogpTitle={post.title}
+        ogpDescription={
+          post.description ||
+          'これはブログ記事です。〜ディスクリプション未記入時に表示されます。〜'
+        }
+      />
+
       <h1 css={title}>
         <img src={post.eyecatch.url} alt="アイキャッチアイコン" />
         {post.title}

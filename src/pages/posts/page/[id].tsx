@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { InferGetStaticPropsType } from 'next'
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
 import { microcmsData } from '../../../../types/microcmsData'
+import Seo from '../../../components/Seo'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../../../components/templates/aside/AsideArchive'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
@@ -51,11 +51,7 @@ const PostPage = ({
   const router = useRouter()
   return (
     <>
-      {/* ToDo: OGPは外に出す(新しくコンポーネントを作成する予定.全体的に */}
-      <Head>
-        <title>記事一覧 | Webのあれこれ</title>
-      </Head>
-
+      <Seo ogpTitle="記事一覧 | Webのあれこれ" />
       <BlogLayout>
         <BlogLayoutBody>
           <ArticleTitle text={`記事一覧 　${router.query.id}ページ目`} />

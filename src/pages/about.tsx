@@ -1,12 +1,9 @@
 import { NextPage } from 'next'
-import Head from 'next/head'
+import Seo from 'src/components/Seo'
 const About: NextPage = () => {
   return (
     <>
-    {/* OGPなどは全部外に出してOK! */}
-      <Head>
-        <title>自己紹介 | Webのあれこれ</title>
-      </Head>
+      <Seo ogpTitle="自己紹介 | Webのあれこれ" />
       自己紹介ページ
     </>
   )

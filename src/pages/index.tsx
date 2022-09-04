@@ -1,10 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import type {
-  GetStaticPaths,
-  GetStaticProps,
-  InferGetStaticPropsType,
-} from 'next'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import Seo from '../components/Seo'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
 import { client } from 'libs/client'
@@ -33,6 +30,7 @@ const Home = ({
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <BlogLayout>
+      <Seo />
       <BlogLayoutBody>
         <ArticleTitle text={'最新の記事一覧'} />
         <ul css={postLists}>

@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { InferGetStaticPropsType } from 'next'
-import Link from 'next/link'
 import { client } from '../../../libs/client'
+import Seo from '../../components/Seo'
 import BlogLayout from '../../components/templates/BlogLayout'
 import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
 import AsideArchive from '../../components/templates/aside/AsideArchive'
@@ -19,12 +19,11 @@ export default function CategoryId({
   totalCount,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   if (blog.length === 0) {
-    return (
-      <Failed text={"カテゴリに該当する記事はありません。"}/>
-    )
+    return <Failed text={'カテゴリに該当する記事はありません。'} />
   }
   return (
     <BlogLayout>
+      <Seo ogpTitle={` ${blog[0].category.name} の記事一覧 | Webのあれこれ`} />
       <BlogLayoutBase>
         <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
         <ul css={postLists}>
@@ -33,7 +32,7 @@ export default function CategoryId({
           ))}
         </ul>
 
-        {/* Pagination 未対応→ v1.1で実装 */}
+        {/* Pagination 未対応→ v1.1~で実装 */}
         {/* <CategoryPagination
           category={blog[0].category.id}
           totalCount={totalCount}
