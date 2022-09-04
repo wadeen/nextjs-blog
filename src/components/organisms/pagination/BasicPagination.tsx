@@ -1,14 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { mq } from 'src/components/Breakpoints'
 
-export const BasicPagination = ({ totalCount }) => {
+const BasicPagination: NextPage<{ totalCount: number }> = ({ totalCount }) => {
   const PER_PAGE = 10
   const router = useRouter()
 
-  const range = (start, end) =>
+  const range = (start: number, end: number) =>
     [...Array(end - start + 1)].map((_, i) => start + i)
 
   return (
@@ -21,7 +22,9 @@ export const BasicPagination = ({ totalCount }) => {
               className={
                 router.pathname === '/'
                   ? 'is-first-current'
-                  : router.asPath.endsWith(`${number}`) && 'is-current'
+                  : router.asPath.endsWith(`${number}`)
+                  ? 'is-current'
+                  : ''
               }
             >
               {number}
@@ -33,6 +36,9 @@ export const BasicPagination = ({ totalCount }) => {
   )
 }
 
+export default BasicPagination
+
+// css
 const pagination = css`
   margin-top: 60px;
   display: flex;
