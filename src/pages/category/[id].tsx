@@ -14,8 +14,8 @@ import AsideArchive from '../../components/templates/aside/AsideArchive'
 import { mq } from 'src/components/Breakpoints'
 import Failed from 'src/components/atoms/Failed'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
-import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
-import PostSingle from 'src/components/organisms/post/PostArchive'
+// import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
+import PostArchive from 'src/components/organisms/post/PostArchive'
 import { microcmsData } from 'types/microcmsData'
 
 const PER_PAGE = 10
@@ -34,7 +34,7 @@ export default function CategoryId({
         <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
         <ul css={postLists}>
           {blog.map((post: microcmsData) => (
-            <PostSingle key={post.id} post={post} /> // 最新ページから取り出した記事
+            <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
           ))}
         </ul>
 

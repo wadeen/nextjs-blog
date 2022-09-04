@@ -11,7 +11,7 @@ import Link from 'next/link'
 import { mq } from 'src/components/Breakpoints'
 import { microcmsData } from 'types/microcmsData'
 
-const PostSingle: NextPage<{ post: microcmsData }> = ({ post }) => {
+const PostArchive: NextPage<{ post: microcmsData }> = ({ post }) => {
   dayjs.extend(utc)
   dayjs.extend(timezone)
 
@@ -51,7 +51,7 @@ const PostSingle: NextPage<{ post: microcmsData }> = ({ post }) => {
   )
 }
 
-export default PostSingle
+export default PostArchive
 
 // css
 const list = css`
