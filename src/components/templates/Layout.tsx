@@ -1,8 +1,9 @@
+import { NextPage } from 'next'
 import { ReactNode } from 'react'
 import Footer from '../organisms/Footer'
 import Header from '../organisms/Header'
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout: NextPage<{ children: ReactNode }> = ({ children }) => {
   return (
     <>
       <Header />

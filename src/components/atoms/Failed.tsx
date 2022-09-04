@@ -19,6 +19,7 @@ const Failed: NextPage<{ text: string }> = ({ text }) => {
 
 export default Failed
 
+// css
 const failed = css`
   p {
     margin-top: 40px;

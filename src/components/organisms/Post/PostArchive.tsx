@@ -53,6 +53,7 @@ const PostSingle: NextPage<{ post: microcmsData }> = ({ post }) => {
 
 export default PostSingle
 
+// css
 const list = css`
   background-color: #fff;
   border-radius: 8px;

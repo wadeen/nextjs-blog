@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-import { useRecoilState } from 'recoil'
+import { useRecoilValue } from 'recoil'
 import { stateToc } from '../../../store/stateToc'
 import { mq } from 'src/components/Breakpoints'
 import { tocType } from 'types/tocType'
 
 export const AsideTableOfContents: NextPage = () => {
-  const [toc, setToc] = useRecoilState(stateToc) // Recoil
+  const toc = useRecoilValue(stateToc) // Recoil
 
   return (
     <div css={container}>
@@ -23,6 +23,7 @@ export const AsideTableOfContents: NextPage = () => {
   )
 }
 
+// css
 const container = css`
   background-color: #fff;
   margin: 10px 0;

@@ -1,13 +1,11 @@
-/** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react'
-
+import { NextPage } from 'next'
 import { Spacer } from '../../atoms/articleTitle/Spacer'
 import SearchForm from '../../molecules/aside/SearchForm'
 import AsideBase from './AsideBase'
 import AsideCategory from 'src/components/organisms/aside/AsideCategory'
 import AsidePopular from 'src/components/organisms/aside/AsidePopular'
 import AsideProfile from 'src/components/organisms/aside/AsideProfile'
-const AsideArchive = () => {
+const AsideArchive: NextPage = () => {
   return (
     <AsideBase>
       <SearchForm />

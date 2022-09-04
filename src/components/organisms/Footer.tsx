@@ -27,6 +27,7 @@ const Footer: NextPage = () => {
 
 export default Footer
 
+ // css
 const footer = css`
   display: flex;
   align-items: center;

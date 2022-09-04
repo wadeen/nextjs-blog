@@ -1,13 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import NextPage from 'next'
+import { NextPage } from 'next'
 import { mq } from 'src/components/Breakpoints'
-const ArticleTitle = ({ text }: { text: string }) => (
+const ArticleTitle: NextPage<{ text: string }> = ({ text }) => (
   <p css={topTitle}>{text}</p>
 )
 
 export default ArticleTitle
 
+
+// css
 const topTitle = css`
   font-size: 1.8rem;
   font-weight: 700;
@@ -16,7 +18,7 @@ const topTitle = css`
   position: relative;
   font-family: var(--fontMain);
   ${mq[1]} {
-      font-size: 1.6rem;
+    font-size: 1.6rem;
   }
 
   &::before {

@@ -1,15 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import NextPage from 'next'
+import { NextPage } from 'next'
 import { ReactNode } from 'react'
 import { mq } from '../Breakpoints'
 
-const BlogLayout = ({ children }: { children: ReactNode }) => {
+const BlogLayout: NextPage<{ children: ReactNode }> = ({ children }) => {
   return <div css={article}>{children}</div>
 }
 
 export default BlogLayout
 
+// css
 const article = css`
   display: flex;
   gap: 0 40px;

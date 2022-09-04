@@ -18,6 +18,7 @@ const PrimayButton: NextPage<Props> = ({ text, onClick, disabled }) => {
 
 export default PrimayButton
 
+// css
 const button = css`
   display: block;
   text-align: center;

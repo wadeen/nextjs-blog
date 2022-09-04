@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useRecoilState } from 'recoil'
-import { renderToc } from '../../../../libs/render-toc'
+import { NextPage } from 'next'
 import { microcmsData } from '../../../../types/microcmsData'
-import { stateToc } from '../../../store/stateToc'
 import { Spacer } from '../../atoms/articleTitle/Spacer'
 import { AsideTableOfContents } from '../../molecules/aside/AsideTableOfContents'
 import SearchForm from '../../molecules/aside/SearchForm'
@@ -14,7 +12,7 @@ import AsideBase from './AsideBase'
 import { mq } from 'src/components/Breakpoints'
 import Share from 'src/components/molecules/Share'
 
-const AsidePost = ({ post }: { post: microcmsData }) => {
+const AsidePost: NextPage<{ post: microcmsData }> = ({ post }) => {
   return (
     <AsideBase>
       {post.toc_visible ? (
@@ -56,6 +54,7 @@ const AsidePost = ({ post }: { post: microcmsData }) => {
 
 export default AsidePost
 
+ // css
 const sticky = css`
   display: block;
   width: 100%;

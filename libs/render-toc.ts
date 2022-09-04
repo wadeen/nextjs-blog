@@ -1,11 +1,11 @@
+// @ts-nocheck
 import * as cheerio from 'cheerio'
-import { tocType } from 'types/tocType'
+import { NextPage } from 'next'
 
-export const renderToc = (content: string) => {
+export const renderToc: NextPage = (content) => {
   const $ = cheerio.load(content)
   const headings = $('h1, h2, h3').toArray()
   const toc = headings.map((data) => ({
-    // @ts-ignore ✋
     text: data.children[0].data,
     id: data.attribs.id,
   }))

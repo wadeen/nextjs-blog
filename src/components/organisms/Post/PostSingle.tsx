@@ -8,10 +8,10 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import hljs from 'highlight.js'
-import Head from 'next/head'
+import { NextPage } from 'next'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import { useRecoilState } from 'recoil'
+import { useSetRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
 import { stateToc } from '../../../store/stateToc'
 import Seo from '../../Seo'
@@ -20,8 +20,8 @@ import { mq } from 'src/components/Breakpoints'
 import { microcmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
 
-const PostSingle = ({ post }: { post: microcmsData }) => {
-  const [toc, setToc] = useRecoilState(stateToc) // Recoil
+const PostSingle: NextPage<{ post: microcmsData }> = ({ post }) => {
+  const setToc = useSetRecoilState(stateToc) // Recoil
 
   // 日時調整
   dayjs.extend(utc)
@@ -37,7 +37,7 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
 
   //目次
   useEffect(() => {
-    // @ts-ignore ✋
+    // @ts-ignore
     setToc(renderToc(post.content))
   }, [setToc, post.content])
 
@@ -91,6 +91,7 @@ const PostSingle = ({ post }: { post: microcmsData }) => {
 
 export default PostSingle
 
+// css
 const container = css`
   background-color: #fff;
   border-radius: 8px;

@@ -27,8 +27,7 @@ const Header: NextPage = () => {
   return (
     <>
       <header css={header}>
-        {/* @ts-ignore */}
-        <div css={headerTop} className={scrollHeight && 'is-hide'}>
+        <div css={headerTop} className={scrollHeight ? 'is-hide' : ''}>
           {router.pathname === '/' ? (
             <h1>
               <Image
@@ -126,6 +125,7 @@ const Header: NextPage = () => {
 }
 export default Header
 
+// css
 const header = css`
   width: 100%;
   position: fixed;

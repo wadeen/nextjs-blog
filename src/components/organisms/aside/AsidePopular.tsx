@@ -15,8 +15,8 @@ const AsidePopular: NextPage = () => {
 
 export default AsidePopular
 
+ // css
 const container = css`
-  /* background-color: #fff; */
   display: block;
   width: 100%;
 `

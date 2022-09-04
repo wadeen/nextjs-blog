@@ -44,6 +44,7 @@ const AsideCategory: NextPage = () => {
 
 export default AsideCategory
 
+// css
 const categoryList = css`
   li {
     font-size: 1.6rem;

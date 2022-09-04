@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, DocumentData, onSnapshot } from 'firebase/firestore' //eslint-disable-line
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { db } from '../../../../libs/firebase'
@@ -11,12 +11,12 @@ import { comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
 
 const Comment: NextPage = () => {
-  const [comments, setComments] = useState<any>([])
+  const [comments, setComments] = useState<comments[]>([])
 
   useEffect(() => {
     const commentsData = collection(db, 'comments')
-    onSnapshot(commentsData, (snapshot: any) => {
-      setComments(snapshot.docs.map((doc: any) => doc.data()))
+    onSnapshot(commentsData, (snapshot) => {
+      setComments(snapshot.docs.map((doc: DocumentData) => doc.data()))
     })
   }, [])
 
@@ -28,7 +28,7 @@ const Comment: NextPage = () => {
     <div css={comment}>
       <h2>この記事へのコメント</h2>
       <ul css={commentList}>
-        {comments.map(({ name, date, text }: any) => {
+        {comments.map(({ name, date, text }: comments) => {
           const firestoreCommentDate = new Date(date.seconds * 1000)
           const firestoreComment = dayjs
             .utc(firestoreCommentDate)

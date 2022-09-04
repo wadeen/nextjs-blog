@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import SearchIcon from '@mui/icons-material/Search'
+import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
 import { searchState } from '../../../store/searchState'
 import { mq } from 'src/components/Breakpoints'
 
-const SearchForm = () => {
+const SearchForm: NextPage = () => {
   const [value, setValue] = useRecoilState(searchState)
   const router = useRouter()
 
@@ -59,6 +60,7 @@ const SearchForm = () => {
 
 export default SearchForm
 
+// css
 const container = css`
   display: flex;
   align-items: center;

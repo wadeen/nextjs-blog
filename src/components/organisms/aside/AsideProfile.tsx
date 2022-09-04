@@ -2,10 +2,11 @@
 import { css } from '@emotion/react'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import TwitterIcon from '@mui/icons-material/Twitter'
+import { NextPage } from 'next'
 import Image from 'next/image'
 import AsideTitle from '../../atoms/aside/AsideTitle'
 
-const AsideProfile = () => {
+const AsideProfile: NextPage = () => {
   return (
     <div css={container}>
       <AsideTitle text={'About me'} />
@@ -69,6 +70,7 @@ const AsideProfile = () => {
 
 export default AsideProfile
 
+// css
 const container = css`
   border-radius: 6px;
 `
