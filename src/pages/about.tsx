@@ -2,13 +2,14 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Image from 'next/image'
+import { mq } from 'src/components/Breakpoints'
 import Seo from 'src/components/Seo'
 const About: NextPage = () => {
   return (
     <>
       <Seo ogpTitle="自己紹介 | Webのあれこれ" />
       <div css={container}>
-        <h1>About me</h1>
+        <h1>~ About me ~</h1>
         {/* プロフィール欄 */}
         <div css={profile}>
           <div css={wrapper}>
@@ -77,7 +78,7 @@ const About: NextPage = () => {
         <div css={box}>
           <h2>趣味</h2>
           <p>
-            小学〜高校までの約10年間ずっと野球をしており、様々な実績があります。
+            小学〜高校までの約10年間ずっと野球をしており、現在も観るのもやるのも好きです。
             <br />
             趣味は、カメラ・カフェ巡り等です(が、最近はずっとプログラミングに夢中...🐶)。
             <br />
@@ -94,14 +95,20 @@ const container = css`
   background-color: #fff;
   padding: 40px;
   border: 2px solid var(--cBorder);
-  border-radius: 8px;
+  border-radius: 10px;
   width: min(100%, 1000px);
   margin: 0 auto;
+  ${mq[1]} {
+    padding: 25px 15px 15px;
+  }
   h1 {
     font-weight: 700;
     font-family: var(--fontSub);
     font-size: 3rem;
     text-align: center;
+    ${mq[1]} {
+      font-size: 2.4rem;
+    }
   }
 `
 const profile = css`
@@ -110,12 +117,20 @@ const profile = css`
   justify-content: center;
   width: min(100%, 800px);
   margin: 50px auto 60px;
-  column-gap: 25px;
+  gap: 0 25px;
+  ${mq[1]} {
+    flex-direction: column;
+    margin: 30px auto 50px;
+  }
 `
 
 const wrapper = css`
   position: relative;
   width: 150px;
+  ${mq[1]} {
+    width: 120px;
+    height: 120px;
+  }
 `
 
 const imgBox = css`
@@ -127,6 +142,10 @@ const imgBox = css`
   height: 150px;
   border-radius: 50%;
   border: 2px solid var(--cSub);
+  ${mq[1]} {
+    width: 120px;
+    height: 120px;
+  }
   img {
     background-color: #fff;
     transition: opacity 0.3s ease;
@@ -143,14 +162,25 @@ const imgBox = css`
 const profileText = css`
   width: calc(100% - 175px);
   font-family: var(--fontMain);
+  ${mq[1]} {
+    width: 100%;
+  }
   li {
     font-size: 1.6rem;
     letter-spacing: 0.05em;
     line-height: 1.4;
+    ${mq[1]} {
+      font-size: 1.4rem;
+    }
     &:first-child {
       font-weight: 700;
       font-size: 2.2rem;
       margin-bottom: 8px;
+      ${mq[1]} {
+        text-align: center;
+        margin: 12px 0 6px;
+        font-size: 1.8rem;
+      }
     }
   }
 `
@@ -166,13 +196,23 @@ const box = css`
     margin-bottom: 10px;
     padding-bottom: 2px;
     background: linear-gradient(transparent 60%, #f6f670 60%);
+    ${mq[1]} {
+      font-size: 1.8rem;
+    }
   }
   p {
     line-height: 1.4;
     letter-spacing: 0.04em;
+    ${mq[1]} {
+      font-size: 1.4rem;
+    }
     &.subtitle {
       font-weight: 500;
       font-size: 1.05em;
+      ${mq[1]} {
+        font-size: 1.6rem;
+        margin-bottom: 4px;
+      }
     }
   }
 `
