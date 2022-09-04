@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
+import { mq } from '../Breakpoints'
 
 const Header: NextPage = () => {
   const router = useRouter()
@@ -64,7 +65,9 @@ const Header: NextPage = () => {
                   title="ブログページ"
                   className={
                     router.pathname === '/' ||
-                    router.pathname.startsWith('/posts')
+                    router.pathname.startsWith('/posts') ||
+                    router.pathname.startsWith('/category/[id]') ||
+                    router.pathname.startsWith('/search')
                       ? 'is-current'
                       : ''
                   }
@@ -200,12 +203,20 @@ const headerBottomWrapper = css`
       &:hover {
         background-color: var(--cBorder);
         color: #fff;
+        ${mq[2]} {
+          background-color: #fff;
+          color: #333;
+        }
       }
       // カレントページの時にマーキング
       &.is-current {
         color: red;
         pointer-events: none;
         text-decoration: underline;
+        ${mq[2]} {
+          background-color: var(--cBorder);
+          color: #fff;
+        }
       }
     }
   }
@@ -218,6 +229,9 @@ const back = css`
   transform: translate(-50%, -50%);
   height: 43px;
   transition: opacity 0.3s ease;
+  ${mq[2]} {
+    left: calc(50% - 340px);
+  }
   &:hover {
     opacity: 0.8;
     transform: translate(-50%, -50%) scale(1.1);

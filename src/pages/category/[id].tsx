@@ -6,6 +6,7 @@ import Seo from '../../components/Seo'
 import BlogLayout from '../../components/templates/BlogLayout'
 import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
 import AsideArchive from '../../components/templates/aside/AsideArchive'
+import { mq } from 'src/components/Breakpoints'
 import Failed from 'src/components/atoms/Failed'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
 import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
@@ -78,4 +79,7 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  ${mq[2]} {
+    gap: 10px;
+  }
 `

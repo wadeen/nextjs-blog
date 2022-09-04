@@ -9,6 +9,7 @@ import { microcmsApi } from '../../types/microcmsApi'
 import { microcmsData } from '../../types/microcmsData'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
+import { mq } from 'src/components/Breakpoints'
 import Seo from 'src/components/Seo'
 import Failed from 'src/components/atoms/Failed'
 // import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
@@ -75,6 +76,9 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  ${mq[2]} {
+    gap: 10px;
+  }
 `
 
 const loadingIcon = css`

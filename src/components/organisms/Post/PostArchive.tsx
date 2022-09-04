@@ -8,6 +8,7 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import { NextPage } from 'next'
 import Link from 'next/link'
+import { mq } from 'src/components/Breakpoints'
 import { microcmsData } from 'types/microcmsData'
 
 const PostSingle: NextPage<{ post: microcmsData }> = ({ post }) => {
@@ -61,6 +62,9 @@ const list = css`
   transition: opacity 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--cBorder);
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.05);
+  ${mq[2]} {
+    width: calc((100% - 10px) / 2);
+  }
   &:hover {
     box-shadow: 2px 3px 10px 2px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--cSub);
@@ -76,11 +80,18 @@ const link = css`
   width: 100%;
   height: 100%;
   cursor: pointer;
+  ${mq[2]} {
+    padding: 15px 15px 35px;
+  }
 `
 
 const eyecatch = css`
-  width: 75px;
-  height: 75px;
+  width: 72px;
+  height: 72px;
+  ${mq[2]} {
+    width: 64px;
+    height: 64px;
+  }
 `
 
 const textList = css`

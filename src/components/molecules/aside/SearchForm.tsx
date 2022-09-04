@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
 import { searchState } from '../../../store/searchState'
+import { mq } from 'src/components/Breakpoints'
 
 const SearchForm = () => {
   const [value, setValue] = useRecoilState(searchState)
@@ -21,9 +22,9 @@ const SearchForm = () => {
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault()
       router.push(`/search/?keyword=${value}`)
-      // setValue('')
+      setValue('')
     },
-    [value, router]
+    [value, router, setValue]
   )
 
   const handleKeyDown = useCallback(
@@ -31,10 +32,10 @@ const SearchForm = () => {
       if (e.key === 'Enter') {
         e.preventDefault()
         router.push(`/search/?keyword=${value}`)
-        // setValue('')
+        setValue('')
       }
     },
-    [value, router]
+    [value, router, setValue]
   )
 
   return (
@@ -61,6 +62,7 @@ export default SearchForm
 const container = css`
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 40px;
   width: 100%;
   input {
@@ -72,6 +74,9 @@ const container = css`
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     padding: 4px 8px;
+    ${mq[2]} {
+      width: 80%;
+    }
   }
   button {
     display: flex;
@@ -87,6 +92,9 @@ const container = css`
     border: 1px solid var(--cBorder);
     border-left: none;
     color: #fff;
+    ${mq[2]} {
+      width: 20%;
+    }
   }
 `
 

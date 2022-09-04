@@ -7,6 +7,7 @@ import { microcmsData } from '../../../../types/microcmsData'
 import Seo from '../../../components/Seo'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../../../components/templates/aside/AsideArchive'
+import { mq } from 'src/components/Breakpoints'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
@@ -75,4 +76,7 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  ${mq[2]} {
+    gap: 10px;
+  }
 `

@@ -5,6 +5,7 @@ import Seo from '../components/Seo'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
 import { client } from 'libs/client'
+import { mq } from 'src/components/Breakpoints'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
@@ -29,19 +30,21 @@ const Home = ({
   totalCount,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
-    <BlogLayout>
+    <>
       <Seo />
-      <BlogLayoutBody>
-        <ArticleTitle text={'最新の記事一覧'} />
-        <ul css={postLists}>
-          {data.map((post: microcmsData) => (
-            <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
-          ))}
-        </ul>
-        <BasicPagination totalCount={totalCount} />
-      </BlogLayoutBody>
-      <AsideArchive />
-    </BlogLayout>
+      <BlogLayout>
+        <BlogLayoutBody>
+          <ArticleTitle text={'最新の記事一覧'} />
+          <ul css={postLists}>
+            {data.map((post: microcmsData) => (
+              <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
+            ))}
+          </ul>
+          <BasicPagination totalCount={totalCount} />
+        </BlogLayoutBody>
+        <AsideArchive />
+      </BlogLayout>
+    </>
   )
 }
 
@@ -52,4 +55,7 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
+  ${mq[2]} {
+    gap: 10px;
+  }
 `
