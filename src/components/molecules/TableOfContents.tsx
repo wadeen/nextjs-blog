@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import { useRecoilState } from 'recoil'
 import { stateToc } from '../../store/stateToc'
+import { mq } from '../Breakpoints'
 import { tocType } from 'types/tocType'
 
 export const TableOfContents: NextPage = () => {
@@ -28,6 +29,10 @@ const container = css`
   padding: 40px 50px;
   border-radius: 6px;
   border: 2px solid var(--cSub);
+  ${mq[1]} {
+    margin: 30px auto;
+    padding: 20px;
+  }
   h2 {
     font-size: 2.6rem;
     font-weight: 700;
@@ -35,6 +40,11 @@ const container = css`
     padding-left: 10px;
     line-height: 1.5;
     margin-bottom: 25px;
+    ${mq[1]} {
+      font-size: 2.2rem;
+      border-left: 3px solid var(--cSub);
+      margin-bottom: 20px;
+    }
   }
   ul {
     li {

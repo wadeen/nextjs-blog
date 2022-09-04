@@ -255,7 +255,7 @@ const back = css`
   }
   ${mq[1]} {
     transform: scale(0.8);
-    top: 0;
+    top: -4px;
     left: 0;
   }
   &:hover {
