@@ -128,7 +128,6 @@ export default Header
 
 const header = css`
   width: 100%;
-  /* height: 145px; */
   position: fixed;
   top: 0;
   width: 100%;
@@ -143,8 +142,14 @@ const headerTop = css`
   height: 100px;
   position: relative;
   transition: margin-top 0.3s ease;
+  ${mq[1]} {
+    height: 60px;
+  }
   &.is-hide {
     margin-top: -100px;
+    ${mq[1]} {
+      margin-top: -60px;
+    }
   }
   h1,
   h2 {
@@ -158,8 +163,13 @@ const headerTop = css`
     margin: 0 auto;
     line-height: 90px;
     padding: 0 30px;
+    ${mq[1]} {
+      font-size: 2.6rem;
+    }
     .starIcon {
-      right: 120px;
+      ${mq[1]} {
+        transform: scale(0.6) translateX(20px);
+      }
     }
     a {
       transition: opacity 0.3s ease;
@@ -186,12 +196,18 @@ const headerBottomWrapper = css`
   margin: 0 auto;
   padding: 0 30px;
   height: 100%;
+  ${mq[1]} {
+    padding: 0 50px;
+  }
   li {
     width: 200px;
     border-left: 1px solid var(--cBorder);
     height: 100%;
     text-align: center;
     line-height: 45px;
+    ${mq[1]} {
+      font-size: 1.3rem;
+    }
     &:last-child {
       border-right: 1px solid var(--cBorder);
     }
@@ -232,9 +248,18 @@ const back = css`
   ${mq[2]} {
     left: calc(50% - 340px);
   }
+  ${mq[1]} {
+    transform: scale(0.8);
+    top: 0;
+    left: 0;
+  }
   &:hover {
     opacity: 0.8;
     transform: translate(-50%, -50%) scale(1.1);
+    ${mq[1]} {
+      opacity: 1;
+      transform: scale(0.8);
+    }
   }
   img {
     height: 100%;
