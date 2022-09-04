@@ -1,6 +1,5 @@
 import { NextPage } from 'next'
 import { Html, Head, Main, NextScript } from 'next/document'
-import { seoType } from 'types/seoType'
 
 const MyDocument: NextPage = () => {
   return (
