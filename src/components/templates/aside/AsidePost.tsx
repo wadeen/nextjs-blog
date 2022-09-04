@@ -11,6 +11,7 @@ import AsideCategory from '../../organisms/aside/AsideCategory'
 import AsidePopular from '../../organisms/aside/AsidePopular'
 import AsideProfile from '../../organisms/aside/AsideProfile'
 import AsideBase from './AsideBase'
+import { mq } from 'src/components/Breakpoints'
 import Share from 'src/components/molecules/Share'
 
 const AsidePost = ({ post }: { post: microcmsData }) => {
@@ -65,6 +66,10 @@ const sticky = css`
   padding-bottom: 250px;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  ${mq[2]} {
+    position: static;
+    padding: 0;
+  }
   &::-webkit-scrollbar {
     display: none;
   }

@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import { useRecoilState } from 'recoil'
 import { stateToc } from '../../../store/stateToc'
+import { mq } from 'src/components/Breakpoints'
 import { tocType } from 'types/tocType'
 
 export const AsideTableOfContents: NextPage = () => {
@@ -28,6 +29,9 @@ const container = css`
   padding: 20px;
   border-radius: 6px;
   border: 2px solid var(--cSub);
+  ${mq[2]} {
+    display: none;
+  }
   h2 {
     font-size: 2.2rem;
     font-weight: 700;
