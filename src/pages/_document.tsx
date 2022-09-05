@@ -3,7 +3,7 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 const MyDocument: NextPage = () => {
   return (
-    <Html>
+    <Html lang="ja">
       <Head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
         {/* Nikukyu (Japanese): https://fonts.google.com/earlyaccess Google fonts: https://fonts.google.com/*/}
         <link

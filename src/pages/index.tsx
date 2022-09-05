@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { useEffect } from 'react'
+import { useSetRecoilState } from 'recoil'
 import Seo from '../components/Seo'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'

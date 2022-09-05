@@ -1,29 +1,28 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { NextPage } from 'next'
 import Link from 'next/link'
+import useSWR from 'swr'
 import { microcmsData } from '../../../../types/microcmsData'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 
-const AsideCategory: NextPage = () => {
-  const { error, data } = useQuery(['category'], () =>
-    axios.get(
-      `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categories`,
-      {
-        headers: {
-          'X-MICROCMS-API-KEY': process.env
-            .NEXT_PUBLIC_MICROCMS_API_KEY as string,
-        },
-      }
-    )
+const categoriesFetch = async () => {
+  const category = await axios.get(
+    `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categoriess`,
+    {
+      headers: {
+        'X-MICROCMS-API-KEY': process.env
+          .NEXT_PUBLIC_MICROCMS_API_KEY as string,
+      },
+    }
   )
+  return category
+}
 
-  if (error) {
-    // @ts-ignore
-    console.log(error.message)
-  }
+const AsideCategory: NextPage = () => {
+  const { data, error } = useSWR('category', categoriesFetch)
+  error && console.log(error.message)
 
   // カテゴリの取得結果の判定
   return data ? (

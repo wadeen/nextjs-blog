@@ -23,7 +23,7 @@ const PER_PAGE = 10
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const id: any = context?.params?.id
+  const id = Number(context?.params?.id)
 
   const data = await client.get({
     endpoint: 'posts',
