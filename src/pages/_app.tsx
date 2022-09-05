@@ -1,5 +1,5 @@
-import '../styles/globals.scss'
-import '../styles/destyle.scss'
+import '../styles/globals.css'
+import '../styles/destyle.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import type { AppProps } from 'next/app'
 import { RecoilRoot } from 'recoil'
