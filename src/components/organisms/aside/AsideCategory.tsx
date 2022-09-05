@@ -9,7 +9,7 @@ import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 
 const categoriesFetch = async () => {
   const category = await axios.get(
-    `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categoriess`,
+    `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categories`,
     {
       headers: {
         'X-MICROCMS-API-KEY': process.env
