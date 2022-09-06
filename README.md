@@ -88,6 +88,6 @@ NEXT_PUBLIC_HOST={your-url}
 
 ## 公開 URL
 
-https://wadeen.net
+https://blog.wadeen.net/
 
 <!-- ### `npm start` -->
