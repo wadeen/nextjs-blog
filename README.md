@@ -57,7 +57,7 @@
 
 ## 環境変数
 
-```json
+```
 # microCMS
 NEXT_PUBLIC_MICROCMS_ACCESS_KEY={your-serviceDomain}
 NEXT_PUBLIC_MICROCMS_API_KEY={your-apiKey}
