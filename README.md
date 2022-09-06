@@ -1,4 +1,4 @@
-# Next.js × microCMS で JAMStack なブログ制作 🧑‍💻
+# Next.js × microCMS で JAMStack ブログ制作 🧑‍💻
 
 ## 使用技術
 
@@ -34,7 +34,7 @@
 
 - ### その他
   - プロフィールページ
-  - アプリ倉庫(Json から取り出し)
+  - アプリ倉庫(Json でデータ保管) \*準備中
 
 ## バージョン管理
 
