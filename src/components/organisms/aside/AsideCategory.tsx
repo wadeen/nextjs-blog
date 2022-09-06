@@ -4,11 +4,11 @@ import axios from 'axios'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { microcmsData } from '../../../../types/microcmsData'
+import { MicrocmsData } from '../../../../types/microcmsData'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 
 const categoriesFetch = async () => {
-  const category = await axios.get<{ contents: microcmsData[] }>(
+  const category = await axios.get<{ contents: MicrocmsData[] }>(
     `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categories`,
     {
       headers: {
@@ -32,7 +32,7 @@ const AsideCategory: NextPage<any> = ({ category }) => {
     <>
       <AsideTitle text={'Category'} />
       <ul css={categoryList}>
-        {data.contents.map((category: microcmsData) => (
+        {data.contents.map((category: MicrocmsData) => (
           <li key={category.id}>
             <Link href={`/category/${category.id}`}>
               <a>{category.name}</a>

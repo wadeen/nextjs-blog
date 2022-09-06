@@ -17,6 +17,14 @@
     "incremental": true,
     "baseUrl": "."
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "libs/GoogleCodePrettify.js", "src/components/organisms/pagination/BasicPagination.tsx", "src/pages/posts/page/[id].tsx", "src/components/organisms/comment/Comment.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "libs/GoogleCodePrettify.js",
+    "src/components/organisms/pagination/BasicPagination.tsx",
+    "src/pages/posts/page/[id].tsx",
+    "src/components/organisms/comment/Comment.jsx"
+  ],
   "exclude": ["node_modules"]
 }
