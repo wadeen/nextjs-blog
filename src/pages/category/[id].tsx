@@ -9,13 +9,14 @@ import {
 import { MicrocmsApi } from '../../../types/microcmsApi'
 import Seo from '../../components/Seo'
 import ArticleTitle from '../../components/atoms/articleTitle/ArticleTitle'
+import PostArchive from '../../components/organisms/post/PostArchive'
 import BlogLayout from '../../components/templates/BlogLayout'
 import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
 import { client } from 'libs/client'
 import { mq } from 'src/components/Breakpoints'
 import Failed from 'src/components/atoms/Failed'
 // import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
-import PostArchive from 'src/components/organisms/post/PostArchive'
+
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { MicrocmsData } from 'types/microcmsData'
 

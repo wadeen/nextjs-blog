@@ -10,10 +10,10 @@ import { client } from '../../../../libs/client'
 import { MicrocmsData } from '../../../../types/microcmsData'
 import Seo from '../../../components/Seo'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
-import PostArchive from '../../../components/organisms/post/PostArchive';
 import AsideArchive from '../../../components/templates/aside/AsideArchive'
 import { mq } from 'src/components/Breakpoints'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
+import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 

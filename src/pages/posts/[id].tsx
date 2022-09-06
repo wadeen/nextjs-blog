@@ -2,7 +2,8 @@ import { GetStaticPaths, NextPage } from 'next'
 import { client } from '../../../libs/client'
 import { MicrocmsData } from '../../../types/microcmsData'
 // import Comment from 'src/components/organisms/comment/Comment'
-import PostSingle from '../../components/organisms/post/PostSingle';
+
+import PostSingle from 'src/components/organisms/post/PostSingle'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsidePost from 'src/components/templates/aside/AsidePost'
