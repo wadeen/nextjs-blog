@@ -5,7 +5,6 @@ import {
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next'
-
 import { MicrocmsApi } from '../../../types/microcmsApi'
 import Seo from '../../components/Seo'
 import ArticleTitle from '../../components/atoms/articleTitle/ArticleTitle'
