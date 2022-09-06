@@ -10,7 +10,7 @@ import { BasicPagination } from 'src/components/organisms/pagination/BasicPagina
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
-import { microcmsData } from 'types/microcmsData'
+import { MicrocmsData } from 'types/microcmsData'
 
 // SSG
 export const getStaticProps: GetStaticProps = async () => {
@@ -36,7 +36,7 @@ const Home = ({
         <BlogLayoutBody>
           <ArticleTitle text={'最新の記事一覧'} />
           <ul css={postLists}>
-            {data.map((post: microcmsData) => (
+            {data.map((post: MicrocmsData) => (
               <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
             ))}
           </ul>

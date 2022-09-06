@@ -9,9 +9,9 @@ import utc from 'dayjs/plugin/utc'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { mq } from 'src/components/Breakpoints'
-import { microcmsData } from 'types/microcmsData'
+import { MicrocmsData } from 'types/microcmsData'
 
-const PostArchive: NextPage<{ post: microcmsData }> = ({ post }) => {
+const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   dayjs.extend(utc)
   dayjs.extend(timezone)
 

@@ -1,4 +1,4 @@
-export type tocType = {
+export type TocType = {
   text: string
   id: string
 }

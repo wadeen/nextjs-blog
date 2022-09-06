@@ -2,9 +2,9 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useViewport } from '../hooks/useViewPort'
-import { seoType } from 'types/seoType'
+import { SeoType } from 'types/seoType'
 
-const Seo: NextPage<seoType> = ({ ogpImage, ogpTitle, ogpDescription }) => {
+const Seo: NextPage<SeoType> = ({ ogpImage, ogpTitle, ogpDescription }) => {
   const baseUrl = process.env.NEXT_PUBLIC_HOST
   const router = useRouter()
   const { viewport } = useViewport() // 375px以下は等倍縮小

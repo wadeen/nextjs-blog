@@ -4,7 +4,7 @@ import { NextPage } from 'next'
 import { useRecoilValue } from 'recoil'
 import { stateToc } from '../../../store/stateToc'
 import { mq } from 'src/components/Breakpoints'
-import { tocType } from 'types/tocType'
+import { TocType } from 'types/tocType'
 
 export const AsideTableOfContents: NextPage = () => {
   const toc = useRecoilValue(stateToc) // Recoil
@@ -13,7 +13,7 @@ export const AsideTableOfContents: NextPage = () => {
     <div css={container}>
       <h2>目次</h2>
       <ul>
-        {toc.map((data: tocType) => (
+        {toc.map((data: TocType) => (
           <li key={data.id}>
             <a href={`#${data.id}`}>{data.text}</a>
           </li>

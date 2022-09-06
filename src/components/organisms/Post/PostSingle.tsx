@@ -17,10 +17,10 @@ import { stateToc } from '../../../store/stateToc'
 import Seo from '../../Seo'
 import { TableOfContents } from '../../molecules/TableOfContents'
 import { mq } from 'src/components/Breakpoints'
-import { microcmsData } from 'types/microcmsData'
+import { MicrocmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
 
-const PostSingle: NextPage<{ post: microcmsData }> = ({ post }) => {
+const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   const setToc = useSetRecoilState(stateToc) // Recoil
 
   // 日時調整

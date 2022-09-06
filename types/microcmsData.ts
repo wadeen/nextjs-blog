@@ -1,4 +1,4 @@
-export type microcmsData = {
+export type MicrocmsData = {
   category: {
     id: string
     name: string

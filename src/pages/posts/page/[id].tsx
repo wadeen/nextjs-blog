@@ -7,7 +7,7 @@ import {
 } from 'next'
 import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
-import { microcmsData } from '../../../../types/microcmsData'
+import { MicrocmsData } from '../../../../types/microcmsData'
 import Seo from '../../../components/Seo'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../../../components/templates/aside/AsideArchive'
@@ -62,7 +62,7 @@ const PostPage = ({
         <BlogLayoutBody>
           <ArticleTitle text={`記事一覧 　${router.query.id}ページ目`} />
           <ul css={postLists}>
-            {data.map((post: microcmsData) => (
+            {data.map((post: MicrocmsData) => (
               <PostArchive key={post.id} post={post} /> // 最新ページから取り出した一覧記事
             ))}
           </ul>

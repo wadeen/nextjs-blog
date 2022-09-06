@@ -1,6 +1,6 @@
 import { GetStaticPaths, NextPage } from 'next'
 import { client } from '../../../libs/client'
-import { microcmsData } from '../../../types/microcmsData'
+import { MicrocmsData } from '../../../types/microcmsData'
 // import Comment from 'src/components/organisms/comment/Comment'
 import PostSingle from 'src/components/organisms/post/PostSingle'
 import BlogLayout from 'src/components/templates/BlogLayout'
@@ -8,7 +8,7 @@ import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsidePost from 'src/components/templates/aside/AsidePost'
 
 // SSG
-export const getStaticProps = async (context: { params: microcmsData }) => {
+export const getStaticProps = async (context: { params: MicrocmsData }) => {
   const id = context.params.id
   const data = await client.get({ endpoint: 'posts', contentId: id })
   return {
@@ -24,7 +24,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     queries: { limit: 100 }, // API取得件数:デフォルト10件(上限5MB)
   })
   const paths = data.contents.map(
-    (content: microcmsData) => `/posts/${content.id}`
+    (content: MicrocmsData) => `/posts/${content.id}`
   )
 
   return {
@@ -33,7 +33,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-const Post: NextPage<{ post: microcmsData }> = ({ post }) => {
+const Post: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   return (
     <BlogLayout>
       <BlogLayoutBody>

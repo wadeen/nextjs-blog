@@ -7,11 +7,11 @@ import { collection, DocumentData, onSnapshot } from 'firebase/firestore' //esli
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { db } from '../../../../libs/firebase'
-import { comments } from '../../../../types/comments'
+import { Comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
 
 const Comment: NextPage = () => {
-  const [comments, setComments] = useState<comments[]>([])
+  const [comments, setComments] = useState<Comments[]>([])
 
   useEffect(() => {
     const commentsData = collection(db, 'comments')
@@ -28,7 +28,7 @@ const Comment: NextPage = () => {
     <div css={comment}>
       <h2>この記事へのコメント</h2>
       <ul css={commentList}>
-        {comments.map(({ name, date, text }: comments) => {
+        {comments.map(({ name, date, text }: Comments) => {
           const firestoreCommentDate = new Date(date.seconds * 1000)
           const firestoreComment = dayjs
             .utc(firestoreCommentDate)

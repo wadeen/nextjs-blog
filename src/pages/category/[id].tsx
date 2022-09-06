@@ -6,7 +6,7 @@ import {
   InferGetStaticPropsType,
 } from 'next'
 import { client } from '../../../libs/client'
-import { microcmsApi } from '../../../types/microcmsApi'
+import { MicrocmsApi } from '../../../types/microcmsApi'
 import Seo from '../../components/Seo'
 import BlogLayout from '../../components/templates/BlogLayout'
 import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
@@ -16,7 +16,7 @@ import Failed from 'src/components/atoms/Failed'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
 // import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
-import { microcmsData } from 'types/microcmsData'
+import { MicrocmsData } from 'types/microcmsData'
 
 const PER_PAGE = 10
 
@@ -33,7 +33,7 @@ export default function CategoryId({
       <BlogLayoutBase>
         <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
         <ul css={postLists}>
-          {blog.map((post: microcmsData) => (
+          {blog.map((post: MicrocmsData) => (
             <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
           ))}
         </ul>
@@ -77,7 +77,7 @@ export const getStaticPaths = async () => {
     endpoint: 'categories',
   })
   const paths = repos.contents.map(
-    (content: microcmsApi) => `/category/${content.id}`
+    (content: MicrocmsApi) => `/category/${content.id}`
   )
   return { paths, fallback: false }
 }

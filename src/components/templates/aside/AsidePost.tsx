@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-import { microcmsData } from '../../../../types/microcmsData'
+import { MicrocmsData } from '../../../../types/microcmsData'
 import { Spacer } from '../../atoms/articleTitle/Spacer'
 import { AsideTableOfContents } from '../../molecules/aside/AsideTableOfContents'
 import SearchForm from '../../molecules/aside/SearchForm'
@@ -12,7 +12,7 @@ import AsideBase from './AsideBase'
 import { mq } from 'src/components/Breakpoints'
 import Share from 'src/components/molecules/Share'
 
-const AsidePost: NextPage<{ post: microcmsData }> = ({ post }) => {
+const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   return (
     <AsideBase>
       {post.toc_visible ? (

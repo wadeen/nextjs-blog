@@ -5,8 +5,8 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
-import { microcmsApi } from '../../types/microcmsApi'
-import { microcmsData } from '../../types/microcmsData'
+import { MicrocmsApi } from '../../types/microcmsApi'
+import { MicrocmsData } from '../../types/microcmsData'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
 import { mq } from 'src/components/Breakpoints'
@@ -25,7 +25,7 @@ const Search: NextPage = () => {
   const router = useRouter()
 
   // apiでの検索結果を取得
-  const { data, error } = useSWR<microcmsApi>(
+  const { data, error } = useSWR<MicrocmsApi>(
     ['api/search', router.query.keyword],
     fetcher
   )
@@ -54,7 +54,7 @@ const Search: NextPage = () => {
             </div>
           ) : (
             <ul css={postLists}>
-              {data.contents.map((post: microcmsData) => (
+              {data.contents.map((post: MicrocmsData) => (
                 <PostArchive key={post.id} post={post} />
               ))}
             </ul>

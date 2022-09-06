@@ -1,6 +1,7 @@
-import { microcmsData } from './microcmsData';
-export type microcmsApi = {
-  contents: microcmsData[]
+import { MicrocmsData } from "./microcmsData"
+
+export type MicrocmsApi = {
+  contents: MicrocmsData[]
   limit: number
   offset: number
   totalCount: number

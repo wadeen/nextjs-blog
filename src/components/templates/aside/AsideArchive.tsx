@@ -1,5 +1,4 @@
 import { NextPage } from 'next'
-import { microcmsData } from '../../../../types/microcmsData'
 import { Spacer } from '../../atoms/articleTitle/Spacer'
 import SearchForm from '../../molecules/aside/SearchForm'
 import AsideBase from './AsideBase'
