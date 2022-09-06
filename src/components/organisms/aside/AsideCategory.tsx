@@ -8,7 +8,7 @@ import { microcmsData } from '../../../../types/microcmsData'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 
 const categoriesFetch = async () => {
-  const category = await axios.get(
+  const category = await axios.get<{ contents: microcmsData[] }>(
     `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categories`,
     {
       headers: {
@@ -17,11 +17,14 @@ const categoriesFetch = async () => {
       },
     }
   )
-  return category
+  return category.data
 }
 
-const AsideCategory: NextPage = () => {
-  const { data, error } = useSWR('category', categoriesFetch)
+const AsideCategory: NextPage<any> = ({ category }) => {
+  const { data, error } = useSWR('category', categoriesFetch, {
+    fallbackData: category,
+    revalidateOnMount: true,
+  })
   error && console.log(error.message)
 
   // カテゴリの取得結果の判定
@@ -29,7 +32,7 @@ const AsideCategory: NextPage = () => {
     <>
       <AsideTitle text={'Category'} />
       <ul css={categoryList}>
-        {data.data.contents.map((category: microcmsData) => (
+        {data.contents.map((category: microcmsData) => (
           <li key={category.id}>
             <Link href={`/category/${category.id}`}>
               <a>{category.name}</a>

@@ -17,12 +17,11 @@ import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 
-const fetcher = (url: string, value: string) => {
+const fetcher = (url: string, value: string): Promise<any> => {
   return fetch(`${url}?keyword=${value}`).then((res) => res.json())
 }
 
 const Search: NextPage = () => {
-  const baseUrl = process.env.NEXT_PUBLIC_HOST
   const router = useRouter()
 
   // apiでの検索結果を取得
