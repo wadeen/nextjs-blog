@@ -1,5 +1,7 @@
 export type SeoType = {
-  ogpImage?: string
-  ogpTitle?: string
+  ogpTitle?: string | undefined
   ogpDescription?: string
+  width?: number
+  height?: number
+  className?: string
 }

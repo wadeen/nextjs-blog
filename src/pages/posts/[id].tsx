@@ -27,7 +27,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = data.contents.map(
     (content: MicrocmsData) => `/posts/${content.id}`
   )
-
   return {
     paths,
     fallback: false,
@@ -39,7 +38,7 @@ const Post: NextPage<{ post: MicrocmsData }> = ({ post }) => {
     <BlogLayout>
       <BlogLayoutBody>
         <PostSingle post={post} />
-        {/* v1.1で公開予定
+        {/* v1.2で公開予定
            <Comment /> 
           */}
       </BlogLayoutBody>
