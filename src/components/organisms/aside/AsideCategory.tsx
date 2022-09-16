@@ -4,23 +4,29 @@ import axios from 'axios'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import useSWR from 'swr'
+import { client } from '../../../../libs/client'
 import { MicrocmsData } from '../../../../types/microcmsData'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 
 const categoriesFetch = async () => {
-  const category = await axios.get<{ contents: MicrocmsData[] }>(
-    `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/categories`,
-    {
-      headers: {
-        'X-MICROCMS-API-KEY': process.env
-          .NEXT_PUBLIC_MICROCMS_API_KEY as string,
-      },
-    }
-  )
-  return category.data
+  const category = await client.get({
+    endpoint: 'categories',
+  })
+  return category
 }
 
-const AsideCategory: NextPage<any> = ({ category }) => {
+// ページ件数 (v 1.2~)
+// const categoriesNumber = async () => {
+//   const categoryNum = await client.get({
+//     endpoint: 'posts',
+//     queries: {
+//       filters: `category[equals]${category}`,
+//     },
+//   })
+//   return categoryNum
+// }
+
+const AsideCategory: NextPage<MicrocmsData> = ({ category }) => {
   const { data, error } = useSWR('category', categoriesFetch, {
     fallbackData: category,
     revalidateOnMount: true,
