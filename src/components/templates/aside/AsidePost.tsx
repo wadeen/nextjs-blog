@@ -2,7 +2,6 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import { MicrocmsData } from '../../../../types/microcmsData'
-import { Spacer } from '../../atoms/articleTitle/Spacer'
 import { AsideTableOfContents } from '../../molecules/aside/AsideTableOfContents'
 import SearchForm from '../../molecules/aside/SearchForm'
 import AsideCategory from '../../organisms/aside/AsideCategory'
@@ -10,6 +9,7 @@ import AsidePopular from '../../organisms/aside/AsidePopular'
 import AsideProfile from '../../organisms/aside/AsideProfile'
 import AsideBase from './AsideBase'
 import { mq } from 'src/components/Breakpoints'
+import { Spacer } from 'src/components/Spacer'
 import Share from 'src/components/molecules/Share'
 
 const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
@@ -54,7 +54,7 @@ const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
 
 export default AsidePost
 
- // css
+// css
 const sticky = css`
   display: block;
   width: 100%;
