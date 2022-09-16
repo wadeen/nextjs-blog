@@ -18,6 +18,7 @@
 - cheerio ^1.0.0-rc.12
 - dayjs ^1.11.5
 - swr ^1.3.0
+- base64url ^3.0.1
 
 ## 機能
 
@@ -30,6 +31,7 @@
   - Google Analytics \*準備中
   - 人気記事 \*準備中
   - 記事詳細ページ
+  - OGP 自動生成機能
   - 目次
 
 - ### その他
@@ -38,22 +40,23 @@
 
 ## バージョン管理
 
-| バージョン | リリース日 |               リリース内容                |
-| :--------: | :--------: | :---------------------------------------: |
-|   1.0.0    | 2022.09.06 | ブログ一覧・詳細ページ/プロフィールページ |
+| バージョン | リリース日 |                 リリース内容                 |
+| :--------: | :--------: | :------------------------------------------: |
+|   1.0.0    | 2022.09.06 |  ブログ一覧・詳細ページ/プロフィールページ   |
+|   1.1.0    | 2022.09.17 | OGP 自動生成/カテゴリ件数の表示/コメント機能 |
 
 ## microCMS API スキーマ
 
-|     ID      |        表示名        |           種類           |
-| :---------: | :------------------: | :----------------------: |
-|    title    |       タイトル       |    テキストフィールド    |
-|    date     |       作成日時       |           日時           |
-|   update    |       更新日時       |           日時           |
-| toc_visible |         目次         |          真偽値          |
-|  eyecatch   | アイキャッチ(絵文字) |           画像           |
-|  category   |       カテゴリ       | コンテンツ参照 -カテゴリ |
-|   content   |         内容         |      リッチエディタ      |
-| description |  ディスクリプション  |      テキストエリア      |
+|     ID      |        表示名        |           種類           | 必須 |
+| :---------: | :------------------: | :----------------------: | :--: |
+|    title    |       タイトル       |    テキストフィールド    |  ◯   |
+|    date     |       作成日時       |           日時           |  ◯   |
+|   update    |       更新日時       |           日時           |  ×   |
+| toc_visible |         目次         |          真偽値          |  ×   |
+|  eyecatch   | アイキャッチ(絵文字) |           画像           |  ◯   |
+|  category   |       カテゴリ       | コンテンツ参照 -カテゴリ |  ◯   |
+|   content   |         内容         |      リッチエディタ      |  ◯   |
+| description |  ディスクリプション  |      テキストエリア      |  ×   |
 
 ## 環境変数
 
@@ -61,7 +64,8 @@
 # microCMS
 NEXT_PUBLIC_MICROCMS_ACCESS_KEY={your-serviceDomain}
 NEXT_PUBLIC_MICROCMS_API_KEY={your-apiKey}
-
+NEXT_PUBLIC_MICROCMS_OGP_ARTICLE={microCMS-strage} *自動生成(記事ページ)
+NEXT_PUBLIC_MICROCMS_OGP_BASE={microCMS-strage} *ブログ以外のOGP画像
 # Firebase
 NEXT_PUBLIC_FIREBASE_API_KEY={your-apiKey}
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN={your-authDomain}
