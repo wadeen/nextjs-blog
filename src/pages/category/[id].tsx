@@ -39,7 +39,7 @@ export default function CategoryId({
           ))}
         </ul>
 
-        {/* Pagination 未対応→ v1.1~で実装 */}
+        {/* Pagination 未対応→ v1.2~で実装 */}
         {/* <CategoryPagination
           category={blog[0].category.id}
           totalCount={totalCount}

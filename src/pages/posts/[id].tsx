@@ -1,7 +1,7 @@
 import { GetStaticPaths, NextPage } from 'next'
 import { client } from '../../../libs/client'
 import { MicrocmsData } from '../../../types/microcmsData'
-// import Comment from 'src/components/organisms/comment/Comment'
+import Comment from 'src/components/organisms/comment/Comment'
 
 import PostSingle from 'src/components/organisms/post/PostSingle'
 import BlogLayout from 'src/components/templates/BlogLayout'
@@ -34,13 +34,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Post: NextPage<{ post: MicrocmsData }> = ({ post }) => {
+  console.log(post.id)
   return (
     <BlogLayout>
       <BlogLayoutBody>
         <PostSingle post={post} />
-        {/* v1.2で公開予定
-           <Comment /> 
-          */}
+        <Comment id={post.id} />
       </BlogLayoutBody>
       <AsidePost post={post} />
     </BlogLayout>

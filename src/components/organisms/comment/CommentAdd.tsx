@@ -6,8 +6,9 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { db } from '../../../../libs/firebase'
 import PrimayButton from '../../atoms/button/PrimayButton'
+import { mq } from 'src/components/Breakpoints'
 
-const CommentAdd: NextPage = () => {
+const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
   const [inputName, setInputName] = useState('') // 名前
   const [inputText, setInputText] = useState('') // テキスト
 
@@ -18,10 +19,13 @@ const CommentAdd: NextPage = () => {
       date: Timestamp.now(),
     }
     if (window.confirm('この内容で公開してもいいですか？')) {
-      setDoc(doc(db, 'comments', uuidv4()), docData)
+      setDoc(doc(db, id, uuidv4()), docData)
       setInputName('')
       setInputText('')
+    } else {
+      return
     }
+    alert(`公開されました🎉\n不適切なコメントの場合は削除される可能性があります。`)
   }
 
   return (
@@ -74,6 +78,9 @@ export default CommentAdd
 const commentAdd = css`
   padding-top: 60px;
   position: relative;
+  ${mq[1]} {
+    padding-top: 30px;
+  }
   &::before {
     content: '';
     display: inline-block;
@@ -90,6 +97,9 @@ const title = css`
   font-size: 2.4rem;
   font-weight: 500;
   margin-bottom: 30px;
+  ${mq[1]} {
+    font-size: 1.8rem;
+  }
 `
 
 const container = css`
@@ -98,6 +108,10 @@ const container = css`
   dt {
     width: 60px;
     padding-top: 10px;
+    ${mq[1]} {
+      font-size: 1.4rem;
+      width: 50px;
+    }
     label {
       cursor: default;
     }
@@ -105,6 +119,9 @@ const container = css`
   dd {
     width: calc(100% - 60px);
     font-size: 1.4rem;
+    ${mq[1]} {
+      width: calc(100% - 50px);
+    }
     input {
       background-color: #fff;
       width: 100%;

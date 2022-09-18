@@ -58,6 +58,41 @@
 |   content   |         内容         |      リッチエディタ      |  ◯   |
 | description |  ディスクリプション  |      テキストエリア      |  ×   |
 
+
+## Cloud Firestore DB
+
+<table>
+<tr align="center">
+<th>データモデル</th>
+<td>データ名</td>
+<td>タイプ</td>
+</tr>
+<tr>
+<tr align="center">
+<th>collection</th>
+<td>投稿記事ID</td>
+<td>-</td>
+</tr>
+<tr align="center">
+<th>document</th>
+<td>自動ID</td>
+<td>-</td>
+</tr>
+<tr align="center">
+<th rowspan="3">data</th>
+<td>date</td>
+<td>timestamp</td>
+</tr>
+<tr  align="center">
+<td>name</td>
+<td>string</td>
+</tr>
+<tr align="center">
+<td>text</td>
+<td>string</td>
+</tr>
+</table>
+
 ## 環境変数
 
 ```
