@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import axios from 'axios'
+// import axios from 'axios'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import useSWR from 'swr'
@@ -26,11 +26,8 @@ const categoriesFetch = async () => {
 //   return categoryNum
 // }
 
-const AsideCategory: NextPage<MicrocmsData> = ({ category }) => {
-  const { data, error } = useSWR('category', categoriesFetch, {
-    fallbackData: category,
-    revalidateOnMount: true,
-  })
+const AsideCategory: NextPage = () => {
+  const { data, error } = useSWR('category', categoriesFetch)
   error && console.log(error.message)
 
   // カテゴリの取得結果の判定
