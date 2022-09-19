@@ -8,7 +8,6 @@ import Seo from 'src/components/Seo'
 
 // SSG(Jsonから直接取り出し)
 export const getStaticProps = async () => {
-  // const req = await fetch(`http://localhost:3000/strageInfo.json`)
   const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}strageInfo.json`)
   const data = await req.json()
   return {
@@ -18,7 +17,17 @@ export const getStaticProps = async () => {
   }
 }
 
-const Strage: NextPage<any> = ({ data }) => {
+type Props = {
+  id: string
+  img: string
+  title: string
+  tags: string[]
+  message: string
+  github: string
+  website: string
+}
+
+const Strage: NextPage<{ data: Props[] }> = ({ data }) => {
   return (
     <>
       <Seo ogpTitle="App倉庫 | Webのあれこれ" />
