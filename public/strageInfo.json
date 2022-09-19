@@ -12,7 +12,7 @@
     "id": 2,
     "img": "/images/strage/nextjs-image.png",
     "title": "Unsplash画像検索アプリ",
-    "tags": ["React2", "TypeScript2", "Firestore2"],
+    "tags": ["React", "Next.js", "TypeScript", "Unsplash API"],
     "message": "API学習用に作成。検索するとUnsplashのAPIを取得して画像を表示します。",
     "github": "https://github.com/wadeen/nextjs-image-search",
     "website": "https://nextjs-image-search-lvnw1iseo-wadeen.vercel.app/"
