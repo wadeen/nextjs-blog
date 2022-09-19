@@ -117,7 +117,7 @@ NEXT_PUBLIC_HOST={your-url}
 ```
 
 **アプリイメージ 🙌**
-![アプリイメージ] (https://github.com/wadeen/nextjs-blog/blob/main/thumbnail.png?raw=true)
+![アプリイメージ](public/images/thumbnail.png)
 
 ## 作業期間
 
