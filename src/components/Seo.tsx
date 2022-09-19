@@ -3,6 +3,9 @@ import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useViewport } from '../hooks/useViewPort'
+import androidIcon from 'public/images/meta/android-chrome-192x192.png'
+import appleIcon from 'public/images/meta/apple-touch-icon-180x180.png'
+import favicon from 'public/images/meta/favicon.ico'
 import { SeoType } from 'types/seoType'
 
 const Seo: NextPage<SeoType> = ({
@@ -23,6 +26,8 @@ const Seo: NextPage<SeoType> = ({
 
   // OGP画像: ベース(ブログ以外)
   const ogpBasic = process.env.NEXT_PUBLIC_MICROCMS_OGP_BASE
+
+  console.log(appleIcon)
 
   return (
     <Head>
@@ -46,6 +51,9 @@ const Seo: NextPage<SeoType> = ({
       <meta property="og:site_name" content="Webのあれこれ" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@wadeen_net" />
+      <link rel="icon" href={favicon.src} />
+      <link rel="apple-touch-icon" href={androidIcon.src} sizes="180x180" />
+      <link rel="icon" type="image/png" href={appleIcon.src} sizes="192x192" />
     </Head>
   )
 }
