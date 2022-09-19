@@ -27,8 +27,6 @@ const Seo: NextPage<SeoType> = ({
   // OGP画像: ベース(ブログ以外)
   const ogpBasic = process.env.NEXT_PUBLIC_MICROCMS_OGP_BASE
 
-  console.log(appleIcon)
-
   return (
     <Head>
       <title>{ogpTitle ?? 'Webのあれこれ'}</title>
