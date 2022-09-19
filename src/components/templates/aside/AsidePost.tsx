@@ -22,8 +22,8 @@ const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
           <Spacer size={30} />
           <AsideCategory />
           <Spacer size={30} />
-          <AsidePopular />
-          <Spacer size={30} />
+          {/* <AsidePopular /> */}
+          {/* <Spacer size={30} /> */}
           <div css={sticky}>
             <SearchForm />
             <Spacer size={30} />
@@ -42,8 +42,8 @@ const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
           <div css={sticky}>
             <SearchForm />
             <Spacer size={30} />
-            <AsidePopular />
-            <Spacer size={30} />
+            {/* <AsidePopular /> */}
+            {/* <Spacer size={30} /> */}
             <Share />
           </div>
         </>
