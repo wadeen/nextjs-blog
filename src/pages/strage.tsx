@@ -7,50 +7,27 @@ import { mq } from 'src/components/Breakpoints'
 import Seo from 'src/components/Seo'
 
 // SSG(Jsonから直接取り出し)
-// export const getStaticProps = async () => {
-//   const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}strageInfo.json`)
-//   const data = await req.json()
-//   return {
-//     props: {
-//       data: data,
-//     },
-//   }
-// }
+export const getStaticProps = async () => {
+  const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}strageInfo.json`)
+  const data = await req.json()
+  return {
+    props: {
+      data: data,
+    },
+  }
+}
 
-// type Props = {
-//   id: string
-//   img: string
-//   title: string
-//   tags: string[]
-//   message: string
-//   github: string
-//   website: string
-// }
+type Props = {
+  id: string
+  img: string
+  title: string
+  tags: string[]
+  message: string
+  github: string
+  website: string
+}
 
-const data = [
-  {
-    id: 1,
-    img: '/images/strage/react-todo.png',
-    title: 'ToDoアプリ',
-    tags: ['React', 'TypeScript', 'Firestore'],
-    message: 'React基礎を学習したので一発目のアウトプットとして作成しました🗓',
-    github: 'https://github.com/wadeen/original-react-todo',
-    website: 'https://original-react-todo.vercel.app/',
-  },
-  {
-    id: 2,
-    img: '/images/strage/nextjs-image.png',
-    title: 'Unsplash画像検索アプリ',
-    tags: ['React', 'Next.js', 'TypeScript', 'Unsplash API'],
-    message:
-      'API学習用に作成。検索するとUnsplashのAPIを取得して画像を表示します。',
-    github: 'https://github.com/wadeen/nextjs-image-search',
-    website: 'https://nextjs-image-search-lvnw1iseo-wadeen.vercel.app/',
-  },
-]
-
-const Strage: NextPage<any> = () => {
-  // const Strage: NextPage<{ data: Props[] }> = ({ data }) => {
+const Strage: NextPage<{ data: Props[] }> = ({ data }) => {
   return (
     <>
       <Seo ogpTitle="App倉庫 | Webのあれこれ" />
