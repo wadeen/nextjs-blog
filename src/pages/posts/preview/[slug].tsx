@@ -9,7 +9,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     throw new Error('Error: ID not found')
   }
 
-  /* draftKeyの存在チェック関数 */
   type Draft = {
     draftKey: string
   }
@@ -22,14 +21,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   const slug = String(params.slug)
-  /* requestのクエリパラメータを生成*/
   const draftKey = isDraft(previewData)
     ? { draftKey: previewData.draftKey }
     : {}
 
-  /* draftKeyを付与してリクエストを投げる */
   try {
-    const data = await client.getListDetail<any>({
+    const data = await client.getListDetail<MicrocmsData>({
       endpoint: 'posts',
       contentId: slug,
       queries: draftKey,
@@ -41,7 +38,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
       },
     }
   } catch (e) {
-    /* 失敗したら404 */
     return { notFound: true }
   }
 }
@@ -62,9 +58,9 @@ type Props = {
 }
 
 export default function Article({ post, draftKey }: Props) {
+  console.log('draftKey: ', draftKey)
   return post ? (
     <>
-      {/* プレビューモードであるという表示 */}
       {draftKey && <div>現在プレビューモードで閲覧中です。</div>}
       <PostSingle post={post} />
     </>
