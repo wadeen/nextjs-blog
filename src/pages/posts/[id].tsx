@@ -34,7 +34,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 const Post: NextPage<{ post: MicrocmsData }> = ({ post }) => {
-  console.log(post.id)
   return (
     <BlogLayout>
       <BlogLayoutBody>

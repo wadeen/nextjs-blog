@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-
 import Seo from '../components/Seo'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import { client } from 'libs/client'
