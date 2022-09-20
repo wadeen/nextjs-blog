@@ -29,7 +29,7 @@
   - 記事一覧ぺージ
   - カテゴリ別記事一覧ぺージ
   - 記事検索フォーム
-  - 画面プレビュー(vercel と連動)
+  - 画面プレビュー(vercel と連動) \*準備中
   - Google Analytics \*準備中
   - 人気記事 \*準備中
   - 記事詳細ページ
@@ -66,8 +66,8 @@
 <table>
 <tr align="center">
 <th>データモデル</th>
-<td>データ名</td>
-<td>タイプ</td>
+<th>データ名</th>
+<th>タイプ</th>
 </tr>
 <tr>
 <tr align="center">
@@ -130,5 +130,3 @@ NEXT_PUBLIC_HOST={your-url}
 ## 公開 URL
 
 https://wadeen.net/
-
-<!-- ### `npm start` -->
