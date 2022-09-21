@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import PostSingle from '../../../components/organisms/post/PostSingle'
 import Post from '../[id]'
@@ -62,7 +64,7 @@ export default function Article({ post, draftKey }: Props) {
   console.log('draftKey: ', draftKey)
   return post ? (
     <>
-      {draftKey && <div>現在プレビューモードで閲覧中です。</div>}
+      {draftKey && <div css={preview}>現在プレビューモードで閲覧中です。</div>}
       {/* <PostSingle post={post} /> */}
       <Post post={post} />
     </>
@@ -70,3 +72,16 @@ export default function Article({ post, draftKey }: Props) {
     <div>no content</div>
   )
 }
+
+const preview = css`
+  display: inline-block;
+  color: #fff;
+  background-color: red;
+  position: fixed;
+  top: 20px;
+  z-index: 100;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 30px;
+  border-radius: 6px;
+`
