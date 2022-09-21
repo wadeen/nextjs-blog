@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import PostSingle from '../../../components/organisms/post/PostSingle'
 import Post from '../[id]'
 import { client } from 'libs/client'
+import { mq } from 'src/components/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -61,11 +62,9 @@ type Props = {
 }
 
 export default function Article({ post, draftKey }: Props) {
-  console.log('draftKey: ', draftKey)
   return post ? (
     <>
       {draftKey && <div css={preview}>現在プレビューモードで閲覧中です。</div>}
-      {/* <PostSingle post={post} /> */}
       <Post post={post} />
     </>
   ) : (
@@ -84,4 +83,13 @@ const preview = css`
   line-height: 40px;
   padding: 0 30px;
   border-radius: 6px;
+  ${mq[1]} {
+    font-size: 1.4rem;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
 `
