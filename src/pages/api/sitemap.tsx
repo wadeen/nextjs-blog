@@ -30,7 +30,7 @@ const generateSitemap = (posts: post[], location: string): string => {
 
 export const sitemap = async (req: NextApiRequest, res: NextApiResponse) => {
   const content = await fetch(
-    `${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}/api/v1/post`,
+    `${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}/api/v1/posts`,
     {
       headers: { 'X-API-KEY': process.env.NEXT_PUBLIC_MICROCMS_API_KEY || '' },
     }
