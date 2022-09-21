@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next'
 import PostSingle from '../../../components/organisms/post/PostSingle'
+import Post from '../[id]'
 import { client } from 'libs/client'
 import { MicrocmsData } from 'types/microcmsData'
 
@@ -62,7 +63,8 @@ export default function Article({ post, draftKey }: Props) {
   return post ? (
     <>
       {draftKey && <div>現在プレビューモードで閲覧中です。</div>}
-      <PostSingle post={post} />
+      {/* <PostSingle post={post} /> */}
+      <Post post={post} />
     </>
   ) : (
     <div>no content</div>
