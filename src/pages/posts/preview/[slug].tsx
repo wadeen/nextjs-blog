@@ -63,8 +63,8 @@ export default function Article({ post, draftKey }: Props) {
   return post ? (
     <>
       {draftKey && <div>現在プレビューモードで閲覧中です。</div>}
-      {/* <PostSingle post={post} /> */}
-      <Post post={post} />
+      <PostSingle post={post} />
+      {/* <Post post={post} /> */}
     </>
   ) : (
     <div>no content</div>

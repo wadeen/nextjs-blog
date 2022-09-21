@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { client } from '../../../libs/client'
+import { client } from 'libs/client'
 
 const preview = async (req: NextApiRequest, res: NextApiResponse) => {
   const { draftKey, slug } = req.query
@@ -15,6 +15,8 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
       draftKey,
     },
   })
+
+  console.log('draftKey: ', draftKey)
 
   if (!data) {
     return res.status(401).json({ message: 'Invalid slug' })
