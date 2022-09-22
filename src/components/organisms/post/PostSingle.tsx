@@ -29,8 +29,8 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
 
   // pre > code シンタックスハイライト
   const contentPost = post.content.reduce((sum: any, element) => {
-    return (sum.richEditor || sum.html) + (element.richEditor || element.html) // リッチエディタとテキストエリア対応
-  })
+    return sum + (element.richEditor ? element.richEditor : element.html) // リッチエディタとテキストエリア
+  },0)
   const contentBody = cheerio.load(contentPost as string) // eslint-disable-line
   contentBody('pre code').each((_, elm) => {
     const result = hljs.highlightAuto(contentBody(elm).text())
