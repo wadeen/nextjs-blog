@@ -28,9 +28,9 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   dayjs.extend(timezone)
 
   // pre > code シンタックスハイライト
-  const contentPost = post.content.reduce((sum: any, element) => {
+  const contentPost = post.content.reduce((sum: string, element) => {
     return sum + (element.richEditor || element.html) // リッチエディタとテキストエリア
-  },"")
+  }, '')
   const contentBody = cheerio.load(contentPost as string) // eslint-disable-line
   contentBody('pre code').each((_, elm) => {
     const result = hljs.highlightAuto(contentBody(elm).text())
