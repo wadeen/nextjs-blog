@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import FolderCopyIcon from '@mui/icons-material/FolderCopy'
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder'
 import UpdateIcon from '@mui/icons-material/Update'
-import cheerio from 'cheerio'
+import cheerio, { html } from 'cheerio'
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
@@ -28,7 +28,10 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   dayjs.extend(timezone)
 
   // pre > code シンタックスハイライト
-  const contentBody = cheerio.load(post.content) // eslint-disable-line
+  const contentPost = post.content.reduce((sum: any, element) => {
+    return (sum.richEditor || sum.html) + (element.richEditor || element.html) // リッチエディタとテキストエリア対応
+  })
+  const contentBody = cheerio.load(contentPost as string) // eslint-disable-line
   contentBody('pre code').each((_, elm) => {
     const result = hljs.highlightAuto(contentBody(elm).text())
     contentBody(elm).html(result.value)
@@ -38,8 +41,8 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   //目次
   useEffect(() => {
     // @ts-ignore
-    setToc(renderToc(post.content))
-  }, [setToc, post.content])
+    setToc(renderToc(contentPost))
+  }, [setToc, contentPost])
 
   return (
     <>
@@ -78,6 +81,7 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
         </ul>
 
         {post.toc_visible && <TableOfContents />}
+
         <div
           dangerouslySetInnerHTML={{ __html: contentBody.html() }}
           css={content}

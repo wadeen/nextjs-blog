@@ -7,7 +7,11 @@ export type MicrocmsData = {
     publishedAt: string
     revisedAt: string
   }
-  content: string
+  content: {
+    fieldId?: string
+    richEditor?: string
+    html?: string
+  }[]
   createdAt: string
   eyecatch: {
     url: string
