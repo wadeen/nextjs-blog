@@ -8,7 +8,7 @@ import Seo from 'src/components/Seo'
 
 // SSG(Jsonから直接取り出し)
 export const getStaticProps = async () => {
-  const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}strageInfo.json`)
+  const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}/strageInfo.json`)
   const data = await req.json()
   return {
     props: {
