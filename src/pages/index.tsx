@@ -29,6 +29,7 @@ const Home = ({
   data,
   totalCount,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  
   return (
     <>
       <Seo />
