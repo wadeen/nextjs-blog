@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-
 import { NextPage } from 'next'
 import AsideTitle from '../../atoms/aside/AsideTitle'
+
 const AsidePopular: NextPage = () => {
   return (
     <div css={container}>
@@ -15,7 +15,7 @@ const AsidePopular: NextPage = () => {
 
 export default AsidePopular
 
- // css
+// css
 const container = css`
   display: block;
   width: 100%;

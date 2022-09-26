@@ -25,6 +25,6 @@
     "src/components/organisms/pagination/BasicPagination.tsx",
     "src/pages/posts/page/[id].tsx",
     "src/components/organisms/comment/Comment.jsx"
-  ],
+, " get-populars/getPopulars.js"  ],
   "exclude": ["node_modules"]
 }

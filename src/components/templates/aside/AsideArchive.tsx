@@ -14,7 +14,7 @@ const AsideArchive: NextPage = () => {
       <Spacer size={30} />
       <AsideCategory />
       <Spacer size={30} />
-      {/* <AsidePopular /> */}
+      <AsidePopular />
     </AsideBase>
   )
 }
