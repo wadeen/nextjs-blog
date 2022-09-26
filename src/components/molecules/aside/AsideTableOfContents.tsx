@@ -7,7 +7,7 @@ import { mq } from 'src/components/Breakpoints'
 import { TocType } from 'types/tocType'
 
 export const AsideTableOfContents: NextPage = () => {
-  const toc = useRecoilValue(stateToc) // Recoil
+  const toc = useRecoilValue(stateToc)
 
   return (
     <div css={container}>

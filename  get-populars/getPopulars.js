@@ -1,8 +1,7 @@
-// import { google } from 'googleapis'
-// import fetch from 'node-fetch'
-const { google } = require('googleapis')
-const fetch = require('node-fetch')
-
+import { google } from 'googleapis'
+import fetch from 'node-fetch'
+// const { google } = require('googleapis')
+// const fetch = require('node-fetch')
 (async () => {
   //取得準備
   const client = await google.auth.getClient({
@@ -41,7 +40,7 @@ const fetch = require('node-fetch')
 
   //microCMSへのPATCH
   const result = await fetch(
-    `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/popular-bs`,
+    `https://${process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY}.microcms.io/api/v1/posts`,
     {
       method: 'PATCH',
       headers: {
@@ -54,3 +53,4 @@ const fetch = require('node-fetch')
   console.log(await result.json())
   console.log('読み込み完了')
 })()
+
