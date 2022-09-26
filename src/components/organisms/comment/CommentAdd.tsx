@@ -5,7 +5,7 @@ import { NextPage } from 'next'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { db } from '../../../../libs/firebase'
-import PrimayButton from '../../atoms/button/PrimayButton'
+import Button from '../../atoms/Button'
 import { mq } from 'src/components/Breakpoints'
 
 const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
@@ -25,7 +25,9 @@ const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
     } else {
       return
     }
-    alert(`公開されました🎉\n不適切なコメントの場合は削除される可能性があります。`)
+    alert(
+      `公開されました🎉\n不適切なコメントの場合は削除される可能性があります。`
+    )
   }
 
   return (
@@ -64,11 +66,12 @@ const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
           </dd>
         </div>
       </dl>
-      <PrimayButton
-        text={'公開'}
+      <Button
         onClick={onClickSubmit}
         disabled={(inputName && inputText) === ''}
-      />
+      >
+        公開
+      </Button>
     </div>
   )
 }

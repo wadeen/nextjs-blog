@@ -1,22 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { NextPage } from 'next'
+import { PropsWithChildren } from 'react'
 
 type Props = {
-  text: string
   onClick: () => void
-  disabled: boolean
+  disabled?: boolean
 }
 
-const PrimayButton: NextPage<Props> = ({ text, onClick, disabled }) => {
+const Button = ({ children, onClick, disabled }: PropsWithChildren<Props>) => {
   return (
     <button type="submit" css={button} onClick={onClick} disabled={disabled}>
-      {text}
+      {children}
     </button>
   )
 }
 
-export default PrimayButton
+export default Button
 
 // css
 const button = css`
