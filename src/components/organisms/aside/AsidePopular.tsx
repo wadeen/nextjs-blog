@@ -7,7 +7,7 @@ const AsidePopular: NextPage = () => {
   return (
     <div css={container}>
       <AsideTitle text={'Popular'} />
-      {/* 人気記事については、v1.1で実装 */}
+      {/* 人気記事については、v1.2~で実装予定 */}
       <p>現在準備中です</p>
     </div>
   )
