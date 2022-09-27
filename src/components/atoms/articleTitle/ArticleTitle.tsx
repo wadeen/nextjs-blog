@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 const ArticleTitle: NextPage<{ text: string }> = ({ text }) => (
   <p css={topTitle}>{text}</p>
 )

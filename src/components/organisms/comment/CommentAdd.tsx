@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { db } from '../../../../libs/firebase'
 import Button from '../../atoms/Button'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 
 const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
   const [inputName, setInputName] = useState('') // 名前

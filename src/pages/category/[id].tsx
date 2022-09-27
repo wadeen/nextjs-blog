@@ -6,13 +6,13 @@ import {
   InferGetStaticPropsType,
 } from 'next'
 import { MicrocmsApi } from '../../../types/microcmsApi'
-import Seo from '../../components/Seo'
+import Seo from '../../utils/Seo'
 import ArticleTitle from '../../components/atoms/articleTitle/ArticleTitle'
 import PostArchive from '../../components/organisms/post/PostArchive'
 import BlogLayout from '../../components/templates/BlogLayout'
 import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
 import { client } from 'libs/client'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 import Failed from 'src/components/atoms/Failed'
 // import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
 

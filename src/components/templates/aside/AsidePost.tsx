@@ -8,8 +8,8 @@ import AsideCategory from '../../organisms/aside/AsideCategory'
 import AsidePopular from '../../organisms/aside/AsidePopular'
 import AsideProfile from '../../organisms/aside/AsideProfile'
 import AsideBase from './AsideBase'
-import { mq } from 'src/components/Breakpoints'
-import { Spacer } from 'src/components/Spacer'
+import { mq } from 'src/utils/Breakpoints'
+import { Spacer } from 'src/utils/Spacer'
 import Share from 'src/components/molecules/Share'
 
 const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {

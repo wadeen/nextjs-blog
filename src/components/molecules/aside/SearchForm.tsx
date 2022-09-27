@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
 import { searchState } from '../../../store/searchState'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 
 const SearchForm: NextPage = () => {
   const [value, setValue] = useRecoilState(searchState)

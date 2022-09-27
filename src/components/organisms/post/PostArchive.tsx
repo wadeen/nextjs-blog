@@ -8,7 +8,7 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
 const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {

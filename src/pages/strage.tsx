@@ -3,8 +3,8 @@ import { css } from '@emotion/react'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LanguageIcon from '@mui/icons-material/Language'
 import { NextPage } from 'next'
-import { mq } from 'src/components/Breakpoints'
-import Seo from 'src/components/Seo'
+import { mq } from 'src/utils/Breakpoints'
+import Seo from 'src/utils/Seo'
 
 // SSG(Jsonから直接取り出し)
 export const getStaticProps = async () => {

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { mq } from '../Breakpoints'
+import { mq } from '../../utils/Breakpoints'
 
 const Header: NextPage = () => {
   const router = useRouter()

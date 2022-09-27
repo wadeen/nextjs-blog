@@ -2,8 +2,8 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { mq } from 'src/components/Breakpoints'
-import Seo from 'src/components/Seo'
+import { mq } from 'src/utils/Breakpoints'
+import Seo from 'src/utils/Seo'
 const About: NextPage = () => {
   return (
     <>

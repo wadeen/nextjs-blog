@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import { ReactNode } from 'react'
-import { mq } from '../Breakpoints'
+import { mq } from '../../utils/Breakpoints'
 
 const BlogLayout: NextPage<{ children: ReactNode }> = ({ children }) => {
   return <div css={article}>{children}</div>

@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 
 export const BasicPagination: NextPage<{ totalCount: number }> = ({ totalCount }) => {
   const PER_PAGE = 10

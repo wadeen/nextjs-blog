@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import { ReactNode } from 'react'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 
 const AsideBase: NextPage<{ children: ReactNode }> = ({ children }) => {
   return <aside css={aside}>{children}</aside>

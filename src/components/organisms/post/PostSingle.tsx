@@ -14,14 +14,14 @@ import { useEffect } from 'react'
 import { useSetRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
 import { stateToc } from '../../../store/stateToc'
-import Seo from '../../Seo'
+import Seo from '../../../utils/Seo'
 import { TableOfContents } from '../../molecules/TableOfContents'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
 
 const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
-  const setToc = useSetRecoilState(stateToc) // Recoil
+  const setToc = useSetRecoilState(stateToc)
 
   // 日時調整
   dayjs.extend(utc)
@@ -29,9 +29,11 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
 
   // pre > code シンタックスハイライト
   const contentPost = post.content.reduce((sum: string, element) => {
-    return sum + (element.richEditor || element.html) // リッチエディタとテキストエリア
+    return sum + (element.richEditor || element.html) // リッチエディタとテキストエリアに対応
   }, '')
-  const contentBody = cheerio.load(contentPost as string) // eslint-disable-line
+
+  //  eslint-disable-next-line
+  const contentBody = cheerio.load(contentPost as string) // cheerio非推奨のため対策要
   contentBody('pre code').each((_, elm) => {
     const result = hljs.highlightAuto(contentBody(elm).text())
     contentBody(elm).html(result.value)

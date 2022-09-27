@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import Seo from '../components/Seo'
+import Seo from '../utils/Seo'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import { client } from 'libs/client'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'

@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import PostSingle from '../../../components/organisms/post/PostSingle'
 import Post from '../[id]'
 import { client } from 'libs/client'
-import { mq } from 'src/components/Breakpoints'
+import { mq } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
 export const getStaticProps: GetStaticProps = async (context) => {
