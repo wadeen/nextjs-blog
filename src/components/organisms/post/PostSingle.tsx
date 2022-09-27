@@ -16,7 +16,7 @@ import { renderToc } from '../../../../libs/render-toc'
 import { stateToc } from '../../../store/stateToc'
 import Seo from '../../../utils/Seo'
 import { TableOfContents } from '../../molecules/TableOfContents'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
 
@@ -100,7 +100,7 @@ const container = css`
   background-color: #fff;
   border-radius: 8px;
   padding: 30px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     padding: 20px 10px;
     position: relative;
   }
@@ -115,14 +115,14 @@ const title = css`
   align-items: center;
   font-feature-settings: 'palt';
   font-family: var(--fontMain);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 2.2rem;
   }
   img {
     width: 60px;
     height: 60px;
     margin-right: 15px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       width: 72px;
       height: 72px;
       position: absolute;
@@ -153,7 +153,7 @@ const dateList = css`
   justify-content: flex-end;
   border-bottom: 1px dashed var(--cBorder);
   padding-bottom: 20px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     flex-direction: column;
     gap: 3px 0;
     text-align: right;
@@ -181,7 +181,7 @@ const content = css`
     margin: 10px 0 20px;
     line-height: 2;
     scroll-margin-top: 80px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 2.2rem;
       scroll-margin-top: 45px;
       line-height: 1.4;
@@ -195,7 +195,7 @@ const content = css`
     border-bottom: 1px dashed var(--cSub);
     margin: 10px 0 20px;
     scroll-margin-top: 80px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 2.2rem;
       scroll-margin-top: 45px;
     }
@@ -204,14 +204,14 @@ const content = css`
     font-size: 2.2rem;
     font-weight: 700;
     margin: 10px 0 20px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 2rem;
     }
   }
   h5 {
     font-size: 2rem;
     font-weight: 700;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.8rem;
     }
   }
@@ -223,10 +223,10 @@ const content = css`
     min-height: 450px;
     display: flex;
     align-items: center;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       min-height: 350px;
     }
-    ${mq[0]} {
+    ${mediaQuery[0]} {
       min-height: 250px;
     }
   }
@@ -282,7 +282,7 @@ const content = css`
     padding: 30px;
     border-radius: 6px;
     margin: 20px 0;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       padding: 20px;
     }
     li {
@@ -304,7 +304,7 @@ const content = css`
         color: #e2943a;
         margin-bottom: 15px;
         border-bottom: 1px dashed #e2943a;
-        ${mq[1]} {
+        ${mediaQuery[1]} {
           font-size: 1.8rem;
           padding-bottom: 5px;
         }

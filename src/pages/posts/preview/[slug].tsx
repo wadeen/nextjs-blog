@@ -4,7 +4,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import PostSingle from '../../../components/organisms/post/PostSingle'
 import Post from '../[id]'
 import { client } from 'libs/client'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -83,7 +83,7 @@ const preview = css`
   line-height: 40px;
   padding: 0 30px;
   border-radius: 6px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.4rem;
     height: 25px;
     line-height: 25px;

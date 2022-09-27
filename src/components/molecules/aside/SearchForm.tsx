@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { useRecoilState } from 'recoil'
 import { searchState } from '../../../store/searchState'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 const SearchForm: NextPage = () => {
   const [value, setValue] = useRecoilState(searchState)
@@ -76,7 +76,7 @@ const container = css`
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     padding: 4px 8px;
-    ${mq[2]} {
+    ${mediaQuery[2]} {
       width: 80%;
     }
   }
@@ -94,7 +94,7 @@ const container = css`
     border: 1px solid var(--cBorder);
     border-left: none;
     color: #fff;
-    ${mq[2]} {
+    ${mediaQuery[2]} {
       width: 20%;
     }
   }

@@ -6,7 +6,7 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { db } from '../../../../libs/firebase'
 import Button from '../../atoms/Button'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
   const [inputName, setInputName] = useState('') // 名前
@@ -81,7 +81,7 @@ export default CommentAdd
 const commentAdd = css`
   padding-top: 60px;
   position: relative;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     padding-top: 30px;
   }
   &::before {
@@ -100,7 +100,7 @@ const title = css`
   font-size: 2.4rem;
   font-weight: 500;
   margin-bottom: 30px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.8rem;
   }
 `
@@ -111,7 +111,7 @@ const container = css`
   dt {
     width: 60px;
     padding-top: 10px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.4rem;
       width: 50px;
     }
@@ -122,7 +122,7 @@ const container = css`
   dd {
     width: calc(100% - 60px);
     font-size: 1.4rem;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       width: calc(100% - 50px);
     }
     input {

@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 export const BasicPagination: NextPage<{ totalCount: number }> = ({ totalCount }) => {
   const PER_PAGE = 10
@@ -44,7 +44,7 @@ const pagination = css`
   align-items: center;
   justify-content: center;
   column-gap: 20px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     margin-top: 40px;
   }
   li {
@@ -69,7 +69,7 @@ const link = css`
   border-radius: 3px;
   transition: opacity 0.3s ease;
   font-size: 2rem;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.8rem;
   }
   &.is-current {

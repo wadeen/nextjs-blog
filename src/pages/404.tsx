@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Link from 'next/link'
-import { mq } from 'src/utils/Breakpoints'
 import SearchForm from 'src/components/molecules/aside/SearchForm'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 const CustomErrorPage = () => {
   return (
@@ -36,7 +36,7 @@ const errorPage = css`
     letter-spacing: 0.05em;
     text-align: center;
     margin-bottom: 30px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.6rem;
     }
   }
@@ -50,7 +50,7 @@ const wrapper = css`
     font-family: var(--fontMain);
     text-align: center;
     text-shadow: 2px 2px 0 gray, -1px -1px 0 #fff;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 4rem;
       font-weight: 700;
     }
@@ -72,7 +72,7 @@ const announce = css`
   letter-spacing: 0.04em;
   line-height: 1.6;
   margin-bottom: 60px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.4rem;
     text-align: left;
     margin-bottom: 40px;
@@ -90,7 +90,7 @@ const goBack = css`
   transition: opacity 0.3s ease;
   font-size: 1.8rem;
   text-decoration: underline;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.6rem;
   }
   &:hover {

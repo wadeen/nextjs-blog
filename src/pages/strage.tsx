@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LanguageIcon from '@mui/icons-material/Language'
 import { NextPage } from 'next'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 import Seo from 'src/utils/Seo'
 
 // SSG(Jsonから直接取り出し)
@@ -92,7 +92,7 @@ const container = css`
     font-weight: 700;
     padding-bottom: 50px;
     text-align: center;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.4rem;
       padding-bottom: 40px;
     }
@@ -103,7 +103,7 @@ const list = css`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     gap: 20px;
   }
   h2 {
@@ -113,7 +113,7 @@ const list = css`
     letter-spacing: 0.05em;
     text-align: center;
     font-family: var(--fontMain);
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 2rem;
       padding: 10px 0 15px;
     }
@@ -127,10 +127,10 @@ const item = css`
   border: 1px solid var(--cBorder);
   overflow: hidden;
   position: relative;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     width: calc((100% - 20px) / 2);
   }
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     width: min(100%, 400px);
     margin: 0 auto;
   }
@@ -158,7 +158,7 @@ const tag = css`
     text-align: center;
     padding: 6px 12px;
     font-size: 1.4rem;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.2rem;
       padding: 4px 8px;
     }
@@ -171,7 +171,7 @@ const subTitlte = css`
   letter-spacing: 0.05em;
   font-size: 1.8rem;
   font-family: var(--fontMain);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.6rem;
   }
 `
@@ -182,7 +182,7 @@ const message = css`
   letter-spacing: 0.05em;
   line-height: 1.4;
   font-family: var(--fontMain);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.4rem;
   }
 `

@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
-import Seo from '../utils/Seo'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
+import Seo from '../utils/Seo'
 import { client } from 'libs/client'
-import { mq } from 'src/utils/Breakpoints'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
+import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
 // SSG
@@ -55,7 +55,7 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     gap: 10px;
   }
 `

@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Image from 'next/image'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 import Seo from 'src/utils/Seo'
 const About: NextPage = () => {
   return (
@@ -99,7 +99,7 @@ const container = css`
   border-radius: 10px;
   width: min(100%, 1000px);
   margin: 0 auto;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     padding: 25px 15px 15px;
   }
   h1 {
@@ -107,7 +107,7 @@ const container = css`
     font-family: var(--fontSub);
     font-size: 3rem;
     text-align: center;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 2.4rem;
     }
   }
@@ -119,7 +119,7 @@ const profile = css`
   width: min(100%, 800px);
   margin: 50px auto 60px;
   gap: 0 25px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     flex-direction: column;
     margin: 30px auto 50px;
   }
@@ -128,7 +128,7 @@ const profile = css`
 const wrapper = css`
   position: relative;
   width: 150px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     width: 120px;
     height: 120px;
   }
@@ -143,7 +143,7 @@ const imgBox = css`
   height: 150px;
   border-radius: 50%;
   border: 2px solid var(--cSub);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     width: 120px;
     height: 120px;
   }
@@ -163,21 +163,21 @@ const imgBox = css`
 const profileText = css`
   width: calc(100% - 175px);
   font-family: var(--fontMain);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     width: 100%;
   }
   li {
     font-size: 1.6rem;
     letter-spacing: 0.05em;
     line-height: 1.4;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.4rem;
     }
     &:first-of-type {
       font-weight: 700;
       font-size: 2.2rem;
       margin-bottom: 8px;
-      ${mq[1]} {
+      ${mediaQuery[1]} {
         text-align: center;
         margin: 12px 0 6px;
         font-size: 1.8rem;
@@ -197,20 +197,20 @@ const box = css`
     margin-bottom: 10px;
     padding-bottom: 2px;
     background: linear-gradient(transparent 60%, #f6f670 60%);
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.8rem;
     }
   }
   p {
     line-height: 1.4;
     letter-spacing: 0.04em;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.4rem;
     }
     &.subtitle {
       font-weight: 500;
       font-size: 1.05em;
-      ${mq[1]} {
+      ${mediaQuery[1]} {
         font-size: 1.6rem;
         margin-bottom: 4px;
       }

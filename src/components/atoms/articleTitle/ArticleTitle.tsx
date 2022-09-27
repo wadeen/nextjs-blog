@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 const ArticleTitle: NextPage<{ text: string }> = ({ text }) => (
   <p css={topTitle}>{text}</p>
 )
@@ -17,7 +17,7 @@ const topTitle = css`
   padding-left: 25px;
   position: relative;
   font-family: var(--fontMain);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.6rem;
   }
 

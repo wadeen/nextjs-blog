@@ -8,7 +8,7 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
 const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
@@ -63,10 +63,10 @@ const list = css`
   transition: opacity 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--cBorder);
   box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.05);
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     width: calc((100% - 10px) / 2);
   }
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     width: 100%;
   }
   &:hover {
@@ -84,7 +84,7 @@ const link = css`
   width: 100%;
   height: 100%;
   cursor: pointer;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     padding: 15px 15px 35px;
   }
 `
@@ -92,11 +92,11 @@ const link = css`
 const eyecatch = css`
   width: 72px;
   height: 72px;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     width: 64px;
     height: 64px;
   }
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     width: 56px;
     height: 56px;
   }
@@ -110,7 +110,7 @@ const textList = css`
     font-weight: 700;
     font-feature-settings: 'palt';
     font-family: var(--fontMain);
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.8rem;
     }
   }

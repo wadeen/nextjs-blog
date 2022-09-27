@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { mq } from '../../utils/Breakpoints'
+import { mediaQuery } from '../../utils/Breakpoints'
 
 const Header: NextPage = () => {
   const router = useRouter()
@@ -142,12 +142,12 @@ const headerTop = css`
   height: 100px;
   position: relative;
   transition: margin-top 0.3s ease;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     height: 60px;
   }
   &.is-hide {
     margin-top: -100px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       margin-top: -60px;
     }
   }
@@ -163,12 +163,12 @@ const headerTop = css`
     margin: 0 auto;
     line-height: 90px;
     padding: 0 30px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 2.6rem;
       line-height: 60px;
     }
     .starIcon {
-      ${mq[1]} {
+      ${mediaQuery[1]} {
         transform: scale(0.6) translateX(20px);
       }
     }
@@ -187,7 +187,7 @@ const headerBottom = css`
   border-bottom: 1px solid var(--cBorder);
   background-color: #fff;
   position: relative;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     height: 40px;
   }
 `
@@ -200,7 +200,7 @@ const headerBottomWrapper = css`
   margin: 0 auto;
   padding: 0 30px;
   height: 100%;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     padding: 0 50px;
   }
   li {
@@ -209,7 +209,7 @@ const headerBottomWrapper = css`
     height: 100%;
     text-align: center;
     line-height: 45px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.4rem;
       line-height: 40px;
     }
@@ -224,7 +224,7 @@ const headerBottomWrapper = css`
       &:hover {
         background-color: var(--cBorder);
         color: #fff;
-        ${mq[2]} {
+        ${mediaQuery[2]} {
           background-color: #fff;
           color: #333;
         }
@@ -234,7 +234,7 @@ const headerBottomWrapper = css`
         color: red;
         pointer-events: none;
         text-decoration: underline;
-        ${mq[2]} {
+        ${mediaQuery[2]} {
           background-color: var(--cBorder);
           color: #fff;
         }
@@ -250,10 +250,10 @@ const back = css`
   transform: translate(-50%, -50%);
   height: 43px;
   transition: opacity 0.3s ease;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     left: calc(50% - 340px);
   }
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     transform: scale(0.8);
     top: -4px;
     left: 0;
@@ -261,7 +261,7 @@ const back = css`
   &:hover {
     opacity: 0.8;
     transform: translate(-50%, -50%) scale(1.1);
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       opacity: 1;
       transform: scale(0.8);
     }

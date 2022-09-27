@@ -16,7 +16,7 @@ import { useEffect, useState } from 'react'
 import { db } from '../../../../libs/firebase'
 import { Comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
-import { mq } from 'src/utils/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 const Comment: NextPage<{ id: string }> = ({ id }) => {
   const [comments, setComments] = useState<Comments[]>([])
@@ -78,7 +78,7 @@ const comment = css`
   border-radius: 8px;
   padding: 30px;
   border: 1px solid var(--cBorder);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     padding: 20px 10px;
   }
   h2 {
@@ -87,7 +87,7 @@ const comment = css`
     margin-bottom: 20px;
     padding-bottom: 5px;
     border-bottom: 1px dashed var(--cBorder);
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.8rem;
       margin-bottom: 10px;
     }
@@ -104,7 +104,7 @@ const commentList = css`
     background-color: #fff;
     padding: 25px;
     border-radius: 8px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       padding: 15px;
     }
   }
@@ -114,13 +114,13 @@ const commentName = css`
   font-size: 2rem;
   font-weight: 500;
   margin-bottom: 8px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.8rem;
   }
 `
 
 const commentDetail = css`
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.6rem;
   }
 `
@@ -131,7 +131,7 @@ const commentDate = css`
   right: 15px;
   font-size: 1.4rem;
   color: gray;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.4rem;
   }
 `

@@ -8,14 +8,14 @@ import {
 import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
 import { MicrocmsData } from '../../../../types/microcmsData'
-import Seo from '../../../utils/Seo'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../../../components/templates/aside/AsideArchive'
-import { mq } from 'src/utils/Breakpoints'
+import Seo from '../../../utils/Seo'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 const PER_PAGE = 10
 
@@ -81,7 +81,7 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     gap: 10px;
   }
 `
