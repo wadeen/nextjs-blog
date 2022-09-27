@@ -5,31 +5,30 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import {
   collection,
-  DocumentData, //eslint-disable-line
   onSnapshot,
   query,
   orderBy,
   limit,
+  // DocumentData,
 } from 'firebase/firestore'
-import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { db } from '../../../../libs/firebase'
 import { Comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
-const Comment: NextPage<{ id: string }> = ({ id }) => {
+const Comment = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<Comments[]>([])
 
   useEffect(() => {
-    const commentsData = collection(db, id)
+    const commentsData = collection(db, id) // 記事のID＝コメントの
     const commentsDataQuery = query(
       commentsData,
       orderBy('date', 'desc'),
       limit(100)
     ) // 最新順に並び替え/最大100件
     onSnapshot(commentsDataQuery, (snapshot) => {
-      setComments(snapshot.docs.map((doc: DocumentData) => doc.data()))
+      setComments(snapshot.docs.map((doc: any) => doc.data())) // any型 DocumentData型見直し！
     })
   }, [id])
 
@@ -44,7 +43,7 @@ const Comment: NextPage<{ id: string }> = ({ id }) => {
         <p css={noComment}>この記事にはまだコメントがありません。</p>
       ) : (
         <>
-          <ul css={commentList}>
+          {/* <ul css={commentList}>
             {comments.map(({ name, date, text }: Comments) => {
               const firestoreCommentDate = new Date(date.seconds * 1000)
               const firestoreComment = dayjs
@@ -59,7 +58,7 @@ const Comment: NextPage<{ id: string }> = ({ id }) => {
                 </li>
               )
             })}
-          </ul>
+          </ul> */}
         </>
       )}
       <CommentAdd id={id} />

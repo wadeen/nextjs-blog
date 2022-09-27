@@ -9,41 +9,41 @@ import { searchState } from '../../../store/searchState'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
 const SearchForm: NextPage = () => {
-  const [value, setValue] = useRecoilState(searchState)
+  const [searchValue, setSeatchValue] = useRecoilState(searchState)
   const router = useRouter()
 
   const onChangeValue = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(e.target.value)
+      setSeatchValue(e.target.value)
     },
-    [setValue]
+    [setSeatchValue]
   )
 
   const handleClickSubmitButton = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault()
-      router.push(`/search/?keyword=${value}`)
-      setValue('')
+      router.push(`/search/?keyword=${searchValue}`)
+      setSeatchValue('')
     },
-    [value, router, setValue]
+    [searchValue, router, setSeatchValue]
   )
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         e.preventDefault()
-        router.push(`/search/?keyword=${value}`)
-        setValue('')
+        router.push(`/search/?keyword=${searchValue}`)
+        setSeatchValue('')
       }
     },
-    [value, router, setValue]
+    [searchValue, router, setSeatchValue]
   )
 
   return (
     <form css={container}>
       <input
         type="text"
-        value={value}
+        value={searchValue}
         onChange={onChangeValue}
         onKeyDown={handleKeyDown}
       />
