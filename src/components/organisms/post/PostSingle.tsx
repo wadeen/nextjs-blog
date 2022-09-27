@@ -320,4 +320,9 @@ const content = css`
       opacity: 0.8;
     }
   }
+  code {
+    background: #e4d9d9;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
 `
