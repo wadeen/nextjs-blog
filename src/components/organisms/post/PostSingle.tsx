@@ -4,9 +4,6 @@ import FolderCopyIcon from '@mui/icons-material/FolderCopy'
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder'
 import UpdateIcon from '@mui/icons-material/Update'
 import cheerio, { html } from 'cheerio'
-import dayjs from 'dayjs'
-import timezone from 'dayjs/plugin/timezone'
-import utc from 'dayjs/plugin/utc'
 import hljs from 'highlight.js'
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -16,16 +13,13 @@ import { renderToc } from '../../../../libs/render-toc'
 import { stateToc } from '../../../store/stateToc'
 import Seo from '../../../utils/Seo'
 import { TableOfContents } from '../../molecules/TableOfContents'
+import { dateToString } from 'src/hooks/useDateToString'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
 
 const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   const setToc = useSetRecoilState(stateToc)
-
-  // 日時調整
-  dayjs.extend(utc)
-  dayjs.extend(timezone)
 
   // pre > code シンタックスハイライト
   const contentPost = post.content.reduce((sum: string, element) => {
@@ -71,13 +65,13 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
         <ul css={dateList}>
           <li>
             <QueryBuilderIcon />
-            作成日：{dayjs.utc(post.date).tz('Asia/Tokyo').format('YYYY/MM/DD')}
+            作成日：{dateToString(post.date, 'YYYY/MM/DD')}
           </li>
           {post.update && (
             <li>
               <UpdateIcon />
               更新日：
-              {dayjs.utc(post.update).tz('Asia/Tokyo').format('YYYY/MM/DD')}
+              {dateToString(post.update, 'YYYY/MM/DD')}
             </li>
           )}
         </ul>

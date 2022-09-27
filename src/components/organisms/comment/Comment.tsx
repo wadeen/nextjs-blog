@@ -1,8 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import dayjs from 'dayjs'
-import timezone from 'dayjs/plugin/timezone'
-import utc from 'dayjs/plugin/utc'
 import {
   collection,
   onSnapshot,
@@ -15,6 +12,7 @@ import { useEffect, useState } from 'react'
 import { db } from '../../../../libs/firebase'
 import { Comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
+import { dateToString } from 'src/hooks/useDateToString'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
 const Comment = ({ id }: { id: string }) => {
@@ -32,10 +30,6 @@ const Comment = ({ id }: { id: string }) => {
     })
   }, [id])
 
-  // 日時調整
-  dayjs.extend(utc)
-  dayjs.extend(timezone)
-
   return (
     <div css={comment}>
       <h2>この記事へのコメント</h2>
@@ -43,13 +37,10 @@ const Comment = ({ id }: { id: string }) => {
         <p css={noComment}>この記事にはまだコメントがありません。</p>
       ) : (
         <>
-          {/* <ul css={commentList}>
+          <ul css={commentList}>
             {comments.map(({ name, date, text }: Comments) => {
               const firestoreCommentDate = new Date(date.seconds * 1000)
-              const firestoreComment = dayjs
-                .utc(firestoreCommentDate)
-                .tz('Asia/Tokyo')
-                .format('YYYY.MM.DD')
+              const firestoreComment = dateToString(firestoreCommentDate,'YYYY.MM.DD')
               return (
                 <li key={date.seconds}>
                   <p css={commentName}>{name}</p>
@@ -58,7 +49,7 @@ const Comment = ({ id }: { id: string }) => {
                 </li>
               )
             })}
-          </ul> */}
+          </ul>
         </>
       )}
       <CommentAdd id={id} />

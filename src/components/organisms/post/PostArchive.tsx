@@ -3,18 +3,13 @@ import { css } from '@emotion/react'
 import FolderCopyIcon from '@mui/icons-material/FolderCopy'
 import QueryBuilderIcon from '@mui/icons-material/QueryBuilder'
 import UpdateIcon from '@mui/icons-material/Update'
-import dayjs from 'dayjs'
-import timezone from 'dayjs/plugin/timezone'
-import utc from 'dayjs/plugin/utc'
 import { NextPage } from 'next'
 import Link from 'next/link'
+import { dateToString } from 'src/hooks/useDateToString'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
 const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
-  dayjs.extend(utc)
-  dayjs.extend(timezone)
-
   return (
     <li css={list}>
       <Link href={`/posts/${post.id}`}>
@@ -31,11 +26,10 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
                 <span css={icon}>
                   {post.update ? <UpdateIcon /> : <QueryBuilderIcon />}
                 </span>
-                {dayjs
-                  // 更新日ない場合は作成日を表示
-                  .utc(post.update || post.date)
-                  .tz('Asia/Tokyo')
-                  .format('YYYY/MM/DD')}
+                {
+                  // 更新日がない場合は作成日を表示
+                  dateToString(post.update || post.date, 'YYYY/MM/DD')
+                }
               </li>
               <li>
                 <span css={icon}>

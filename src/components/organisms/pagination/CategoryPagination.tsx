@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { paginationRange } from 'src/hooks/usePaginationRange'
 
 type Props = {
   totalCount: number
@@ -16,29 +17,28 @@ export const CategoryPagination: NextPage<Props> = ({
   const PER_PAGE = 10
   const router = useRouter()
 
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i)
-
   return (
     <ul css={pagination}>
-      {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
-        <li key={index}>
-          <Link href={`/category/${category}/${number}`}>
-            <a
-              css={link}
-              className={
-                router.pathname === '/'
-                  ? 'is-first-current'
-                  : router.asPath.endsWith(`${number}`)
-                  ? 'is-current'
-                  : ''
-              }
-            >
-              {number}
-            </a>
-          </Link>
-        </li>
-      ))}
+      {paginationRange(1, Math.ceil(totalCount / PER_PAGE)).map(
+        (number, index) => (
+          <li key={index}>
+            <Link href={`/category/${category}/${number}`}>
+              <a
+                css={link}
+                className={
+                  router.pathname === '/'
+                    ? 'is-first-current'
+                    : router.asPath.endsWith(`${number}`)
+                    ? 'is-current'
+                    : ''
+                }
+              >
+                {number}
+              </a>
+            </Link>
+          </li>
+        )
+      )}
     </ul>
   )
 }
