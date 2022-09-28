@@ -19,7 +19,7 @@ const Comment = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<Comments[]>([])
 
   useEffect(() => {
-    const commentsData = collection(db, id) // 記事のID＝コメントの
+    const commentsData = collection(db, id) // 記事のID ＝FirestoreのコメントのdataID
     const commentsDataQuery = query(
       commentsData,
       orderBy('date', 'desc'),

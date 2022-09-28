@@ -24,11 +24,11 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
             <ul css={info}>
               <li>
                 <span css={icon}>
-                  {post.update ? <UpdateIcon /> : <QueryBuilderIcon />}
+                  {post.updated_at ? <UpdateIcon /> : <QueryBuilderIcon />}
                 </span>
                 {
                   // 更新日がない場合は作成日を表示
-                  dateToString(post.update || post.date, 'YYYY/MM/DD')
+                  dateToString(post.updated_at || post.created_at, 'YYYY/MM/DD')
                 }
               </li>
               <li>

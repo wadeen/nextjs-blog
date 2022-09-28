@@ -12,7 +12,6 @@ export type MicrocmsData = {
     richEditor?: string
     html?: string
   }[]
-  createdAt: string
   eyecatch: {
     url: string
     width: number
@@ -24,8 +23,8 @@ export type MicrocmsData = {
   revisedAt: string
   title: string
   updatedAt: string
-  date: string
-  update: string
+  created_at: string
+  updated_at: string
   toc_visible: boolean
   description: string
 }

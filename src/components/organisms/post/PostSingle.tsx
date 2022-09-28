@@ -40,6 +40,8 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
     setToc(renderToc(contentPost))
   }, [setToc, contentPost])
 
+  console.log(post)
+
   return (
     <>
       <Seo
@@ -65,13 +67,13 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
         <ul css={dateList}>
           <li>
             <QueryBuilderIcon />
-            作成日：{dateToString(post.date, 'YYYY/MM/DD')}
+            作成日：{dateToString(post.created_at, 'YYYY/MM/DD')}
           </li>
-          {post.update && (
+          {post.updated_at && (
             <li>
               <UpdateIcon />
               更新日：
-              {dateToString(post.update, 'YYYY/MM/DD')}
+              {dateToString(post.updated_at, 'YYYY/MM/DD')}
             </li>
           )}
         </ul>
