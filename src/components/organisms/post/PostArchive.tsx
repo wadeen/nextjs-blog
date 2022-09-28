@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import FolderCopyIcon from '@mui/icons-material/FolderCopy'
-import QueryBuilderIcon from '@mui/icons-material/QueryBuilder'
-import UpdateIcon from '@mui/icons-material/Update'
 import { NextPage } from 'next'
 import Link from 'next/link'
+import { IconContext } from 'react-icons'
+import { AiOutlineFolder } from 'react-icons/ai'
+import { BiTimeFive } from 'react-icons/bi'
+import { GrUpdate } from 'react-icons/gr'
 import { dateToString } from 'src/hooks/useDateToString'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
@@ -24,7 +25,13 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
             <ul css={info}>
               <li>
                 <span css={icon}>
-                  {post.updated_at ? <UpdateIcon /> : <QueryBuilderIcon />}
+                  {post.updated_at ? (
+                    <IconContext.Provider value={{ size: '11px' }}>
+                      <GrUpdate style={{ marginRight: '4px' }} />
+                    </IconContext.Provider>
+                  ) : (
+                    <BiTimeFive />
+                  )}
                 </span>
                 {
                   // 更新日がない場合は作成日を表示
@@ -33,7 +40,7 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
               </li>
               <li>
                 <span css={icon}>
-                  <FolderCopyIcon />
+                  <AiOutlineFolder />
                 </span>
                 {post.category.name}
               </li>
@@ -118,6 +125,8 @@ const info = css`
   right: 10px;
   li {
     font-size: 1.4rem;
+    display: flex;
+    align-items: center;
   }
 `
 

@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import LanguageIcon from '@mui/icons-material/Language'
 import { NextPage } from 'next'
+import { FaGithub } from 'react-icons/fa'
+import { GrLanguage } from 'react-icons/gr'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import Seo from 'src/utils/Seo'
 
@@ -56,7 +56,7 @@ const Strage: NextPage<{ data: Props[] }> = ({ data }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <GitHubIcon fontSize="large" />
+                      <FaGithub fontSize="large" />
                     </a>
                   </li>
                 )}
@@ -67,7 +67,7 @@ const Strage: NextPage<{ data: Props[] }> = ({ data }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <LanguageIcon fontSize="large" />
+                      <GrLanguage />
                     </a>
                   </li>
                 )}

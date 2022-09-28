@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import FolderCopyIcon from '@mui/icons-material/FolderCopy'
-import QueryBuilderIcon from '@mui/icons-material/QueryBuilder'
-import UpdateIcon from '@mui/icons-material/Update'
 import cheerio, { html } from 'cheerio'
 import hljs from 'highlight.js'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useEffect } from 'react'
+import { IconContext } from 'react-icons'
+import { AiOutlineFolder } from 'react-icons/ai'
+import { BiTimeFive } from 'react-icons/bi'
+import { GrUpdate } from 'react-icons/gr'
 import { useSetRecoilState } from 'recoil'
 import { renderToc } from '../../../../libs/render-toc'
 import { stateToc } from '../../../store/stateToc'
@@ -36,11 +37,9 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
 
   //目次
   useEffect(() => {
-    // @ts-ignore
+    // @ts-ignore renderToc 型の見直し！✋
     setToc(renderToc(contentPost))
   }, [setToc, contentPost])
-
-  console.log(post)
 
   return (
     <>
@@ -59,19 +58,21 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
         <p css={category}>
           <Link href={`/category/${post.category.id}`}>
             <a>
-              <FolderCopyIcon />
+              <AiOutlineFolder style={{ marginRight: '6px' }} />
               カテゴリ: {post.category.name}
             </a>
           </Link>
         </p>
         <ul css={dateList}>
           <li>
-            <QueryBuilderIcon />
+            <BiTimeFive style={{ marginRight: '6px' }} />
             作成日：{dateToString(post.created_at, 'YYYY/MM/DD')}
           </li>
           {post.updated_at && (
             <li>
-              <UpdateIcon />
+              <IconContext.Provider value={{ size: '11px' }}>
+                <GrUpdate style={{ marginRight: '6px' }} />
+              </IconContext.Provider>
               更新日：
               {dateToString(post.updated_at, 'YYYY/MM/DD')}
             </li>
@@ -132,10 +133,12 @@ const title = css`
 
 const category = css`
   font-size: 1.4rem;
-  text-align: right;
   margin-top: 10px;
   a {
     transition: opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     &:hover {
       opacity: 0.7;
     }
@@ -155,6 +158,8 @@ const dateList = css`
     text-align: right;
   }
   li {
+    display: flex;
+    align-items: center;
     font-size: 1.4rem;
   }
 `

@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import SearchIcon from '@mui/icons-material/Search'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
+import {BiSearch} from "react-icons/bi"
 import { useRecoilState } from 'recoil'
 import { searchState } from '../../../store/searchState'
 import { mediaQuery } from 'src/utils/Breakpoints'
@@ -48,9 +48,9 @@ const SearchForm: NextPage = () => {
         onKeyDown={handleKeyDown}
       />
       <button type="submit" onClick={handleClickSubmitButton}>
-        <SearchIcon
+        <BiSearch
           fontSize="large"
-          style={{ marginTop: '2px', marginLeft: '-3px' }}
+          style={{ marginTop: '2px', marginLeft: '-2px' }}
         />
         検索
       </button>

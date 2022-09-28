@@ -1,9 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import TwitterIcon from '@mui/icons-material/Twitter'
 import { NextPage } from 'next'
 import Image from 'next/image'
+import { FaTwitter, FaGithub } from 'react-icons/fa'
 import AsideTitle from '../../atoms/aside/AsideTitle'
 
 const AsideProfile: NextPage = () => {
@@ -48,7 +47,7 @@ const AsideProfile: NextPage = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <GitHubIcon style={{ marginRight: '6px' }} />
+              <FaGithub style={{ marginRight: '6px' }} />
               Github
             </a>
           </li>
@@ -58,7 +57,7 @@ const AsideProfile: NextPage = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <TwitterIcon style={{ marginRight: '6px' }} />
+              <FaTwitter style={{ marginRight: '6px' }} />
               Twitter
             </a>
           </li>

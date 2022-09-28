@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { CircularProgress } from '@mui/material'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import ReactLoading from 'react-loading'
 import useSWR from 'swr'
 import { MicrocmsApi } from '../../types/microcmsApi'
 import { MicrocmsData } from '../../types/microcmsData'
@@ -34,37 +34,35 @@ const Search: NextPage = () => {
   if (!data)
     return (
       <p css={loadingIcon}>
-        <CircularProgress size={60} />
+        <ReactLoading type="spinningBubbles" color={'#1976D2'} />
       </p>
     )
 
   return (
-    <>
-      <BlogLayout>
-        <Seo ogpTitle={`${router.query.keyword} の検索結果`} />
-        <BlogLayoutBody>
-          <ArticleTitle text={`"${router.query.keyword}" の検索結果`} />
-          {/* 検索記事の有無を判定 */}
-          {data.contents.length === 0 ? (
-            <div css={notPost}>
-              <p>[{router.query.keyword}]に関する記事はありませんでした。</p>
-              <Link href="/">
-                <a>記事一覧へ戻る</a>
-              </Link>
-            </div>
-          ) : (
-            <ul css={postLists}>
-              {data.contents.map((post: MicrocmsData) => (
-                <PostArchive key={post.id} post={post} />
-              ))}
-            </ul>
-          )}
-          {/* ページネーションは v1.1 ~で実装 */}
-          {/* <BasicPagination totalCount={totalCount} /> */}
-        </BlogLayoutBody>
-        <AsideArchive />
-      </BlogLayout>
-    </>
+    <BlogLayout>
+      <Seo ogpTitle={`${router.query.keyword} の検索結果`} />
+      <BlogLayoutBody>
+        <ArticleTitle text={`"${router.query.keyword}" の検索結果`} />
+        {/* 検索記事の有無を判定 */}
+        {data.contents.length === 0 ? (
+          <div css={notPost}>
+            <p>[{router.query.keyword}]に関する記事はありませんでした。</p>
+            <Link href="/">
+              <a>記事一覧へ戻る</a>
+            </Link>
+          </div>
+        ) : (
+          <ul css={postLists}>
+            {data.contents.map((post: MicrocmsData) => (
+              <PostArchive key={post.id} post={post} />
+            ))}
+          </ul>
+        )}
+        {/* ページネーションは v1.2 ~で実装 */}
+        {/* <BasicPagination totalCount={totalCount} /> */}
+      </BlogLayoutBody>
+      <AsideArchive />
+    </BlogLayout>
   )
 }
 
