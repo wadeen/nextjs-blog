@@ -26,9 +26,9 @@ const categoriesFetch = async () => {
 //   return categoryNum
 // }
 
-const AsideCategory: NextPage = () => {
+const AsideCategory = () => {
   const { data, error } = useSWR('category', categoriesFetch)
-  error && console.log(error.message)
+  if(error) console.log(error.message)
 
   // カテゴリの取得結果の判定
   return data ? (
@@ -44,7 +44,7 @@ const AsideCategory: NextPage = () => {
         ))}
       </ul>
     </>
-  ) : null
+  ) : ""
 }
 
 export default AsideCategory
