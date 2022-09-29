@@ -137,9 +137,11 @@ NEXT_PUBLIC_HOST={your-url}
 **アプリイメージ 🙌**
 ![アプリイメージ](public/images/thumbnail.png)
 
-## 作業期間
+## 開発期間
 
 12 日程度
+開発期間：1ヶ月程度(適宜アップデート)
+工数：12人日
 
 ## 開発者
 

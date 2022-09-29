@@ -30,28 +30,28 @@ const Header: NextPage = () => {
         <div css={headerTop} className={scrollHeight ? 'is-hide' : ''}>
           {router.pathname === '/' ? (
             <h1>
-              <Image
-                src="/images/star.svg"
-                width={60}
-                height={60}
-                alt=""
-                className="starIcon"
-              />
               <Link href="/">
-                <a>ウェブのあれこれ</a>
+                <a>
+                  <Image
+                    src="/images/title/title.png"
+                    alt="Webのあれこれ"
+                    width={334}
+                    height={64}
+                  />
+                </a>
               </Link>
             </h1>
           ) : (
             <h2>
-              <Image
-                src="/images/star.svg"
-                width={60}
-                height={60}
-                alt=""
-                className="starIcon"
-              />
               <Link href="/">
-                <a>ウェブのあれこれ</a>
+                <a>
+                  <Image
+                    src="/images/title/title.png"
+                    alt="Webのあれこれ"
+                    width={334}
+                    height={64}
+                  />
+                </a>
               </Link>
             </h2>
           )}
@@ -153,27 +153,20 @@ const headerTop = css`
   }
   h1,
   h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-weight: 500;
-    font-size: 3.4rem;
-    font-family: 'Nikukyu', sans-serif;
-    margin: 0 auto;
-    line-height: 90px;
-    padding: 0 30px;
-    ${mediaQuery[1]} {
-      font-size: 2.6rem;
-      line-height: 60px;
-    }
-    .starIcon {
-      ${mediaQuery[1]} {
-        transform: scale(0.6) translateX(20px);
-      }
-    }
+    position: relative;
     a {
+      width: 334px;
+      height: 64px;
+      position: absolute;
+      left: 50%;
+      top: 52px;
+      transform: translate(-50%, -50%);
       transition: opacity 0.3s ease;
+      ${mediaQuery[1]} {
+        top: 24px;
+        width: 260px;
+        height: 34px;
+      }
       &:hover {
         opacity: 0.85;
       }
@@ -231,7 +224,7 @@ const headerBottomWrapper = css`
       }
       // カレントページの時にマーキング
       &.is-current {
-        color: red;
+        color: var(--cSub);
         pointer-events: none;
         text-decoration: underline;
         ${mediaQuery[2]} {
