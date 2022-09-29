@@ -213,22 +213,18 @@ const headerBottomWrapper = css`
       display: block;
       width: 100%;
       height: 100%;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
       &:hover {
-        background-color: var(--cBorder);
+        background-color: var(--cSub);
         color: #fff;
-        ${mediaQuery[2]} {
-          background-color: #fff;
-          color: #333;
-        }
+        opacity: 0.8;
       }
       // カレントページの時にマーキング
       &.is-current {
-        color: var(--cSub);
+        color: #fff;
+        background-color: var(--cSub);
         pointer-events: none;
-        text-decoration: underline;
         ${mediaQuery[2]} {
-          background-color: var(--cBorder);
           color: #fff;
         }
       }
