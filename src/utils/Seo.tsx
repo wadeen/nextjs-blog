@@ -32,6 +32,13 @@ const Seo: NextPage<SeoType> = ({
       <title>{ogpTitle ?? 'Webのあれこれ'}</title>
       <meta property="og:title" content={ogpTitle ?? 'Webのあれこれ'} />
       <meta
+        property="description"
+        content={
+          ogpDescription ??
+          'Webエンジニアの為の有益な情報を発信しています。Web制作やフロントエンドのモダン技術を中心にアウトプットしています。'
+        }
+      />
+      <meta
         property="og:description"
         content={
           ogpDescription ??

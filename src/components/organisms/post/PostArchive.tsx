@@ -15,37 +15,37 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
     <li css={list}>
       <Link href={`/posts/${post.id}`}>
         <a css={link}>
-          <img
-            css={eyecatch}
-            src={post.eyecatch.url}
-            alt="アイキャッチアイコン"
-          />
-          <div css={textList}>
-            <h2>{post.title}</h2>
-            <ul css={info}>
-              <li>
-                <span css={icon}>
-                  {post.updated_at ? (
-                    <IconContext.Provider value={{ size: '11px' }}>
-                      <GrUpdate style={{ marginRight: '4px' }} />
-                    </IconContext.Provider>
-                  ) : (
-                    <BiTimeFive />
-                  )}
-                </span>
-                {
-                  // 更新日がない場合は作成日を表示
-                  dateToString(post.updated_at || post.created_at, 'YYYY/MM/DD')
-                }
-              </li>
-              <li>
-                <span css={icon}>
-                  <AiOutlineFolder />
-                </span>
-                {post.category.name}
-              </li>
-            </ul>
+          <div css={postView}>
+            <img
+              css={eyecatch}
+              src={post.eyecatch.url}
+              alt="アイキャッチアイコン"
+            />
+            <h2 css={textTitle}>{post.title}</h2>
           </div>
+          <ul css={info}>
+            <li>
+              <span css={icon}>
+                {post.updated_at ? (
+                  <IconContext.Provider value={{ size: '11px' }}>
+                    <GrUpdate style={{ marginRight: '4px' }} />
+                  </IconContext.Provider>
+                ) : (
+                  <BiTimeFive />
+                )}
+              </span>
+              {
+                // 更新日がない場合は作成日を表示
+                dateToString(post.updated_at || post.created_at, 'YYYY/MM/DD')
+              }
+            </li>
+            <li>
+              <span css={icon}>
+                <AiOutlineFolder />
+              </span>
+              {post.category.name}
+            </li>
+          </ul>
         </a>
       </Link>
     </li>
@@ -59,11 +59,10 @@ const list = css`
   background-color: #fff;
   border-radius: 8px;
   width: calc((100% - 20px) / 2);
-  position: relative;
   min-height: 123px;
   transition: opacity 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--cBorder);
-  box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.05);
+  padding: 15px;
   ${mediaQuery[2]} {
     width: calc((100% - 10px) / 2);
   }
@@ -71,23 +70,24 @@ const list = css`
     width: 100%;
   }
   &:hover {
-    box-shadow: 2px 3px 10px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 3px 10px 2px rgba(0, 0, 0, 0.05);
     border: 1px solid var(--cSub);
     opacity: 0.85;
   }
 `
 
 const link = css`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 20px 20px 35px;
+  display: block;
   width: 100%;
   height: 100%;
   cursor: pointer;
-  ${mediaQuery[2]} {
-    padding: 15px 15px 35px;
-  }
+`
+
+const postView = css`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: calc(100% - 20px);
 `
 
 const eyecatch = css`
@@ -103,26 +103,23 @@ const eyecatch = css`
   }
 `
 
-const textList = css`
-  h2 {
-    font-size: 2.2rem;
-    letter-spacing: 0.02em;
-    line-height: 1.3;
-    font-weight: 700;
-    font-feature-settings: 'palt';
-    font-family: var(--fontMain);
-    ${mediaQuery[1]} {
-      font-size: 1.8rem;
-    }
+const textTitle = css`
+  font-size: 2.2rem;
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+  font-weight: 700;
+  font-feature-settings: 'palt';
+  font-family: var(--fontMain);
+  ${mediaQuery[1]} {
+    font-size: 1.8rem;
   }
 `
 const info = css`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   column-gap: 15px;
-  position: absolute;
-  bottom: 6px;
-  right: 10px;
+  margin-top: 6px;
   li {
     font-size: 1.4rem;
     display: flex;
