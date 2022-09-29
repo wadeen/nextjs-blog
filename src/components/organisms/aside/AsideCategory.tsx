@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 // import axios from 'axios'
-import { NextPage } from 'next'
 import Link from 'next/link'
 import useSWR from 'swr'
 import { client } from '../../../../libs/client'
@@ -44,7 +43,7 @@ const AsideCategory = () => {
         ))}
       </ul>
     </>
-  ) : ""
+  ) : <></>
 }
 
 export default AsideCategory
