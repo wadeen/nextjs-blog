@@ -34,11 +34,16 @@ const Storage: NextPage<{ data: Props[] }> = ({ data }) => {
       <div css={container}>
         <h1>〜技術習得のために作成したWebアプリの倉庫〜</h1>
         <ul css={list}>
-          {data.map((data: any) => (
+          {data.map((data) => (
             <li css={item} key={data.id}>
-              <p css={imteImg}>
+              <a
+                href={data.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                css={imteImg}
+              >
                 <img src={data.img} alt="" />
-              </p>
+              </a>
               <h2>{data.title}</h2>
               <p css={subTitlte}>使用技術</p>
               <ul css={tag}>
@@ -137,6 +142,11 @@ const item = css`
 `
 
 const imteImg = css`
+display: block;
+transition: opacity .3s ease;
+&:hover {
+  opacity: .8;
+}
   img {
     width: 100%;
     height: 100%;

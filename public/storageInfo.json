@@ -4,7 +4,7 @@
     "img": "/images/storage/react-todo.png",
     "title": "ToDoアプリ",
     "tags": ["React", "TypeScript", "Firestore"],
-    "message": "React基礎を学習したので一発目のアウトプットとして作成しました🗓",
+    "message": "React基礎を学習したのでアウトプットのために作成しました🗓",
     "github": "https://github.com/wadeen/original-react-todo",
     "website": "https://original-react-todo.vercel.app/"
   },
