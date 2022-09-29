@@ -104,10 +104,9 @@ const imgBox = css`
 const sns = css`
   text-align: center;
   margin-top: 14px;
-  font-weight: 500;
+  font-weight: 700;
   p {
     margin-bottom: 8px;
-    font-weight: 500;
   }
 
   ul {
@@ -142,7 +141,7 @@ const sns = css`
 
 const nameInfo = css`
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
   margin: 10px 0;
 `

@@ -208,7 +208,7 @@ const box = css`
       font-size: 1.4rem;
     }
     &.subtitle {
-      font-weight: 500;
+      font-weight: 700;
       font-size: 1.05em;
       ${mediaQuery[1]} {
         font-size: 1.6rem;

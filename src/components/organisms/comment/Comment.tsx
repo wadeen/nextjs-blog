@@ -102,7 +102,7 @@ const commentList = css`
 
 const commentName = css`
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 8px;
   ${mediaQuery[1]} {
     font-size: 1.8rem;

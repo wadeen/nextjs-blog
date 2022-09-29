@@ -240,7 +240,7 @@ const content = css`
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     bottom: -20px;
-    font-weight: 500;
+    font-weight: 400;
     font-family: var(--fontEn);
   }
   img {
@@ -263,7 +263,7 @@ const content = css`
       content: '“';
       font-family: var(--fontEn);
       font-size: 6rem;
-      font-weight: 500;
+      font-weight: 400;
       position: absolute;
       top: 0;
       left: 10px;
@@ -272,7 +272,7 @@ const content = css`
       content: '”';
       font-family: var(--fontEn);
       font-size: 6rem;
-      font-weight: 500;
+      font-weight: 400;
       position: absolute;
       right: 10px;
       bottom: -50px;
@@ -287,7 +287,7 @@ const content = css`
       padding: 20px;
     }
     li {
-      font-weight: 500;
+      font-weight: 400;
       padding-left: 1em;
       text-indent: -1em;
       &::before {

@@ -46,7 +46,7 @@ const container = css`
       font-size: 1.4rem;
       line-height: 1.5;
       margin-bottom: 15px;
-      font-weight: 500;
+      font-weight: 700;
       font-family: var(--fontMain);
       display: flex;
       align-items: center;

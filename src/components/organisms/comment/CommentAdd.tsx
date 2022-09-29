@@ -98,7 +98,7 @@ const commentAdd = css`
 const title = css`
   text-align: center;
   font-size: 2.4rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 30px;
   ${mediaQuery[1]} {
     font-size: 1.8rem;
