@@ -1,5 +1,9 @@
 # Next.js × microCMS で JAMStack ブログ制作 🦖
 
+## アーキテクチャ図
+
+![アーキテクチャ図](public/images/architecture.png)
+<br />
 
 ## 機能
 
