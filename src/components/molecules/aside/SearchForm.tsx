@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
-import {BiSearch} from "react-icons/bi"
+import { BiSearch } from 'react-icons/bi'
 import { useRecoilState } from 'recoil'
 import { searchState } from '../../../store/searchState'
 import { mediaQuery } from 'src/utils/Breakpoints'
@@ -42,6 +42,7 @@ const SearchForm: NextPage = () => {
   return (
     <form css={container}>
       <input
+        id="seacrch-form"
         type="text"
         value={searchValue}
         onChange={onChangeValue}
