@@ -6,7 +6,8 @@ import {
   query,
   orderBy,
   limit,
-  // DocumentData,
+  DocumentData, // eslint-disable-line
+  // 理由の解明要(firestoreにないと表示される)
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { db } from '../../../../libs/firebase'
@@ -25,9 +26,10 @@ const Comment = ({ id }: { id: string }) => {
       orderBy('date', 'desc'),
       limit(100)
     ) // 最新順に並び替え/最大100件
-    onSnapshot(commentsDataQuery, (snapshot) => {
-      setComments(snapshot.docs.map((doc: any) => doc.data())) // any型 DocumentData型見直し！
+    const unsubscribe = onSnapshot(commentsDataQuery, (snapshot) => {
+      setComments(snapshot.docs.map((doc: DocumentData) => doc.data())) 
     })
+    return () => unsubscribe()
   }, [id])
 
   return (
