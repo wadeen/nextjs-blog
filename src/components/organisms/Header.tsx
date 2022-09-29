@@ -88,14 +88,14 @@ const Header: NextPage = () => {
               </Link>
             </li>
             <li>
-              <Link href="/strage">
+              <Link href="/storage">
                 <a
                   title="アプリ倉庫"
                   className={
-                    router.pathname.startsWith('/strage') ? 'is-current' : ''
+                    router.pathname.startsWith('/storage') ? 'is-current' : ''
                   }
                 >
-                  App strage
+                  App storage
                 </a>
               </Link>
             </li>
