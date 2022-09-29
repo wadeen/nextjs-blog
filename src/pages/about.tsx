@@ -32,9 +32,9 @@ const About: NextPage = () => {
             </p>
           </div>
 
-          <ul css={profileText}>
-            <li>わでぃん</li>
-            <li>
+          <div css={profileText}>
+            <p>わでぃん</p>
+            <p>
               25歳のフリーランスWeb制作コーダー。
               <br />
               フロントエンド志望のため、Reactを中心にモダンJavaScriptを学習中です。
@@ -42,8 +42,8 @@ const About: NextPage = () => {
               年内にフロントエンドエンジニアとして働くことを目標にしています。色々な現場を経験して成長していきたいと思っています。
               <br />
               将来的には個人開発のWebアプリをリリースし、多くの人に使ってもらうことが夢です。
-            </li>
-          </ul>
+            </p>
+          </div>
         </div>
 
         {/* スキル */}
@@ -166,7 +166,7 @@ const profileText = css`
   ${mediaQuery[1]} {
     width: 100%;
   }
-  li {
+  p {
     font-size: 1.6rem;
     letter-spacing: 0.05em;
     line-height: 1.4;
