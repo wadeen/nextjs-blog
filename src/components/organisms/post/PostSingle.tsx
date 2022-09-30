@@ -161,6 +161,7 @@ const dateList = css`
     display: flex;
     align-items: center;
     font-size: 1.4rem;
+    justify-content: flex-end;
   }
 `
 
