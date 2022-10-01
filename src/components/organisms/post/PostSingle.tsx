@@ -37,8 +37,7 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
 
   //目次
   useEffect(() => {
-    // @ts-ignore renderToc 型の見直し！✋
-    setToc(renderToc(contentPost))
+    setToc(renderToc(contentPost) as any) // render-toc.ts 側の指定変更要
   }, [setToc, contentPost])
 
   return (
