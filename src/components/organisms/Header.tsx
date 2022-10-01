@@ -219,6 +219,11 @@ const headerBottomWrapper = css`
         background-color: var(--cSub);
         color: #fff;
         opacity: 0.8;
+        ${mediaQuery[2]} {
+          opacity: 1;
+          background-color: inherit;
+          color: inherit;
+        }
       }
       // カレントページの時にマーキング
       &.is-current {
