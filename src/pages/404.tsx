@@ -1,10 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Link from 'next/link'
+import { memo } from 'react'
 import SearchForm from 'src/components/molecules/aside/SearchForm'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
-const CustomErrorPage = () => {
+// eslint-disable-next-line react/display-name
+const CustomErrorPage = memo(() => {
   return (
     <div css={errorPage}>
       <div css={wrapper}>
@@ -25,7 +27,7 @@ const CustomErrorPage = () => {
       </div>
     </div>
   )
-}
+})
 
 export default CustomErrorPage
 

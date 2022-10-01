@@ -2,9 +2,12 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Image from 'next/image'
+import { memo } from 'react'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import Seo from 'src/utils/Seo'
-const About: NextPage = () => {
+
+// eslint-disable-next-line react/display-name
+const About: NextPage = memo(() => {
   return (
     <>
       <Seo ogpTitle="自己紹介 | Webのあれこれ" />
@@ -87,7 +90,7 @@ const About: NextPage = () => {
       </div>
     </>
   )
-}
+})
 
 export default About
 

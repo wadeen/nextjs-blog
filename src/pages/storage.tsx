@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
+import { memo } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { GrLanguage } from 'react-icons/gr'
 import { mediaQuery } from 'src/utils/Breakpoints'
@@ -27,7 +28,8 @@ type Props = {
   website: string
 }
 
-const Storage: NextPage<{ data: Props[] }> = ({ data }) => {
+// eslint-disable-next-line react/display-name
+const Storage: NextPage<{ data: Props[] }> = memo(({ data }) => {
   return (
     <>
       <Seo ogpTitle="App倉庫 | Webのあれこれ" />
@@ -83,7 +85,7 @@ const Storage: NextPage<{ data: Props[] }> = ({ data }) => {
       </div>
     </>
   )
-}
+})
 
 export default Storage
 
@@ -142,11 +144,11 @@ const item = css`
 `
 
 const imteImg = css`
-display: block;
-transition: opacity .3s ease;
-&:hover {
-  opacity: .8;
-}
+  display: block;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 0.8;
+  }
   img {
     width: 100%;
     height: 100%;

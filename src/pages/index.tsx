@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import { memo } from 'react'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import Seo from '../utils/Seo'
 import { client } from 'libs/client'
@@ -25,28 +26,28 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-const Home = ({
-  data,
-  totalCount,
-}: InferGetStaticPropsType<typeof getStaticProps>) => {
-  return (
-    <>
-      <Seo />
-      <BlogLayout>
-        <BlogLayoutBody>
-          <ArticleTitle text={'最新の記事一覧'} />
-          <ul css={postLists}>
-            {data.map((post: MicrocmsData) => (
-              <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
-            ))}
-          </ul>
-          <BasicPagination totalCount={totalCount} />
-        </BlogLayoutBody>
-        <AsideArchive />
-      </BlogLayout>
-    </>
-  )
-}
+// eslint-disable-next-line react/display-name
+const Home = memo(
+  ({ data, totalCount }: InferGetStaticPropsType<typeof getStaticProps>) => {
+    return (
+      <>
+        <Seo />
+        <BlogLayout>
+          <BlogLayoutBody>
+            <ArticleTitle text={'最新の記事一覧'} />
+            <ul css={postLists}>
+              {data.map((post: MicrocmsData) => (
+                <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
+              ))}
+            </ul>
+            <BasicPagination totalCount={totalCount} />
+          </BlogLayoutBody>
+          <AsideArchive />
+        </BlogLayout>
+      </>
+    )
+  }
+)
 
 export default Home
 
