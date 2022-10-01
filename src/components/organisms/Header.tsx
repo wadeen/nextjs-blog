@@ -4,10 +4,11 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { mediaQuery } from '../../utils/Breakpoints'
 
-const Header: NextPage = () => {
+// eslint-disable-next-line react/display-name
+const Header: NextPage = memo(() => {
   const router = useRouter()
 
   const [scrollHeight, setScrollHeight] = useState(false) // 基準高さでクラス付与
@@ -122,7 +123,8 @@ const Header: NextPage = () => {
       </header>
     </>
   )
-}
+})
+
 export default Header
 
 // css
