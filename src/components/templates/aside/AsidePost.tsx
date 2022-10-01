@@ -9,8 +9,8 @@ import AsidePopular from '../../organisms/aside/AsidePopular'
 import AsideProfile from '../../organisms/aside/AsideProfile'
 import AsideBase from './AsideBase'
 import Share from 'src/components/molecules/Share'
-import { mediaQuery } from 'src/utils/Breakpoints'
 import { Spacer } from 'src/components/molecules/Spacer'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   return (

@@ -3,7 +3,7 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { paginationRange } from 'src/hooks/paginationRange'
+import { paginationRange } from 'src/utils/paginationRange'
 
 type Props = {
   totalCount: number

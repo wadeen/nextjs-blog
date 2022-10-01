@@ -9,14 +9,14 @@ import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
 import { MicrocmsData } from '../../../../types/microcmsData'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
-import AsideArchive from '../../../components/templates/aside/AsideArchive'
 import Seo from '../../../components/molecules/Seo'
+import AsideArchive from '../../../components/templates/aside/AsideArchive'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
-import { paginationRange } from 'src/hooks/paginationRange'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { paginationRange } from 'src/utils/paginationRange'
 
 const PER_PAGE = 10
 
@@ -42,7 +42,6 @@ export const getStaticProps: GetStaticProps = async (
 // 動的ページの作成
 export const getStaticPaths = async () => {
   const repos = await client.get({ endpoint: 'posts' })
-  const pageNumbers = []
 
   const paths = paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
     (repo) => `/posts/page/${repo}`

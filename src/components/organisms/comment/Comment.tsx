@@ -13,8 +13,8 @@ import { useEffect, useState } from 'react'
 import { db } from '../../../../libs/firebase'
 import { Comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
-import { dateToString } from 'src/utils/dateToString'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { dateToString } from 'src/utils/dateToString'
 
 const Comment = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<Comments[]>([])
