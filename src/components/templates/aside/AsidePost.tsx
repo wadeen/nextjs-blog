@@ -68,6 +68,8 @@ const sticky = css`
   ${mediaQuery[2]} {
     position: static;
     padding: 0;
+    top: 0;
+    overflow: hidden;
   }
   &::-webkit-scrollbar {
     display: none;
