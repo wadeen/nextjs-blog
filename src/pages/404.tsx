@@ -5,7 +5,6 @@ import { memo } from 'react'
 import SearchForm from 'src/components/molecules/aside/SearchForm'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
-// eslint-disable-next-line react/display-name
 const CustomErrorPage = memo(() => {
   return (
     <div css={errorPage}>

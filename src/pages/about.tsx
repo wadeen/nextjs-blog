@@ -6,7 +6,6 @@ import { memo } from 'react'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import Seo from 'src/utils/Seo'
 
-// eslint-disable-next-line react/display-name
 const About: NextPage = memo(() => {
   return (
     <>

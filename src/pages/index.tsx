@@ -26,7 +26,6 @@ export const getStaticProps: GetStaticProps = async () => {
   }
 }
 
-// eslint-disable-next-line react/display-name
 const Home = memo(
   ({ data, totalCount }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (

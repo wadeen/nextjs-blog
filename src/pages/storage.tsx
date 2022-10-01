@@ -28,7 +28,6 @@ type Props = {
   website: string
 }
 
-// eslint-disable-next-line react/display-name
 const Storage: NextPage<{ data: Props[] }> = memo(({ data }) => {
   return (
     <>

@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import { memo, useEffect, useState } from 'react'
 import { mediaQuery } from '../../utils/Breakpoints'
 
-// eslint-disable-next-line react/display-name
 const Header: NextPage = memo(() => {
   const router = useRouter()
 
