@@ -3,8 +3,8 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Image from 'next/image'
 import { memo } from 'react'
+import Seo from 'src/components/molecules/Seo'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import Seo from 'src/utils/Seo'
 
 const About: NextPage = memo(() => {
   return (

@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react'
 import { db } from '../../../../libs/firebase'
 import { Comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
-import { dateToString } from 'src/hooks/useDateToString'
+import { dateToString } from 'src/utils/dateToString'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
 const Comment = ({ id }: { id: string }) => {

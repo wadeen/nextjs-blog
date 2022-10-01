@@ -5,7 +5,7 @@ import AsideBase from './AsideBase'
 import AsideCategory from 'src/components/organisms/aside/AsideCategory'
 import AsidePopular from 'src/components/organisms/aside/AsidePopular'
 import AsideProfile from 'src/components/organisms/aside/AsideProfile'
-import { Spacer } from 'src/utils/Spacer'
+import { Spacer } from 'src/components/molecules/Spacer'
 const AsideArchive: NextPage = () => {
   return (
     <AsideBase>

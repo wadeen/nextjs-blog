@@ -4,8 +4,8 @@ import { NextPage } from 'next'
 import { memo } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { GrLanguage } from 'react-icons/gr'
+import Seo from 'src/components/molecules/Seo'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import Seo from 'src/utils/Seo'
 
 // SSG(Jsonから直接取り出し)
 export const getStaticProps = async () => {

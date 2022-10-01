@@ -10,12 +10,12 @@ import { MicrocmsData } from '../../types/microcmsData'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
 import Failed from 'src/components/atoms/Failed'
+import Seo from 'src/components/molecules/Seo'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 // import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import Seo from 'src/utils/Seo'
 
 const fetcher = (url: string, value: string): Promise<any> => {
   return fetch(`${url}?keyword=${value}`).then((res) => res.json())

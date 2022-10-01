@@ -6,7 +6,7 @@ import { IconContext } from 'react-icons'
 import { AiOutlineFolder } from 'react-icons/ai'
 import { BiTimeFive } from 'react-icons/bi'
 import { GrUpdate } from 'react-icons/gr'
-import { dateToString } from 'src/hooks/useDateToString'
+import { dateToString } from 'src/utils/dateToString'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
