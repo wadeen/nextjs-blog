@@ -33,9 +33,14 @@ const Search: NextPage = () => {
   if (error) return <Failed text={'検索に失敗しました。'} />
   if (!data)
     return (
-      <p css={loadingIcon}>
-        <ReactLoading type="spinningBubbles" color={'#1976D2'} />
-      </p>
+      <BlogLayout>
+        <BlogLayoutBody>
+          <p css={loadingIcon}>
+            <ReactLoading type="spinningBubbles" color={'#1976D2'} />
+          </p>
+        </BlogLayoutBody>
+        <AsideArchive />
+      </BlogLayout>
     )
 
   return (
