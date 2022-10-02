@@ -3,7 +3,6 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import { memo } from 'react'
 
-// eslint-disable-next-line react/display-name
 const Footer: NextPage = memo(() => {
   return (
     <div css={footer}>
