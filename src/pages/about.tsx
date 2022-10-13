@@ -41,7 +41,7 @@ const About: NextPage = memo(() => {
               <br />
               フロントエンド志望のため、Reactを中心にモダンJavaScriptを学習中です。
               <br />
-              年内にフロントエンドエンジニアとして働くことを目標にしています。色々な現場を経験して成長/貢献していきたいと思っています。
+              フロントエンドエンジニアとして働くことを目標にしています。色々な現場を経験して成長/貢献していきたいと思っています。
               <br />
               将来的には個人開発のWebアプリをリリースし、多くの人に使ってもらうことが夢です。
             </p>
@@ -59,8 +59,8 @@ const About: NextPage = memo(() => {
           <br />
           <p className="subtitle">【その他】</p>
           <p>
-            WorsPress /Git / GitHub / GitHub Actions / Gulp/ Webpack /
-            Firebase（CloudFirestore , Authentication , Hosting）
+            WorsPress / Git / GitHub / GitHub Actions / Gulp / Webpack /
+            Firebase（CloudFirestore , Authentication , Hosting） / Vercel
           </p>
         </div>
 
