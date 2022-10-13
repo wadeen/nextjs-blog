@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
   const data = await req.json()
   return {
     props: {
-      data: data,
+      data: data.reverse(), // 最新のものから上に表示
     },
   }
 }
