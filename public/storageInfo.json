@@ -21,8 +21,8 @@
     "id": 3,
     "img": "/images/storage/portfolio.png",
     "title": "ポートフォリオサイト",
-    "tags": ["React", "Next.js", "TypeScript", "Firestore"],
-    "message": "このポートフォリオサイトです。逐一機能を追加していきます🙌",
+    "tags": ["React", "Next.js", "TypeScript", "Firestore", "microCMS"],
+    "message": "このポートフォリオサイトです。\n逐一機能を追加していきます🙌",
     "github": "https://github.com/wadeen/nextjs-blog",
     "website": "https://wadeen.net/"
   }
