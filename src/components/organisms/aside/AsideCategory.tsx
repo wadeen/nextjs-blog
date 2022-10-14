@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 // import axios from 'axios'
 import Link from 'next/link'

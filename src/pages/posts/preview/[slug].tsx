@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import PostSingle from '../../../components/organisms/post/PostSingle'
