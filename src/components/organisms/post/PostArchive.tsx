@@ -13,7 +13,7 @@ import { MicrocmsData } from 'types/microcmsData'
 const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   return (
     <li css={list}>
-      <Link href={`/posts/${post.id}`}>
+      <Link href={`/posts/${post.id}`} prefetch={false}>
         <a css={link}>
           <div css={postView}>
             <img
