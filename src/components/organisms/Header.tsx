@@ -69,6 +69,7 @@ const Header: NextPage = memo(() => {
                       ? 'is-current'
                       : ''
                   }
+                  data-testid="blog-nav"
                 >
                   Blog
                 </a>
@@ -81,6 +82,7 @@ const Header: NextPage = memo(() => {
                   className={
                     router.pathname.startsWith('/about') ? 'is-current' : ''
                   }
+                  data-testid="about-nav"
                 >
                   About me
                 </a>
@@ -93,6 +95,7 @@ const Header: NextPage = memo(() => {
                   className={
                     router.pathname.startsWith('/storage') ? 'is-current' : ''
                   }
+                  data-testid="storage-nav"
                 >
                   App storage
                 </a>
