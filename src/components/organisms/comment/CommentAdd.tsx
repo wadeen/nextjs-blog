@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { Timestamp, collection, addDoc } from 'firebase/firestore'
 import { NextPage } from 'next'
