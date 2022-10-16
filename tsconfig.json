@@ -25,6 +25,6 @@
     "src/components/organisms/pagination/BasicPagination.tsx",
     "src/pages/posts/page/[id].tsx",
     "src/components/organisms/comment/Comment.jsx"
-  ],
+, "__tests__/Header.test.jsx"  ],
   "exclude": ["node_modules"]
 }
