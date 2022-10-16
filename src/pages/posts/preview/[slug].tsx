@@ -1,6 +1,7 @@
+/** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import PostSingle from '../../../components/organisms/post/PostSingle'
+// import PostSingle from '../../../components/organisms/post/PostSingle'
 import Post from '../[id]'
 import { client } from 'libs/client'
 import { mediaQuery } from 'src/utils/Breakpoints'
