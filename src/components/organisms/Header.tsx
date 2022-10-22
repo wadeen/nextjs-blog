@@ -113,7 +113,7 @@ const Header: NextPage = memo(() => {
                 // router.back() // 投稿記事：外部流入に対応できないため使用しない予定
               }}
             >
-              <Image
+              <img
                 src="/images/icon/back.svg"
                 width={50}
                 height={50}

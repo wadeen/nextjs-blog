@@ -5,12 +5,6 @@ const MyDocument: NextPage = () => {
   return (
     <Html lang="ja">
       <Head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
-        {/* <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" cross-origin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Capriola&family=Noto+Sans+JP:wght@400;700&display=swap"
-          rel="stylesheet"
-        /> */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" cross-origin />
         <link
