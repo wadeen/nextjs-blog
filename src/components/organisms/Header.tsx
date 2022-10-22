@@ -32,7 +32,7 @@ const Header: NextPage = memo(() => {
             <h1>
               <Link href="/">
                 <a>
-                  <Image
+                  <img
                     src="/images/title/title.png"
                     alt="Webのあれこれ"
                     width={334}
@@ -45,7 +45,7 @@ const Header: NextPage = memo(() => {
             <h2>
               <Link href="/">
                 <a>
-                  <Image
+                  <img
                     src="/images/title/title.png"
                     alt="Webのあれこれ"
                     width={334}
