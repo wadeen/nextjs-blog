@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-// import Image from 'next/image'
 import { memo } from 'react'
 import Seo from 'src/components/molecules/Seo'
 import { mediaQuery } from 'src/utils/Breakpoints'

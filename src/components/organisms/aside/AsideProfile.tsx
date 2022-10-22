@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-import Image from 'next/image'
 import { FaTwitter, FaGithub } from 'react-icons/fa'
 import AsideTitle from '../../atoms/aside/AsideTitle'
 
