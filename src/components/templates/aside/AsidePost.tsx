@@ -20,8 +20,8 @@ const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
           {/* 目次ありの場合 */}
           <AsideProfile />
           <Spacer size={30} />
-          {/* <AsideCategory /> */}
-          {/* <Spacer size={30} /> */}
+          <AsideCategory />
+          <Spacer size={30} />
           {/* <AsidePopular /> */}
           {/* <Spacer size={30} /> */}
           <div css={sticky}>
@@ -37,8 +37,8 @@ const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
           {/* 目次なしの場合 */}
           <AsideProfile />
           <Spacer size={30} />
-          {/* <AsideCategory /> */}
-          {/* <Spacer size={30} /> */}
+          <AsideCategory />
+          <Spacer size={30} />
           <div css={sticky}>
             <SearchForm />
             <Spacer size={30} />
