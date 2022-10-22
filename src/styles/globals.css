@@ -52,8 +52,8 @@ body {
   --cLink: #0645ad;
 
   /* fonts */
-  --fontMain: 'Noto Sans JP', 'Yu Gothic', YuGothic, '游ゴシック体',
-    'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
-    'MS Pゴシック', 'MS PGothic', sans-serif;
+  --fontMain: 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Yu Gothic',
+    YuGothic, '游ゴシック体', 'メイリオ', Meiryo, 'MS Pゴシック', 'MS PGothic',
+    sans-serif;
   --fontEn: 'Capriola', sans-serif;
 }
