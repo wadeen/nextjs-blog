@@ -11,7 +11,7 @@ const AsideProfile: NextPage = () => {
       <AsideTitle text={'About me'} />
       <div css={wrapper}>
         <p css={imgBox}>
-          <Image
+          <img
             src="/images/profile/me.jpeg"
             width={1200}
             height={1200}
@@ -20,7 +20,7 @@ const AsideProfile: NextPage = () => {
           />
         </p>
         <p css={imgBox}>
-          <Image
+          <img
             src="/images/profile/chara.png"
             width={1200}
             height={1200}

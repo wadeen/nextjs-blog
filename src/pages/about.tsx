@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-import Image from 'next/image'
+// import Image from 'next/image'
 import { memo } from 'react'
 import Seo from 'src/components/molecules/Seo'
 import { mediaQuery } from 'src/utils/Breakpoints'
@@ -16,7 +16,7 @@ const About: NextPage = memo(() => {
         <div css={profile}>
           <div css={wrapper}>
             <p css={imgBox}>
-              <Image
+              <img
                 src="/images/profile/me.jpeg"
                 width={1200}
                 height={1200}
@@ -25,7 +25,7 @@ const About: NextPage = memo(() => {
               />
             </p>
             <p css={imgBox}>
-              <Image
+              <img
                 src="/images/profile/chara.png"
                 width={1200}
                 height={1200}
