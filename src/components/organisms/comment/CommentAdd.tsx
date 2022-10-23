@@ -139,7 +139,8 @@ const container = css`
     }
     textarea {
       background-color: #fff;
-      width: 787px;
+      /* width: 787px; */
+      width: 100%;
       max-width: 100%;
       min-height: 200px;
       border-radius: 4px;
