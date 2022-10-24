@@ -26,7 +26,7 @@ const Search: NextPage = () => {
 
   // apiでの検索結果を取得
   const { data, error } = useSWR<MicrocmsApi>(
-    ['api/search', router.query.keyword],
+    ['/api/search', router.query.keyword],
     fetcher
   )
 
