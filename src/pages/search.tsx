@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import ReactLoading from 'react-loading'
@@ -32,10 +31,17 @@ const Search = () => {
 
   if (error) {
     console.log(error)
-    return <Failed text={'検索に失敗しました。'} />
+    return (
+      <BlogLayout>
+        <BlogLayoutBody>
+          <Failed text={'検索に失敗しました。'} />
+        </BlogLayoutBody>
+        <AsideArchive />
+      </BlogLayout>
+    )
   }
 
-  if (!data)
+  if (!data) {
     return (
       <BlogLayout>
         <BlogLayoutBody>
@@ -46,6 +52,7 @@ const Search = () => {
         <AsideArchive />
       </BlogLayout>
     )
+  }
 
   return (
     <BlogLayout>
