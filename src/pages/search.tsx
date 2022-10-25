@@ -21,7 +21,7 @@ const fetcher = (url: string, value: string): Promise<any> => {
   return fetch(`${url}?keyword=${value}`).then((res) => res.json())
 }
 
-const Search: NextPage = () => {
+const Search = () => {
   const router = useRouter()
 
   // apiでの検索結果を取得
@@ -30,10 +30,6 @@ const Search: NextPage = () => {
     fetcher
   )
 
-  if (error) {
-    console.log(error)
-    return <Failed text={'検索に失敗しました。'} />
-  }
   if (!data)
     return (
       <BlogLayout>
@@ -46,32 +42,39 @@ const Search: NextPage = () => {
       </BlogLayout>
     )
 
-  return (
-    <BlogLayout>
-      <Seo ogpTitle={`${router.query.keyword} の検索結果`} />
-      <BlogLayoutBody>
-        <ArticleTitle text={`"${router.query.keyword}" の検索結果`} />
-        {/* 検索記事の有無を判定 */}
-        {data.contents.length === 0 ? (
-          <div css={notPost}>
-            <p>{router.query.keyword} に関する記事はありませんでした。</p>
-            <Link href="/">
-              <a>記事一覧へ戻る</a>
-            </Link>
-          </div>
-        ) : (
-          <ul css={postLists}>
-            {data.contents.map((post: MicrocmsData) => (
-              <PostArchive key={post.id} post={post} />
-            ))}
-          </ul>
-        )}
-        {/* ページネーションは v1.2 ~で実装 */}
-        {/* <BasicPagination totalCount={totalCount} /> */}
-      </BlogLayoutBody>
-      <AsideArchive />
-    </BlogLayout>
-  )
+  if (error) {
+    console.log(error)
+    return <Failed text={'検索に失敗しました。'} />
+  }
+
+  if (data) {
+    return (
+      <BlogLayout>
+        <Seo ogpTitle={`${router.query.keyword} の検索結果`} />
+        <BlogLayoutBody>
+          <ArticleTitle text={`"${router.query.keyword}" の検索結果`} />
+          {/* 検索記事の有無を判定 */}
+          {data.contents.length === 0 ? (
+            <div css={notPost}>
+              <p>{router.query.keyword} に関する記事はありませんでした。</p>
+              <Link href="/">
+                <a>記事一覧へ戻る</a>
+              </Link>
+            </div>
+          ) : (
+            <ul css={postLists}>
+              {data.contents.map((post: MicrocmsData) => (
+                <PostArchive key={post.id} post={post} />
+              ))}
+            </ul>
+          )}
+          {/* ページネーションは v1.2 ~で実装 */}
+          {/* <BasicPagination totalCount={totalCount} /> */}
+        </BlogLayoutBody>
+        <AsideArchive />
+      </BlogLayout>
+    )
+  }
 }
 
 export default Search
