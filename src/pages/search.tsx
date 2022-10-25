@@ -30,7 +30,10 @@ const Search: NextPage = () => {
     fetcher
   )
 
-  if (error) return <Failed text={'検索に失敗しました。'} />
+  if (error) {
+    console.log(error)
+    return <Failed text={'検索に失敗しました。'} />
+  }
   if (!data)
     return (
       <BlogLayout>
