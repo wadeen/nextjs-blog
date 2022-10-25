@@ -170,6 +170,10 @@ const headerTop = css`
         width: 260px;
         height: 34px;
       }
+      img {
+        width: 100%;
+        height: auto;
+      }
       &:hover {
         opacity: 0.85;
       }
