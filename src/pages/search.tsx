@@ -35,9 +35,9 @@ const Search: NextPage = () => {
     return (
       <BlogLayout>
         <BlogLayoutBody>
-          <p css={loadingIcon}>
+          <div css={loadingIcon}>
             <ReactLoading type="spinningBubbles" color={'#1976D2'} />
-          </p>
+          </div>
         </BlogLayoutBody>
         <AsideArchive />
       </BlogLayout>
@@ -51,7 +51,7 @@ const Search: NextPage = () => {
         {/* 検索記事の有無を判定 */}
         {data.contents.length === 0 ? (
           <div css={notPost}>
-            <p>[{router.query.keyword}]に関する記事はありませんでした。</p>
+            <p>{router.query.keyword} に関する記事はありませんでした。</p>
             <Link href="/">
               <a>記事一覧へ戻る</a>
             </Link>
