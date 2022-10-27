@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { NextPage } from 'next'
 import { memo } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { GrLanguage } from 'react-icons/gr'
@@ -19,16 +18,18 @@ export const getStaticProps = async () => {
 }
 
 type Props = {
-  id: string
-  img: string
-  title: string
-  tags: string[]
-  message: string
-  github: string
-  website: string
+  data: {
+    id: string
+    img: string
+    title: string
+    tags: string[]
+    message: string
+    github: string
+    website: string
+  }[]
 }
 
-const Storage: NextPage<{ data: Props[] }> = memo(({ data }) => {
+const Storage = memo(({ data }: Props) => {
   return (
     <>
       <Seo ogpTitle="App倉庫 | Webのあれこれ" />
@@ -48,7 +49,7 @@ const Storage: NextPage<{ data: Props[] }> = memo(({ data }) => {
               <h2>{data.title}</h2>
               <p css={subTitlte}>使用技術</p>
               <ul css={tag}>
-                {data.tags.map((tag: any) => (
+                {data.tags.map((tag: string) => (
                   <li key={tag}>{tag}</li>
                 ))}
               </ul>
