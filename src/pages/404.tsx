@@ -20,8 +20,8 @@ const CustomErrorPage = memo(() => {
       </p>
       <div css={container}>
         <SearchForm />
-        <Link href="/">
-          <a css={goBack} data-testid="gohome" >ホームに戻る</a>
+        <Link href="/" css={goBack} data-testid="gohome">
+          ホームに戻る
         </Link>
       </div>
     </div>

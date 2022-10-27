@@ -56,10 +56,8 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
         </h1>
         <p css={category}>
           <Link href={`/category/${post.category.id}`}>
-            <a>
-              <AiOutlineFolder style={{ marginRight: '6px' }} />
-              カテゴリ: {post.category.name}
-            </a>
+            <AiOutlineFolder style={{ marginRight: '6px' }} />
+            カテゴリ: {post.category.name}
           </Link>
         </p>
         <ul css={dateList}>

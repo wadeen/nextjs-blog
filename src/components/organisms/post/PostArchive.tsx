@@ -13,40 +13,38 @@ import { MicrocmsData } from 'types/microcmsData'
 const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   return (
     <li css={list}>
-      <Link href={`/posts/${post.id}`}>
-        <a css={link}>
-          <div css={postView}>
-            <img
-              css={eyecatch}
-              src={post.eyecatch.url}
-              alt="アイキャッチアイコン"
-            />
-            <h2 css={textTitle}>{post.title}</h2>
-          </div>
-          <ul css={info}>
-            <li>
-              <span css={icon}>
-                {post.updated_at ? (
-                  <IconContext.Provider value={{ size: '11px' }}>
-                    <GrUpdate style={{ marginRight: '4px' }} />
-                  </IconContext.Provider>
-                ) : (
-                  <BiTimeFive />
-                )}
-              </span>
-              {
-                // 更新日がない場合は作成日を表示
-                dateToString(post.updated_at || post.created_at, 'YYYY/MM/DD')
-              }
-            </li>
-            <li>
-              <span css={icon}>
-                <AiOutlineFolder />
-              </span>
-              {post.category.name}
-            </li>
-          </ul>
-        </a>
+      <Link href={`/posts/${post.id}`} css={link}>
+        <div css={postView}>
+          <img
+            css={eyecatch}
+            src={post.eyecatch.url}
+            alt="アイキャッチアイコン"
+          />
+          <h2 css={textTitle}>{post.title}</h2>
+        </div>
+        <ul css={info}>
+          <li>
+            <span css={icon}>
+              {post.updated_at ? (
+                <IconContext.Provider value={{ size: '11px' }}>
+                  <GrUpdate style={{ marginRight: '4px' }} />
+                </IconContext.Provider>
+              ) : (
+                <BiTimeFive />
+              )}
+            </span>
+            {
+              // 更新日がない場合は作成日を表示
+              dateToString(post.updated_at || post.created_at, 'YYYY/MM/DD')
+            }
+          </li>
+          <li>
+            <span css={icon}>
+              <AiOutlineFolder />
+            </span>
+            {post.category.name}
+          </li>
+        </ul>
       </Link>
     </li>
   )

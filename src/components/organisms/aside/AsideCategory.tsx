@@ -27,7 +27,7 @@ const categoriesFetch = async () => {
 
 const AsideCategory = () => {
   const { data, error } = useSWR('category', categoriesFetch)
-  if(error) console.log(error.message)
+  if (error) console.log(error.message)
 
   // カテゴリの取得結果の判定
   return data ? (
@@ -36,14 +36,14 @@ const AsideCategory = () => {
       <ul css={categoryList}>
         {data.contents.map((category: MicrocmsData) => (
           <li key={category.id}>
-            <Link href={`/category/${category.id}`}>
-              <a>{category.name}</a>
-            </Link>
+            <Link href={`/category/${category.id}`}>{category.name}</Link>
           </li>
         ))}
       </ul>
     </>
-  ) : <></>
+  ) : (
+    <></>
+  )
 }
 
 export default AsideCategory
