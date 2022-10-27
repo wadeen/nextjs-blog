@@ -22,7 +22,7 @@ body {
 }
 
 /* Next.js */
-#__next {
+#__next > div {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 145px);
