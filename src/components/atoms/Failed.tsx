@@ -8,9 +8,7 @@ const Failed: NextPage<{ text: string }> = ({ text }) => {
     <div css={failed}>
       {text}
       <p>
-        <Link href="/">
-          <a>記事一覧ページへ戻る</a>
-        </Link>
+        <Link href="/">記事一覧ページへ戻る</Link>
       </p>
     </div>
   )

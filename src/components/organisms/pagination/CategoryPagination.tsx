@@ -22,19 +22,18 @@ export const CategoryPagination: NextPage<Props> = ({
       {paginationRange(1, Math.ceil(totalCount / PER_PAGE)).map(
         (number, index) => (
           <li key={index}>
-            <Link href={`/category/${category}/${number}`}>
-              <a
-                css={link}
-                className={
-                  router.pathname === '/'
-                    ? 'is-first-current'
-                    : router.asPath.endsWith(`${number}`)
-                    ? 'is-current'
-                    : ''
-                }
-              >
-                {number}
-              </a>
+            <Link
+              href={`/category/${category}/${number}`}
+              css={link}
+              className={
+                router.pathname === '/'
+                  ? 'is-first-current'
+                  : router.asPath.endsWith(`${number}`)
+                  ? 'is-current'
+                  : ''
+              }
+            >
+              {number}
             </Link>
           </li>
         )

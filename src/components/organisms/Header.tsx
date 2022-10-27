@@ -30,27 +30,23 @@ const Header: NextPage = memo(() => {
           {router.pathname === '/' ? (
             <h1>
               <Link href="/">
-                <a>
-                  <img
-                    src="/images/title/title.png"
-                    alt="Webのあれこれ"
-                    width={334}
-                    height={64}
-                  />
-                </a>
+                <img
+                  src="/images/title/title.png"
+                  alt="Webのあれこれ"
+                  width={334}
+                  height={64}
+                />
               </Link>
             </h1>
           ) : (
             <h2>
               <Link href="/">
-                <a>
-                  <img
-                    src="/images/title/title.png"
-                    alt="Webのあれこれ"
-                    width={334}
-                    height={64}
-                  />
-                </a>
+                <img
+                  src="/images/title/title.png"
+                  alt="Webのあれこれ"
+                  width={334}
+                  height={64}
+                />
               </Link>
             </h2>
           )}
@@ -58,47 +54,44 @@ const Header: NextPage = memo(() => {
         <div css={headerBottom}>
           <ul css={headerBottomWrapper}>
             <li>
-              <Link href="/">
-                <a
-                  title="ブログページ"
-                  className={
-                    router.pathname === '/' ||
-                    router.pathname.startsWith('/posts') ||
-                    router.pathname.startsWith('/category/[id]') ||
-                    router.pathname.startsWith('/search')
-                      ? 'is-current'
-                      : ''
-                  }
-                  data-testid={'blog-nav'}
-                >
-                  Blog
-                </a>
+              <Link
+                href="/"
+                title="ブログページ"
+                className={
+                  router.pathname === '/' ||
+                  router.pathname.startsWith('/posts') ||
+                  router.pathname.startsWith('/category/[id]') ||
+                  router.pathname.startsWith('/search')
+                    ? 'is-current'
+                    : ''
+                }
+                data-testid={'blog-nav'}
+              >
+                Blog
               </Link>
             </li>
             <li>
-              <Link href="/about">
-                <a
-                  title="自己紹介"
-                  className={
-                    router.pathname.startsWith('/about') ? 'is-current' : ''
-                  }
-                  data-testid={'about-nav'}
-                >
-                  About me
-                </a>
+              <Link
+                href="/about"
+                title="自己紹介"
+                className={
+                  router.pathname.startsWith('/about') ? 'is-current' : ''
+                }
+                data-testid={'about-nav'}
+              >
+                About me
               </Link>
             </li>
             <li>
-              <Link href="/storage">
-                <a
-                  title="アプリ倉庫"
-                  className={
-                    router.pathname.startsWith('/storage') ? 'is-current' : ''
-                  }
-                  data-testid={'storage-nav'}
-                >
-                  App storage
-                </a>
+              <Link
+                href="/storage"
+                title="アプリ倉庫"
+                className={
+                  router.pathname.startsWith('/storage') ? 'is-current' : ''
+                }
+                data-testid={'storage-nav'}
+              >
+                App storage
               </Link>
             </li>
           </ul>

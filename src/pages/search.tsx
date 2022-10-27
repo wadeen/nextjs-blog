@@ -63,9 +63,7 @@ const Search = () => {
         {data.contents.length === 0 ? (
           <div css={notPost}>
             <p>{router.query.keyword} に関する記事はありませんでした。</p>
-            <Link href="/">
-              <a>記事一覧へ戻る</a>
-            </Link>
+            <Link href="/">記事一覧へ戻る</Link>
           </div>
         ) : (
           <ul css={postLists}>
