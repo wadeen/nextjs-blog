@@ -1,23 +1,18 @@
 const nextJest = require('next/jest')
 
 const createJestConfig = nextJest({
-  // next.config.jsとテスト環境用の.envファイルが配置されたディレクトリをセット。基本は"./"で良い。
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
   dir: './',
 })
 
-// Jestのカスタム設定を設置する場所。従来のプロパティはここで定義。
+// Add any custom config to be passed to Jest
 const customJestConfig = {
-  // jest.setup.jsを作成する場合のみ定義。
-  // setupFilesAfterEnv: ["<rootDir>/jest.setup.js"],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  // Add more setup options before each test is run
+  // setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  // if using TypeScript with a baseUrl set to the root directory then you need the below for alias' to work
   moduleDirectories: ['node_modules', '<rootDir>/'],
-  moduleNameMapper: {
-    // aliasを定義 （tsconfig.jsonのcompilerOptions>pathsの定義に合わせる）
-    '^@/components/(.*)$': '<rootDir>/components/$1',
-    '^@/pages/(.*)$': '<rootDir>/pages/$1',
-  },
   testEnvironment: 'jest-environment-jsdom',
 }
 
-// createJestConfigを定義することによって、本ファイルで定義された設定がNext.jsの設定に反映されます
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
 module.exports = createJestConfig(customJestConfig)
