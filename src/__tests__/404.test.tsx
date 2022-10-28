@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { RecoilRoot } from 'recoil'
-import Page404 from '../src/pages/404'
+import Page404 from '../pages/404'
 
 describe('404ページ', () => {
   render(
