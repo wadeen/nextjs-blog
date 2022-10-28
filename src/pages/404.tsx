@@ -12,7 +12,7 @@ const CustomErrorPage = memo(() => {
         <p>404</p>
         <p>Not Found</p>
       </div>
-      <h1>お探しのページが見つかりませんでした。</h1>
+      <h1 data-testid="text-404">お探しのページが見つかりませんでした。</h1>
       <p css={announce}>
         アクセスしようとしたページは削除・変更された可能性があります。
         <br />
