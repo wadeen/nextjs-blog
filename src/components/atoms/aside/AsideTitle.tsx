@@ -10,7 +10,7 @@ export default AsideTitle
 
 // css
 const title = css`
-  font-family: var(--fontEN);
+  font-family: var(--fontEn);
   font-size: 2.2rem;
   letter-spacing: 0.04em;
   font-weight: 700;

@@ -55,5 +55,5 @@ body {
   --fontMain: 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Yu Gothic',
     YuGothic, '游ゴシック体', 'メイリオ', Meiryo, 'MS Pゴシック', 'MS PGothic',
     sans-serif;
-  --fontEn: 'Capriola', sans-serif;
+  --fontEn: '__Capriola_c76df7', '__Capriola_Fallback_c76df7' sans-serif;
 }
