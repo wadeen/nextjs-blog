@@ -26,11 +26,7 @@ export const CategoryPagination: NextPage<Props> = ({
               href={`/category/${category}/${number}`}
               css={link}
               className={
-                router.pathname === '/'
-                  ? 'is-first-current'
-                  : router.asPath.endsWith(`${number}`)
-                  ? 'is-current'
-                  : ''
+                router.asPath.endsWith(`${number}`) ? 'is-current' : ''
               }
             >
               {number}

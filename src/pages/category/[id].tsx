@@ -11,11 +11,12 @@ import Seo from '../../components/molecules/Seo'
 import PostArchive from '../../components/organisms/post/PostArchive'
 import BlogLayout from '../../components/templates/BlogLayout'
 import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
+import { paginationRange } from '../../utils/paginationRange'
 import { client } from 'libs/client'
 import Failed from 'src/components/atoms/Failed'
+import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
-// import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
 import { MicrocmsData } from 'types/microcmsData'
 
 const PER_PAGE = 10
@@ -38,11 +39,10 @@ export default function CategoryId({
           ))}
         </ul>
 
-        {/* Pagination 未対応→ v1.2~で実装 */}
-        {/* <CategoryPagination
+        <CategoryPagination
           category={blog[0].category.id}
           totalCount={totalCount}
-        /> */}
+        />
       </BlogLayoutBase>
       <AsideArchive />
     </BlogLayout>
@@ -73,12 +73,17 @@ export const getStaticProps: GetStaticProps = async (
 
 // 動的ページの作成
 export const getStaticPaths = async () => {
-  const repos = await client.get({
-    endpoint: 'categories',
-  })
+  const repos = await client.get({ endpoint: 'categories' })
   const paths = repos.contents.map(
     (content: MicrocmsApi) => `/category/${content.id}`
   )
+
+  // const paths = repos.contents.map((content: MicrocmsApi) => {
+  //   paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => {
+  //     ;`/category/${content.id}/${repo}`
+  //   })
+  // })
+
   return { paths, fallback: false }
 }
 
