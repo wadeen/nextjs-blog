@@ -6,17 +6,16 @@ import {
   InferGetStaticPropsType,
 } from 'next'
 import { MicrocmsApi } from '../../../types/microcmsApi'
-import Seo from '../../components/Seo'
 import ArticleTitle from '../../components/atoms/articleTitle/ArticleTitle'
+import Seo from '../../components/molecules/Seo'
 import PostArchive from '../../components/organisms/post/PostArchive'
 import BlogLayout from '../../components/templates/BlogLayout'
 import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
 import { client } from 'libs/client'
-import { mq } from 'src/components/Breakpoints'
 import Failed from 'src/components/atoms/Failed'
-// import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
-
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
+import { mediaQuery } from 'src/utils/Breakpoints'
+// import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
 import { MicrocmsData } from 'types/microcmsData'
 
 const PER_PAGE = 10
@@ -88,7 +87,7 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     gap: 10px;
   }
 `

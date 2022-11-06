@@ -1,18 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import LanguageIcon from '@mui/icons-material/Language'
 import { NextPage } from 'next'
-import { mq } from 'src/components/Breakpoints'
-import Seo from 'src/components/Seo'
+import { memo } from 'react'
+import { FaGithub } from 'react-icons/fa'
+import { GrLanguage } from 'react-icons/gr'
+import Seo from 'src/components/molecules/Seo'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 // SSG(Jsonから直接取り出し)
 export const getStaticProps = async () => {
-  const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}/strageInfo.json`)
+  const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}/storageInfo.json`)
   const data = await req.json()
   return {
     props: {
-      data: data,
+      data: data.reverse(), // 最新のものから上に表示
     },
   }
 }
@@ -27,18 +28,23 @@ type Props = {
   website: string
 }
 
-const Strage: NextPage<{ data: Props[] }> = ({ data }) => {
+const Storage: NextPage<{ data: Props[] }> = memo(({ data }) => {
   return (
     <>
       <Seo ogpTitle="App倉庫 | Webのあれこれ" />
       <div css={container}>
         <h1>〜技術習得のために作成したWebアプリの倉庫〜</h1>
         <ul css={list}>
-          {data.map((data: any) => (
+          {data.map((data) => (
             <li css={item} key={data.id}>
-              <p css={imteImg}>
+              <a
+                href={data.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                css={imteImg}
+              >
                 <img src={data.img} alt="" />
-              </p>
+              </a>
               <h2>{data.title}</h2>
               <p css={subTitlte}>使用技術</p>
               <ul css={tag}>
@@ -56,7 +62,7 @@ const Strage: NextPage<{ data: Props[] }> = ({ data }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <GitHubIcon fontSize="large" />
+                      <FaGithub fontSize="large" />
                     </a>
                   </li>
                 )}
@@ -67,7 +73,7 @@ const Strage: NextPage<{ data: Props[] }> = ({ data }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <LanguageIcon fontSize="large" />
+                      <GrLanguage />
                     </a>
                   </li>
                 )}
@@ -78,9 +84,9 @@ const Strage: NextPage<{ data: Props[] }> = ({ data }) => {
       </div>
     </>
   )
-}
+})
 
-export default Strage
+export default Storage
 
 const container = css`
   width: min(100%, 1000px);
@@ -92,7 +98,7 @@ const container = css`
     font-weight: 700;
     padding-bottom: 50px;
     text-align: center;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.4rem;
       padding-bottom: 40px;
     }
@@ -103,7 +109,7 @@ const list = css`
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     gap: 20px;
   }
   h2 {
@@ -113,7 +119,7 @@ const list = css`
     letter-spacing: 0.05em;
     text-align: center;
     font-family: var(--fontMain);
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 2rem;
       padding: 10px 0 15px;
     }
@@ -127,16 +133,21 @@ const item = css`
   border: 1px solid var(--cBorder);
   overflow: hidden;
   position: relative;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     width: calc((100% - 20px) / 2);
   }
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     width: min(100%, 400px);
     margin: 0 auto;
   }
 `
 
 const imteImg = css`
+  display: block;
+  transition: opacity 0.3s ease;
+  &:hover {
+    opacity: 0.8;
+  }
   img {
     width: 100%;
     height: 100%;
@@ -158,7 +169,7 @@ const tag = css`
     text-align: center;
     padding: 6px 12px;
     font-size: 1.4rem;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.2rem;
       padding: 4px 8px;
     }
@@ -171,7 +182,7 @@ const subTitlte = css`
   letter-spacing: 0.05em;
   font-size: 1.8rem;
   font-family: var(--fontMain);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.6rem;
   }
 `
@@ -182,7 +193,7 @@ const message = css`
   letter-spacing: 0.05em;
   line-height: 1.4;
   font-family: var(--fontMain);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.4rem;
   }
 `

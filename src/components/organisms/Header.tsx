@@ -1,13 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import { mq } from '../Breakpoints'
+import { memo, useEffect, useState } from 'react'
+import { mediaQuery } from '../../utils/Breakpoints'
 
-const Header: NextPage = () => {
+const Header: NextPage = memo(() => {
   const router = useRouter()
 
   const [scrollHeight, setScrollHeight] = useState(false) // 基準高さでクラス付与
@@ -30,28 +29,24 @@ const Header: NextPage = () => {
         <div css={headerTop} className={scrollHeight ? 'is-hide' : ''}>
           {router.pathname === '/' ? (
             <h1>
-              <Image
-                src="/images/star.svg"
-                width={60}
-                height={60}
-                alt=""
-                className="starIcon"
-              />
               <Link href="/">
-                <a>ウェブのあれこれ</a>
+                <img
+                  src="/images/title/title.png"
+                  alt="Webのあれこれ"
+                  width={334}
+                  height={64}
+                />
               </Link>
             </h1>
           ) : (
             <h2>
-              <Image
-                src="/images/star.svg"
-                width={60}
-                height={60}
-                alt=""
-                className="starIcon"
-              />
               <Link href="/">
-                <a>ウェブのあれこれ</a>
+                <img
+                  src="/images/title/title.png"
+                  alt="Webのあれこれ"
+                  width={334}
+                  height={64}
+                />
               </Link>
             </h2>
           )}
@@ -59,44 +54,44 @@ const Header: NextPage = () => {
         <div css={headerBottom}>
           <ul css={headerBottomWrapper}>
             <li>
-              <Link href="/">
-                <a
-                  title="ブログページ"
-                  className={
-                    router.pathname === '/' ||
-                    router.pathname.startsWith('/posts') ||
-                    router.pathname.startsWith('/category/[id]') ||
-                    router.pathname.startsWith('/search')
-                      ? 'is-current'
-                      : ''
-                  }
-                >
-                  Blog
-                </a>
+              <Link
+                href="/"
+                title="ブログページ"
+                className={
+                  router.pathname === '/' ||
+                  router.pathname.startsWith('/posts') ||
+                  router.pathname.startsWith('/category/[id]') ||
+                  router.pathname.startsWith('/search')
+                    ? 'is-current'
+                    : ''
+                }
+                data-testid={'blog-nav'}
+              >
+                Blog
               </Link>
             </li>
             <li>
-              <Link href="/about">
-                <a
-                  title="自己紹介"
-                  className={
-                    router.pathname.startsWith('/about') ? 'is-current' : ''
-                  }
-                >
-                  About me
-                </a>
+              <Link
+                href="/about"
+                title="自己紹介"
+                className={
+                  router.pathname.startsWith('/about') ? 'is-current' : ''
+                }
+                data-testid={'about-nav'}
+              >
+                About me
               </Link>
             </li>
             <li>
-              <Link href="/strage">
-                <a
-                  title="アプリ倉庫"
-                  className={
-                    router.pathname.startsWith('/strage') ? 'is-current' : ''
-                  }
-                >
-                  App strage
-                </a>
+              <Link
+                href="/storage"
+                title="アプリ倉庫"
+                className={
+                  router.pathname.startsWith('/storage') ? 'is-current' : ''
+                }
+                data-testid={'storage-nav'}
+              >
+                App storage
               </Link>
             </li>
           </ul>
@@ -110,7 +105,7 @@ const Header: NextPage = () => {
                 // router.back() // 投稿記事：外部流入に対応できないため使用しない予定
               }}
             >
-              <Image
+              <img
                 src="/images/icon/back.svg"
                 width={50}
                 height={50}
@@ -122,7 +117,8 @@ const Header: NextPage = () => {
       </header>
     </>
   )
-}
+})
+
 export default Header
 
 // css
@@ -142,38 +138,35 @@ const headerTop = css`
   height: 100px;
   position: relative;
   transition: margin-top 0.3s ease;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     height: 60px;
   }
   &.is-hide {
     margin-top: -100px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       margin-top: -60px;
     }
   }
   h1,
   h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    font-weight: 500;
-    font-size: 3.4rem;
-    font-family: 'Nikukyu', sans-serif;
-    margin: 0 auto;
-    line-height: 90px;
-    padding: 0 30px;
-    ${mq[1]} {
-      font-size: 2.6rem;
-      line-height: 60px;
-    }
-    .starIcon {
-      ${mq[1]} {
-        transform: scale(0.6) translateX(20px);
-      }
-    }
+    position: relative;
     a {
+      width: 334px;
+      height: 64px;
+      position: absolute;
+      left: 50%;
+      top: 52px;
+      transform: translate(-50%, -50%);
       transition: opacity 0.3s ease;
+      ${mediaQuery[1]} {
+        top: 24px;
+        width: 260px;
+        height: 34px;
+      }
+      img {
+        width: 100%;
+        height: auto;
+      }
       &:hover {
         opacity: 0.85;
       }
@@ -187,7 +180,7 @@ const headerBottom = css`
   border-bottom: 1px solid var(--cBorder);
   background-color: #fff;
   position: relative;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     height: 40px;
   }
 `
@@ -200,7 +193,7 @@ const headerBottomWrapper = css`
   margin: 0 auto;
   padding: 0 30px;
   height: 100%;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     padding: 0 50px;
   }
   li {
@@ -209,7 +202,7 @@ const headerBottomWrapper = css`
     height: 100%;
     text-align: center;
     line-height: 45px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.4rem;
       line-height: 40px;
     }
@@ -220,22 +213,23 @@ const headerBottomWrapper = css`
       display: block;
       width: 100%;
       height: 100%;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
       &:hover {
-        background-color: var(--cBorder);
+        background-color: var(--cSub);
         color: #fff;
-        ${mq[2]} {
-          background-color: #fff;
-          color: #333;
+        opacity: 0.8;
+        ${mediaQuery[2]} {
+          opacity: 1;
+          background-color: inherit;
+          color: inherit;
         }
       }
       // カレントページの時にマーキング
       &.is-current {
-        color: red;
+        color: #fff;
+        background-color: var(--cSub);
         pointer-events: none;
-        text-decoration: underline;
-        ${mq[2]} {
-          background-color: var(--cBorder);
+        ${mediaQuery[2]} {
           color: #fff;
         }
       }
@@ -250,10 +244,10 @@ const back = css`
   transform: translate(-50%, -50%);
   height: 43px;
   transition: opacity 0.3s ease;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     left: calc(50% - 340px);
   }
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     transform: scale(0.8);
     top: -4px;
     left: 0;
@@ -261,7 +255,7 @@ const back = css`
   &:hover {
     opacity: 0.8;
     transform: translate(-50%, -50%) scale(1.1);
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       opacity: 1;
       transform: scale(0.8);
     }

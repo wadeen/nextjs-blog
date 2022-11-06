@@ -34,7 +34,7 @@ const container = css`
   text-align: center;
   h3 {
     text-align: center;
-    font-weight: 500;
+    font-weight: 700;
   }
   a {
     img {

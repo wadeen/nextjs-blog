@@ -3,21 +3,21 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { mq } from 'src/components/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
+import { paginationRange } from 'src/utils/paginationRange'
 
-export const BasicPagination: NextPage<{ totalCount: number }> = ({ totalCount }) => {
+export const BasicPagination: NextPage<{ totalCount: number }> = ({
+  totalCount,
+}) => {
   const PER_PAGE = 10
   const router = useRouter()
-
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i)
-
   return (
     <ul css={pagination}>
-      {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
-        <li key={index}>
-          <Link href={`/posts/page/${number}`}>
-            <a
+      {paginationRange(1, Math.ceil(totalCount / PER_PAGE)).map(
+        (number, index) => (
+          <li key={index}>
+            <Link
+              href={`/posts/page/${number}`}
               css={link}
               className={
                 router.pathname === '/'
@@ -28,14 +28,13 @@ export const BasicPagination: NextPage<{ totalCount: number }> = ({ totalCount }
               }
             >
               {number}
-            </a>
-          </Link>
-        </li>
-      ))}
+            </Link>
+          </li>
+        )
+      )}
     </ul>
   )
 }
-
 
 // css
 const pagination = css`
@@ -44,7 +43,7 @@ const pagination = css`
   align-items: center;
   justify-content: center;
   column-gap: 20px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     margin-top: 40px;
   }
   li {
@@ -69,7 +68,7 @@ const link = css`
   border-radius: 3px;
   transition: opacity 0.3s ease;
   font-size: 2rem;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.8rem;
   }
   &.is-current {

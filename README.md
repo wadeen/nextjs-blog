@@ -1,27 +1,8 @@
 # Next.js × microCMS で JAMStack ブログ制作 🦖
 
-## 使用技術
+## アーキテクチャ図
 
-|    使用技術     | バージョン  |
-| :-------------: | :---------: |
-|      react      |   18.2.0    |
-|      next       |   12.2.5    |
-|   typescript    |    4.7.4    |
-|     emotion     |   11.10.0   |
-|      axios      |   0.27.2    |
-| microcms-js-sdk |    2.2.1    |
-|     recoil      |    0.7.5    |
-|     eslint      |   8.23.0    |
-|    prettier     |    2.7.1    |
-|       mui       |   5.10.2    |
-|      uuid       |    8.3.2    |
-|    firebase     |    9.9.4    |
-|  highlight.js   |   11.6.0    |
-|     cheerio     | 1.0.0-rc.12 |
-|      dayjs      |   1.11.5    |
-|       swr       |    1.3.0    |
-|    base64url    |    3.0.1    |
-
+![アーキテクチャ図](public/images/architecture.png)
 <br />
 
 ## 機能
@@ -32,35 +13,29 @@
   - カテゴリ別記事一覧ぺージ
   - 記事検索フォーム
   - 画面プレビュー(vercel と連動)
-  - Google Analytics \*準備中
-  - 人気記事 \*準備中
+  <!-- - Google Analytics \*準備中
+  - 人気記事 \*準備中 -->
   - 記事詳細ページ
   - コメント機能(Firestore)
   - OGP 自動生成機能
   - 目次機能
 
-- ### その他
-  - プロフィールページ
-  - アプリ倉庫(Json でデータ保管)
+- ### プロフィールページ
+
+- ### アプリ倉庫
     <br />
 
-## バージョン管理
+**アプリイメージ 🙌**
 
-| バージョン | リリース日 |                 リリース内容                 |
-| :--------: | :--------: | :------------------------------------------: |
-|   1.0.0    | 2022.09.06 |  ブログ一覧・詳細ページ/プロフィールページ   |
-|   1.1.0    | 2022.09.19 |   OGP 自動生成/App 倉庫ページ/コメント機能   |
-|   1.1.1    | 2022.09.22 | 投稿画面：HTML データ対応/プレビュー機能追加 |
-
-<br />
+![アプリイメージ](public/images/thumbnail.png)
 
 ## microCMS API スキーマ
 
 |     ID      |        表示名        |             種類              | 必須 |
 | :---------: | :------------------: | :---------------------------: | :--: |
 |    title    |       タイトル       |      テキストフィールド       |  ◯   |
-|    date     |       作成日時       |             日時              |  ◯   |
-|   update    |       更新日時       |             日時              |  ×   |
+| created_at  |       作成日時       |             日時              |  ◯   |
+| updated_at  |       更新日時       |             日時              |  ×   |
 | toc_visible |         目次         |            真偽値             |  ×   |
 |  eyecatch   | アイキャッチ(絵文字) |             画像              |  ◯   |
 |  category   |       カテゴリ       | 繰り返し(2 件)のフィールド\*1 |  ◯   |
@@ -115,11 +90,14 @@
 
 ```
 # microCMS
+#microCMS: コンテンツ(API) > APIプレビュー
 NEXT_PUBLIC_MICROCMS_ACCESS_KEY={your-serviceDomain}
 NEXT_PUBLIC_MICROCMS_API_KEY={your-apiKey}
-NEXT_PUBLIC_MICROCMS_OGP_ARTICLE={microCMS-strage} *自動生成(記事ページ)
-NEXT_PUBLIC_MICROCMS_OGP_BASE={microCMS-strage} *ブログ以外のOGP画像
+NEXT_PUBLIC_MICROCMS_OGP_ARTICLE={microCMS-storage} *自動生成(記事ページ) | 任意の画像アップロード要
+NEXT_PUBLIC_MICROCMS_OGP_BASE={microCMS-storage} *ブログ以外のOGP画像 | 任意の画像アップロード要
+
 # Firebase
+#Firebase: プロジェクトの設定 > 全般 > マイアプリ 参照
 NEXT_PUBLIC_FIREBASE_API_KEY={your-apiKey}
 NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN={your-authDomain}
 NEXT_PUBLIC_FIREBASE_PROJECT_ID={your-projectId}
@@ -129,15 +107,34 @@ NEXT_PUBLIC_FIREBASE_APP_ID={your-appId}
 NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID={your-measurementId}
 
 # Hosting
+#Hosting: ホスティング先のURL
 NEXT_PUBLIC_HOST={your-url}
 ```
 
-**アプリイメージ 🙌**
-![アプリイメージ](public/images/thumbnail.png)
+## 環境構築
 
-## 作業期間
+```
+# clone してディレクトリ移動
+git clone https://github.com/wadeen/nextjs-blog.git
 
-12 日程度
+# nextjs-blog に移動
+cd nextjs-blog
+
+# パッケージのインストール
+npm install
+
+# FirebaseコンソールからFirebaseアプリを作成
+
+# microCMS管理画面から新規サービスを作成
+
+# "環境変数" を.envファイルに適宜貼り付け
+
+```
+
+## 開発期間
+
+開発期間：1 ヶ月程度(適宜アップデート)<br />
+工数：12 人日
 
 ## 開発者
 

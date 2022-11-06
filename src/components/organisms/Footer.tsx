@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
+import { memo } from 'react'
 
-const Footer: NextPage = () => {
+const Footer: NextPage = memo(() => {
   return (
     <div css={footer}>
       <div css={container}>
@@ -23,7 +24,7 @@ const Footer: NextPage = () => {
       </div>
     </div>
   )
-}
+})
 
 export default Footer
 

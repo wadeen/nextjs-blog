@@ -2,7 +2,7 @@ import base64url from 'base64url'
 import { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useViewport } from '../hooks/useViewPort'
+import { useViewport } from '../../hooks/useViewPort'
 import androidIcon from 'public/images/meta/android-chrome-192x192.png'
 import appleIcon from 'public/images/meta/apple-touch-icon-180x180.png'
 import favicon from 'public/images/meta/favicon.ico'
@@ -31,6 +31,13 @@ const Seo: NextPage<SeoType> = ({
     <Head>
       <title>{ogpTitle ?? 'Webのあれこれ'}</title>
       <meta property="og:title" content={ogpTitle ?? 'Webのあれこれ'} />
+      <meta
+        property="description"
+        content={
+          ogpDescription ??
+          'Webエンジニアの為の有益な情報を発信しています。Web制作やフロントエンドのモダン技術を中心にアウトプットしています。'
+        }
+      />
       <meta
         property="og:description"
         content={

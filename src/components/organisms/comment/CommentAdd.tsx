@@ -1,31 +1,37 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { doc, setDoc, Timestamp, collection, orderBy } from 'firebase/firestore'
+import { Timestamp, collection, addDoc } from 'firebase/firestore'
 import { NextPage } from 'next'
 import { useState } from 'react'
-import { v4 as uuidv4 } from 'uuid'
 import { db } from '../../../../libs/firebase'
-import PrimayButton from '../../atoms/button/PrimayButton'
-import { mq } from 'src/components/Breakpoints'
+import Button from '../../atoms/Button'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
   const [inputName, setInputName] = useState('') // 名前
-  const [inputText, setInputText] = useState('') // テキスト
+  const [inputText, setInputText] = useState('') // 内容
 
-  const onClickSubmit = () => {
-    const docData = {
-      name: inputName,
-      text: inputText,
-      date: Timestamp.now(),
-    }
-    if (window.confirm('この内容で公開してもいいですか？')) {
-      setDoc(doc(db, id, uuidv4()), docData)
+  const onClickSubmit = async () => {
+    const isPublished = window.confirm('この内容で公開してもいいですか？')
+    if (!isPublished) return
+
+    try {
+      const docData = {
+        name: inputName,
+        text: inputText,
+        date: Timestamp.now(),
+      }
+
+      await addDoc(collection(db, id), docData)
       setInputName('')
       setInputText('')
-    } else {
-      return
+      alert(
+        `公開されました🎉\n不適切なコメントの場合は削除される可能性があります。`
+      )
+    } catch (e) {
+      alert('送信できませんでした。しばらく経ってからやり直してください。')
+      console.log(`コメント送信エラー:\n ${e}`)
     }
-    alert(`公開されました🎉\n不適切なコメントの場合は削除される可能性があります。`)
   }
 
   return (
@@ -64,11 +70,12 @@ const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
           </dd>
         </div>
       </dl>
-      <PrimayButton
-        text={'公開'}
+      <Button
         onClick={onClickSubmit}
         disabled={(inputName && inputText) === ''}
-      />
+      >
+        公開
+      </Button>
     </div>
   )
 }
@@ -78,7 +85,7 @@ export default CommentAdd
 const commentAdd = css`
   padding-top: 60px;
   position: relative;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     padding-top: 30px;
   }
   &::before {
@@ -95,9 +102,9 @@ const commentAdd = css`
 const title = css`
   text-align: center;
   font-size: 2.4rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 30px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.8rem;
   }
 `
@@ -108,7 +115,7 @@ const container = css`
   dt {
     width: 60px;
     padding-top: 10px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.4rem;
       width: 50px;
     }
@@ -119,7 +126,7 @@ const container = css`
   dd {
     width: calc(100% - 60px);
     font-size: 1.4rem;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       width: calc(100% - 50px);
     }
     input {
@@ -132,7 +139,8 @@ const container = css`
     }
     textarea {
       background-color: #fff;
-      width: 787px;
+      /* width: 787px; */
+      width: 100%;
       max-width: 100%;
       min-height: 200px;
       border-radius: 4px;

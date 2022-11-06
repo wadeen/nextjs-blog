@@ -1,41 +1,36 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import dayjs from 'dayjs'
-import timezone from 'dayjs/plugin/timezone'
-import utc from 'dayjs/plugin/utc'
 import {
   collection,
-  DocumentData, //eslint-disable-line
   onSnapshot,
   query,
   orderBy,
   limit,
+  DocumentData, // eslint-disable-line
+  // 理由の解明要(firestoreにないと表示される)
 } from 'firebase/firestore'
-import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { db } from '../../../../libs/firebase'
 import { Comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
-import { mq } from 'src/components/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
+import { dateToString } from 'src/utils/dateToString'
 
-const Comment: NextPage<{ id: string }> = ({ id }) => {
+const Comment = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<Comments[]>([])
 
   useEffect(() => {
-    const commentsData = collection(db, id)
+    const commentsData = collection(db, id) // 記事のID ＝FirestoreのコメントのdataID
     const commentsDataQuery = query(
       commentsData,
       orderBy('date', 'desc'),
       limit(100)
     ) // 最新順に並び替え/最大100件
-    onSnapshot(commentsDataQuery, (snapshot) => {
-      setComments(snapshot.docs.map((doc: DocumentData) => doc.data()))
+    const unsubscribe = onSnapshot(commentsDataQuery, (snapshot) => {
+      setComments(snapshot.docs.map((doc: DocumentData) => doc.data())) 
     })
+    return () => unsubscribe()
   }, [id])
-
-  // 日時調整
-  dayjs.extend(utc)
-  dayjs.extend(timezone)
 
   return (
     <div css={comment}>
@@ -47,10 +42,7 @@ const Comment: NextPage<{ id: string }> = ({ id }) => {
           <ul css={commentList}>
             {comments.map(({ name, date, text }: Comments) => {
               const firestoreCommentDate = new Date(date.seconds * 1000)
-              const firestoreComment = dayjs
-                .utc(firestoreCommentDate)
-                .tz('Asia/Tokyo')
-                .format('YYYY.MM.DD')
+              const firestoreComment = dateToString(firestoreCommentDate,'YYYY.MM.DD')
               return (
                 <li key={date.seconds}>
                   <p css={commentName}>{name}</p>
@@ -78,7 +70,7 @@ const comment = css`
   border-radius: 8px;
   padding: 30px;
   border: 1px solid var(--cBorder);
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     padding: 20px 10px;
   }
   h2 {
@@ -87,7 +79,7 @@ const comment = css`
     margin-bottom: 20px;
     padding-bottom: 5px;
     border-bottom: 1px dashed var(--cBorder);
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       font-size: 1.8rem;
       margin-bottom: 10px;
     }
@@ -104,7 +96,7 @@ const commentList = css`
     background-color: #fff;
     padding: 25px;
     border-radius: 8px;
-    ${mq[1]} {
+    ${mediaQuery[1]} {
       padding: 15px;
     }
   }
@@ -112,15 +104,15 @@ const commentList = css`
 
 const commentName = css`
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 8px;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.8rem;
   }
 `
 
 const commentDetail = css`
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.6rem;
   }
 `
@@ -131,7 +123,7 @@ const commentDate = css`
   right: 15px;
   font-size: 1.4rem;
   color: gray;
-  ${mq[1]} {
+  ${mediaQuery[1]} {
     font-size: 1.4rem;
   }
 `

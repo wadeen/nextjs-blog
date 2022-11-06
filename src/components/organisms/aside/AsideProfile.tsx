@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import GitHubIcon from '@mui/icons-material/GitHub'
-import TwitterIcon from '@mui/icons-material/Twitter'
 import { NextPage } from 'next'
-import Image from 'next/image'
+import { FaTwitter, FaGithub } from 'react-icons/fa'
 import AsideTitle from '../../atoms/aside/AsideTitle'
 
 const AsideProfile: NextPage = () => {
@@ -12,7 +10,7 @@ const AsideProfile: NextPage = () => {
       <AsideTitle text={'About me'} />
       <div css={wrapper}>
         <p css={imgBox}>
-          <Image
+          <img
             src="/images/profile/me.jpeg"
             width={1200}
             height={1200}
@@ -21,7 +19,7 @@ const AsideProfile: NextPage = () => {
           />
         </p>
         <p css={imgBox}>
-          <Image
+          <img
             src="/images/profile/chara.png"
             width={1200}
             height={1200}
@@ -35,7 +33,7 @@ const AsideProfile: NextPage = () => {
         <p>
           25歳のWeb制作コーダー。
           <br />
-          年内にフロントエンジニアとして働くために学んだ知識をアウトプットしています。
+          フロントエンジニアとして働くために学んだ知識をアウトプットしています。
         </p>
       </div>
 
@@ -48,7 +46,7 @@ const AsideProfile: NextPage = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <GitHubIcon style={{ marginRight: '6px' }} />
+              <FaGithub style={{ marginRight: '6px' }} />
               Github
             </a>
           </li>
@@ -58,7 +56,7 @@ const AsideProfile: NextPage = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <TwitterIcon style={{ marginRight: '6px' }} />
+              <FaTwitter style={{ marginRight: '6px' }} />
               Twitter
             </a>
           </li>
@@ -105,10 +103,9 @@ const imgBox = css`
 const sns = css`
   text-align: center;
   margin-top: 14px;
-  font-weight: 500;
+  font-weight: 700;
   p {
     margin-bottom: 8px;
-    font-weight: 500;
   }
 
   ul {
@@ -143,7 +140,7 @@ const sns = css`
 
 const nameInfo = css`
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 400;
   text-align: center;
   margin: 10px 0;
 `

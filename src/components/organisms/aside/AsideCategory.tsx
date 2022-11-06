@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 // import axios from 'axios'
-import { NextPage } from 'next'
 import Link from 'next/link'
 import useSWR from 'swr'
 import { client } from '../../../../libs/client'
@@ -26,9 +25,9 @@ const categoriesFetch = async () => {
 //   return categoryNum
 // }
 
-const AsideCategory: NextPage = () => {
+const AsideCategory = () => {
   const { data, error } = useSWR('category', categoriesFetch)
-  error && console.log(error.message)
+  if (error) console.log(error.message)
 
   // カテゴリの取得結果の判定
   return data ? (
@@ -37,14 +36,14 @@ const AsideCategory: NextPage = () => {
       <ul css={categoryList}>
         {data.contents.map((category: MicrocmsData) => (
           <li key={category.id}>
-            <Link href={`/category/${category.id}`}>
-              <a>{category.name}</a>
-            </Link>
+            <Link href={`/category/${category.id}`}>{category.name}</Link>
           </li>
         ))}
       </ul>
     </>
-  ) : null
+  ) : (
+    <></>
+  )
 }
 
 export default AsideCategory

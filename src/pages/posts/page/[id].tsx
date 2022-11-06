@@ -8,14 +8,15 @@ import {
 import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
 import { MicrocmsData } from '../../../../types/microcmsData'
-import Seo from '../../../components/Seo'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
+import Seo from '../../../components/molecules/Seo'
 import AsideArchive from '../../../components/templates/aside/AsideArchive'
-import { mq } from 'src/components/Breakpoints'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
+import { mediaQuery } from 'src/utils/Breakpoints'
+import { paginationRange } from 'src/utils/paginationRange'
 
 const PER_PAGE = 10
 
@@ -41,10 +42,8 @@ export const getStaticProps: GetStaticProps = async (
 // 動的ページの作成
 export const getStaticPaths = async () => {
   const repos = await client.get({ endpoint: 'posts' })
-  const pageNumbers = []
-  const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i)
-  const paths = range(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
+
+  const paths = paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
     (repo) => `/posts/page/${repo}`
   )
   return { paths, fallback: false }
@@ -81,7 +80,7 @@ const postLists = css`
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     gap: 10px;
   }
 `

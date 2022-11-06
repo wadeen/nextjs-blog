@@ -8,9 +8,9 @@ import AsideCategory from '../../organisms/aside/AsideCategory'
 import AsidePopular from '../../organisms/aside/AsidePopular'
 import AsideProfile from '../../organisms/aside/AsideProfile'
 import AsideBase from './AsideBase'
-import { mq } from 'src/components/Breakpoints'
-import { Spacer } from 'src/components/Spacer'
 import Share from 'src/components/molecules/Share'
+import { Spacer } from 'src/components/molecules/Spacer'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   return (
@@ -65,9 +65,11 @@ const sticky = css`
   padding-bottom: 250px;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  ${mq[2]} {
+  ${mediaQuery[2]} {
     position: static;
     padding: 0;
+    top: 0;
+    overflow: hidden;
   }
   &::-webkit-scrollbar {
     display: none;

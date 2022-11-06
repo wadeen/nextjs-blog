@@ -1,8 +1,8 @@
-// @ts-nocheck
+// @ts-nocheck * 型: 'Element / TextElement' になし *
 import * as cheerio from 'cheerio'
 import { NextPage } from 'next'
 
-export const renderToc: NextPage = (content) => {
+export const renderToc = (content) => {
   const $ = cheerio.load(content)
   const headings = $('h1, h2, h3').toArray()
   const toc = headings.map((data) => ({

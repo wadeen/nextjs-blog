@@ -22,7 +22,7 @@ body {
 }
 
 /* Next.js */
-#__next {
+#__next > div {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 145px);
@@ -52,8 +52,8 @@ body {
   --cLink: #0645ad;
 
   /* fonts */
-  --fontMain: 'Noto Sans JP', 'Yu Gothic', YuGothic, '游ゴシック体',
-    'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo,
-    'MS Pゴシック', 'MS PGothic', sans-serif;
-  --fontEn: 'Capriola', sans-serif;
+  --fontMain: 'ヒラギノ角ゴ Pro', 'Hiragino Kaku Gothic Pro', 'Yu Gothic',
+    YuGothic, '游ゴシック体', 'メイリオ', Meiryo, 'MS Pゴシック', 'MS PGothic',
+    sans-serif;
+  --fontEn: '__Capriola_c76df7', '__Capriola_Fallback_c76df7' sans-serif;
 }

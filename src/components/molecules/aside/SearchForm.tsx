@@ -1,56 +1,55 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import SearchIcon from '@mui/icons-material/Search'
 import { NextPage } from 'next'
 import { useRouter } from 'next/router'
 import { useCallback } from 'react'
+import { BiSearch } from 'react-icons/bi'
 import { useRecoilState } from 'recoil'
 import { searchState } from '../../../store/searchState'
-import { mq } from 'src/components/Breakpoints'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 const SearchForm: NextPage = () => {
-  const [value, setValue] = useRecoilState(searchState)
+  const [searchValue, setSeatchValue] = useRecoilState(searchState)
   const router = useRouter()
 
   const onChangeValue = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setValue(e.target.value)
+      setSeatchValue(e.target.value)
     },
-    [setValue]
+    [setSeatchValue]
   )
 
   const handleClickSubmitButton = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
       e.preventDefault()
-      router.push(`/search/?keyword=${value}`)
-      setValue('')
+      router.push(`/search/?keyword=${searchValue}`)
     },
-    [value, router, setValue]
+    [searchValue, router]
   )
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Enter') {
         e.preventDefault()
-        router.push(`/search/?keyword=${value}`)
-        setValue('')
+        router.push(`/search/?keyword=${searchValue}`)
       }
     },
-    [value, router, setValue]
+    [searchValue, router]
   )
 
   return (
     <form css={container}>
       <input
+        id="seacrch-form"
         type="text"
-        value={value}
+        value={searchValue}
         onChange={onChangeValue}
         onKeyDown={handleKeyDown}
       />
       <button type="submit" onClick={handleClickSubmitButton}>
-        <SearchIcon
+        <BiSearch
           fontSize="large"
-          style={{ marginTop: '2px', marginLeft: '-3px' }}
+          style={{ marginTop: '2px', marginLeft: '-2px' }}
         />
         検索
       </button>
@@ -76,7 +75,7 @@ const container = css`
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
     padding: 4px 8px;
-    ${mq[2]} {
+    ${mediaQuery[2]} {
       width: 80%;
     }
   }
@@ -94,7 +93,7 @@ const container = css`
     border: 1px solid var(--cBorder);
     border-left: none;
     color: #fff;
-    ${mq[2]} {
+    ${mediaQuery[2]} {
       width: 20%;
     }
   }
