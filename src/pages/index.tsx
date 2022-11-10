@@ -1,6 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import type { GetStaticProps, InferGetStaticPropsType } from 'next'
+import type {
+  GetStaticProps,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from 'next'
 import { memo } from 'react'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import Seo from '../components/molecules/Seo'
@@ -14,10 +18,16 @@ import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
 // SSG
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps: GetStaticProps = async (
+  context: GetStaticPropsContext
+) => {
+  const id = Number(context?.params?.id)
+
   const data = await client.get({
     endpoint: 'posts',
+    queries: { offset: Number(id - 1) * 10, limit: 10 },
   })
+
   return {
     props: {
       data: data.contents,
@@ -25,7 +35,6 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }
 }
-
 const Home = memo(
   ({ data, totalCount }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (

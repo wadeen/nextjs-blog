@@ -58,8 +58,9 @@ export const getStaticProps: GetStaticProps = async (
     endpoint: 'posts',
     queries: {
       filters: `category[equals]${id}`,
-      // offset: (id - 1) * 10, // ページネーション設定後にON
-      limit: 100,
+      // offset: (id - 1) * 10,
+      offset: 0,
+      limit: 10,
     },
   })
 
@@ -74,15 +75,21 @@ export const getStaticProps: GetStaticProps = async (
 // 動的ページの作成
 export const getStaticPaths = async () => {
   const repos = await client.get({ endpoint: 'categories' })
+
   const paths = repos.contents.map(
     (content: MicrocmsApi) => `/category/${content.id}`
   )
 
   // const paths = repos.contents.map((content: MicrocmsApi) => {
   //   paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => {
+  //     // repos.totalCount  -> 5
+  //     console.log(content.id)
   //     ;`/category/${content.id}/${repo}`
   //   })
   // })
+
+  // const getCategory = repos.contents.map((content: MicrocmsApi) => content)
+  // const getCategoryNum = paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => repo)
 
   return { paths, fallback: false }
 }
