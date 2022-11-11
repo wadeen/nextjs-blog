@@ -14,7 +14,7 @@ export const CategoryPagination: NextPage<Props> = ({
   totalCount,
   category,
 }) => {
-  const PER_PAGE = 10
+  const PER_PAGE = 2
   const router = useRouter()
 
   return (

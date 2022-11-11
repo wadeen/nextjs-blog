@@ -3,8 +3,10 @@ import { css } from '@emotion/react'
 import {
   GetStaticProps,
   GetStaticPropsContext,
+  GetStaticPaths,
   InferGetStaticPropsType,
 } from 'next'
+import { useState } from 'react'
 import { MicrocmsApi } from '../../../types/microcmsApi'
 import ArticleTitle from '../../components/atoms/articleTitle/ArticleTitle'
 import Seo from '../../components/molecules/Seo'
@@ -19,12 +21,14 @@ import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
-const PER_PAGE = 10
+const PER_PAGE = 2
 
 export default function CategoryId({
   blog,
   totalCount,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: // }:
+InferGetStaticPropsType<typeof getStaticProps>) {
+  // any) {
   if (blog.length === 0) {
     return <Failed text={'カテゴリに該当する記事はありません。'} />
   }
@@ -58,9 +62,9 @@ export const getStaticProps: GetStaticProps = async (
     endpoint: 'posts',
     queries: {
       filters: `category[equals]${id}`,
-      // offset: (id - 1) * 10,
-      offset: 0,
-      limit: 10,
+      // offset: (id - 1) * 2 as number,
+      // offset: 0,
+      // limit: 10,
     },
   })
 
@@ -72,26 +76,35 @@ export const getStaticProps: GetStaticProps = async (
   }
 }
 
-// 動的ページの作成
-export const getStaticPaths = async () => {
-  const repos = await client.get({ endpoint: 'categories' })
+export const getAllCategoryPagePaths = async () => {
+  const categories = await client.get({ endpoint: 'categories' })
 
-  const paths = repos.contents.map(
-    (content: MicrocmsApi) => `/category/${content.id}`
+  const paths: string[] = await categories.contents.map(
+    (category: MicrocmsApi) => {
+      // 該当のページカテゴリ
+      const result = client
+        .get({
+          endpoint: 'posts',
+          queries: { filters: `category[equals]${category.id}` },
+        })
+        .then((post) => {
+          return paginationRange(1, Math.ceil(post.totalCount / PER_PAGE)).map(
+            (repo) => `/category/${category.id}/${repo}`
+          )
+        })
+      return result
+    }
   )
+  return paths
+}
 
-  // const paths = repos.contents.map((content: MicrocmsApi) => {
-  //   paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => {
-  //     // repos.totalCount  -> 5
-  //     console.log(content.id)
-  //     ;`/category/${content.id}/${repo}`
-  //   })
-  // })
-
-  // const getCategory = repos.contents.map((content: MicrocmsApi) => content)
-  // const getCategoryNum = paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => repo)
-
-  return { paths, fallback: false }
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = await getAllCategoryPagePaths()
+  return {
+    // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
+    paths,
+    fallback: false,
+  }
 }
 
 // css
