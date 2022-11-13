@@ -36,7 +36,8 @@ const AsideCategory = () => {
       <ul css={categoryList}>
         {data.contents.map((category: MicrocmsData) => (
           <li key={category.id}>
-            <Link href={`/category/${category.id}`}>{category.name}</Link>
+            {/* 最初は1ページに遷移する */}
+            <Link href={`/category/${category.id}/1`}>{category.name}</Link>
           </li>
         ))}
       </ul>

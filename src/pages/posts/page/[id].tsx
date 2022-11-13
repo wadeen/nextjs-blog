@@ -26,9 +26,10 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   const id = Number(context?.params?.id)
 
+  // 件数の取得
   const data = await client.get({
     endpoint: 'posts',
-    queries: { offset: Number(id - 1) * 10, limit: 10 },
+    queries: { offset: (id - 1) * 10, limit: 10 },
   })
 
   return {
@@ -46,6 +47,7 @@ export const getStaticPaths = async () => {
   const paths = paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
     (repo) => `/posts/page/${repo}`
   )
+  console.log('paths: ', paths)
   return { paths, fallback: false }
 }
 

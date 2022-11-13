@@ -21,13 +21,10 @@ import { MicrocmsData } from 'types/microcmsData'
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const id = Number(context?.params?.id)
-
   const data = await client.get({
     endpoint: 'posts',
-    queries: { offset: Number(id - 1) * 10, limit: 10 },
+    queries: { limit: 10 },
   })
-
   return {
     props: {
       data: data.contents,

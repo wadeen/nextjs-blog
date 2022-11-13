@@ -53,12 +53,16 @@ export default function CategoryId({
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
+  // paramsの型エラー回避のため
   const params = context?.params?.id
+
+  // paramsの型エラー回避のため
   if (typeof params === 'undefined')
     throw new Error('params type is invalid (undefined)')
   if (typeof params === 'string')
     throw new Error('params type is invalid (string)')
 
+  // paramsの型エラー回避のため
   const [categoryId, pageId] = params
 
   const data = await client.get({
@@ -79,19 +83,23 @@ export const getStaticProps: GetStaticProps = async (
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // カテゴリのAPI取得
+  // 全てのカテゴリAPI取得
   const categories = await client.get({ endpoint: 'categories' })
 
+  // pathsに設定する配列の作成
   const categoryPaths = []
 
+  // 各カテゴリ別の記事を取得
   for (const category of categories.contents) {
     const result = await client.get({
       endpoint: 'posts',
       queries: { filters: `category[equals]${category.id}` },
     })
 
+    // 各カテゴリ別の記事をのページ数取得
     const pages = paginationRange(1, Math.ceil(result.totalCount / PER_PAGE))
 
+    // 各カテゴリ別の記事をのページ数取得
     for (const page of pages) {
       categoryPaths.push({
         params: {
