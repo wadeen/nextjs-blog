@@ -7,25 +7,31 @@ import { client } from '../../../../libs/client'
 import { MicrocmsData } from '../../../../types/microcmsData'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 
-const categoriesFetch = async () => {
-  const category = await client.get({
-    endpoint: 'categories',
-  })
-  return category
-}
-
-// ページ件数 (v 1.2~)
-// const categoriesNumber = async () => {
-//   const categoryNum = await client.get({
-//     endpoint: 'posts',
-//     queries: {
-//       filters: `category[equals]${category}`,
-//     },
-//   })
-//   return categoryNum
-// }
-
 const AsideCategory = () => {
+  // カテゴリ一覧の取得
+
+  const categoriesFetch = async () => {
+    const category = await client.get({
+      endpoint: 'categories',
+    })
+    return category
+  }
+
+  // ページ件数の取得
+  // const categoriesNumber = async () => {
+  //   const categories = await client.get({ endpoint: 'categories' })
+
+  //   for (const category of categories.contents) {
+  //     const categoryContents = await client.get({
+  //       endpoint: 'posts',
+  //       queries: {
+  //         filters: `category[equals]${category.id}`,
+  //       },
+  //     })
+  //     console.log(category.id)
+  //   }
+  // }
+
   const { data, error } = useSWR('category', categoriesFetch)
   if (error) console.log(error.message)
 
@@ -34,10 +40,13 @@ const AsideCategory = () => {
     <>
       <AsideTitle text={'Category'} />
       <ul css={categoryList}>
-        {data.contents.map((category: MicrocmsData) => (
-          <li key={category.id}>
+        {data.contents.map((categoryPage: MicrocmsData) => (
+          <li key={categoryPage.id}>
             {/* 最初は1ページに遷移する */}
-            <Link href={`/category/${category.id}/1`}>{category.name}</Link>
+            <Link href={`/category/${categoryPage.id}/1`}>
+              {categoryPage.name}
+              {/* <span>({categoryPage.length})</span> */}
+            </Link>
           </li>
         ))}
       </ul>
