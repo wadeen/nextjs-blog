@@ -3,30 +3,28 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
 
-type Props = {
-  totalCount: number
-  category: string
-}
-
-export const CategoryPagination: NextPage<Props> = ({
+export const SearchPagination: NextPage<{ totalCount: number }> = ({
   totalCount,
-  category,
 }) => {
   const PER_PAGE = 10
   const router = useRouter()
-
   return (
     <ul css={pagination}>
       {paginationRange(1, Math.ceil(totalCount / PER_PAGE)).map(
         (number, index) => (
           <li key={index}>
             <Link
-              href={`/category/${category}/${number}`}
+              href={`/posts/page/${number}`}
               css={link}
               className={
-                router.asPath.endsWith(`${number}`) ? 'is-current' : ''
+                router.pathname === '/'
+                  ? 'is-first-current'
+                  : router.asPath.endsWith(`${number}`)
+                  ? 'is-current'
+                  : ''
               }
             >
               {number}
@@ -45,7 +43,11 @@ const pagination = css`
   align-items: center;
   justify-content: center;
   column-gap: 20px;
+  ${mediaQuery[1]} {
+    margin-top: 40px;
+  }
   li {
+    // Homeの時に"1"のみcurrent
     &:first-of-type {
       .is-first-current {
         background-color: var(--cPagination);
@@ -66,6 +68,9 @@ const link = css`
   border-radius: 3px;
   transition: opacity 0.3s ease;
   font-size: 2rem;
+  ${mediaQuery[1]} {
+    font-size: 1.8rem;
+  }
   &.is-current {
     background-color: var(--cPagination);
     color: #fff;

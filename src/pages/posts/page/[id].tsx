@@ -18,7 +18,7 @@ import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
 
-const PER_PAGE = 2
+const PER_PAGE = 10
 
 // SSG: データの取得
 export const getStaticProps: GetStaticProps = async (
@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (
 
   const data = await client.get({
     endpoint: 'posts',
-    queries: { offset: Number(id - 1) * 2, limit: 2 },
+    queries: { offset: Number(id - 1) * 10, limit: 10 },
   })
 
   return {

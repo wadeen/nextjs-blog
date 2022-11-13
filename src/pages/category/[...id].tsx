@@ -6,8 +6,6 @@ import {
   GetStaticPaths,
   InferGetStaticPropsType,
 } from 'next'
-import { useState } from 'react'
-import { MicrocmsApi } from '../../../types/microcmsApi'
 import ArticleTitle from '../../components/atoms/articleTitle/ArticleTitle'
 import Seo from '../../components/molecules/Seo'
 import PostArchive from '../../components/organisms/post/PostArchive'
@@ -21,14 +19,12 @@ import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
-const PER_PAGE = 2
+const PER_PAGE = 10
 
 export default function CategoryId({
   blog,
   totalCount,
-}: // }:
-InferGetStaticPropsType<typeof getStaticProps>) {
-  // any) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   if (blog.length === 0) {
     return <Failed text={'カテゴリに該当する記事はありません。'} />
   }
@@ -57,14 +53,20 @@ InferGetStaticPropsType<typeof getStaticProps>) {
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const id = context?.params?.id
+  const params = context?.params?.id
+  if (typeof params === 'undefined')
+    throw new Error('params type is invalid (undefined)')
+  if (typeof params === 'string')
+    throw new Error('params type is invalid (string)')
+
+  const [categoryId, pageId] = params
+
   const data = await client.get({
     endpoint: 'posts',
     queries: {
-      filters: `category[equals]${id}`,
-      // offset: (id - 1) * 2 as number,
-      // offset: 0,
-      // limit: 10,
+      filters: `category[equals]${categoryId}`,
+      offset: (Number(pageId) - 1) * 10,
+      limit: 10,
     },
   })
 
@@ -76,33 +78,31 @@ export const getStaticProps: GetStaticProps = async (
   }
 }
 
-export const getAllCategoryPagePaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  // カテゴリのAPI取得
   const categories = await client.get({ endpoint: 'categories' })
 
-  const paths: string[] = await categories.contents.map(
-    (category: MicrocmsApi) => {
-      // 該当のページカテゴリ
-      const result = client
-        .get({
-          endpoint: 'posts',
-          queries: { filters: `category[equals]${category.id}` },
-        })
-        .then((post) => {
-          return paginationRange(1, Math.ceil(post.totalCount / PER_PAGE)).map(
-            (repo) => `/category/${category.id}/${repo}`
-          )
-        })
-      return result
-    }
-  )
-  return paths
-}
+  const categoryPaths = []
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getAllCategoryPagePaths()
+  for (const category of categories.contents) {
+    const result = await client.get({
+      endpoint: 'posts',
+      queries: { filters: `category[equals]${category.id}` },
+    })
+
+    const pages = paginationRange(1, Math.ceil(result.totalCount / PER_PAGE))
+
+    for (const page of pages) {
+      categoryPaths.push({
+        params: {
+          id: [category.id, String(page)],
+        },
+      })
+    }
+  }
+
   return {
-    // paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
-    paths,
+    paths: categoryPaths,
     fallback: false,
   }
 }
