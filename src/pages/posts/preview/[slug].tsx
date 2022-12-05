@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import { GetStaticPaths, GetStaticProps } from 'next'
 // import PostSingle from '../../../components/organisms/post/PostSingle'
-import Post from '../[id]'
+import Post from '../[post]'
 import { client } from 'libs/client'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'

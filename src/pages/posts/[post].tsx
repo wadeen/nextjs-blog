@@ -10,7 +10,7 @@ import AsidePost from 'src/components/templates/aside/AsidePost'
 
 // SSG
 export const getStaticProps = async (context: { params: MicrocmsData }) => {
-  const id = context.params.id
+  const id = context.params.post
   const data = await client.get({ endpoint: 'posts', contentId: id })
   return {
     props: {
