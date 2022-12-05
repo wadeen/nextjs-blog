@@ -87,26 +87,30 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const categories = await client.get({ endpoint: 'categories' })
 
   // pathsに設定する配列の作成
-  const categoryPaths = []
+  const categoryPaths: any = []
 
   // 各カテゴリ別の記事を取得
   for (const category of categories.contents) {
-    const result = await client.get({
+    const { totalCount: totalCountByCategory } = await client.get({
       endpoint: 'posts',
-      queries: { filters: `category[equals]${category.id}` },
+      queries: {
+        filters: `category[equals]${category.id}`,
+        limit: 1,
+        fields: 'id',
+      },
     })
 
     // 各カテゴリ別の記事をのページ数取得
-    const pages = paginationRange(1, Math.ceil(result.totalCount / PER_PAGE))
+    const pages = paginationRange(1, Math.ceil(totalCountByCategory / PER_PAGE))
 
-    // 各カテゴリ別の記事をのページ数取得
-    for (const page of pages) {
+    // 各カテゴリ別の記事一覧のパスを作成
+    pages.forEach((pageNum) => {
       categoryPaths.push({
         params: {
-          id: [category.id, String(page)],
+          id: [category.id, String(pageNum)],
         },
       })
-    }
+    })
   }
 
   return {
