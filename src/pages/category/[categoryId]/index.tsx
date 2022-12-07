@@ -6,20 +6,17 @@ import {
   GetStaticPaths,
   InferGetStaticPropsType,
 } from 'next'
-import ArticleTitle from '../../components/atoms/articleTitle/ArticleTitle'
-import Seo from '../../components/molecules/Seo'
-import PostArchive from '../../components/organisms/post/PostArchive'
-import BlogLayout from '../../components/templates/BlogLayout'
-import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
-import { paginationRange } from '../../utils/paginationRange'
+import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
+import Seo from '../../../components/molecules/Seo'
+import PostArchive from '../../../components/organisms/post/PostArchive'
+import BlogLayout from '../../../components/templates/BlogLayout'
+import BlogLayoutBase from '../../../components/templates/BlogLayoutBase'
 import { client } from 'libs/client'
 import Failed from 'src/components/atoms/Failed'
 import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
-
-const PER_PAGE = 10
 
 export default function CategoryId({
   blog,
@@ -56,22 +53,10 @@ export const getStaticProps: GetStaticProps = async (
   // paramsの型エラー回避のため
   const params = context?.params?.id
 
-  // paramsの型エラー回避のため
-  if (typeof params === 'undefined')
-    throw new Error('params type is invalid (undefined)')
-  if (typeof params === 'string')
-    throw new Error('params type is invalid (string)')
-
-  // paramsの型エラー回避のため
-  const [categoryId, pageId] = params
+  console.log(params)
 
   const data = await client.get({
-    endpoint: 'posts',
-    queries: {
-      filters: `category[equals]${categoryId}`,
-      offset: (Number(pageId) - 1) * 10,
-      limit: 10,
-    },
+    endpoint: 'category',
   })
 
   return {
@@ -86,35 +71,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
   // 全てのカテゴリAPI取得
   const categories = await client.get({ endpoint: 'categories' })
 
-  // pathsに設定する配列の作成
-  const categoryPaths: any = []
-
-  // 各カテゴリ別の記事を取得
-  for (const category of categories.contents) {
-    const { totalCount: totalCountByCategory } = await client.get({
-      endpoint: 'posts',
-      queries: {
-        filters: `category[equals]${category.id}`,
-        limit: 1,
-        fields: 'id',
-      },
-    })
-
-    // 各カテゴリ別の記事をのページ数取得
-    const pages = paginationRange(1, Math.ceil(totalCountByCategory / PER_PAGE))
-
-    // 各カテゴリ別の記事一覧のパスを作成
-    pages.forEach((pageNum) => {
-      categoryPaths.push({
-        params: {
-          id: [category.id, String(pageNum)],
-        },
-      })
-    })
-  }
-
   return {
-    paths: categoryPaths,
+    paths: categories,
     fallback: false,
   }
 }
