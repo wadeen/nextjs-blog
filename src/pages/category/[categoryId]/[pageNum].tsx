@@ -21,6 +21,12 @@ import { MicrocmsData } from 'types/microcmsData'
 
 const PER_PAGE = 10
 
+
+/**
+* まだパス等の設定はしていません！
+*/
+
+
 export default function CategoryId({
   blog,
   totalCount,
