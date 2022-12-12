@@ -60,7 +60,7 @@ const Header: NextPage = memo(() => {
                 className={
                   router.pathname === '/' ||
                   router.pathname.startsWith('/posts') ||
-                  router.pathname.startsWith('/category/') ||
+                  router.pathname.startsWith('/category') ||
                   router.pathname.startsWith('/search')
                     ? 'is-current'
                     : ''
