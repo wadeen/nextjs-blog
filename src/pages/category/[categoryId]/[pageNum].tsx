@@ -54,19 +54,8 @@ export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
   // paramsの型エラー回避のため
-  const categoryName = context?.params?.categoryId
-  const categoryNum = context?.params?.pageNum
-
-  console.log('!!!categoryNum: ', categoryNum)
-
-  // paramsの型エラー回避のため
-  // if (typeof params === 'undefined')
-  //   throw new Error('params type is invalid (undefined)')
-  // if (typeof params === 'string')
-  //   throw new Error('params type is invalid (string)')
-
-  // paramsの型エラー回避のため
-  // const [categoryId, pageId] = id
+  const categoryName = context?.params?.categoryId // カテゴリー名(ID)
+  const categoryNum = context?.params?.pageNum // カテゴリーの合計数
 
   const data = await client.get({
     endpoint: 'posts',
