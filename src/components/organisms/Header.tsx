@@ -20,7 +20,7 @@ const Header: NextPage = memo(() => {
   }, [scrollHeight])
 
   useEffect(() => {
-    router.pathname === '/posts/[id]' ? setIsPost(true) : setIsPost(false)
+    router.pathname === '/posts/[post]' ? setIsPost(true) : setIsPost(false)
   }, [router])
 
   return (
