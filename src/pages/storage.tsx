@@ -41,18 +41,18 @@ const Storage: NextPage<{ data: Props[] }> = memo(({ data }) => {
                 href={data.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                css={imteImg}
+                css={itemImg}
               >
                 <img src={data.img} alt="" />
               </a>
               <h2>{data.title}</h2>
-              <p css={subTitlte}>使用技術</p>
+              <p css={subTitle}>使用技術</p>
               <ul css={tag}>
                 {data.tags.map((tag: any) => (
                   <li key={tag}>{tag}</li>
                 ))}
               </ul>
-              <p css={subTitlte}>コメント</p>
+              <p css={subTitle}>コメント</p>
               <p css={message}>{data.message}</p>
               <ul css={links}>
                 {data.github && (
@@ -142,7 +142,7 @@ const item = css`
   }
 `
 
-const imteImg = css`
+const itemImg = css`
   display: block;
   transition: opacity 0.3s ease;
   &:hover {
@@ -176,7 +176,7 @@ const tag = css`
   }
 `
 
-const subTitlte = css`
+const subTitle = css`
   padding: 0 20px;
   font-weight: 500;
   letter-spacing: 0.05em;

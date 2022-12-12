@@ -19,7 +19,7 @@ import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
-const PER_PAGE = 10
+const PER_PAGE = 6
 
 export default function CategoryId({
   blog,
@@ -61,8 +61,8 @@ export const getStaticProps: GetStaticProps = async (
     endpoint: 'posts',
     queries: {
       filters: `category[equals]${categoryName}`,
-      offset: (Number(categoryNum) - 1) * 10,
-      limit: 10,
+      offset: (Number(categoryNum) - 1) * 6,
+      limit: 6,
     },
   })
 

@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   const data = await client.get({
     endpoint: 'posts',
-    queries: { limit: 10 },
+    queries: { limit: 6 },
   })
   return {
     props: {

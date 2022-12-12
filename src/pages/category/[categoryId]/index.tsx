@@ -59,7 +59,7 @@ export const getStaticProps: GetStaticProps = async (
     endpoint: 'posts',
     queries: {
       filters: `category[equals]${params}`,
-      limit: 10,
+      limit: 6,
     },
   })
 

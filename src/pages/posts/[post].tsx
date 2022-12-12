@@ -22,7 +22,7 @@ export const getStaticProps = async (context: { params: MicrocmsData }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const data = await client.get({
     endpoint: 'posts',
-    queries: { limit: 100 }, // API取得件数:デフォルト10件(上限5MB)
+    queries: { limit: 6 }, // API取得件数:デフォルト10件(上限5MB)
   })
   const paths = data.contents.map(
     (content: MicrocmsData) => `/posts/${content.id}`
