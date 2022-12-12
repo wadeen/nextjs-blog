@@ -18,17 +18,18 @@ import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
 
-const PER_PAGE = 10
+const PER_PAGE = 6
 
 // SSG: データの取得
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const id = Number(context?.params?.id)
+  const id = Number(context?.params?.pageNum)
 
+  // 件数の取得
   const data = await client.get({
     endpoint: 'posts',
-    queries: { offset: Number(id - 1) * 10, limit: 10 },
+    queries: { offset: (id - 1) * 6, limit: 6 },
   })
 
   return {
@@ -59,7 +60,7 @@ const PostPage = ({
       <Seo ogpTitle="記事一覧 | Webのあれこれ" />
       <BlogLayout>
         <BlogLayoutBody>
-          <ArticleTitle text={`記事一覧 　${router.query.id}ページ目`} />
+          <ArticleTitle text={`記事一覧 　${router.query.pageNum}ページ目`} />
           <ul css={postLists}>
             {data.map((post: MicrocmsData) => (
               <PostArchive key={post.id} post={post} /> // 最新ページから取り出した一覧記事

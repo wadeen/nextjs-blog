@@ -36,11 +36,9 @@ const About: NextPage = memo(() => {
           <div css={profileText}>
             <p>わでぃん</p>
             <p>
-              25歳のフリーランスWeb制作コーダー。
+              25歳のフロントエンドエンジニア。
               <br />
-              フロントエンド志望のため、Reactを中心にモダンJavaScriptを学習中です。
-              <br />
-              フロントエンドエンジニアとして働くことを目標にしています。色々な現場を経験して成長/貢献していきたいと思っています。
+              Next.jsなどを使ったJamstack開発が好きです。
               <br />
               将来的には個人開発のWebアプリをリリースし、多くの人に使ってもらうことが夢です。
             </p>
@@ -52,14 +50,15 @@ const About: NextPage = memo(() => {
           <h2>スキル</h2>
           <p className="subtitle">【言語 / フレームワーク】</p>
           <p>
-            HTML (EJS) / CSS (Sass) / JavaScript (jQuery , TypeScript , React ,
-            Next.js)
+            HTML (EJS) / CSS (SCSS) / JavaScript (jQuery , TypeScript , React ,
+            Next.js , Gatsby.js)
           </p>
           <br />
           <p className="subtitle">【その他】</p>
           <p>
-            WorsPress / Git / GitHub / GitHub Actions / Gulp / Webpack /
-            Firebase（CloudFirestore , Authentication , Hosting） / Vercel
+            WordPress / Git / GitHub / GitHub Actions / Gulp / Webpack / Vite /
+            Firebase（CloudFirestore , Authentication , Hosting） / Vercel /
+            Netlify
           </p>
         </div>
 
@@ -71,7 +70,7 @@ const About: NextPage = memo(() => {
             <br />
             在職中は合格率10%台の難関国家資格を取得や、インターン説明など多数の実績を残す。
             <br />
-            2021年4月より、フリーランスWeb制作コーダーとして活動開始。約50件程のWebサイトの制作に携わっています。
+            Web制作コーダーをしている最中にJamstack開発などのモダン技術に興味を持ち、現在は都内でフロントエンドエンジニアとして働いています。
           </p>
         </div>
 
@@ -81,7 +80,7 @@ const About: NextPage = memo(() => {
           <p>
             小学〜高校までの約10年間ずっと野球をしており、現在も観るのもやるのも好きです。
             <br />
-            趣味は、自然を感じる場所に行くことやカフェ巡り等です(が、最近はずっとプログラミングに夢中...🐶)。
+            趣味は、自然を感じる場所に行くことやカフェや居酒屋巡り等です(が、最近はずっとプログラミングばっかりです...🐶)。
             <br />
           </p>
         </div>

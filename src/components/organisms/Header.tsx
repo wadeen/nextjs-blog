@@ -20,7 +20,7 @@ const Header: NextPage = memo(() => {
   }, [scrollHeight])
 
   useEffect(() => {
-    router.pathname === '/posts/[id]' ? setIsPost(true) : setIsPost(false)
+    router.pathname === '/posts/[post]' ? setIsPost(true) : setIsPost(false)
   }, [router])
 
   return (
@@ -60,12 +60,11 @@ const Header: NextPage = memo(() => {
                 className={
                   router.pathname === '/' ||
                   router.pathname.startsWith('/posts') ||
-                  router.pathname.startsWith('/category/[id]') ||
+                  router.pathname.startsWith('/category') ||
                   router.pathname.startsWith('/search')
                     ? 'is-current'
                     : ''
                 }
-                data-testid={'blog-nav'}
               >
                 Blog
               </Link>
@@ -77,7 +76,6 @@ const Header: NextPage = memo(() => {
                 className={
                   router.pathname.startsWith('/about') ? 'is-current' : ''
                 }
-                data-testid={'about-nav'}
               >
                 About me
               </Link>
@@ -89,7 +87,6 @@ const Header: NextPage = memo(() => {
                 className={
                   router.pathname.startsWith('/storage') ? 'is-current' : ''
                 }
-                data-testid={'storage-nav'}
               >
                 App storage
               </Link>

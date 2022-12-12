@@ -14,7 +14,7 @@ export const CategoryPagination: NextPage<Props> = ({
   totalCount,
   category,
 }) => {
-  const PER_PAGE = 10
+  const PER_PAGE = 6
   const router = useRouter()
 
   return (
@@ -26,7 +26,11 @@ export const CategoryPagination: NextPage<Props> = ({
               href={`/category/${category}/${number}`}
               css={link}
               className={
-                router.asPath.endsWith(`${number}`) ? 'is-current' : ''
+                router.asPath.endsWith(`${number}`)
+                  ? 'is-current'
+                  : '' || router.asPath.endsWith(`${category}`)
+                  ? 'is-current'
+                  : ''
               }
             >
               {number}
@@ -46,7 +50,6 @@ const pagination = css`
   justify-content: center;
   column-gap: 20px;
   li {
-    // Homeの時に"1"のみcurrent
     &:first-of-type {
       .is-first-current {
         background-color: var(--cPagination);
@@ -61,7 +64,7 @@ const link = css`
   display: block;
   width: 30px;
   height: 30px;
-  line-height: 30px;
+  line-height: 26px;
   text-align: center;
   cursor: pointer;
   border-radius: 3px;

@@ -11,7 +11,6 @@ import AsideArchive from '../components/templates/aside/AsideArchive'
 import Failed from 'src/components/atoms/Failed'
 import Seo from 'src/components/molecules/Seo'
 import PostArchive from 'src/components/organisms/post/PostArchive'
-// import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import { mediaQuery } from 'src/utils/Breakpoints'
@@ -72,8 +71,6 @@ const Search = () => {
             ))}
           </ul>
         )}
-        {/* ページネーションは v1.2 ~で実装 */}
-        {/* <BasicPagination totalCount={totalCount} /> */}
       </BlogLayoutBody>
       <AsideArchive />
     </BlogLayout>

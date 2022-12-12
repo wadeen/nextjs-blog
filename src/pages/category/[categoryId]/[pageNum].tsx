@@ -3,15 +3,15 @@ import { css } from '@emotion/react'
 import {
   GetStaticProps,
   GetStaticPropsContext,
+  GetStaticPaths,
   InferGetStaticPropsType,
 } from 'next'
-import { MicrocmsApi } from '../../../types/microcmsApi'
-import ArticleTitle from '../../components/atoms/articleTitle/ArticleTitle'
-import Seo from '../../components/molecules/Seo'
-import PostArchive from '../../components/organisms/post/PostArchive'
-import BlogLayout from '../../components/templates/BlogLayout'
-import BlogLayoutBase from '../../components/templates/BlogLayoutBase'
-import { paginationRange } from '../../utils/paginationRange'
+import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
+import Seo from '../../../components/molecules/Seo'
+import PostArchive from '../../../components/organisms/post/PostArchive'
+import BlogLayout from '../../../components/templates/BlogLayout'
+import BlogLayoutBase from '../../../components/templates/BlogLayoutBase'
+import { paginationRange } from '../../../utils/paginationRange'
 import { client } from 'libs/client'
 import Failed from 'src/components/atoms/Failed'
 import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
@@ -19,7 +19,7 @@ import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
-const PER_PAGE = 10
+const PER_PAGE = 6
 
 export default function CategoryId({
   blog,
@@ -53,13 +53,16 @@ export default function CategoryId({
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const id = context?.params?.id
+  // paramsの型エラー回避のため
+  const categoryName = context?.params?.categoryId // カテゴリー名(ID)
+  const categoryNum = context?.params?.pageNum // カテゴリーの合計数
+
   const data = await client.get({
     endpoint: 'posts',
     queries: {
-      filters: `category[equals]${id}`,
-      // offset: (id - 1) * 10, // ページネーション設定後にON
-      limit: 100,
+      filters: `category[equals]${categoryName}`,
+      offset: (Number(categoryNum) - 1) * 6,
+      limit: 6,
     },
   })
 
@@ -71,20 +74,37 @@ export const getStaticProps: GetStaticProps = async (
   }
 }
 
-// 動的ページの作成
-export const getStaticPaths = async () => {
-  const repos = await client.get({ endpoint: 'categories' })
-  const paths = repos.contents.map(
-    (content: MicrocmsApi) => `/category/${content.id}`
-  )
+export const getStaticPaths: GetStaticPaths = async () => {
+  // 全てのカテゴリAPI取得
+  const categories = await client.get({ endpoint: 'categories' })
 
-  // const paths = repos.contents.map((content: MicrocmsApi) => {
-  //   paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => {
-  //     ;`/category/${content.id}/${repo}`
-  //   })
-  // })
+  // pathsに設定する配列の作成
+  const categoryPaths: any = []
 
-  return { paths, fallback: false }
+  // 各カテゴリ別の記事を取得(カテゴリの合計ページ数の取得)
+  for (const category of categories.contents) {
+    const { totalCount: totalCountByCategory } = await client.get({
+      endpoint: 'posts',
+      queries: {
+        filters: `category[equals]${category.id}`,
+        limit: 1,
+        fields: 'id',
+      },
+    })
+
+    // 各カテゴリ別の記事をのページ数取得
+    const pages = paginationRange(1, Math.ceil(totalCountByCategory / PER_PAGE))
+
+    // 各カテゴリ別の記事一覧のパスを作成
+    pages.forEach((pageNum) => {
+      categoryPaths.push(`/category/${category.id}/${pageNum}`)
+    })
+  }
+
+  return {
+    paths: categoryPaths,
+    fallback: false,
+  }
 }
 
 // css

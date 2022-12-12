@@ -23,7 +23,7 @@
     "**/*.tsx",
     "libs/GoogleCodePrettify.js",
     "src/components/organisms/pagination/BasicPagination.tsx",
-    "src/pages/posts/page/[id].tsx",
+    "src/pages/posts/page/[pageNum].tsx",
     "src/components/organisms/comment/Comment.jsx",
     "src/__tests__/Header.test.jsx"
   ],

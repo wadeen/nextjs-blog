@@ -30,11 +30,7 @@ const AsideProfile: NextPage = () => {
       <p css={nameInfo}>わでぃん</p>
 
       <div css={info}>
-        <p>
-          25歳のWeb制作コーダー。
-          <br />
-          フロントエンジニアとして働くために学んだ知識をアウトプットしています。
-        </p>
+        <p>Jamstack開発やNext.jsが好きな、25歳のフロントエンドエンジニア</p>
       </div>
 
       <div css={sns}>
