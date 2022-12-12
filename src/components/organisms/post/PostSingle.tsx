@@ -19,8 +19,12 @@ import { dateToString } from 'src/utils/dateToString'
 import { MicrocmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
 
+const { log } = console
+
 const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   const setToc = useSetRecoilState(stateToc)
+
+  log('post:', post)
 
   // pre > code シンタックスハイライト
   const contentPost = post.content.reduce((sum: string, element) => {

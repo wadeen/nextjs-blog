@@ -1,28 +1,96 @@
-import { GetStaticProps, GetStaticPropsContext, GetStaticPaths } from 'next'
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
+import {
+  GetStaticProps,
+  GetStaticPropsContext,
+  GetStaticPaths,
+  InferGetStaticPropsType,
+} from 'next'
 import { client } from 'libs/client'
+import Failed from 'src/components/atoms/Failed'
+import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
+import Seo from 'src/components/molecules/Seo'
+import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
+import PostArchive from 'src/components/organisms/post/PostArchive'
+import BlogLayout from 'src/components/templates/BlogLayout'
+import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
+import AsideArchive from 'src/components/templates/aside/AsideArchive'
+import { mediaQuery } from 'src/utils/Breakpoints'
+import { microCmsPostData } from 'types/microCmsPostData'
+import { MicrocmsApi } from 'types/microcmsApi'
+import { MicrocmsData } from 'types/microcmsData'
 
-export default function CategoryId() {
-  return
+export default function CategoryId({
+  blog,
+  totalCount,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  if (blog.length === 0) {
+    return <Failed text={'カテゴリに該当する記事はありません。'} />
+  }
+  return (
+    <BlogLayout>
+      <Seo ogpTitle={` ${blog[0].category.name} の記事一覧 | Webのあれこれ`} />
+      <BlogLayoutBase>
+        <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
+        <ul css={postLists}>
+          {blog.map((post: MicrocmsData) => (
+            <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
+          ))}
+        </ul>
+
+        <CategoryPagination
+          category={blog[0].category.id}
+          totalCount={totalCount}
+        />
+      </BlogLayoutBase>
+      <AsideArchive />
+    </BlogLayout>
+  )
 }
 
 // SSG: データの取得
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
+  // paramsの型エラー回避のため
+  const params = context?.params?.categoryId
+
+  const data = await client.get<MicrocmsApi>({
+    endpoint: 'posts',
+    queries: {
+      filters: `category[equals]${params}`,
+      limit: 10,
+    },
+  })
+
   return {
-    props: {},
+    props: {
+      blog: data.contents,
+      totalCount: data.totalCount,
+    },
   }
 }
 
-// カテゴリのパス生成
 export const getStaticPaths: GetStaticPaths = async () => {
+  // 全てのカテゴリAPI取得
   const categories = await client.get({ endpoint: 'categories' })
-  const paths = categories.contents.map(
-    (category: { id: string }) => `/category/${category.id}`
+  // カテゴリのみ全て取得
+  const allCategoryId = categories.contents.map(
+    (category: microCmsPostData) => category.id
   )
 
   return {
-    paths,
+    paths: allCategoryId.map((category: string) => `/category/${category}`),
     fallback: false,
   }
 }
+
+// css
+const postLists = css`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  ${mediaQuery[2]} {
+    gap: 10px;
+  }
+`
