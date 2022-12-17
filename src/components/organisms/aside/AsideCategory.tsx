@@ -1,76 +1,64 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Link from 'next/link'
-import { useEffect } from 'react'
 import useSWR from 'swr'
 import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
-import { microCmsPostData } from 'types/microCmsPostData'
-import { MicrocmsData } from 'types/microcmsData'
 
-// type Category = {
-//   category: string
-//   totalCount: string
-// }[]
+type CategoryCountAndPost = {
+  category: string
+  totalCount: string
+}
 
 const AsideCategory = () => {
-  // カテゴリ一覧の取得
 
-  const categoriesFetch = async () => {
+  // 各カテゴリのページ情報の取得
+  const fetchCategories = async () => {
+
     // 全てのカテゴリを取得
     const categories = await client.get({ endpoint: 'categories' })
 
-    const categoriesData = categories.contents.map(async (categoryTag: any) => {
-      const categoryPost = await client.get({
+    // カテゴリと合計件数が入る配列
+    const categoryPosts: CategoryCountAndPost[] = []
+
+    // カテゴリ別の記事を取得
+    for (const category of categories.contents) {
+      const categoryPostData = await client.get({
         endpoint: 'posts',
         queries: {
-          filters: `category[equals]${categoryTag.id}`,
+          filters: `category[equals]${category.id}`,
           limit: 999,
         },
       })
-      return categoryPost
-    })
 
-    const categoryObject = categoriesData.map(async (categoriesData: any) => {
-      const categoryHoge = await categoriesData.then((result: any) => {
-        console.log('result: ', result)
-        return {
-          category: result.contents[0].category,
-          totalCount: result.totalCount,
-        }
-        // })
+    // カテゴリ別の記事のカテゴリIDと合計数の代入
+      categoryPosts.push({
+        category: category.id,
+        totalCount: categoryPostData.totalCount,
       })
-      return categoryHoge
-    })
-
-    console.log('categoryObject: ', categoryObject)
-
-    // console.log('categoryData: ', categoryData)
-    return categoryObject
+    }
+    return categoryPosts
   }
 
-  // categoriesFetch()
-  // console.log(categoryPost)
-
-  const { data, error } = useSWR('categories', categoriesFetch)
+  const { data, error } = useSWR('categories', fetchCategories)
   if (error) console.log(error.message)
 
-  console.log('data: ', data)
-
   // カテゴリの取得結果の判定
-  return (
+  return data ? (
+    <ul css={categoryList}>
+      <AsideTitle text={'Category'} />
+      {data.map((categoryData: CategoryCountAndPost) => (
+        <li key={categoryData.category}>
+          <Link href={`/category/${categoryData.category}`}>
+            {categoryData.category}
+            <span css={totalCount}>({categoryData.totalCount})</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    // 取得失敗した場合は、カテゴリ自体を表示しない
     <></>
-    // <ul css={categoryList}>
-    //   <AsideTitle text={'Category'} />
-    //   {data?.map((category: MicrocmsData) => (
-    //     <li key={category.id}>
-    //       <Link href={`/category/${category.id}`}>
-    //         {category.name}
-    //         {/* <span>{categoryTotalCount}</span> */}
-    //       </Link>
-    //     </li>
-    //   ))}
-    // </ul>
   )
 }
 
@@ -101,31 +89,14 @@ const categoryList = css`
   }
 `
 
+const totalCount = css`
+  display: inline-block;
+  margin-left: 10px;
+`
+
 const loadingIcon = css`
   margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
 `
-
-
-
-          // // .then((res) => {
-          // //   categoryData.push(
-          // //     {
-          // //     // category: {
-          // //     category: res.contents[0].category.id,
-          // //     totalCount: res.totalCount,
-          // //     // },
-          // //   }
-          // //   )
-          // // })
-
-          // {data.contents.map((categoryPage: MicrocmsData) => (
-          //   <li key={categoryPage.id}>
-          //     <Link href={`/category/${categoryPage.id}`}>
-          //       {categoryPage.name}
-          //       {/* <span>{categoryTotalCount}</span> */}
-          //     </Link>
-          //   </li>
-          // ))}
