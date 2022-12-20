@@ -1,38 +1,36 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-// import axios from 'axios'
 import Link from 'next/link'
 import useSWR from 'swr'
-import { client } from '../../../../libs/client'
-import { MicrocmsData } from '../../../../types/microcmsData'
+import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
+import { MicrocmsApi } from 'types/microcmsApi'
+import { MicrocmsData } from 'types/microcmsData'
 
 const AsideCategory = () => {
   // カテゴリ一覧の取得
 
-  const categoriesFetch = async () => {
-    const category = await client.get({
-      endpoint: 'categories',
-    })
-    return category
+  const fetchCategories = async () => {
+    // 全てのカテゴリを取得
+    const categories = await client.get({ endpoint: 'categories' })
+
+    // カテゴリの取得
+    const categoriesData = await Promise.all(
+      categories.contents.map(async (categoryTag: MicrocmsData) => {
+        const categoryPost = await client.get({
+          endpoint: 'posts',
+          queries: {
+            filters: `category[equals]${categoryTag.id}`,
+            limit: 999,
+          },
+        })
+        return categoryPost
+      })
+    )
+    return categoriesData
   }
 
-  // ページ件数の取得
-  // const categoriesNumber = async () => {
-  //   const categories = await client.get({ endpoint: 'categories' })
-
-  //   for (const category of categories.contents) {
-  //     const categoryContents = await client.get({
-  //       endpoint: 'posts',
-  //       queries: {
-  //         filters: `category[equals]${category.id}`,
-  //       },
-  //     })
-  //     console.log(category.id)
-  //   }
-  // }
-
-  const { data, error } = useSWR('category', categoriesFetch)
+  const { data, error } = useSWR('categories', fetchCategories)
   if (error) console.log(error.message)
 
   // カテゴリの取得結果の判定
@@ -40,18 +38,24 @@ const AsideCategory = () => {
     <>
       <AsideTitle text={'Category'} />
       <ul css={categoryList}>
-        {data.contents.map((categoryPage: MicrocmsData) => (
-          <li key={categoryPage.id}>
-            {/* 最初は1ページに遷移する */}
-            <Link href={`/category/${categoryPage.id}`}>
-              {categoryPage.name}
-              {/* <span>({categoryPage.length})</span> */}
-            </Link>
-          </li>
-        ))}
+        {data.map((categoryData: MicrocmsApi) => {
+          const category = categoryData.contents[0].category.id
+          const totalCount = categoryData.totalCount
+
+          console.log('categoryData: ', categoryData)
+          return (
+            <li key={category}>
+              <Link href={`/category/${category}`}>
+                {category}
+                <span css={count}>({totalCount})</span>
+              </Link>
+            </li>
+          )
+        })}
       </ul>
     </>
   ) : (
+    // 取得失敗した場合は、カテゴリ自体を表示しない
     <></>
   )
 }
@@ -83,9 +87,7 @@ const categoryList = css`
   }
 `
 
-const loadingIcon = css`
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const count = css`
+  display: inline-block;
+  margin-left: 10px;
 `
