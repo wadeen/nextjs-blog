@@ -41,8 +41,7 @@ const AsideCategory = () => {
         {data.map((categoryData: MicrocmsApi) => {
           const category = categoryData.contents[0].category.id
           const totalCount = categoryData.totalCount
-
-          console.log('categoryData: ', categoryData)
+          
           return (
             <li key={category}>
               <Link href={`/category/${category}`}>
