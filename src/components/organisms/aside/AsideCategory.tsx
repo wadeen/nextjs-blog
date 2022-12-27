@@ -4,30 +4,38 @@ import Link from 'next/link'
 import useSWR from 'swr'
 import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
-import { MicrocmsApi } from 'types/microcmsApi'
-import { MicrocmsData } from 'types/microcmsData'
+
+type CategoryCountAndPost = {
+  category: string
+  totalCount: string
+}
 
 const AsideCategory = () => {
-  // カテゴリ一覧の取得
-
+  // 各カテゴリのページ情報の取得
   const fetchCategories = async () => {
     // 全てのカテゴリを取得
     const categories = await client.get({ endpoint: 'categories' })
 
-    // カテゴリの取得
-    const categoriesData = await Promise.all(
-      categories.contents.map(async (categoryTag: MicrocmsData) => {
-        const categoryPost = await client.get({
-          endpoint: 'posts',
-          queries: {
-            filters: `category[equals]${categoryTag.id}`,
-            limit: 999,
-          },
-        })
-        return categoryPost
+    // カテゴリと合計件数が入る配列
+    const categoryPosts: CategoryCountAndPost[] = []
+
+    // カテゴリ別の記事を取得
+    for (const category of categories.contents) {
+      const categoryPostData = await client.get({
+        endpoint: 'posts',
+        queries: {
+          filters: `category[equals]${category.id}`,
+          limit: 999,
+        },
       })
-    )
-    return categoriesData
+
+      // カテゴリ別の記事のカテゴリIDと合計数の代入
+      categoryPosts.push({
+        category: category.id,
+        totalCount: categoryPostData.totalCount,
+      })
+    }
+    return categoryPosts
   }
 
   const { data, error } = useSWR('categories', fetchCategories)
@@ -36,21 +44,16 @@ const AsideCategory = () => {
   // カテゴリの取得結果の判定
   return data ? (
     <>
-      <AsideTitle text={'Category'} />
       <ul css={categoryList}>
-        {data.map((categoryData: MicrocmsApi) => {
-          const category = categoryData.contents[0].category.id
-          const totalCount = categoryData.totalCount
-          
-          return (
-            <li key={category}>
-              <Link href={`/category/${category}`}>
-                {category}
-                <span css={count}>({totalCount})</span>
-              </Link>
-            </li>
-          )
-        })}
+        <AsideTitle text={'Category'} />
+        {data.map((categoryData: CategoryCountAndPost) => (
+          <li key={categoryData.category}>
+            <Link href={`/category/${categoryData.category}`}>
+              {categoryData.category}
+              <span css={totalCount}>({categoryData.totalCount})</span>
+            </Link>
+          </li>
+        ))}
       </ul>
     </>
   ) : (
@@ -86,7 +89,14 @@ const categoryList = css`
   }
 `
 
-const count = css`
+const totalCount = css`
   display: inline-block;
   margin-left: 10px;
+`
+
+const loadingIcon = css`
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
