@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import cheerio, { html } from 'cheerio'
+import { load } from 'cheerio'
 import hljs from 'highlight.js'
 import { NextPage } from 'next'
 import Link from 'next/link'
@@ -10,10 +10,10 @@ import { AiOutlineFolder } from 'react-icons/ai'
 import { BiTimeFive } from 'react-icons/bi'
 import { GrUpdate } from 'react-icons/gr'
 import { useSetRecoilState } from 'recoil'
-import { renderToc } from '../../../../libs/render-toc'
 import { stateToc } from '../../../store/stateToc'
 import Seo from '../../molecules/Seo'
 import { TableOfContents } from '../../molecules/TableOfContents'
+import { renderToc } from 'libs/render-toc'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
 import { MicrocmsData } from 'types/microcmsData'
@@ -27,8 +27,7 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
     return sum + (element.richEditor || element.html) // リッチエディタとテキストエリアに対応
   }, '')
 
-  //  eslint-disable-next-line
-  const contentBody = cheerio.load(contentPost as string) // cheerio非推奨のため対策要
+  const contentBody = load(contentPost as string)
   contentBody('pre code').each((_, elm) => {
     const result = hljs.highlightAuto(contentBody(elm).text())
     contentBody(elm).html(result.value)
