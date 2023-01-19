@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import axios from 'axios'
 import { NextPage } from 'next'
 import { memo } from 'react'
 import { FaGithub } from 'react-icons/fa'
@@ -9,11 +10,10 @@ import { mediaQuery } from 'src/utils/Breakpoints'
 
 // SSG(Jsonから直接取り出し)
 export const getStaticProps = async () => {
-  const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}/storageInfo.json`)
-  const data = await req.json()
+  const data = await axios(`${process.env.NEXT_PUBLIC_HOST}/storageInfo.json`)
   return {
     props: {
-      data: data.reverse(), // 最新のものから上に表示
+      data,
     },
   }
 }

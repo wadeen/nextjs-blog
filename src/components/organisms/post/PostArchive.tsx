@@ -25,7 +25,7 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
         <ul css={info}>
           <li>
             <span css={icon}>
-              {post.updated_at ? (
+              {post.updatedAt ? (
                 <IconContext.Provider value={{ size: '11px' }}>
                   <GrUpdate style={{ marginRight: '4px' }} />
                 </IconContext.Provider>
@@ -35,7 +35,7 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
             </span>
             {
               // 更新日がない場合は作成日を表示
-              dateToString(post.updated_at || post.created_at, 'YYYY/MM/DD')
+              dateToString(post.updatedAt || post.createdAt, 'YYYY/MM/DD')
             }
           </li>
           <li>

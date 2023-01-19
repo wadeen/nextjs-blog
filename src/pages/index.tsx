@@ -1,11 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import axios from 'axios'
 import type {
   GetStaticProps,
   GetStaticPropsContext,
   InferGetStaticPropsType,
 } from 'next'
 import { memo } from 'react'
+import Parser from 'rss-parser'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import Seo from '../components/molecules/Seo'
 import { client } from 'libs/client'
@@ -17,18 +19,94 @@ import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { MicrocmsData } from 'types/microcmsData'
 
+const zennId = 'wadeen'
+
+type ZennPostType = {
+  creator: string
+  title: string
+  link: string
+  pubDate: string
+  enclosure: {
+    url: string
+    length: string
+    type: string
+  }
+  content: string
+  contentSnippet: string
+  guid: string
+  isoDate: string
+}
+
+type PostDataType = Pick<
+  MicrocmsData,
+  'id' | 'title' | 'content' | 'description' | 'updatedAt' | 'createdAt'
+> & { eyecatch: string; categoryId: string; categoryName: string }
+
 // SSG
-export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
-) => {
-  const data = await client.get({
+export const getStaticProps: GetStaticProps = async () => {
+  const microCmsData = await client.get({
     endpoint: 'posts',
     queries: { limit: 6 },
   })
+
+  // microCMS
+  const postData: PostDataType[] = microCmsData.contents.map(
+    (item: MicrocmsData) => {
+      return {
+        id: item.id,
+        title: item.title,
+        content: item.content,
+        description: item.description,
+        categoryId: item.category.id,
+        categoryName: item.category.name,
+        updatedAt: item.updatedAt,
+        createdAt: item.createdAt,
+        eyecatch: item.eyecatch.url,
+      }
+    }
+  )
+
+  const parser: Parser<ZennPostType> = new Parser({
+    customFields: {
+      feed: [
+        'creator',
+        'title',
+        'pubDate',
+        'link',
+        'isoDate',
+        'guid',
+        'enclosure',
+        'creator',
+        'contentSnippet',
+        'content',
+      ],
+    },
+  })
+
+  const { items } = await parser.parseURL(
+    `https://zenn.dev/${zennId}/feed?all=1`
+  )
+
+  const zennPostDat = items.map((item) => {
+    return {
+      id: Math.random(),
+      title: item.title,
+      content: item.content,
+      description: '',
+      categoryId: '',
+      categoryName: '',
+      updatedAt: '',
+      createdAt: item.pubDate,
+      eyecatch: '',
+    }
+  })
+
+  const data = [...postData, ...zennPostDat]
+
   return {
     props: {
-      data: data.contents,
-      totalCount: data.totalCount,
+      data: data,
+      totalCount: microCmsData.totalCount,
     },
   }
 }
@@ -36,6 +114,7 @@ const Home = memo(
   ({ data, totalCount }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
       <>
+        Hello
         <Seo />
         <BlogLayout>
           <BlogLayoutBody>
