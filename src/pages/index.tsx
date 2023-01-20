@@ -66,9 +66,9 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   )
 
-  const parser: Parser<ZennPostType> = new Parser({
+  const parser: Parser<unknown, ZennPostType> = new Parser({
     customFields: {
-      feed: [
+      item: [
         'creator',
         'title',
         'pubDate',
@@ -87,12 +87,12 @@ export const getStaticProps: GetStaticProps = async () => {
     `https://zenn.dev/${zennId}/feed?all=1`
   )
 
-  const zennPostDat = items.map((item) => {
+  const zennPostDat = items.map(item => {
     return {
       id: Math.random(),
       title: item.title,
       content: item.content,
-      description: '',
+      description: item.description,
       categoryId: '',
       categoryName: '',
       updatedAt: '',
