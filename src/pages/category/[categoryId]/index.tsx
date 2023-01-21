@@ -34,7 +34,7 @@ export default function CategoryId({
         <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
         <ul css={postLists}>
           {blog.map((post: PostDataType) => (
-            <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
+            <PostArchive key={post.id} post={post} />
           ))}
         </ul>
 
@@ -52,7 +52,6 @@ export default function CategoryId({
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  // paramsの型エラー回避のため
   const params = context?.params?.categoryId
 
   const data = await client.get<MicrocmsApi>({

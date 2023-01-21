@@ -6,7 +6,6 @@ import {
   InferGetStaticPropsType,
 } from 'next'
 import { useRouter } from 'next/router'
-import { client } from '../../../../libs/client'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
 import Seo from '../../../components/molecules/Seo'
 import AsideArchive from '../../../components/templates/aside/AsideArchive'
@@ -14,6 +13,8 @@ import { BasicPagination } from 'src/components/organisms/pagination/BasicPagina
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
+import fetchMicrocmsData from 'src/pages/api/fetchMicrocmsData' // ★
+import fetchZennData from 'src/pages/api/fetchZennData' // ★
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
 import { PostDataType } from 'types/PostDataType'
@@ -26,25 +27,45 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   const id = Number(context?.params?.pageNum)
 
-  // 件数の取得
-  const data = await client.get({
-    endpoint: 'posts',
-    queries: { offset: (id - 1) * 6, limit: 6 },
+  console.log('context: ', context)
+
+  const queries = { offset: (id - 1) * 6, limit: 6 }
+
+  // microCMSデータの取得(api/fetchMicrocmsData.ts)
+  const microcmsPostData = await fetchMicrocmsData({ queries })
+
+  // Zennデータの取得(api/fetchZennData.ts)
+  const zennPostData = await fetchZennData()
+
+  // Zenn + microCMS合わせた記事
+  const data = [...microcmsPostData, ...zennPostData]
+
+  // データの並び替え: 投稿日順
+  data.sort((a, b) => {
+    return a.createdAt > b.createdAt ? -1 : 1
   })
 
   return {
     props: {
-      data: data.contents,
-      totalCount: data.totalCount,
+      data,
+      totalCount: data.length,
     },
   }
 }
 
 // 動的ページの作成
 export const getStaticPaths = async () => {
-  const repos = await client.get({ endpoint: 'posts' })
+  // microCMSデータの取得(api/fetchMicrocmsData.ts)
+  const queries = { limit: 6 }
+  const microcmsPostData = await fetchMicrocmsData({ queries })
 
-  const paths = paginationRange(1, Math.ceil(repos.totalCount / PER_PAGE)).map(
+  // Zennデータの取得(api/fetchZennData.ts)
+  const zennPostData = await fetchZennData()
+
+  // Zenn + microCMS合わせた記事
+  const data = [...microcmsPostData, ...zennPostData]
+
+  const paths = paginationRange(1, Math.ceil(data.length / PER_PAGE)).map(
     (repo) => `/posts/page/${repo}`
   )
   return { paths, fallback: false }

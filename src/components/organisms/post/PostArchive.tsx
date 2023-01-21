@@ -8,7 +8,6 @@ import { BiTimeFive } from 'react-icons/bi'
 import { GrUpdate } from 'react-icons/gr'
 import { HiOutlineExternalLink } from 'react-icons/hi'
 import { mediaQuery } from 'src/utils/Breakpoints'
-// import { dateToString } from 'src/utils/dateToString'
 import { PostDataType } from 'types/PostDataType'
 
 const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
@@ -40,11 +39,8 @@ const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
                 <BiTimeFive />
               )}
             </span>
-            {
-              // 更新日がない場合は作成日を表示
-              // dateToString(post.updatedAt || post.createdAt, 'YYYY/MM/DD')
-              post.updatedAt || post.createdAt
-            }
+            {/* 更新日がない場合は作成日を表示 */}
+            {post.updatedAt || post.createdAt}
           </li>
           <li>
             <span css={icon}>
@@ -83,7 +79,8 @@ const list = css`
 
   // Zennの記事
   &.isZenn {
-    background-color: rgba(46, 255, 248, 0.3);
+    background-color: rgba(46, 255, 248, 0.4);
+    border-color: #50905a;
   }
 `
 
