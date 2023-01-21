@@ -9,14 +9,14 @@ import { searchState } from '../../../store/searchState'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
 const SearchForm: NextPage = () => {
-  const [searchValue, setSeatchValue] = useRecoilState(searchState)
+  const [searchValue, setSearchValue] = useRecoilState(searchState)
   const router = useRouter()
 
   const onChangeValue = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      setSeatchValue(e.target.value)
+      setSearchValue(e.target.value)
     },
-    [setSeatchValue]
+    [setSearchValue]
   )
 
   const handleClickSubmitButton = useCallback(
@@ -40,7 +40,7 @@ const SearchForm: NextPage = () => {
   return (
     <form css={container}>
       <input
-        id="seacrch-form"
+        id="search-form"
         type="text"
         value={searchValue}
         onChange={onChangeValue}

@@ -16,12 +16,12 @@ import { PostDataType } from 'types/PostDataType'
 
 // SSG
 export const getStaticProps: GetStaticProps = async () => {
-  // microCMSデータの取得(api/fetchMicrocmsData.ts)
-  const queries = { limit: 6 }
-  const microcmsPostData = await fetchMicrocmsData({ queries })
-
   // Zennデータの取得(api/fetchZennData.ts)
   const zennPostData = await fetchZennData()
+
+  // microCMSデータの取得(api/fetchMicrocmsData.ts)
+  const queries = { limit: 6 - zennPostData.length } // microCMS + Zenn合計で最大6件
+  const microcmsPostData = await fetchMicrocmsData({ queries })
 
   // Zenn + microCMS合わせた記事
   const data = [...microcmsPostData, ...zennPostData]

@@ -6,18 +6,18 @@ import {
   GetStaticPaths,
   InferGetStaticPropsType,
 } from 'next'
-import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
-import Seo from '../../../components/molecules/Seo'
-import PostArchive from '../../../components/organisms/post/PostArchive'
-import BlogLayout from '../../../components/templates/BlogLayout'
-import BlogLayoutBase from '../../../components/templates/BlogLayoutBase'
-import { paginationRange } from '../../../utils/paginationRange'
 import { client } from 'libs/client'
 import Failed from 'src/components/atoms/Failed'
+import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
+import Seo from 'src/components/molecules/Seo'
 import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
+import PostArchive from 'src/components/organisms/post/PostArchive'
+import BlogLayout from 'src/components/templates/BlogLayout'
+import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { MicrocmsData } from 'types/microcmsData'
+import { paginationRange } from 'src/utils/paginationRange'
+import { PostDataType } from 'types/PostDataType'
 
 const PER_PAGE = 6
 
@@ -30,11 +30,11 @@ export default function CategoryId({
   }
   return (
     <BlogLayout>
-      <Seo ogpTitle={` ${blog[0].category.name} の記事一覧 | Webのあれこれ`} />
+      <Seo ogpTitle={`${blog[0].category.name} の記事一覧 | Webのあれこれ`} />
       <BlogLayoutBase>
         <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
         <ul css={postLists}>
-          {blog.map((post: MicrocmsData) => (
+          {blog.map((post: PostDataType) => (
             <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
           ))}
         </ul>

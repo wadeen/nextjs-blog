@@ -10,7 +10,39 @@ import { mediaQuery } from 'src/utils/Breakpoints'
 
 // SSG(Jsonから直接取り出し)
 export const getStaticProps = async () => {
-  const data = await axios(`${process.env.NEXT_PUBLIC_HOST}/storageInfo.json`)
+  // const data = await axios(`${process.env.NEXT_PUBLIC_HOST}/storageInfo.json`)
+
+  const data = [
+    {
+      id: 1,
+      img: '/images/storage/react-todo.png',
+      title: 'ToDoアプリ',
+      tags: ['React', 'TypeScript', 'Firestore'],
+      message: 'React基礎を学習したのでアウトプットのために作成しました🗓',
+      github: 'https://github.com/wadeen/original-react-todo',
+      website: 'https://original-react-todo.vercel.app/',
+    },
+    {
+      id: 2,
+      img: '/images/storage/nextjs-image.png',
+      title: 'Unsplash画像検索アプリ',
+      tags: ['React', 'Next.js', 'TypeScript', 'Unsplash API'],
+      message:
+        'API学習用に作成。検索するとUnsplashのAPIを取得して画像を表示します。',
+      github: 'https://github.com/wadeen/nextjs-image-search',
+      website: 'https://nextjs-image-search-lvnw1iseo-wadeen.vercel.app/',
+    },
+    {
+      id: 3,
+      img: '/images/storage/portfolio.png',
+      title: 'ポートフォリオサイト',
+      tags: ['React', 'Next.js', 'TypeScript', 'Firestore', 'microCMS'],
+      message: 'このポートフォリオサイトです。\n逐一機能を追加していきます🙌',
+      github: 'https://github.com/wadeen/nextjs-blog',
+      website: 'https://wadeen.net/',
+    },
+  ]
+
   return {
     props: {
       data,

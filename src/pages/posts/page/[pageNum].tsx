@@ -13,8 +13,8 @@ import { BasicPagination } from 'src/components/organisms/pagination/BasicPagina
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
-import fetchMicrocmsData from 'src/pages/api/fetchMicrocmsData' // ★
-import fetchZennData from 'src/pages/api/fetchZennData' // ★
+import fetchMicrocmsData from 'src/pages/api/fetchMicrocmsData'
+import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
 import { PostDataType } from 'types/PostDataType'
@@ -27,15 +27,13 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   const id = Number(context?.params?.pageNum)
 
-  console.log('context: ', context)
+  // Zennデータの取得(api/fetchZennData.ts)
+  const zennPostData = await fetchZennData()
 
-  const queries = { offset: (id - 1) * 6, limit: 6 }
+  const queries = { offset: (id - 1) * 6, limit: 6 - zennPostData.length }
 
   // microCMSデータの取得(api/fetchMicrocmsData.ts)
   const microcmsPostData = await fetchMicrocmsData({ queries })
-
-  // Zennデータの取得(api/fetchZennData.ts)
-  const zennPostData = await fetchZennData()
 
   // Zenn + microCMS合わせた記事
   const data = [...microcmsPostData, ...zennPostData]
@@ -56,7 +54,7 @@ export const getStaticProps: GetStaticProps = async (
 // 動的ページの作成
 export const getStaticPaths = async () => {
   // microCMSデータの取得(api/fetchMicrocmsData.ts)
-  const queries = { limit: 6 }
+  const queries = { limit: 999 } // microCMS全件取得
   const microcmsPostData = await fetchMicrocmsData({ queries })
 
   // Zennデータの取得(api/fetchZennData.ts)
