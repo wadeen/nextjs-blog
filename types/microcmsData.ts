@@ -19,6 +19,6 @@ export type MicrocmsData = {
   createdAt: string
   updatedAt: string
   toc_visible: boolean
-  description: string
+  description?: string | null
   post: string
 }

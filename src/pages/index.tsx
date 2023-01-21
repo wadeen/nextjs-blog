@@ -1,11 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import axios from 'axios'
-import type {
-  GetStaticProps,
-  GetStaticPropsContext,
-  InferGetStaticPropsType,
-} from 'next'
+import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { memo } from 'react'
 import Parser from 'rss-parser'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
@@ -17,8 +12,10 @@ import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { dateToString } from 'src/utils/dateToString'
 import { PostDataType } from 'types/PostDataType'
 import { ZennPostType } from 'types/ZennPostType'
+import { MicrocmsApi } from 'types/microcmsApi'
 import { MicrocmsData } from 'types/microcmsData'
 import zennLogo from '/public/images/icon/zenn_logo.png'
 
@@ -26,23 +23,26 @@ const zennId = 'wadeen'
 
 // SSG
 export const getStaticProps: GetStaticProps = async () => {
-  const microCmsData = await client.get({
+  const microcmsData = await client.get<MicrocmsApi>({
     endpoint: 'posts',
     queries: { limit: 6 },
   })
 
   // microCMS
-  const postData: PostDataType[] = microCmsData.contents.map(
+  const postData: PostDataType[] = microcmsData.contents.map(
     (item: MicrocmsData) => {
+      const createdAt = dateToString(item.createdAt, 'YYYY/MM/DD')
+      const updatedAt = dateToString(item.updatedAt, 'YYYY/MM/DD')
+      console.log('createdAt: ', createdAt)
       return {
         id: item.id,
         title: item.title,
         content: item.content,
-        description: item.description,
+        description: item.description || null,
         categoryId: item.category.id,
         categoryName: item.category.name,
-        updatedAt: item.updatedAt,
-        createdAt: item.createdAt,
+        updatedAt,
+        createdAt,
         eyecatch: item.eyecatch.url,
       }
     }
@@ -69,29 +69,33 @@ export const getStaticProps: GetStaticProps = async () => {
     `https://zenn.dev/${zennId}/feed?all=1`
   )
 
-  console.log('items: ', `https://zenn.dev/${zennId}/feed?all=1`)
-
   const zennPostData = items.map((item: ZennPostType) => {
+    const createdAt = dateToString(item.pubDate, 'YYYY/MM/DD')
     return {
       id: item.link,
       title: item.title,
       content: item.content,
-      createdAt: item.pubDate,
+      createdAt,
       eyecatch: zennLogo.src,
       categoryName: 'Zenn',
       categoryId: 'Zenn',
       isZenn: true,
-      description: null, // 詳細ページないため不要
-      updatedAt: null, // 詳細ページないため不要(一覧ページも投稿日のみでOK)
+      description: '', // 詳細ページないため不要
+      updatedAt: '', // 詳細ページないため不要(一覧ページも投稿日のみでOK)
     }
   })
 
   const data = [...postData, ...zennPostData]
 
+  // データの並び替え: 投稿日順
+  data.sort((a, b) => {
+    return a.createdAt > b.createdAt ? -1 : 1
+  })
+
   return {
     props: {
-      data: data,
-      totalCount: microCmsData.totalCount,
+      data,
+      totalCount: microcmsData.totalCount,
     },
   }
 }

@@ -16,9 +16,9 @@ import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { PostDataType } from 'types/PostDataType'
 import { microCmsPostData } from 'types/microCmsPostData'
 import { MicrocmsApi } from 'types/microcmsApi'
-import { MicrocmsData } from 'types/microcmsData'
 
 export default function CategoryId({
   blog,
@@ -33,7 +33,7 @@ export default function CategoryId({
       <BlogLayoutBase>
         <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
         <ul css={postLists}>
-          {blog.map((post: MicrocmsData) => (
+          {blog.map((post: PostDataType) => (
             <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
           ))}
         </ul>

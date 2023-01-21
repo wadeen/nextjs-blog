@@ -8,7 +8,7 @@ import { BiTimeFive } from 'react-icons/bi'
 import { GrUpdate } from 'react-icons/gr'
 import { HiOutlineExternalLink } from 'react-icons/hi'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { dateToString } from 'src/utils/dateToString'
+// import { dateToString } from 'src/utils/dateToString'
 import { PostDataType } from 'types/PostDataType'
 
 const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
@@ -22,7 +22,9 @@ const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
         <div css={postView}>
           <img
             css={eyecatchIcon}
-            src={post.eyecatch}
+            /* ToDo: Zennの記事は`Zennカテゴリ`を作成してフィルタリングできるようにする = その後エラー解決する */ // @ts-ignore
+            src={post.eyecatch.url || post.eyecatch}
+            // src={post.eyecatch}
             alt="アイキャッチアイコン"
           />
           <h2 css={textTitle}>{post.title}</h2>
@@ -40,14 +42,14 @@ const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
             </span>
             {
               // 更新日がない場合は作成日を表示
-              dateToString(post.updatedAt || post.createdAt, 'YYYY/MM/DD')
+              // dateToString(post.updatedAt || post.createdAt, 'YYYY/MM/DD')
+              post.updatedAt || post.createdAt
             }
           </li>
           <li>
             <span css={icon}>
               {post.isZenn ? <HiOutlineExternalLink /> : <AiOutlineFolder />}
             </span>
-            {/* ToDo: Zennの記事は`Zennカテゴリ`を作成してフィルタリングできるようにする */}
             {post.categoryName}
           </li>
         </ul>
