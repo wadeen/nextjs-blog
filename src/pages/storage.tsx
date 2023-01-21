@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import axios from 'axios'
 import { NextPage } from 'next'
 import { memo } from 'react'
 import { FaGithub } from 'react-icons/fa'
