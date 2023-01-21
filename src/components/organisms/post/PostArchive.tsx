@@ -2,15 +2,14 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import zennLogo from '/public/images/icon/zenn_logo.png'
 import { IconContext } from 'react-icons'
 import { AiOutlineFolder } from 'react-icons/ai'
 import { BiTimeFive } from 'react-icons/bi'
 import { GrUpdate } from 'react-icons/gr'
-import { PostDataType } from 'src/pages'
+import { HiOutlineExternalLink } from 'react-icons/hi'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
-import { MicrocmsData } from 'types/microcmsData'
+import { PostDataType } from 'types/PostDataType'
 
 const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
   return (
@@ -23,7 +22,7 @@ const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
         <div css={postView}>
           <img
             css={eyecatchIcon}
-            src={post.isZenn ? zennLogo.src : post.eyecatch}
+            src={post.eyecatch}
             alt="アイキャッチアイコン"
           />
           <h2 css={textTitle}>{post.title}</h2>
@@ -46,8 +45,9 @@ const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
           </li>
           <li>
             <span css={icon}>
-              <AiOutlineFolder />
+              {post.isZenn ? <HiOutlineExternalLink /> : <AiOutlineFolder />}
             </span>
+            {/* ToDo: Zennの記事は`Zennカテゴリ`を作成してフィルタリングできるようにする */}
             {post.categoryName}
           </li>
         </ul>

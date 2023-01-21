@@ -17,20 +17,12 @@ import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { PostDataType } from 'types/PostDataType'
 import { ZennPostType } from 'types/ZennPostType'
 import { MicrocmsData } from 'types/microcmsData'
+import zennLogo from '/public/images/icon/zenn_logo.png'
 
 const zennId = 'wadeen'
-
-export type PostDataType = Pick<
-  MicrocmsData,
-  'id' | 'title' | 'content' | 'description' | 'updatedAt' | 'createdAt'
-> & {
-  eyecatch: string
-  categoryId: string
-  categoryName: string
-  isZenn?: boolean
-}
 
 // SSG
 export const getStaticProps: GetStaticProps = async () => {
@@ -85,12 +77,12 @@ export const getStaticProps: GetStaticProps = async () => {
       title: item.title,
       content: item.content,
       createdAt: item.pubDate,
+      eyecatch: zennLogo.src,
+      categoryName: 'Zenn',
+      categoryId: 'Zenn',
       isZenn: true,
-      description: '',
-      categoryId: '',
-      categoryName: '',
-      updatedAt: '',
-      eyecatch: '',
+      description: null, // 詳細ページないため不要
+      updatedAt: null, // 詳細ページないため不要(一覧ページも投稿日のみでOK)
     }
   })
 

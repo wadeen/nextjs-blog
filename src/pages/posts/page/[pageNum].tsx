@@ -7,7 +7,6 @@ import {
 } from 'next'
 import { useRouter } from 'next/router'
 import { client } from '../../../../libs/client'
-import { MicrocmsData } from '../../../../types/microcmsData'
 import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
 import Seo from '../../../components/molecules/Seo'
 import AsideArchive from '../../../components/templates/aside/AsideArchive'
@@ -17,6 +16,7 @@ import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
+import { PostDataType } from 'types/PostDataType'
 
 const PER_PAGE = 6
 
@@ -62,7 +62,7 @@ const PostPage = ({
         <BlogLayoutBody>
           <ArticleTitle text={`記事一覧 　${router.query.pageNum}ページ目`} />
           <ul css={postLists}>
-            {data.map((post: MicrocmsData) => (
+            {data.map((post: PostDataType) => (
               <PostArchive key={post.id} post={post} /> // 最新ページから取り出した一覧記事
             ))}
           </ul>
