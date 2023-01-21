@@ -2,22 +2,28 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
+import zennLogo from '/public/images/icon/zenn_logo.png'
 import { IconContext } from 'react-icons'
 import { AiOutlineFolder } from 'react-icons/ai'
 import { BiTimeFive } from 'react-icons/bi'
 import { GrUpdate } from 'react-icons/gr'
+import { PostDataType } from 'src/pages'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
 import { MicrocmsData } from 'types/microcmsData'
 
-const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
+const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
   return (
-    <li css={list}>
-      <Link href={`/posts/${post.id}`} css={link}>
+    <li css={list} className={post.isZenn ? 'isZenn' : ''}>
+      <Link
+        href={post.isZenn ? post.id : `/posts/${post.id}`}
+        target={post.isZenn ? '_blank' : '_self'}
+        css={link}
+      >
         <div css={postView}>
           <img
-            css={eyecatch}
-            src={post.eyecatch.url}
+            css={eyecatchIcon}
+            src={post.isZenn ? zennLogo.src : post.eyecatch}
             alt="アイキャッチアイコン"
           />
           <h2 css={textTitle}>{post.title}</h2>
@@ -42,7 +48,7 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
             <span css={icon}>
               <AiOutlineFolder />
             </span>
-            {post.category.name}
+            {post.categoryName}
           </li>
         </ul>
       </Link>
@@ -72,6 +78,11 @@ const list = css`
     border: 1px solid var(--cSub);
     opacity: 0.85;
   }
+
+  // Zennの記事
+  &.isZenn {
+    background-color: rgba(46, 255, 248, 0.3);
+  }
 `
 
 const link = css`
@@ -88,9 +99,10 @@ const postView = css`
   height: calc(100% - 20px);
 `
 
-const eyecatch = css`
+const eyecatchIcon = css`
   width: 72px;
   height: 72px;
+  border-radius: 50%;
   ${mediaQuery[2]} {
     width: 64px;
     height: 64px;

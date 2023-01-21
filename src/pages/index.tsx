@@ -17,30 +17,20 @@ import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { ZennPostType } from 'types/ZennPostType'
 import { MicrocmsData } from 'types/microcmsData'
 
 const zennId = 'wadeen'
 
-type ZennPostType = {
-  creator: string
-  title: string
-  link: string
-  pubDate: string
-  enclosure: {
-    url: string
-    length: string
-    type: string
-  }
-  content: string
-  contentSnippet: string
-  guid: string
-  isoDate: string
-}
-
-type PostDataType = Pick<
+export type PostDataType = Pick<
   MicrocmsData,
   'id' | 'title' | 'content' | 'description' | 'updatedAt' | 'createdAt'
-> & { eyecatch: string; categoryId: string; categoryName: string }
+> & {
+  eyecatch: string
+  categoryId: string
+  categoryName: string
+  isZenn?: boolean
+}
 
 // SSG
 export const getStaticProps: GetStaticProps = async () => {
@@ -87,21 +77,24 @@ export const getStaticProps: GetStaticProps = async () => {
     `https://zenn.dev/${zennId}/feed?all=1`
   )
 
-  const zennPostDat = items.map(item => {
+  console.log('items: ', `https://zenn.dev/${zennId}/feed?all=1`)
+
+  const zennPostData = items.map((item: ZennPostType) => {
     return {
-      id: Math.random(),
+      id: item.link,
       title: item.title,
       content: item.content,
-      description: item.description,
+      createdAt: item.pubDate,
+      isZenn: true,
+      description: '',
       categoryId: '',
       categoryName: '',
       updatedAt: '',
-      createdAt: item.pubDate,
       eyecatch: '',
     }
   })
 
-  const data = [...postData, ...zennPostDat]
+  const data = [...postData, ...zennPostData]
 
   return {
     props: {
@@ -114,13 +107,12 @@ const Home = memo(
   ({ data, totalCount }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
       <>
-        Hello
         <Seo />
         <BlogLayout>
           <BlogLayoutBody>
             <ArticleTitle text={'最新の記事一覧'} />
             <ul css={postLists}>
-              {data.map((post: MicrocmsData) => (
+              {data.map((post: PostDataType) => (
                 <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
               ))}
             </ul>
