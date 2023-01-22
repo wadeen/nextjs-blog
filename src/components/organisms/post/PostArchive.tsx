@@ -2,6 +2,7 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { IconContext } from 'react-icons'
 import { AiOutlineFolder } from 'react-icons/ai'
 import { BiTimeFive } from 'react-icons/bi'
@@ -9,8 +10,11 @@ import { GrUpdate } from 'react-icons/gr'
 import { HiOutlineExternalLink } from 'react-icons/hi'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { PostDataType } from 'types/PostDataType'
+import zennLogo from '/public/images/icon/zenn_logo.png'
 
 const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
+  const router = useRouter()
+  console.log('router: ', router)
   return (
     <li css={list} className={post.isZenn ? 'isZenn' : ''}>
       <Link
@@ -22,7 +26,7 @@ const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
           <img
             css={eyecatchIcon}
             /* ToDo: Zennの記事は`Zennカテゴリ`を作成してフィルタリングできるようにする = その後エラー解決する */ // @ts-ignore
-            src={post.eyecatch}
+            src={post.isZenn ? zennLogo.src : post.eyecatch}
             // src={post.eyecatch}
             alt="アイキャッチアイコン"
           />

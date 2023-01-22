@@ -38,10 +38,10 @@ const fetchZennData = async () => {
       title: item.title,
       content: item.content,
       createdAt,
-      eyecatch: zennLogo.src,
       categoryName: 'Zenn',
       categoryId: 'Zenn',
       isZenn: true,
+      eyecatch: null, // ここで指定するとエラー出るためファイルで画像の指定する
       description: '', // 詳細ページないため不要
       updatedAt: '', // 詳細ページないため不要(一覧ページも投稿日のみでOK)
     }
