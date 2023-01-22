@@ -30,23 +30,25 @@ export const getStaticProps: GetStaticProps = async (
   // Zennデータの取得(api/fetchZennData.ts)
   const zennPostData = await fetchZennData()
 
-  const queries = { offset: (id - 1) * 6, limit: 6 - zennPostData.length }
+  // microCMSのクエリ
+  const queries = { offset: (id - 1) * 6, limit: 6 - zennPostData.length } // zennとmicroCMSのデータ合計6件取得(一覧に表示する分)
+  const allQueries = { limit: 999 } // 全件取得
 
   // microCMSデータの取得(api/fetchMicrocmsData.ts)
-  const microcmsPostData = await fetchMicrocmsData({ queries })
+  const microcmsPostData = await fetchMicrocmsData({ queries }) // 一覧に表示する分
+  const allMicrocmsPostData = await fetchMicrocmsData({ allQueries }) // 全件取得
 
   // Zenn + microCMS合わせた記事
-  const data = [...microcmsPostData, ...zennPostData]
+  const data = [...microcmsPostData, ...zennPostData] // 一覧に表示する分
+  const allData = [...allMicrocmsPostData, ...zennPostData] // 全件取得
 
   // データの並び替え: 投稿日順
-  data.sort((a, b) => {
-    return a.createdAt > b.createdAt ? -1 : 1
-  })
+  data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
 
   return {
     props: {
       data,
-      totalCount: data.length,
+      totalCount: allData.length,
     },
   }
 }

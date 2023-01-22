@@ -35,7 +35,7 @@ export default function CategoryId({
         <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
         <ul css={postLists}>
           {blog.map((post: PostDataType) => (
-            <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
+            <PostArchive key={post.id} post={post} />
           ))}
         </ul>
 
@@ -53,7 +53,6 @@ export default function CategoryId({
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  // paramsの型エラー回避のため
   const categoryName = context?.params?.categoryId // カテゴリー名(ID)
   const categoryNum = context?.params?.pageNum // カテゴリーの合計数
 
@@ -79,7 +78,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const categories = await client.get({ endpoint: 'categories' })
 
   // pathsに設定する配列の作成
-  const categoryPaths: any = []
+  const categoryPaths: string[] = []
 
   // 各カテゴリ別の記事を取得(カテゴリの合計ページ数の取得)
   for (const category of categories.contents) {

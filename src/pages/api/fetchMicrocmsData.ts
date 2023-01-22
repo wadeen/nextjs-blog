@@ -6,7 +6,7 @@ import { MicrocmsApi } from 'types/microcmsApi'
 import { MicrocmsData } from 'types/microcmsData'
 
 type Props = {
-  queries: {
+  [key: string]: {
     offset?: number
     limit?: number
   }
