@@ -1,11 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import {
-  GetStaticProps,
-  GetStaticPropsContext,
-  GetStaticPaths,
-  InferGetStaticPropsType,
-} from 'next'
+import { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'next'
 import Failed from 'src/components/atoms/Failed'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
 import Seo from 'src/components/molecules/Seo'

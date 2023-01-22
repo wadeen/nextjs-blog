@@ -1,12 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Link from 'next/link'
-import { HiOutlineExternalLink } from 'react-icons/hi'
 import useSWR from 'swr'
 import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
-import fetchZennData from 'src/pages/api/fetchZennData'
-import { ZennPostType } from 'types/ZennPostType'
 
 type CategoryCountAndPost = {
   category: string

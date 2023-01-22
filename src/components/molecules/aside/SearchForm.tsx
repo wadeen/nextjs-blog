@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { useCallback } from 'react'
 import { BiSearch } from 'react-icons/bi'
 import { useRecoilState } from 'recoil'
-import { searchState } from '../../../store/searchState'
+import { searchState } from 'src/store/searchState'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
 const SearchForm: NextPage = () => {

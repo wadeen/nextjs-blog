@@ -64,8 +64,6 @@ export const getStaticProps: GetStaticProps = async (
     },
   })
 
-  // ToDo: any潰す
-
   const data = microcmsData.contents.map((item: MicrocmsData) => {
     const createdAt = dateToString(item.createdAt, 'YYYY/MM/DD')
     const updatedAt = dateToString(item.updatedAt, 'YYYY/MM/DD')
