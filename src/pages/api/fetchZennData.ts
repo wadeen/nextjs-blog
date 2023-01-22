@@ -24,11 +24,12 @@ const fetchZennData = async () => {
     },
   })
 
+  // ToDo: catchを使うと型はどうなる？
   const { items } = await parser.parseURL(
     `https://zenn.dev/${zennId}/feed?all=1`
   )
-  // ToDo: catchを使うと型はどうなる？
-  // .catch(() => console.log('エラーが発生しました。'))
+
+  // .catch((err) => console.log('以下のエラーが発生しました。\n', err))
 
   const zennPostData = items.map((item: ZennPostType) => {
     const createdAt = dateToString(item.pubDate, 'YYYY/MM/DD')
@@ -41,8 +42,8 @@ const fetchZennData = async () => {
       categoryName: 'Zenn',
       categoryId: 'Zenn',
       isZenn: true,
-      description: null, // 詳細ページないため不要
-      updatedAt: null, // 詳細ページないため不要(一覧ページも投稿日のみでOK)
+      description: '', // 詳細ページないため不要
+      updatedAt: '', // 詳細ページないため不要(一覧ページも投稿日のみでOK)
     }
   })
 

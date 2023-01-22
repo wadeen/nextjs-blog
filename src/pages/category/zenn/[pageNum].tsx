@@ -39,10 +39,7 @@ export default function CategoryId({
           ))}
         </ul>
 
-        <CategoryPagination
-          category={blog[0].categoryId}
-          totalCount={totalCount}
-        />
+        <CategoryPagination category="zenn" totalCount={totalCount} />
       </BlogLayoutBase>
       <AsideArchive />
     </BlogLayout>

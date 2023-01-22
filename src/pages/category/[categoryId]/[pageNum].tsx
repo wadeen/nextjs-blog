@@ -16,8 +16,10 @@ import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { dateToString } from 'src/utils/dateToString'
 import { paginationRange } from 'src/utils/paginationRange'
 import { PostDataType } from 'types/PostDataType'
+import { MicrocmsData } from 'types/microcmsData'
 
 const PER_PAGE = 6
 
@@ -30,9 +32,9 @@ export default function CategoryId({
   }
   return (
     <BlogLayout>
-      <Seo ogpTitle={`${blog[0].category.name} の記事一覧 | Webのあれこれ`} />
+      <Seo ogpTitle={`${blog[0].categoryName} の記事一覧 | Webのあれこれ`} />
       <BlogLayoutBase>
-        <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
+        <ArticleTitle text={`カテゴリ： ${blog[0].categoryName} の記事一覧`} />
         <ul css={postLists}>
           {blog.map((post: PostDataType) => (
             <PostArchive key={post.id} post={post} />
@@ -40,7 +42,7 @@ export default function CategoryId({
         </ul>
 
         <CategoryPagination
-          category={blog[0].category.id}
+          category={blog[0].categoryId}
           totalCount={totalCount}
         />
       </BlogLayoutBase>
@@ -56,7 +58,7 @@ export const getStaticProps: GetStaticProps = async (
   const categoryName = context?.params?.categoryId // カテゴリー名(ID)
   const categoryNum = context?.params?.pageNum // カテゴリーの合計数
 
-  const data = await client.get({
+  const microcmsData = await client.get({
     endpoint: 'posts',
     queries: {
       filters: `category[equals]${categoryName}`,
@@ -65,10 +67,26 @@ export const getStaticProps: GetStaticProps = async (
     },
   })
 
+  const data = microcmsData.contents.map((item: MicrocmsData) => {
+    const createdAt = dateToString(item.createdAt, 'YYYY/MM/DD')
+    const updatedAt = dateToString(item.updatedAt, 'YYYY/MM/DD')
+    return {
+      id: item.id,
+      title: item.title,
+      content: item.content,
+      description: item.description || null,
+      categoryId: item.category.id,
+      categoryName: item.category.name,
+      updatedAt,
+      createdAt,
+      eyecatch: item.eyecatch.url,
+    }
+  })
+
   return {
     props: {
-      blog: data.contents,
-      totalCount: data.totalCount,
+      blog: data,
+      totalCount: data.length,
     },
   }
 }

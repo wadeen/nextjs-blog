@@ -1,7 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { GetStaticProps, InferGetStaticPropsType } from 'next'
-import fetchZennData from '../../api/fetchZennData'
 import Failed from 'src/components/atoms/Failed'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
 import Seo from 'src/components/molecules/Seo'
@@ -10,6 +9,7 @@ import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
+import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { PostDataType } from 'types/PostDataType'
 
@@ -35,10 +35,7 @@ export default function CategoryId({
           ))}
         </ul>
 
-        <CategoryPagination
-          category={blog[0].categoryId}
-          totalCount={totalCount}
-        />
+        <CategoryPagination category="zenn" totalCount={totalCount} />
       </BlogLayoutBase>
       <AsideArchive />
     </BlogLayout>

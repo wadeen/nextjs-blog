@@ -1,10 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Link from 'next/link'
+import { HiOutlineExternalLink } from 'react-icons/hi'
 import useSWR from 'swr'
 import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 import fetchZennData from 'src/pages/api/fetchZennData'
+import { ZennPostType } from 'types/ZennPostType'
 
 type CategoryCountAndPost = {
   category: string
@@ -37,18 +39,17 @@ const AsideCategory = () => {
       })
     }
 
-    // Zennカテゴリの取得
-    // Zennデータの取得(api/fetchZennData.ts)
-
-    // const zennPostData = await fetchZennData()
-    // console.log('zennPostData: ', zennPostData)
-
-    const zennData = {
+    // ToDo 仮でカテゴリ設置
+    categoryPosts.push({
       category: 'zenn',
       totalCount: '1',
-    }
+    })
 
-    categoryPosts.push(zennData)
+    // ToDo fetchのエラーの解決
+
+    // Zennデータの取得(api/fetchZennData.ts)
+    // const zennPostData = await fetchZennData()
+    // console.log('zennPostData: ', zennPostData)
 
     return categoryPosts
   }
