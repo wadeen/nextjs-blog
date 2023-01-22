@@ -14,29 +14,29 @@ import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { PostDataType } from 'types/PostDataType'
 
+const PER_PAGE = 6
+
 // SSG
 export const getStaticProps: GetStaticProps = async () => {
   // Zennデータの取得(api/fetchZennData.ts)
   const zennPostData = await fetchZennData()
 
-  // microCMSのクエリ
-  const queries = { limit: 6 - zennPostData.length } // zennとmicroCMSのデータ合計6件取得(一覧に表示する分)
-  const allQueries = { limit: 999 } // 全件取得
-
   // microCMSデータの取得(api/fetchMicrocmsData.ts)
-  const microcmsPostData = await fetchMicrocmsData({ queries }) // 一覧に表示する分
-  const allMicrocmsPostData = await fetchMicrocmsData({ allQueries }) // 全件取得
+  const microcmsPostData = await fetchMicrocmsData()
 
   // Zenn + microCMS合わせた記事
-  const data = [...microcmsPostData, ...zennPostData] // 一覧に表示する分
-  const allData = [...allMicrocmsPostData, ...zennPostData] // 全件取得
+  const data = [...microcmsPostData, ...zennPostData]
 
   // データの並び替え: 投稿日順
   data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+
+  // [pageNum]に表示するデータ
+  const displayData = data.slice(0, PER_PAGE)
+
   return {
     props: {
-      data,
-      totalCount: allData.length,
+      data: displayData,
+      totalCount: data.length,
     },
   }
 }

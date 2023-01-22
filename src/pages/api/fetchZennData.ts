@@ -38,8 +38,8 @@ const fetchZennData = async () => {
       categoryName: 'Zenn',
       categoryId: 'Zenn',
       isZenn: true,
-      description: '', // 詳細ページないため不要
-      updatedAt: '', // 詳細ページないため不要(一覧ページも投稿日のみでOK)
+      description: null, // 詳細ページないため不要
+      updatedAt: null, // 詳細ページないため不要(一覧ページも投稿日のみでOK)
     }
   })
 

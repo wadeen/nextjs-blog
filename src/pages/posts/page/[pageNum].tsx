@@ -6,13 +6,13 @@ import {
   InferGetStaticPropsType,
 } from 'next'
 import { useRouter } from 'next/router'
-import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
-import Seo from '../../../components/molecules/Seo'
-import AsideArchive from '../../../components/templates/aside/AsideArchive'
+import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
+import Seo from 'src/components/molecules/Seo'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
+import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import fetchMicrocmsData from 'src/pages/api/fetchMicrocmsData'
 import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
@@ -25,30 +25,28 @@ const PER_PAGE = 6
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  const id = Number(context?.params?.pageNum)
+  const id = Number(context?.params?.pageNum) // 現在のページ数
+  const offset = (id - 1) * PER_PAGE // 何記事目から始めるか
 
   // Zennデータの取得(api/fetchZennData.ts)
   const zennPostData = await fetchZennData()
 
-  // microCMSのクエリ
-  const queries = { offset: (id - 1) * 6, limit: 6 - zennPostData.length } // zennとmicroCMSのデータ合計6件取得(一覧に表示する分)
-  const allQueries = { limit: 999 } // 全件取得
-
   // microCMSデータの取得(api/fetchMicrocmsData.ts)
-  const microcmsPostData = await fetchMicrocmsData({ queries }) // 一覧に表示する分
-  const allMicrocmsPostData = await fetchMicrocmsData({ allQueries }) // 全件取得
+  const microcmsPostData = await fetchMicrocmsData()
 
   // Zenn + microCMS合わせた記事
-  const data = [...microcmsPostData, ...zennPostData] // 一覧に表示する分
-  const allData = [...allMicrocmsPostData, ...zennPostData] // 全件取得
+  const data = [...microcmsPostData, ...zennPostData]
 
   // データの並び替え: 投稿日順
   data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
 
+  // [pageNum]に表示するデータ
+  const displayData = data.slice(offset, offset + PER_PAGE)
+
   return {
     props: {
-      data,
-      totalCount: allData.length,
+      data: displayData,
+      totalCount: data.length,
     },
   }
 }
@@ -56,13 +54,12 @@ export const getStaticProps: GetStaticProps = async (
 // 動的ページの作成
 export const getStaticPaths = async () => {
   // microCMSデータの取得(api/fetchMicrocmsData.ts)
-  const queries = { limit: 999 } // microCMS全件取得
-  const microcmsPostData = await fetchMicrocmsData({ queries })
+  const microcmsPostData = await fetchMicrocmsData()
 
   // Zennデータの取得(api/fetchZennData.ts)
   const zennPostData = await fetchZennData()
 
-  // Zenn + microCMS合わせた記事
+  // Zenn + microCMS合わせた記事全件
   const data = [...microcmsPostData, ...zennPostData]
 
   const paths = paginationRange(1, Math.ceil(data.length / PER_PAGE)).map(

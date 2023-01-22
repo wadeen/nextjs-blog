@@ -1,21 +1,24 @@
-import { NextPage } from 'next'
 import { client } from 'libs/client'
 import { dateToString } from 'src/utils/dateToString'
 import { PostDataType } from 'types/PostDataType'
 import { MicrocmsApi } from 'types/microcmsApi'
 import { MicrocmsData } from 'types/microcmsData'
 
-type Props = {
-  [key: string]: {
-    offset?: number
-    limit?: number
-  }
-}
+// ToDo: limitの引数をオプショナルにして、引数あればそのクエリ等を適用、なければ999件取得にする
 
-const fetchMicrocmsData = async ({ queries }: Props) => {
+// type Queries = {
+//   [key: string]: {
+//     offset?: number
+//     limit?: number
+//   }
+// }
+
+// type PartialQueries = Partial<Queries>
+
+async function fetchMicrocmsData(): Promise<PostDataType[]> {
   const microcmsData = await client.get<MicrocmsApi>({
     endpoint: 'posts',
-    queries: queries ?? { limit: 6 },
+    queries: { limit: 999 },
   })
 
   // microCMSのデータ取得
