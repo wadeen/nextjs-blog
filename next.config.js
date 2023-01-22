@@ -1,10 +1,16 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
-  reactStrictMode: true,
-  swcMinify: true,
-  experimental: {
-    fontLoaders: [
-      { loader: '@next/font/google', options: { subsets: ['latin'] } },
-    ],
+
+const withInterceptStdout = require('next-intercept-stdout')
+
+module.exports = withInterceptStdout(
+  {
+    reactStrictMode: true,
+    swcMinify: true,
+    experimental: {
+      fontLoaders: [
+        { loader: '@next/font/google', options: { subsets: ['latin'] } },
+      ],
+    },
   },
-}
+  (text) => (text.includes('Duplicate atom key') ? '' : text)
+)

@@ -16,9 +16,9 @@ export type MicrocmsData = {
   id: string
   name: string
   title: string
-  created_at: string
-  updated_at: string
+  createdAt: string
+  updatedAt: string
   toc_visible: boolean
-  description: string
+  description?: string | null
   post: string
 }

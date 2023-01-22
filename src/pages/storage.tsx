@@ -4,25 +4,30 @@ import { NextPage } from 'next'
 import { memo } from 'react'
 import { FaGithub } from 'react-icons/fa'
 import { GrLanguage } from 'react-icons/gr'
+import { client } from 'libs/client'
 import Seo from 'src/components/molecules/Seo'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
-// SSG(Jsonから直接取り出し)
+// SSG
 export const getStaticProps = async () => {
-  const req = await fetch(`${process.env.NEXT_PUBLIC_HOST}/storageInfo.json`)
-  const data = await req.json()
+  const data = await client.get({ endpoint: 'storage' })
+
   return {
     props: {
-      data: data.reverse(), // 最新のものから上に表示
+      data: data.contents,
     },
   }
 }
 
 type Props = {
   id: string
-  img: string
+  img: {
+    url: string
+  }
   title: string
-  tags: string[]
+  tags: {
+    tag: string
+  }[]
   message: string
   github: string
   website: string
@@ -35,30 +40,30 @@ const Storage: NextPage<{ data: Props[] }> = memo(({ data }) => {
       <div css={container}>
         <h1>〜技術習得のために作成したWebアプリの倉庫〜</h1>
         <ul css={list}>
-          {data.map((data) => (
-            <li css={item} key={data.id}>
+          {data.map((item) => (
+            <li css={itemStyle} key={item.id}>
               <a
-                href={data.website}
+                href={item.website}
                 target="_blank"
                 rel="noopener noreferrer"
                 css={itemImg}
               >
-                <img src={data.img} alt="" />
+                <img src={item.img.url} alt={item.title} />
               </a>
-              <h2>{data.title}</h2>
+              <h2>{item.title}</h2>
               <p css={subTitle}>使用技術</p>
-              <ul css={tag}>
-                {data.tags.map((tag: any) => (
-                  <li key={tag}>{tag}</li>
+              <ul css={tagStyle}>
+                {item.tags.map((tag: { tag: string }, index) => (
+                  <li key={index}>{tag.tag}</li>
                 ))}
               </ul>
               <p css={subTitle}>コメント</p>
-              <p css={message}>{data.message}</p>
+              <p css={message}>{item.message}</p>
               <ul css={links}>
-                {data.github && (
+                {item.github && (
                   <li>
                     <a
-                      href={data.github}
+                      href={item.github}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -66,10 +71,10 @@ const Storage: NextPage<{ data: Props[] }> = memo(({ data }) => {
                     </a>
                   </li>
                 )}
-                {data.website && (
+                {item.website && (
                   <li>
                     <a
-                      href={data.website}
+                      href={item.website}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -126,7 +131,7 @@ const list = css`
   }
 `
 
-const item = css`
+const itemStyle = css`
   width: calc((100% - 40px) / 2);
   background-color: #fff;
   border-radius: 10px;
@@ -156,7 +161,7 @@ const itemImg = css`
   }
 `
 
-const tag = css`
+const tagStyle = css`
   padding: 15px 20px 20px;
   display: flex;
   align-items: center;

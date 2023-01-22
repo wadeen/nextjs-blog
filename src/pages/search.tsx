@@ -66,7 +66,8 @@ const Search = () => {
           </div>
         ) : (
           <ul css={postLists}>
-            {data.contents.map((post: MicrocmsData) => (
+            {/* ToDo: anyの対処  */}
+            {data.contents.map((post: any) => (
               <PostArchive key={post.id} post={post} />
             ))}
           </ul>

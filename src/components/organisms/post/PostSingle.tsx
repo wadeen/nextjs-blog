@@ -62,15 +62,15 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
         <ul css={dateList}>
           <li>
             <BiTimeFive style={{ marginRight: '6px' }} />
-            作成日：{dateToString(post.created_at, 'YYYY/MM/DD')}
+            作成日：{dateToString(post.createdAt, 'YYYY/MM/DD')}
           </li>
-          {post.updated_at && (
+          {post.updatedAt && (
             <li>
               <IconContext.Provider value={{ size: '11px' }}>
                 <GrUpdate style={{ marginRight: '6px' }} />
               </IconContext.Provider>
               更新日：
-              {dateToString(post.updated_at, 'YYYY/MM/DD')}
+              {dateToString(post.updatedAt, 'YYYY/MM/DD')}
             </li>
           )}
         </ul>

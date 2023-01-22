@@ -6,17 +6,19 @@ import {
   GetStaticPaths,
   InferGetStaticPropsType,
 } from 'next'
-import ArticleTitle from '../../../components/atoms/articleTitle/ArticleTitle'
-import Seo from '../../../components/molecules/Seo'
-import PostArchive from '../../../components/organisms/post/PostArchive'
-import BlogLayout from '../../../components/templates/BlogLayout'
-import BlogLayoutBase from '../../../components/templates/BlogLayoutBase'
-import { paginationRange } from '../../../utils/paginationRange'
 import { client } from 'libs/client'
 import Failed from 'src/components/atoms/Failed'
+import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
+import Seo from 'src/components/molecules/Seo'
 import { CategoryPagination } from 'src/components/organisms/pagination/CategoryPagination'
+import PostArchive from 'src/components/organisms/post/PostArchive'
+import BlogLayout from 'src/components/templates/BlogLayout'
+import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { dateToString } from 'src/utils/dateToString'
+import { paginationRange } from 'src/utils/paginationRange'
+import { PostDataType } from 'types/PostDataType'
 import { MicrocmsData } from 'types/microcmsData'
 
 const PER_PAGE = 6
@@ -30,17 +32,17 @@ export default function CategoryId({
   }
   return (
     <BlogLayout>
-      <Seo ogpTitle={` ${blog[0].category.name} の記事一覧 | Webのあれこれ`} />
+      <Seo ogpTitle={`${blog[0].categoryName} の記事一覧 | Webのあれこれ`} />
       <BlogLayoutBase>
-        <ArticleTitle text={`カテゴリ： ${blog[0].category.name} の記事一覧`} />
+        <ArticleTitle text={`カテゴリ： ${blog[0].categoryName} の記事一覧`} />
         <ul css={postLists}>
-          {blog.map((post: MicrocmsData) => (
-            <PostArchive key={post.id} post={post} /> // 最新ページから取り出した記事
+          {blog.map((post: PostDataType) => (
+            <PostArchive key={post.id} post={post} />
           ))}
         </ul>
 
         <CategoryPagination
-          category={blog[0].category.id}
+          category={blog[0].categoryId}
           totalCount={totalCount}
         />
       </BlogLayoutBase>
@@ -53,11 +55,10 @@ export default function CategoryId({
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
-  // paramsの型エラー回避のため
   const categoryName = context?.params?.categoryId // カテゴリー名(ID)
   const categoryNum = context?.params?.pageNum // カテゴリーの合計数
 
-  const data = await client.get({
+  const microcmsData = await client.get({
     endpoint: 'posts',
     queries: {
       filters: `category[equals]${categoryName}`,
@@ -66,10 +67,26 @@ export const getStaticProps: GetStaticProps = async (
     },
   })
 
+  const data = microcmsData.contents.map((item: MicrocmsData) => {
+    const createdAt = dateToString(item.createdAt, 'YYYY/MM/DD')
+    const updatedAt = dateToString(item.updatedAt, 'YYYY/MM/DD')
+    return {
+      id: item.id,
+      title: item.title,
+      content: item.content,
+      description: item.description || null,
+      categoryId: item.category.id,
+      categoryName: item.category.name,
+      updatedAt,
+      createdAt,
+      eyecatch: item.eyecatch.url,
+    }
+  })
+
   return {
     props: {
-      blog: data.contents,
-      totalCount: data.totalCount,
+      blog: data,
+      totalCount: data.length,
     },
   }
 }
@@ -79,7 +96,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const categories = await client.get({ endpoint: 'categories' })
 
   // pathsに設定する配列の作成
-  const categoryPaths: any = []
+  const categoryPaths: string[] = []
 
   // 各カテゴリ別の記事を取得(カテゴリの合計ページ数の取得)
   for (const category of categories.contents) {

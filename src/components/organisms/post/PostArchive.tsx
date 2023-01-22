@@ -2,22 +2,32 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { IconContext } from 'react-icons'
 import { AiOutlineFolder } from 'react-icons/ai'
 import { BiTimeFive } from 'react-icons/bi'
 import { GrUpdate } from 'react-icons/gr'
+import { HiOutlineExternalLink } from 'react-icons/hi'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { dateToString } from 'src/utils/dateToString'
-import { MicrocmsData } from 'types/microcmsData'
+import { PostDataType } from 'types/PostDataType'
+import zennLogo from '/public/images/icon/zenn_logo.png'
 
-const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
+const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
+  const router = useRouter()
+  console.log('router: ', router)
   return (
-    <li css={list}>
-      <Link href={`/posts/${post.id}`} css={link}>
+    <li css={list} className={post.isZenn ? 'isZenn' : ''}>
+      <Link
+        href={post.isZenn ? post.id : `/posts/${post.id}`}
+        target={post.isZenn ? '_blank' : '_self'}
+        css={link}
+      >
         <div css={postView}>
           <img
-            css={eyecatch}
-            src={post.eyecatch.url}
+            css={eyecatchIcon}
+            /* ToDo: Zennの記事は`Zennカテゴリ`を作成してフィルタリングできるようにする = その後エラー解決する */ // @ts-ignore
+            src={post.isZenn ? zennLogo.src : post.eyecatch}
+            // src={post.eyecatch}
             alt="アイキャッチアイコン"
           />
           <h2 css={textTitle}>{post.title}</h2>
@@ -25,7 +35,7 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
         <ul css={info}>
           <li>
             <span css={icon}>
-              {post.updated_at ? (
+              {post.updatedAt ? (
                 <IconContext.Provider value={{ size: '11px' }}>
                   <GrUpdate style={{ marginRight: '4px' }} />
                 </IconContext.Provider>
@@ -33,16 +43,14 @@ const PostArchive: NextPage<{ post: MicrocmsData }> = ({ post }) => {
                 <BiTimeFive />
               )}
             </span>
-            {
-              // 更新日がない場合は作成日を表示
-              dateToString(post.updated_at || post.created_at, 'YYYY/MM/DD')
-            }
+            {/* 更新日がない場合は作成日を表示 */}
+            {post.updatedAt || post.createdAt}
           </li>
           <li>
             <span css={icon}>
-              <AiOutlineFolder />
+              {post.isZenn ? <HiOutlineExternalLink /> : <AiOutlineFolder />}
             </span>
-            {post.category.name}
+            {post.categoryName}
           </li>
         </ul>
       </Link>
@@ -72,6 +80,12 @@ const list = css`
     border: 1px solid var(--cSub);
     opacity: 0.85;
   }
+
+  // Zennの記事
+  &.isZenn {
+    background-color: rgba(46, 255, 248, 0.4);
+    border-color: #50905a;
+  }
 `
 
 const link = css`
@@ -88,9 +102,10 @@ const postView = css`
   height: calc(100% - 20px);
 `
 
-const eyecatch = css`
+const eyecatchIcon = css`
   width: 72px;
   height: 72px;
+  border-radius: 50%;
   ${mediaQuery[2]} {
     width: 64px;
     height: 64px;

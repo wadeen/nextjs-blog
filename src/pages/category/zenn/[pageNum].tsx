@@ -1,12 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import {
-  GetStaticProps,
-  GetStaticPropsContext,
-  GetStaticPaths,
-  InferGetStaticPropsType,
-} from 'next'
-import { client } from 'libs/client'
+import { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'next'
 import Failed from 'src/components/atoms/Failed'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
 import Seo from 'src/components/molecules/Seo'
@@ -15,12 +9,12 @@ import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
+import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { dateToString } from 'src/utils/dateToString'
+import { paginationRange } from 'src/utils/paginationRange'
 import { PostDataType } from 'types/PostDataType'
-import { microCmsPostData } from 'types/microCmsPostData'
-import { MicrocmsApi } from 'types/microcmsApi'
-import { MicrocmsData } from 'types/microcmsData'
+
+const PER_PAGE = 6
 
 export default function CategoryId({
   blog,
@@ -40,10 +34,7 @@ export default function CategoryId({
           ))}
         </ul>
 
-        <CategoryPagination
-          category={blog[0].categoryId}
-          totalCount={totalCount}
-        />
+        <CategoryPagination category="zenn" totalCount={totalCount} />
       </BlogLayoutBase>
       <AsideArchive />
     </BlogLayout>
@@ -51,53 +42,26 @@ export default function CategoryId({
 }
 
 // SSG: データの取得
-export const getStaticProps: GetStaticProps = async (
-  context: GetStaticPropsContext
-) => {
-  const params = context?.params?.categoryId
-
-  const microcmsData = await client.get<MicrocmsApi>({
-    endpoint: 'posts',
-    queries: {
-      filters: `category[equals]${params}`,
-      limit: 6,
-    },
-  })
-
-  const data = microcmsData.contents.map((item: MicrocmsData) => {
-    const createdAt = dateToString(item.createdAt, 'YYYY/MM/DD')
-    const updatedAt = dateToString(item.updatedAt, 'YYYY/MM/DD')
-    return {
-      id: item.id,
-      title: item.title,
-      content: item.content,
-      description: item.description || null,
-      categoryId: item.category.id,
-      categoryName: item.category.name,
-      updatedAt,
-      createdAt,
-      eyecatch: item.eyecatch.url,
-    }
-  })
+export const getStaticProps: GetStaticProps = async () => {
+  const zennPostData = await fetchZennData()
 
   return {
     props: {
-      blog: data,
-      totalCount: data.length,
+      blog: zennPostData,
+      totalCount: zennPostData.length,
     },
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // 全てのカテゴリAPI取得
-  const categories = await client.get({ endpoint: 'categories' })
-  // カテゴリIDのみ全て取得
-  const allCategoryId = categories.contents.map(
-    (category: microCmsPostData) => category.id
-  )
+  // Zennデータの取得(api/fetchZennData.ts)
+  const zennPostData = await fetchZennData()
+
+  // 各カテゴリ別の記事をのページ数取得
+  const pages = paginationRange(1, Math.ceil(zennPostData.length / PER_PAGE))
 
   return {
-    paths: allCategoryId.map((category: string) => `/category/${category}`),
+    paths: pages.map((page: number) => `/category/zenn/${page}`),
     fallback: false,
   }
 }

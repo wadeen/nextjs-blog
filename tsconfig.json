@@ -26,6 +26,6 @@
     "src/pages/posts/page/[pageNum].tsx",
     "src/components/organisms/comment/Comment.jsx",
     "src/__tests__/Header.test.jsx"
-  ],
+, "src/pages/category/zenn", "src/pages/category/zenn"  ],
   "exclude": ["node_modules"]
 }

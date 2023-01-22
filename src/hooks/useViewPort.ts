@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const standardWidth = 375
 
@@ -11,7 +11,7 @@ export const useViewport = () => {
     'width=device-width,initial-scale=1.0,maximum-scale=1.0'
   )
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setViewport(
       getViewport({
         width: `${
