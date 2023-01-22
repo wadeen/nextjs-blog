@@ -4,6 +4,7 @@ import Link from 'next/link'
 import useSWR from 'swr'
 import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
+import fetchZennData from 'src/pages/api/fetchZennData'
 
 type CategoryCountAndPost = {
   category: string
@@ -35,6 +36,20 @@ const AsideCategory = () => {
         totalCount: categoryPostData.totalCount,
       })
     }
+
+    // Zennカテゴリの取得
+    // Zennデータの取得(api/fetchZennData.ts)
+
+    // const zennPostData = await fetchZennData()
+    // console.log('zennPostData: ', zennPostData)
+
+    const zennData = {
+      category: 'zenn',
+      totalCount: '1',
+    }
+
+    categoryPosts.push(zennData)
+
     return categoryPosts
   }
 
