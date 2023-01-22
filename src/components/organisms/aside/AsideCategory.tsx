@@ -6,7 +6,8 @@ import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
 
 type CategoryCountAndPost = {
-  category: string
+  categoryName: string
+  categoryId: string
   totalCount: string
 }
 
@@ -31,14 +32,16 @@ const AsideCategory = () => {
 
       // カテゴリ別の記事のカテゴリIDと合計数の代入
       categoryPosts.push({
-        category: category.id,
+        categoryName: category.name,
+        categoryId: category.id,
         totalCount: categoryPostData.totalCount,
       })
     }
 
     // ToDo 仮でカテゴリ設置
     categoryPosts.push({
-      category: 'zenn',
+      categoryName: 'Zenn',
+      categoryId: 'zenn',
       totalCount: '1',
     })
 
@@ -60,9 +63,9 @@ const AsideCategory = () => {
       <ul css={categoryList}>
         <AsideTitle text={'Category'} />
         {data.map((categoryData: CategoryCountAndPost) => (
-          <li key={categoryData.category}>
-            <Link href={`/category/${categoryData.category}`}>
-              {categoryData.category}
+          <li key={categoryData.categoryId}>
+            <Link href={`/category/${categoryData.categoryId}`}>
+              {categoryData.categoryName}
               <span css={totalCount}>({categoryData.totalCount})</span>
             </Link>
           </li>

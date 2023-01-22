@@ -22,7 +22,7 @@ const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
           <img
             css={eyecatchIcon}
             /* ToDo: Zennの記事は`Zennカテゴリ`を作成してフィルタリングできるようにする = その後エラー解決する */ // @ts-ignore
-            src={post.eyecatch.url || post.eyecatch}
+            src={post.eyecatch}
             // src={post.eyecatch}
             alt="アイキャッチアイコン"
           />
