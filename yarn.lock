@@ -1414,11 +1414,6 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native-rss-parser@^1.4.0":
-  "integrity" "sha512-5zs5MPBrMLZJ8tvtLaadVxVsO14jQuHnubQe2Dmf8Fa0wxsEBXRD43AbzLAGfXyuJQjhjtMTXxESWUDEgbqBcw=="
-  "resolved" "https://registry.npmjs.org/@types/react-native-rss-parser/-/react-native-rss-parser-1.4.0.tgz"
-  "version" "1.4.0"
-
 "@types/react@*", "@types/react@18.0.17":
   "integrity" "sha512-38ETy4tL+rn4uQQi7mB81G7V1g0u2ryquNmsVIOKUAEIDK+3CUjZ6rSRpdvS99dNBnkLFL83qfmtLacGOTIhwQ=="
   "resolved" "https://registry.npmjs.org/@types/react/-/react-18.0.17.tgz"

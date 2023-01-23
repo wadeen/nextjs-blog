@@ -50,6 +50,10 @@ const Seo: NextPage<SeoType> = ({
         content={ogpTitle === undefined ? ogpBasic : ogpImage}
       />
       {/* 以下は全ページ統一 */}
+      <meta
+        name="google-site-verification"
+        content="m45QnKTx5mCi7xsIJGKi-Xr1oTJ_NVJeoO7TvGj51E8"
+      />
       <meta name="viewport" content={viewport} />
       <meta property="og:url" content={`${baseUrl}${router.asPath}`} />
       <meta property="og:type" content=" website" />
