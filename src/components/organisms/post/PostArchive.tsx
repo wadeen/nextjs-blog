@@ -14,7 +14,6 @@ import zennLogo from '/public/images/icon/zenn_logo.png'
 
 const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
   const router = useRouter()
-  console.log('router: ', router)
   return (
     <li css={list} className={post.isZenn ? 'isZenn' : ''}>
       <Link
