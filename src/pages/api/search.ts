@@ -14,7 +14,7 @@ const getSearchBlogs = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   )
     .then((res) => res.json())
-    .catch(() => null)
+    .catch((err) => console.log(err))
 
   return res.status(200).json(searchBlogs)
 }
