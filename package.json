@@ -26,6 +26,7 @@
     "microcms-js-sdk": "^2.2.1",
     "next": "^13.0.0",
     "next-intercept-stdout": "^1.0.1",
+    "next-pwa": "^5.6.0",
     "next-sitemap": "^3.1.47",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
