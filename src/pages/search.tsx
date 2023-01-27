@@ -85,7 +85,6 @@ const Search = () => {
             </div>
           ) : (
             <ul css={postLists}>
-              {/* ToDo: anyの対処  */}
               {postData.map((post: PostDataType) => (
                 <PostArchive key={post.id} post={post} />
               ))}
