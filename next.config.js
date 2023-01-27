@@ -14,3 +14,5 @@ module.exports = withInterceptStdout(
   },
   (text) => (text.includes('Duplicate atom key') ? '' : text)
 )
+
+// ToDo: withPWAの詳細設定が必要
