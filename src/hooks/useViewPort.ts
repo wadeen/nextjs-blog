@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react'
 
-const standardWidth = 375
+const standardWidth: number = 375
+const defaultDeviceViewPort: string =
+  'width=device-width,initial-scale=1.0,maximum-scale=1.0'
 
-const getViewport = ({ width }: { width: string }) => {
+const getViewport = (width: string) => {
   return `width=${width},maximum-scale=1.0`
 }
 
 export const useViewport = () => {
-  const [viewport, setViewport] = useState<string>(
-    'width=device-width,initial-scale=1.0,maximum-scale=1.0'
-  )
+  const [viewport, setViewport] = useState<string>(defaultDeviceViewPort)
 
   useEffect(() => {
-    setViewport(
-      getViewport({
-        width: `${
-          window.outerWidth > standardWidth ? 'device-width' : standardWidth
-        }`,
-      })
+    const newViewPort = getViewport(
+      String(window.outerWidth > standardWidth ? 'device-width' : standardWidth)
     )
+    setViewport(newViewPort)
   }, [])
 
   return { viewport }
