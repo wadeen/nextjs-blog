@@ -4,6 +4,7 @@ import Link from 'next/link'
 import useSWR from 'swr'
 import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
+import fetchZennData from 'src/pages/api/fetchZennData'
 
 type CategoryCountAndPost = {
   categoryName: string
@@ -39,17 +40,17 @@ const AsideCategory = () => {
     }
 
     // ToDo 仮でカテゴリ設置
-    categoryPosts.push({
-      categoryName: 'Zenn',
-      categoryId: 'zenn',
-      totalCount: '1',
-    })
 
     // ToDo fetchのエラーの解決
-
     // Zennデータの取得(api/fetchZennData.ts)
-    // const zennPostData = await fetchZennData()
-    // console.log('zennPostData: ', zennPostData)
+    const zennPostData = await fetchZennData()
+    for (const zennPost of zennPostData) {
+      categoryPosts.push({
+        categoryName: zennPost.title,
+        categoryId: zennPost.id,
+        totalCount: String(zennPostData.length),
+      })
+    }
 
     return categoryPosts
   }
