@@ -47,6 +47,16 @@ const fetchZennData = async () => {
     }
   })
 
+  // let zennAllPostData = []
+
+  // for (const zennPost of zennPostData) {
+  //   zennAllPostData.push({
+  //     categoryName: zennPost.title,
+  //     categoryId: zennPost.id,
+  //     totalCount: String(zennPostData.length),
+  //   })
+  // }
+
   return zennPostData
 }
 

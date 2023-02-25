@@ -43,14 +43,10 @@ const AsideCategory = () => {
 
     // ToDo fetchのエラーの解決
     // Zennデータの取得(api/fetchZennData.ts)
-    const zennPostData = await fetchZennData()
-    for (const zennPost of zennPostData) {
-      categoryPosts.push({
-        categoryName: zennPost.title,
-        categoryId: zennPost.id,
-        totalCount: String(zennPostData.length),
-      })
-    }
+    // const zennAllPostData = await fetchZennData()
+    // const zennPostData = await fetchZennData()
+    // console.log('zennPostData: ', zennPostData)
+    // console.log('zennAllPostData: ', zennAllPostData)
 
     return categoryPosts
   }
