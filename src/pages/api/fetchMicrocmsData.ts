@@ -16,7 +16,7 @@ import { MicrocmsData } from 'types/microcmsData'
 // type PartialQueries = Partial<Queries>
 
 async function fetchMicrocmsData(): Promise<PostDataType[]> {
-  const microcmsData = await client.get<MicrocmsApi>({
+  const microcmsData = await client.getList({
     endpoint: 'posts',
     queries: { limit: 999 },
   })

@@ -8,7 +8,7 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
     return
   }
 
-  const data = await client.get({
+  const data = await client.getListDetail({
     endpoint: 'posts',
     contentId: slug,
     queries: {

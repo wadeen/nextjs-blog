@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps = async (
   const categoryName = context?.params?.categoryId // カテゴリー名(ID)
   const categoryNum = context?.params?.pageNum // カテゴリーの合計数
 
-  const microcmsData = await client.get({
+  const microcmsData = await client.getList({
     endpoint: 'posts',
     queries: {
       filters: `category[equals]${categoryName}`,
@@ -93,19 +93,19 @@ export const getStaticProps: GetStaticProps = async (
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // 全てのカテゴリAPI取得
-  const categories = await client.get({ endpoint: 'categories' })
+  const categories = await client.getList({ endpoint: 'categories' })
 
   // pathsに設定する配列の作成
   const categoryPaths: string[] = []
 
   // 各カテゴリ別の記事を取得(カテゴリの合計ページ数の取得)
   for (const category of categories.contents) {
-    const { totalCount: totalCountByCategory } = await client.get({
+    const { totalCount: totalCountByCategory } = await client.getList({
       endpoint: 'posts',
       queries: {
         filters: `category[equals]${category.id}`,
         limit: 1,
-        fields: 'id',
+        fields: ['id'],
       },
     })
 

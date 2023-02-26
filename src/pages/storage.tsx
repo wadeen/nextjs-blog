@@ -7,40 +7,31 @@ import { GrLanguage } from 'react-icons/gr'
 import { client } from 'libs/client'
 import Seo from 'src/components/molecules/Seo'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { StorageType } from 'types/storageType'
 
 // SSG
 export const getStaticProps = async () => {
-  const data = await client.get({ endpoint: 'storage' })
+  const { contents } = await client.getList({ endpoint: 'storage' })
 
   return {
     props: {
-      data: data.contents,
+      data: contents,
     },
   }
 }
 
 type Props = {
-  id: string
-  img: {
-    url: string
-  }
-  title: string
-  tags: {
-    tag: string
-  }[]
-  message: string
-  github: string
-  website: string
+  data: StorageType[]
 }
 
-const Storage: NextPage<{ data: Props[] }> = memo(({ data }) => {
+const Storage: NextPage<Props> = memo(({ data }) => {
   return (
     <>
       <Seo ogpTitle="App倉庫 | Webのあれこれ" />
       <div css={container}>
         <h1>〜技術習得のために作成したWebアプリの倉庫〜</h1>
         <ul css={list}>
-          {data.map((item) => (
+          {data.map((item: StorageType) => (
             <li css={itemStyle} key={item.id}>
               <a
                 href={item.website}

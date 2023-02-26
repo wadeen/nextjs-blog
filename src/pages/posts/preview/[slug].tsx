@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     : {}
 
   try {
-    const data = await client.getListDetail<MicrocmsData>({
+    const data = await client.getListDetail({
       endpoint: 'posts',
       contentId: slug,
       queries: draftKey,
@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await client.get({
+  const data = await client.getList({
     endpoint: 'posts',
   })
   const paths = data.contents.map(

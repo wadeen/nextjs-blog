@@ -16,14 +16,14 @@ const AsideCategory = () => {
   // 各カテゴリのページ情報の取得
   const fetchCategories = async () => {
     // 全てのカテゴリを取得
-    const categories = await client.get({ endpoint: 'categories' })
+    const categories = await client.getList({ endpoint: 'categories' })
 
     // カテゴリと合計件数が入る配列
     const categoryPosts: CategoryCountAndPost[] = []
 
     // カテゴリ別の記事を取得
     for (const category of categories.contents) {
-      const categoryPostData = await client.get({
+      const categoryPostData = await client.getList({
         endpoint: 'posts',
         queries: {
           filters: `category[equals]${category.id}`,
@@ -35,7 +35,7 @@ const AsideCategory = () => {
       categoryPosts.push({
         categoryName: category.name,
         categoryId: category.id,
-        totalCount: categoryPostData.totalCount,
+        totalCount: String(categoryPostData.totalCount),
       })
     }
 

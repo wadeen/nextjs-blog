@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps = async (
 ) => {
   const params = context?.params?.categoryId
 
-  const microcmsData = await client.get<MicrocmsApi>({
+  const microcmsData = await client.getList({
     endpoint: 'posts',
     queries: {
       filters: `category[equals]${params}`,
@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps = async (
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // 全てのカテゴリAPI取得
-  const categories = await client.get({ endpoint: 'categories' })
+  const categories = await client.getList({ endpoint: 'categories' })
   // カテゴリIDのみ全て取得
   const allCategoryId = categories.contents.map(
     (category: microCmsPostData) => category.id

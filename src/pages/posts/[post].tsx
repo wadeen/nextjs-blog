@@ -11,7 +11,13 @@ import AsidePost from 'src/components/templates/aside/AsidePost'
 // SSG
 export const getStaticProps = async (context: { params: MicrocmsData }) => {
   const id = context.params.post
-  const data = await client.get({ endpoint: 'posts', contentId: id })
+  // const { contents } = await client.getList({
+  //   endpoint: 'posts',
+  //   contentId: id,
+  // })
+
+  const data = await client.getListDetail({ endpoint: 'posts', contentId: id })
+
   return {
     props: {
       post: data,
@@ -20,13 +26,11 @@ export const getStaticProps = async (context: { params: MicrocmsData }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await client.get({
+  const { contents } = await client.getList({
     endpoint: 'posts',
     queries: { limit: 6 }, // API取得件数:デフォルト10件(上限5MB)
   })
-  const paths = data.contents.map(
-    (content: MicrocmsData) => `/posts/${content.id}`
-  )
+  const paths = contents.map((content: MicrocmsData) => `/posts/${content.id}`)
   return {
     paths,
     fallback: false,

@@ -14,7 +14,7 @@ type PopularType = Pick<PostDataType, 'categoryName' | 'id' | 'title'>
 
 const AsidePopular: NextPage = () => {
   async function fetchMicrocmsData(): Promise<PopularType[]> {
-    const microcmsData = await client.get<MicrocmsApi>({
+    const microcmsData = await client.getList({
       endpoint: 'posts',
       queries: {
         limit: 3,
