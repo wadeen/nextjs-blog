@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Link from 'next/link'
+import ReactLoading from 'react-loading'
 import useSWR from 'swr'
 import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
@@ -53,6 +54,17 @@ const AsideCategory = () => {
 
   const { data, error } = useSWR('categories', fetchCategories)
   if (error) console.log(error.message)
+
+  if (!data) {
+    return (
+      <div css={loading}>
+        <div css={loadingIcon}>
+          <ReactLoading type="spinningBubbles" color={'#1976D2'} />
+        </div>
+        <span css={loadingText}>カテゴリ取得中...</span>
+      </div>
+    )
+  }
 
   // カテゴリの取得結果の判定
   return data ? (
@@ -112,4 +124,16 @@ const loadingIcon = css`
   display: flex;
   align-items: center;
   justify-content: center;
+`
+
+const loading = css`
+  display: grid;
+  place-content: center;
+  width: 100%;
+  height: 250px;
+`
+
+const loadingText = css`
+  display: block;
+  margin-top: 15px;
 `
