@@ -256,7 +256,7 @@ const content = css`
       min-height: 250px;
     }
   }
-  /* sub {
+  sub {
     display: inline-block;
     font-size: 1.4rem;
     background: #e9e7e7;
@@ -267,7 +267,7 @@ const content = css`
     bottom: -20px;
     font-weight: 400;
     font-family: var(--fontEn);
-  } */
+  }
   img {
     width: 100%;
     margin: 20px 0;
