@@ -1,8 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { load } from 'cheerio'
-import hljs from 'highlight.js'
+import hljs, { AutoHighlightResult } from 'highlight.js'
+import parse, {
+  HTMLReactParserOptions,
+  Element,
+  DOMNode,
+} from 'html-react-parser'
 import { NextPage } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { IconContext } from 'react-icons'
@@ -10,7 +15,7 @@ import { AiOutlineFolder } from 'react-icons/ai'
 import { BiTimeFive } from 'react-icons/bi'
 import { GrUpdate } from 'react-icons/gr'
 import { useSetRecoilState } from 'recoil'
-import { stateToc } from '../../../store/stateToc'
+import { stateToc, stateTocType } from '../../../store/stateToc'
 import Seo from '../../molecules/Seo'
 import { TableOfContents } from '../../molecules/TableOfContents'
 import { renderToc } from 'libs/render-toc'
@@ -18,25 +23,51 @@ import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
 import { MicrocmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
+import { parseItemType } from 'types/parseItemType'
+
+type ElementType = Partial<{
+  fieldId: string
+  richEditor: string
+  html: string
+}>
 
 const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
   const setToc = useSetRecoilState(stateToc)
 
-  // pre > code シンタックスハイライト
-  const contentPost = post.content.reduce((sum: string, element) => {
-    return sum + (element.richEditor || element.html) // リッチエディタとテキストエリアに対応
-  }, '')
+  // リッチエディタとテキストエリアの表示
+  const contentPost: string = post.content.reduce(
+    (sum: string, element: ElementType) => {
+      return sum + (element.richEditor || element.html)
+    },
+    ''
+  )
 
-  const contentBody = load(contentPost as string)
-  contentBody('pre code').each((_, elm) => {
-    const result = hljs.highlightAuto(contentBody(elm).text())
-    contentBody(elm).html(result.value)
-    contentBody(elm).addClass('hljs')
-  })
+  // pre > code シンタックスハイライト
+  const parseOptions: HTMLReactParserOptions = {
+    replace: (domNode) => {
+      if (!(domNode instanceof Element && domNode?.attribs)) {
+        return undefined
+      }
+      if (domNode.name === 'pre') {
+        // @ts-ignore //ToDo: childrenエラーの解決
+        const code: string = domNode.children[0].children[0].data // pre配下のcode(インラインコードは反映しない)
+        const highlightCode: AutoHighlightResult = hljs.highlightAuto(code) // ハイライトのスタイル
+
+        return (
+          <pre>
+            <code className="hljs">{parse(highlightCode.value)}</code>
+          </pre>
+        )
+      }
+    },
+  }
+
+  // 記事全体をパースして表示
+  const contentBody = parse(contentPost, parseOptions)
 
   //目次
   useEffect(() => {
-    setToc(renderToc(contentPost) as any) // render-toc.ts 側の指定変更要
+    setToc(renderToc(contentPost))
   }, [setToc, contentPost])
 
   return (
@@ -46,7 +77,7 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
         ogpDescription={
           post.description ||
           `"${post.title}" について解説しています。このブログでは、Webエンジニアの為の有益な情報を発信しています。Web制作やフロントエンドのモダン技術を中心にアウトプットしています。`
-        } // CMSでディスクリプション未記入時に表示
+        }
       />
       <div css={container}>
         <h1 css={title}>
@@ -77,10 +108,7 @@ const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
 
         {post.toc_visible && <TableOfContents />}
 
-        <div
-          dangerouslySetInnerHTML={{ __html: contentBody.html() }}
-          css={content}
-        ></div>
+        <div css={content}>{contentBody}</div>
       </div>
     </>
   )
@@ -228,7 +256,7 @@ const content = css`
       min-height: 250px;
     }
   }
-  sub {
+  /* sub {
     display: inline-block;
     font-size: 1.4rem;
     background: #e9e7e7;
@@ -239,7 +267,7 @@ const content = css`
     bottom: -20px;
     font-weight: 400;
     font-family: var(--fontEn);
-  }
+  } */
   img {
     width: 100%;
     margin: 20px 0;
