@@ -31,24 +31,59 @@
 
 ## microCMS API スキーマ
 
-|     ID      |        表示名        |             種類              | 必須 |
-| :---------: | :------------------: | :---------------------------: | :--: |
-|    title    |       タイトル       |      テキストフィールド       |  ◯   |
-| created_at  |       作成日時       |             日時              |  ◯   |
-| updated_at  |       更新日時       |             日時              |  ×   |
-| toc_visible |         目次         |            真偽値             |  ×   |
-|  eyecatch   | アイキャッチ(絵文字) |             画像              |  ◯   |
-|  category   |       カテゴリ       | 繰り返し(2 件)のフィールド\*1 |  ◯   |
-|   content   |         内容         |        リッチエディタ         |  ◯   |
-| description |  ディスクリプション  |        テキストエリア         |  ×   |
+3 つの API スキーマを使用しています。
+
+### ① ブログ：posts
+
+|     ID      |        表示名        |               種類                | 必須 |
+| :---------: | :------------------: | :-------------------------------: | :--: |
+|    title    |       タイトル       |        テキストフィールド         |  ◯   |
+| created_at  |       作成日時       |               日時                |  ◯   |
+| updated_at  |       更新日時       |               日時                |  ×   |
+| toc_visible |         目次         |              真偽値               |  ×   |
+|  eyecatch   | アイキャッチ(絵文字) |               画像                |  ◯   |
+|  category   |       カテゴリ       | 繰り返し(2 件)のフィールド\*1 \*2 |  ◯   |
+|   content   |         内容         |          リッチエディタ           |  ◯   |
+| description |  ディスクリプション  |          テキストエリア           |  ×   |
 
 <br />
 
-\*1: カスタムフィールド
+\*1: カスタムフィールド:リッチエディタ(richEditor)
 | ID | 表示名 | 種類 | 必須 |
 | :---------: | :------------------: | :------------------------: | :--: |
 | richEditor | リッチエディタ | リッチエディタ | × |
+
+\*2: カスタムフィールド:html(HTML)
+| ID | 表示名 | 種類 | 必須 |
+| :---------: | :------------------: | :------------------------: | :--: |
 | html | HTML | テキストエリア | × |
+
+<br />
+
+### ② カテゴリ：categories
+
+|  ID  |   表示名   |        種類        | 必須 |
+| :--: | :--------: | :----------------: | :--: |
+| name | カテゴリ名 | テキストフィールド |  ×   |
+
+<br />
+
+### ③ アプリ倉庫：storage
+
+|   ID    |   表示名   |             種類              | 必須 |
+| :-----: | :--------: | :---------------------------: | :--: |
+|   img   | サムネイル |             画像              |  ◯   |
+|  title  |  タイトル  |      テキストフィールド       |  ◯   |
+|  tags   |    タグ    | 繰り返し(2 件)のフィールド\*3 |  ×   |
+| message |  ひとこと  |      テキストフィールド       |  ×   |
+| github  |   github   |      テキストフィールド       |  ×   |
+| website |  カテゴリ  |          サイト URL           |  ◯   |
+
+\*3: カスタムフィールド：タグ(tags)
+| ID | 表示名 | 種類 | 必須 |
+| :---------: | :------------------: | :------------------------: | :--: |
+| tag | タグ | テキストフィールド | × |
+
 <br />
 
 ## Cloud Firestore DB
@@ -86,31 +121,6 @@
 </table>
 <br />
 
-## 環境変数
-
-```
-# microCMS
-#microCMS: コンテンツ(API) > APIプレビュー
-NEXT_PUBLIC_MICROCMS_ACCESS_KEY={your-serviceDomain}
-NEXT_PUBLIC_MICROCMS_API_KEY={your-apiKey}
-NEXT_PUBLIC_MICROCMS_OGP_ARTICLE={microCMS-storage} *自動生成(記事ページ) | 任意の画像アップロード要
-NEXT_PUBLIC_MICROCMS_OGP_BASE={microCMS-storage} *ブログ以外のOGP画像 | 任意の画像アップロード要
-
-# Firebase
-#Firebase: プロジェクトの設定 > 全般 > マイアプリ 参照
-NEXT_PUBLIC_FIREBASE_API_KEY={your-apiKey}
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN={your-authDomain}
-NEXT_PUBLIC_FIREBASE_PROJECT_ID={your-projectId}
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET={your-storageBucket}
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID={your-messagingSenderId}
-NEXT_PUBLIC_FIREBASE_APP_ID={your-appId}
-NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID={your-measurementId}
-
-# Hosting
-#Hosting: ホスティング先のURL
-NEXT_PUBLIC_HOST={your-url}
-```
-
 ## 環境構築
 
 ```
@@ -130,11 +140,6 @@ npm install
 # "環境変数" を.envファイルに適宜貼り付け
 
 ```
-
-## 開発期間
-
-開発期間：1 ヶ月程度(適宜アップデート)<br />
-工数：12 人日
 
 ## 開発者
 
