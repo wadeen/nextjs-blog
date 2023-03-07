@@ -15,16 +15,18 @@ import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
+import fetchAsideCategory from 'src/pages/api/fetchAsideCategory'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
+import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
 import { PostDataType } from 'types/PostDataType'
 import { microCmsPostData } from 'types/microCmsPostData'
-import { MicrocmsApi } from 'types/microcmsApi'
 import { MicrocmsData } from 'types/microcmsData'
 
 export default function CategoryId({
   blog,
   totalCount,
+  categoryData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   if (blog.length === 0) {
     return <Failed text={'カテゴリに該当する記事はありません。'} />
@@ -45,7 +47,7 @@ export default function CategoryId({
           totalCount={totalCount}
         />
       </BlogLayoutBase>
-      <AsideArchive />
+      <AsideArchive categoryData={categoryData} />
     </BlogLayout>
   )
 }
@@ -80,10 +82,14 @@ export const getStaticProps: GetStaticProps = async (
     }
   })
 
+  // サイドバーのカテゴリ
+  const categoryData: CategoryCountAndPost[] = await fetchAsideCategory()
+
   return {
     props: {
       blog: data,
       totalCount: data.length,
+      categoryData,
     },
   }
 }

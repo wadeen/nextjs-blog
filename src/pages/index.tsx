@@ -4,6 +4,7 @@ import type { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { memo } from 'react'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import Seo from '../components/molecules/Seo'
+import fetchAsideCategory from './api/fetchAsideCategory'
 import fetchMicrocmsData from './api/fetchMicrocmsData'
 import fetchZennData from './api/fetchZennData'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
@@ -33,15 +34,23 @@ export const getStaticProps: GetStaticProps = async () => {
   // [pageNum]に表示するデータ
   const displayData = data.slice(0, PER_PAGE)
 
+  // サイドバーのカテゴリ
+  const categoryData = await fetchAsideCategory()
+
   return {
     props: {
       data: displayData,
       totalCount: data.length,
+      categoryData,
     },
   }
 }
 const Home = memo(
-  ({ data, totalCount }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  ({
+    data,
+    totalCount,
+    categoryData,
+  }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
       <>
         <Seo />
@@ -55,7 +64,7 @@ const Home = memo(
             </ul>
             <BasicPagination totalCount={totalCount} />
           </BlogLayoutBody>
-          <AsideArchive />
+          <AsideArchive categoryData={categoryData} />
         </BlogLayout>
       </>
     )

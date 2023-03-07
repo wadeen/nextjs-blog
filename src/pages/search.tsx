@@ -16,12 +16,13 @@ import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
+import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
 
 const fetcher = (url: string, value: string): Promise<any> => {
   return fetch(`${url}?keyword=${value}`).then((res) => res.json())
 }
 
-const Search = () => {
+const Search = ({ categoryData }: { categoryData: CategoryCountAndPost[] }) => {
   const router = useRouter()
 
   // apiでの検索結果を取得
@@ -37,7 +38,7 @@ const Search = () => {
         <BlogLayoutBody>
           <Failed text={'検索に失敗しました。'} />
         </BlogLayoutBody>
-        <AsideArchive />
+        <AsideArchive categoryData={categoryData} />
       </BlogLayout>
     )
   }
@@ -50,7 +51,7 @@ const Search = () => {
             <ReactLoading type="spinningBubbles" color={'#1976D2'} />
           </div>
         </BlogLayoutBody>
-        <AsideArchive />
+        <AsideArchive categoryData={categoryData} />
       </BlogLayout>
     )
   }
@@ -91,7 +92,7 @@ const Search = () => {
             </ul>
           )}
         </BlogLayoutBody>
-        <AsideArchive />
+        <AsideArchive categoryData={categoryData} />
       </BlogLayout>
     )
   }

@@ -28,7 +28,6 @@ const fetchZennData = async () => {
   const { items } = await parser.parseURL(
     `https://zenn.dev/${zennId}/feed?all=1`
   )
-
   // .catch((err) => console.log('以下のエラーが発生しました。\n', err))
 
   const zennPostData = items.map((item: ZennPostType) => {
@@ -39,23 +38,13 @@ const fetchZennData = async () => {
       content: item.content,
       createdAt,
       categoryName: 'Zenn',
-      categoryId: 'Zenn',
+      categoryId: 'zenn',
       isZenn: true,
       eyecatch: null, // ここで指定するとエラー出るためファイルで画像の指定する
       description: '', // 詳細ページないため不要
       updatedAt: '', // 詳細ページないため不要(一覧ページも投稿日のみでOK)
     }
   })
-
-  // let zennAllPostData = []
-
-  // for (const zennPost of zennPostData) {
-  //   zennAllPostData.push({
-  //     categoryName: zennPost.title,
-  //     categoryId: zennPost.id,
-  //     totalCount: String(zennPostData.length),
-  //   })
-  // }
 
   return zennPostData
 }
