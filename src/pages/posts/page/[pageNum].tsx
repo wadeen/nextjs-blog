@@ -13,6 +13,7 @@ import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
+import fetchAsideCategory from 'src/pages/api/fetchAsideCategory'
 import fetchMicrocmsData from 'src/pages/api/fetchMicrocmsData'
 import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
@@ -43,10 +44,14 @@ export const getStaticProps: GetStaticProps = async (
   // [pageNum]に表示するデータ
   const displayData = data.slice(offset, offset + PER_PAGE)
 
+  // サイドバーのカテゴリ
+  const categoryData = await fetchAsideCategory()
+
   return {
     props: {
       data: displayData,
       totalCount: data.length,
+      categoryData,
     },
   }
 }
@@ -71,6 +76,7 @@ export const getStaticPaths = async () => {
 const PostPage = ({
   data,
   totalCount,
+  categoryData,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
   const router = useRouter()
   return (
@@ -86,7 +92,7 @@ const PostPage = ({
           </ul>
           <BasicPagination totalCount={totalCount} />
         </BlogLayoutBody>
-        <AsideArchive />
+        <AsideArchive categoryData={categoryData} />
       </BlogLayout>
     </>
   )

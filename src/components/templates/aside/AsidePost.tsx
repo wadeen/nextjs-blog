@@ -11,8 +11,14 @@ import AsideBase from './AsideBase'
 import Share from 'src/components/molecules/Share'
 import { Spacer } from 'src/components/molecules/Spacer'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
 
-const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
+type Props = {
+  post: MicrocmsData
+  categoryData: CategoryCountAndPost[]
+}
+
+const AsidePost = ({ post, categoryData }: Props) => {
   return (
     <AsideBase>
       {post.toc_visible ? (
@@ -20,7 +26,7 @@ const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
           {/* 目次ありの場合 */}
           <AsideProfile />
           <Spacer size={30} />
-          <AsideCategory />
+          <AsideCategory categoryData={categoryData} />
           <Spacer size={30} />
           <AsidePopular />
           <Spacer size={30} />
@@ -37,7 +43,7 @@ const AsidePost: NextPage<{ post: MicrocmsData }> = ({ post }) => {
           {/* 目次なしの場合 */}
           <AsideProfile />
           <Spacer size={30} />
-          <AsideCategory />
+          <AsideCategory categoryData={categoryData} />
           <Spacer size={30} />
           <div css={sticky}>
             <SearchForm />

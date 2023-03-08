@@ -1,77 +1,19 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import Link from 'next/link'
-import ReactLoading from 'react-loading'
-import useSWR from 'swr'
-import { client } from 'libs/client'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
-import fetchZennData from 'src/pages/api/fetchZennData'
+import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
 
-type CategoryCountAndPost = {
-  categoryName: string
-  categoryId: string
-  totalCount: string
+type Props = {
+  categoryData: CategoryCountAndPost[]
 }
 
-const AsideCategory = () => {
-  // 各カテゴリのページ情報の取得
-  const fetchCategories = async () => {
-    // 全てのカテゴリを取得
-    const categories = await client.getList({ endpoint: 'categories' })
-
-    // カテゴリと合計件数が入る配列
-    const categoryPosts: CategoryCountAndPost[] = []
-
-    // カテゴリ別の記事を取得
-    for (const category of categories.contents) {
-      const categoryPostData = await client.getList({
-        endpoint: 'posts',
-        queries: {
-          filters: `category[equals]${category.id}`,
-          limit: 999,
-        },
-      })
-
-      // カテゴリ別の記事のカテゴリIDと合計数の代入
-      categoryPosts.push({
-        categoryName: category.name,
-        categoryId: category.id,
-        totalCount: String(categoryPostData.totalCount),
-      })
-    }
-
-    // ToDo 仮でカテゴリ設置
-
-    // ToDo fetchのエラーの解決
-    // Zennデータの取得(api/fetchZennData.ts)
-    // const zennAllPostData = await fetchZennData()
-    // const zennPostData = await fetchZennData()
-    // console.log('zennPostData: ', zennPostData)
-    // console.log('zennAllPostData: ', zennAllPostData)
-
-    return categoryPosts
-  }
-
-  const { data, error } = useSWR('categories', fetchCategories)
-  if (error) console.log(error.message)
-
-  if (!data) {
-    return (
-      <div css={loading}>
-        <div css={loadingIcon}>
-          <ReactLoading type="spinningBubbles" color={'#1976D2'} />
-        </div>
-        <span css={loadingText}>カテゴリ取得中...</span>
-      </div>
-    )
-  }
-
-  // カテゴリの取得結果の判定
-  return data ? (
+const AsideCategory = ({ categoryData }: Props) => {
+  return (
     <>
       <ul css={categoryList}>
         <AsideTitle text={'Category'} />
-        {data.map((categoryData: CategoryCountAndPost) => (
+        {categoryData.map((categoryData: CategoryCountAndPost) => (
           <li key={categoryData.categoryId}>
             <Link href={`/category/${categoryData.categoryId}`}>
               {categoryData.categoryName}
@@ -81,9 +23,6 @@ const AsideCategory = () => {
         ))}
       </ul>
     </>
-  ) : (
-    // 取得失敗した場合は、カテゴリ自体を表示しない
-    <></>
   )
 }
 
