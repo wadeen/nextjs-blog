@@ -3,6 +3,7 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { PER_PAGE } from 'libs/per-page'
 import { paginationRange } from 'src/utils/paginationRange'
 
 type Props = {
@@ -14,7 +15,6 @@ export const CategoryPagination: NextPage<Props> = ({
   totalCount,
   category,
 }) => {
-  const PER_PAGE = 10
   const router = useRouter()
 
   return (

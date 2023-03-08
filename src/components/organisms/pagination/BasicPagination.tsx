@@ -3,13 +3,13 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { PER_PAGE } from 'libs/per-page'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
 
 export const BasicPagination: NextPage<{ totalCount: number }> = ({
   totalCount,
 }) => {
-  const PER_PAGE = 10
   const router = useRouter()
   return (
     <ul css={pagination}>

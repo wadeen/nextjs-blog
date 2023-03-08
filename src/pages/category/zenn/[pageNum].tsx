@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
 import { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'next'
+import { PER_PAGE } from 'libs/per-page'
 import Failed from 'src/components/atoms/Failed'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
 import Seo from 'src/components/molecules/Seo'
@@ -14,8 +15,6 @@ import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
 import { PostDataType } from 'types/PostDataType'
-
-const PER_PAGE = 10
 
 export default function CategoryId({
   blog,
