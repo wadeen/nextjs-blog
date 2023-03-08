@@ -40,8 +40,6 @@ const fetcher = (url: string, value: string): Promise<any> => {
 const Search = ({ categoryData }: { categoryData: CategoryCountAndPost[] }) => {
   const router = useRouter()
 
-  console.log('categoryData: ', categoryData)
-
   // apiでの検索結果を取得
   const { data, error } = useSWR<MicrocmsApi>(
     ['api/search', router.query.keyword],
