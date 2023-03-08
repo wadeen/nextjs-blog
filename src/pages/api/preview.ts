@@ -16,8 +16,6 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
     },
   })
 
-  console.log('draftKey: ', draftKey)
-
   if (!data) {
     return res.status(401).json({ message: 'Invalid slug' })
   }

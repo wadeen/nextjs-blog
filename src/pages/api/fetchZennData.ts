@@ -1,6 +1,7 @@
 import Parser from 'rss-parser'
 import zennLogo from '/public/images/icon/zenn_logo.png'
 import { dateToString } from 'src/utils/dateToString'
+// import { memo } from 'react';
 import { ZennPostType } from 'types/ZennPostType'
 
 // ZennのアカウントID

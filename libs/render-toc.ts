@@ -8,7 +8,7 @@ export const renderToc = (content: string) => {
   // 記事の中から`h2`, `h3`のみパース
   // @ts-ignore // ToDo: filterのエラー解決
   const tocItem = contentBody.filter(
-    (elem: parseItemType) => elem.type === 'h2' || elem.type === 'h2'
+    (elem: parseItemType) => elem.type === 'h2' || elem.type === 'h3'
   )
 
   const toc = tocItem.map((elem: any) => ({

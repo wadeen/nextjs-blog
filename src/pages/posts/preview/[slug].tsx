@@ -4,11 +4,17 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 // import PostSingle from '../../../components/organisms/post/PostSingle'
 import Post from '../[post]'
 import { client } from 'libs/client'
+import fetchAsideCategory from 'src/pages/api/fetchAsideCategory'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
 import { MicrocmsData } from 'types/microcmsData'
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params, previewData } = context
+
+  // サイドバーのカテゴリ
+  const categoryData = await fetchAsideCategory()
+
   if (!params?.slug) {
     throw new Error('Error: ID not found')
   }
@@ -39,6 +45,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       props: {
         post: data,
         ...draftKey,
+        categoryData,
       },
     }
   } catch (e) {
@@ -59,13 +66,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 type Props = {
   post: MicrocmsData
   draftKey: string
+  categoryData: CategoryCountAndPost[]
 }
 
-export default function Article({ post, draftKey }: Props) {
+export default function Article({ post, draftKey, categoryData }: Props) {
   return post ? (
     <>
       {draftKey && <div css={preview}>現在プレビューモードで閲覧中です。</div>}
-      <Post post={post} />
+      <Post post={post} categoryData={categoryData} />
     </>
   ) : (
     <div>no content</div>

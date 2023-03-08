@@ -6,8 +6,6 @@ import parse, {
   Element,
   DOMNode,
 } from 'html-react-parser'
-import { NextPage } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { IconContext } from 'react-icons'
@@ -23,7 +21,6 @@ import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
 import { MicrocmsData } from 'types/microcmsData'
 import 'highlight.js/styles/hybrid.css'
-import { parseItemType } from 'types/parseItemType'
 
 type ElementType = Partial<{
   fieldId: string
@@ -31,7 +28,11 @@ type ElementType = Partial<{
   html: string
 }>
 
-const PostSingle: NextPage<{ post: MicrocmsData }> = ({ post }) => {
+type Props = {
+  post: MicrocmsData
+}
+
+const PostSingle = ({ post }: Props) => {
   const setToc = useSetRecoilState(stateToc)
 
   // リッチエディタとテキストエリアの表示

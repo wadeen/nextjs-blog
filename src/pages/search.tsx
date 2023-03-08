@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import { GetStaticProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import ReactLoading from 'react-loading'
@@ -9,6 +10,8 @@ import { MicrocmsApi } from '../../types/microcmsApi'
 import { MicrocmsData } from '../../types/microcmsData'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
+import fetchAsideCategory from './api/fetchAsideCategory'
+import fetchZennData from './api/fetchZennData'
 import Failed from 'src/components/atoms/Failed'
 import Seo from 'src/components/molecules/Seo'
 import PostArchive from 'src/components/organisms/post/PostArchive'
@@ -18,12 +21,26 @@ import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
 import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
 
+// SSG
+export const getStaticProps: GetStaticProps = async () => {
+  // サイドバーのカテゴリ
+  const categoryData = await fetchAsideCategory()
+
+  return {
+    props: {
+      categoryData,
+    },
+  }
+}
+
 const fetcher = (url: string, value: string): Promise<any> => {
   return fetch(`${url}?keyword=${value}`).then((res) => res.json())
 }
 
 const Search = ({ categoryData }: { categoryData: CategoryCountAndPost[] }) => {
   const router = useRouter()
+
+  console.log('categoryData: ', categoryData)
 
   // apiでの検索結果を取得
   const { data, error } = useSWR<MicrocmsApi>(

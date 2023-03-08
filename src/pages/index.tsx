@@ -15,7 +15,7 @@ import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { PostDataType } from 'types/PostDataType'
 
-const PER_PAGE = 6
+const PER_PAGE = 10
 
 // SSG
 export const getStaticProps: GetStaticProps = async () => {

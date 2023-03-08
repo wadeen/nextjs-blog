@@ -22,7 +22,7 @@ import { paginationRange } from 'src/utils/paginationRange'
 import { PostDataType } from 'types/PostDataType'
 import { MicrocmsData } from 'types/microcmsData'
 
-const PER_PAGE = 6
+const PER_PAGE = 10
 
 export default function CategoryId({
   blog,

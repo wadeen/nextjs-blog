@@ -14,7 +14,7 @@ import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { PostDataType } from 'types/PostDataType'
 
-const PER_PAGE = 6
+// const PER_PAGE = 10
 
 export default function CategoryId({
   blog,

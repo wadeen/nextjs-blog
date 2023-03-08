@@ -9,7 +9,7 @@ import { paginationRange } from 'src/utils/paginationRange'
 export const BasicPagination: NextPage<{ totalCount: number }> = ({
   totalCount,
 }) => {
-  const PER_PAGE = 6
+  const PER_PAGE = 10
   const router = useRouter()
   return (
     <ul css={pagination}>
