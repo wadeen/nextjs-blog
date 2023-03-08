@@ -7,6 +7,7 @@ import {
   InferGetStaticPropsType,
 } from 'next'
 import { client } from 'libs/client'
+import { PER_PAGE } from 'libs/per-page'
 import Failed from 'src/components/atoms/Failed'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
 import Seo from 'src/components/molecules/Seo'
@@ -21,8 +22,6 @@ import { dateToString } from 'src/utils/dateToString'
 import { paginationRange } from 'src/utils/paginationRange'
 import { PostDataType } from 'types/PostDataType'
 import { MicrocmsData } from 'types/microcmsData'
-
-const PER_PAGE = 10
 
 export default function CategoryId({
   blog,

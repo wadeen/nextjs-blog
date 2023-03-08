@@ -7,6 +7,7 @@ import Seo from '../components/molecules/Seo'
 import fetchAsideCategory from './api/fetchAsideCategory'
 import fetchMicrocmsData from './api/fetchMicrocmsData'
 import fetchZennData from './api/fetchZennData'
+import { PER_PAGE } from 'libs/per-page'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
 import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
@@ -14,8 +15,6 @@ import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { PostDataType } from 'types/PostDataType'
-
-const PER_PAGE = 10
 
 // SSG
 export const getStaticProps: GetStaticProps = async () => {

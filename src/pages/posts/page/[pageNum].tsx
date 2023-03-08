@@ -6,6 +6,7 @@ import {
   InferGetStaticPropsType,
 } from 'next'
 import { useRouter } from 'next/router'
+import { PER_PAGE } from 'libs/per-page'
 import ArticleTitle from 'src/components/atoms/articleTitle/ArticleTitle'
 import Seo from 'src/components/molecules/Seo'
 import { BasicPagination } from 'src/components/organisms/pagination/BasicPagination'
@@ -19,8 +20,6 @@ import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
 import { PostDataType } from 'types/PostDataType'
-
-const PER_PAGE = 6
 
 // SSG: データの取得
 export const getStaticProps: GetStaticProps = async (
