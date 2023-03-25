@@ -18,7 +18,7 @@ const AsidePopular: NextPage = () => {
       endpoint: 'posts',
       queries: {
         limit: 3,
-        ids: ['1_ytiaib3-f', 'bdt8y-6q7jmm', 'w0fw6h0qvczu'], // しばらくは3件を固定する
+        ids: ['1_ytiaib3-f', '1s-m8k9rz', 'w0fw6h0qvczu'], // しばらくは3件を固定する
       },
     })
 
