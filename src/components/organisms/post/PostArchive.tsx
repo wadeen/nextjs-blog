@@ -122,6 +122,12 @@ const textTitle = css`
   font-weight: 700;
   font-feature-settings: 'palt';
   font-family: var(--fontMain);
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   ${mediaQuery[1]} {
     font-size: 1.8rem;
   }

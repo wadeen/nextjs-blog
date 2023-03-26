@@ -5,19 +5,13 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { memo, useEffect, useState } from 'react'
 import { mediaQuery } from '../../utils/Breakpoints'
+import useScrollHeight from 'src/hooks/useScrollHeight'
 
 const Header: NextPage = memo(() => {
   const router = useRouter()
 
-  const [scrollHeight, setScrollHeight] = useState(false) // 基準高さでクラス付与
   const [isPost, setIsPost] = useState(false) // 投稿ページのみ戻るボタンあり
-
-  useEffect(() => {
-    window.addEventListener('scroll', () => {
-      let height = window.pageYOffset
-      height > 100 ? setScrollHeight(true) : setScrollHeight(false)
-    })
-  }, [scrollHeight])
+  const scrollHeight = useScrollHeight()
 
   useEffect(() => {
     router.pathname === '/posts/[post]' ? setIsPost(true) : setIsPost(false)

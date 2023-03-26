@@ -34,7 +34,7 @@ const AsidePost = ({ post, categoryData }: Props) => {
             <SearchForm />
             <Spacer size={30} />
             <AsideTableOfContents />
-            <Spacer size={30} />
+            <Spacer size={30} spNone />
             <Share />
           </div>
         </>
@@ -49,7 +49,7 @@ const AsidePost = ({ post, categoryData }: Props) => {
             <SearchForm />
             <Spacer size={30} />
             <AsidePopular />
-            <Spacer size={30} />
+            <Spacer size={30} spNone />
             <Share />
           </div>
         </>
@@ -81,3 +81,5 @@ const sticky = css`
     display: none;
   }
 `
+
+const spNone = css``
