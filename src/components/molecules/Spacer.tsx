@@ -1,11 +1,15 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react'
 import { NextPage } from 'next'
+import { mediaQuery } from 'src/utils/Breakpoints'
 
 type SpacerProps = {
   size: number
   horizontal?: boolean
+  spNone?: boolean
 }
 
-export const Spacer: NextPage<SpacerProps> = ({ size, horizontal }) => {
+export const Spacer: NextPage<SpacerProps> = ({ size, horizontal, spNone }) => {
   return (
     <div
       style={
@@ -18,6 +22,13 @@ export const Spacer: NextPage<SpacerProps> = ({ size, horizontal }) => {
             }
           : { width: 'auto', height: size, flexShrink: 0 }
       }
+      css={spNone ? spNoneStyle : ''}
     />
   )
 }
+
+const spNoneStyle = css`
+  ${mediaQuery[0]} {
+    display: none;
+  }
+`

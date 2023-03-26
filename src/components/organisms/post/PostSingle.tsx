@@ -246,8 +246,8 @@ const content = css`
     text-align: center;
     margin: 20px auto;
     width: 100%;
-    height: 100%;
-    min-height: 450px;
+    height: auto;
+    aspect-ratio: 16 / 9;
     display: flex;
     align-items: center;
     ${mediaQuery[1]} {
@@ -270,8 +270,10 @@ const content = css`
     font-family: var(--fontEn);
   }
   img {
-    width: 100%;
-    margin: 20px 0;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 10px auto;
   }
   pre {
     margin: 20px 0;
