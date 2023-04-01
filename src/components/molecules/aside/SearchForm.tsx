@@ -39,15 +39,14 @@ const SearchForm: NextPage = () => {
 
   return (
     <form css={container}>
-      <label htmlFor="search-form">
-        <input
-          id="search-form"
-          type="text"
-          value={searchValue}
-          onChange={onChangeValue}
-          onKeyDown={handleKeyDown}
-        />
-      </label>
+      <input
+        id="search-form"
+        type="text"
+        value={searchValue}
+        onChange={onChangeValue}
+        onKeyDown={handleKeyDown}
+        aria-label="検索フォーム"
+      />
       <button type="submit" onClick={handleClickSubmitButton}>
         <BiSearch
           fontSize="large"
@@ -68,7 +67,7 @@ const container = css`
   justify-content: center;
   height: 40px;
   width: 100%;
-  label {
+  input {
     display: block;
     background-color: #fff;
     width: 75%;
@@ -76,15 +75,10 @@ const container = css`
     border: 1px solid var(--cBorder);
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
+    padding: 4px 8px;
     ${mediaQuery[2]} {
       width: 80%;
     }
-  }
-  input {
-    display: block;
-    width: 100%;
-    height: 100%;
-    padding: 4px 8px;
   }
   button {
     display: flex;
