@@ -11,8 +11,8 @@ type Props = {
 const AsideCategory = ({ categoryData }: Props) => {
   return (
     <>
+      <AsideTitle text={'Category'} />
       <ul css={categoryList}>
-        <AsideTitle text={'Category'} />
         {categoryData.map((categoryData: CategoryCountAndPost) => (
           <li key={categoryData.categoryId}>
             <Link href={`/category/${categoryData.categoryId}`}>
