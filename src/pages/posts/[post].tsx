@@ -1,14 +1,13 @@
 import { GetStaticPaths, NextPage } from 'next'
-import { client } from '../../../libs/client'
-import { MicrocmsData } from '../../../types/microcmsData'
 import fetchAsideCategory from '../api/fetchAsideCategory'
+import { client } from 'libs/client'
 import Comment from 'src/components/organisms/comment/Comment'
 
 import PostSingle from 'src/components/organisms/post/PostSingle'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsidePost from 'src/components/templates/aside/AsidePost'
-import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
+import { MicrocmsData, CategoryCountAndPost } from 'types/microCms'
 
 type Props = {
   post: MicrocmsData
@@ -18,10 +17,6 @@ type Props = {
 // SSG
 export const getStaticProps = async (context: { params: MicrocmsData }) => {
   const id = context.params.post
-  // const { contents } = await client.getList({
-  //   endpoint: 'posts',
-  //   contentId: id,
-  // })
 
   const data = await client.getListDetail({ endpoint: 'posts', contentId: id })
 

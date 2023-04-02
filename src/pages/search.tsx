@@ -5,13 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import ReactLoading from 'react-loading'
 import useSWR from 'swr'
-import { PostDataType } from '../../types/PostDataType'
-import { MicrocmsApi } from '../../types/microcmsApi'
-import { MicrocmsData } from '../../types/microcmsData'
 import ArticleTitle from '../components/atoms/articleTitle/ArticleTitle'
 import AsideArchive from '../components/templates/aside/AsideArchive'
 import fetchAsideCategory from './api/fetchAsideCategory'
-import fetchZennData from './api/fetchZennData'
 import Failed from 'src/components/atoms/Failed'
 import Seo from 'src/components/molecules/Seo'
 import PostArchive from 'src/components/organisms/post/PostArchive'
@@ -19,7 +15,12 @@ import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
-import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
+import {
+  MicrocmsApi,
+  MicrocmsData,
+  CategoryCountAndPost,
+  PostDataType,
+} from 'types/microCms'
 
 // SSG
 export const getStaticProps: GetStaticProps = async () => {
@@ -73,8 +74,11 @@ const Search = ({ categoryData }: { categoryData: CategoryCountAndPost[] }) => {
 
   if (data) {
     const postData = data.contents.map((item: MicrocmsData) => {
-      const createdAt = dateToString(item.createdAt, 'YYYY/MM/DD')
-      const updatedAt = dateToString(item.updatedAt, 'YYYY/MM/DD')
+      const created_at = dateToString(item.created_at, 'YYYY/MM/DD')
+      const updated_at =
+        item.updated_at === undefined
+          ? ''
+          : dateToString(item.updated_at, 'YYYY/MM/DD')
       return {
         id: item.id,
         title: item.title,
@@ -82,8 +86,8 @@ const Search = ({ categoryData }: { categoryData: CategoryCountAndPost[] }) => {
         description: item.description || null,
         categoryId: item.category.id,
         categoryName: item.category.name,
-        updatedAt,
-        createdAt,
+        created_at,
+        updated_at,
         eyecatch: item.eyecatch.url,
       }
     })

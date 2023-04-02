@@ -7,7 +7,7 @@ import { GrLanguage } from 'react-icons/gr'
 import { client } from 'libs/client'
 import Seo from 'src/components/molecules/Seo'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { StorageType } from 'types/storageType'
+import { StorageType } from 'types/microCms'
 
 // SSG
 export const getStaticProps = async () => {

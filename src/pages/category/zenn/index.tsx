@@ -12,7 +12,7 @@ import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import fetchAsideCategory from 'src/pages/api/fetchAsideCategory'
 import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { PostDataType } from 'types/PostDataType'
+import { PostDataType } from 'types/microCms'
 
 export default function CategoryId({
   blog,

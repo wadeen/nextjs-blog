@@ -3,12 +3,10 @@ import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import useSWR from 'swr'
-import crownImage from '../../../../public/images/icon/crown.png'
-import AsideTitle from '../../atoms/aside/AsideTitle'
+import crownImage from '/public/images/icon/crown.png'
 import { client } from 'libs/client'
-import { PostDataType } from 'types/PostDataType'
-import { MicrocmsApi } from 'types/microcmsApi'
-import { MicrocmsData } from 'types/microcmsData'
+import AsideTitle from 'src/components/atoms/aside/AsideTitle'
+import { MicrocmsData, PostDataType } from 'types/microCms'
 
 type PopularType = Pick<PostDataType, 'categoryName' | 'id' | 'title'>
 

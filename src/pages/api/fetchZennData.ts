@@ -1,7 +1,5 @@
 import Parser from 'rss-parser'
-import zennLogo from '/public/images/icon/zenn_logo.png'
 import { dateToString } from 'src/utils/dateToString'
-// import { memo } from 'react';
 import { ZennPostType } from 'types/ZennPostType'
 
 // ZennのアカウントID
@@ -32,12 +30,13 @@ const fetchZennData = async () => {
   // .catch((err) => console.log('以下のエラーが発生しました。\n', err))
 
   const zennPostData = items.map((item: ZennPostType) => {
-    const createdAt = dateToString(item.pubDate, 'YYYY/MM/DD')
+    const created_at = dateToString(item.pubDate, 'YYYY/MM/DD')
     return {
       id: item.link,
       title: item.title,
       content: item.content,
-      createdAt,
+      created_at,
+      updated_at: null,
       categoryName: 'Zenn',
       categoryId: 'zenn',
       isZenn: true,

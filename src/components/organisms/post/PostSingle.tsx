@@ -19,7 +19,7 @@ import { TableOfContents } from '../../molecules/TableOfContents'
 import { renderToc } from 'libs/render-toc'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
-import { MicrocmsData } from 'types/microcmsData'
+import { MicrocmsData } from 'types/microCms'
 import 'highlight.js/styles/hybrid.css'
 
 type ElementType = Partial<{
@@ -94,15 +94,15 @@ const PostSingle = ({ post }: Props) => {
         <ul css={dateList}>
           <li>
             <BiTimeFive style={{ marginRight: '6px' }} />
-            作成日：{dateToString(post.createdAt, 'YYYY/MM/DD')}
+            作成日：{dateToString(post.created_at, 'YYYY/MM/DD')}
           </li>
-          {post.updatedAt && (
+          {post.updated_at && (
             <li>
               <IconContext.Provider value={{ size: '11px' }}>
                 <GrUpdate style={{ marginRight: '6px' }} />
               </IconContext.Provider>
               更新日：
-              {dateToString(post.updatedAt, 'YYYY/MM/DD')}
+              {dateToString(post.updated_at, 'YYYY/MM/DD')}
             </li>
           )}
         </ul>
