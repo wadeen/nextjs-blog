@@ -1,7 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
-import { NextPage } from 'next'
-import { MicrocmsData } from '../../../../types/microcmsData'
 import { AsideTableOfContents } from '../../molecules/aside/AsideTableOfContents'
 import SearchForm from '../../molecules/aside/SearchForm'
 import AsideCategory from '../../organisms/aside/AsideCategory'
@@ -11,7 +9,7 @@ import AsideBase from './AsideBase'
 import Share from 'src/components/molecules/Share'
 import { Spacer } from 'src/components/molecules/Spacer'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
+import { MicrocmsData, CategoryCountAndPost } from 'types/microCms'
 
 type Props = {
   post: MicrocmsData
@@ -81,5 +79,3 @@ const sticky = css`
     display: none;
   }
 `
-
-const spNone = css``

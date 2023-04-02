@@ -2,18 +2,20 @@
 import { css } from '@emotion/react'
 import { NextPage } from 'next'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { IconContext } from 'react-icons'
 import { AiOutlineFolder } from 'react-icons/ai'
 import { BiTimeFive } from 'react-icons/bi'
 import { GrUpdate } from 'react-icons/gr'
 import { HiOutlineExternalLink } from 'react-icons/hi'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { PostDataType } from 'types/PostDataType'
+import { PostDataType } from 'types/microCms'
 import zennLogo from '/public/images/icon/zenn_logo.png'
 
-const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
-  const router = useRouter()
+type Props = {
+  post: PostDataType
+}
+
+const PostArchive: NextPage<Props> = ({ post }) => {
   return (
     <li css={list} className={post.isZenn ? 'isZenn' : ''}>
       <Link
@@ -34,7 +36,7 @@ const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
         <ul css={info}>
           <li>
             <span css={icon}>
-              {post.updatedAt ? (
+              {post.updated_at ? (
                 <IconContext.Provider value={{ size: '11px' }}>
                   <GrUpdate style={{ marginRight: '4px' }} />
                 </IconContext.Provider>
@@ -43,7 +45,7 @@ const PostArchive: NextPage<{ post: PostDataType }> = ({ post }) => {
               )}
             </span>
             {/* 更新日がない場合は作成日を表示 */}
-            {post.updatedAt || post.createdAt}
+            {post.updated_at || post.created_at}
           </li>
           <li>
             <span css={icon}>

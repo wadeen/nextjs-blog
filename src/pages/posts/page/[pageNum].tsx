@@ -19,7 +19,7 @@ import fetchMicrocmsData from 'src/pages/api/fetchMicrocmsData'
 import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { paginationRange } from 'src/utils/paginationRange'
-import { PostDataType } from 'types/PostDataType'
+import { PostDataType } from 'types/microCms'
 
 // SSG: データの取得
 export const getStaticProps: GetStaticProps = async (
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async (
   const data = [...microcmsPostData, ...zennPostData]
 
   // データの並び替え: 投稿日順
-  data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+  data.sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
 
   // [pageNum]に表示するデータ
   const displayData = data.slice(offset, offset + PER_PAGE)

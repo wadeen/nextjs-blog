@@ -2,7 +2,7 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
 import AsideTitle from 'src/components/atoms/aside/AsideTitle'
-import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
+import { CategoryCountAndPost } from 'types/microCms'
 
 type Props = {
   categoryData: CategoryCountAndPost[]

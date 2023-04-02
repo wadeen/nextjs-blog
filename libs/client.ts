@@ -1,8 +1,5 @@
 import { createClient } from 'microcms-ts-sdk'
-// import { createClient, MicroCMSSchemaInfer } from 'microcms-ts-sdk'
-import { microCmsPostData } from 'types/microCmsPostData'
-import { MicrocmsData } from 'types/microcmsData'
-import { StorageType } from 'types/storageType'
+import { MicrocmsData, microCmsPostData, StorageType } from 'types/microCms'
 
 export const client = createClient<Endpoints>({
   serviceDomain: process.env.NEXT_PUBLIC_MICROCMS_ACCESS_KEY as string,
@@ -10,9 +7,9 @@ export const client = createClient<Endpoints>({
 })
 
 // Type definition
-type Content = {
-  text: string
-}
+// type Content = {
+//   text: string
+// }
 
 interface Endpoints {
   // API in list format.

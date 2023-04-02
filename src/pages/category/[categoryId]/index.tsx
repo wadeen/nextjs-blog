@@ -18,10 +18,12 @@ import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import fetchAsideCategory from 'src/pages/api/fetchAsideCategory'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
-import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
-import { PostDataType } from 'types/PostDataType'
-import { microCmsPostData } from 'types/microCmsPostData'
-import { MicrocmsData } from 'types/microcmsData'
+import {
+  microCmsPostData,
+  MicrocmsData,
+  PostDataType,
+  CategoryCountAndPost,
+} from 'types/microCms'
 
 export default function CategoryId({
   blog,
@@ -67,8 +69,12 @@ export const getStaticProps: GetStaticProps = async (
   })
 
   const data = microcmsData.contents.map((item: MicrocmsData) => {
-    const createdAt = dateToString(item.createdAt, 'YYYY/MM/DD')
-    const updatedAt = dateToString(item.updatedAt, 'YYYY/MM/DD')
+    const created_at = dateToString(item.created_at, 'YYYY/MM/DD')
+    const updated_at =
+      item.updated_at === undefined
+        ? ''
+        : dateToString(item.updated_at, 'YYYY/MM/DD')
+
     return {
       id: item.id,
       title: item.title,
@@ -76,8 +82,8 @@ export const getStaticProps: GetStaticProps = async (
       description: item.description || null,
       categoryId: item.category.id,
       categoryName: item.category.name,
-      updatedAt,
-      createdAt,
+      updated_at,
+      created_at,
       eyecatch: item.eyecatch.url,
     }
   })

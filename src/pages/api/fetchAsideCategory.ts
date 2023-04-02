@@ -1,6 +1,6 @@
 import fetchZennData from './fetchZennData'
 import { client } from 'libs/client'
-import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
+import { CategoryCountAndPost } from 'types/microCms'
 
 async function fetchAsideCategory(): Promise<CategoryCountAndPost[]> {
   // カテゴリと合計件数が入る配列

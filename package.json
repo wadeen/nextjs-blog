@@ -22,6 +22,7 @@
     "firebase": "^9.17.1",
     "highlight.js": "^11.6.0",
     "html-react-parser": "^3.0.10",
+    "markuplint": "^3.6.0",
     "microcms-ts-sdk": "^0.4.1",
     "next": "^13.0.0",
     "next-intercept-stdout": "^1.0.1",

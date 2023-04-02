@@ -6,8 +6,7 @@ import Post from '../[post]'
 import { client } from 'libs/client'
 import fetchAsideCategory from 'src/pages/api/fetchAsideCategory'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
-import { MicrocmsData } from 'types/microcmsData'
+import { MicrocmsData, CategoryCountAndPost } from 'types/microCms'
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params, previewData } = context

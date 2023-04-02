@@ -14,7 +14,7 @@ import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
-import { PostDataType } from 'types/PostDataType'
+import { PostDataType } from 'types/microCms'
 
 // SSG
 export const getStaticProps: GetStaticProps = async () => {
@@ -28,7 +28,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const data = [...microcmsPostData, ...zennPostData]
 
   // データの並び替え: 投稿日順
-  data.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+  data.sort((a, b) => (a.created_at > b.created_at ? -1 : 1))
 
   // [pageNum]に表示するデータ
   const displayData = data.slice(0, PER_PAGE)

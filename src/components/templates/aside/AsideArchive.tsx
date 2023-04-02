@@ -5,7 +5,7 @@ import { Spacer } from 'src/components/molecules/Spacer'
 import AsideCategory from 'src/components/organisms/aside/AsideCategory'
 import AsidePopular from 'src/components/organisms/aside/AsidePopular'
 import AsideProfile from 'src/components/organisms/aside/AsideProfile'
-import { CategoryCountAndPost } from 'types/CategoryCountAndPost'
+import { CategoryCountAndPost } from 'types/microCms'
 
 type Props = {
   categoryData: CategoryCountAndPost[]
