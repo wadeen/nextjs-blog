@@ -1,0 +1,97 @@
+{
+  "apiFields": [
+    {
+      "idValue": "FvafIh-p2Y",
+      "fieldId": "title",
+      "name": "タイトル",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "created_at",
+      "name": "作成日時",
+      "kind": "date",
+      "required": true,
+      "dateFormat": true
+    },
+    {
+      "fieldId": "updated_at",
+      "name": "更新日時",
+      "kind": "date",
+      "dateFormat": true
+    },
+    {
+      "fieldId": "toc_visible",
+      "name": "目次",
+      "kind": "boolean",
+      "description": "オンにすると、h2, h3 の目次を表示します。"
+    },
+    {
+      "fieldId": "eyecatch",
+      "name": "アイキャッチ(絵文字)",
+      "kind": "media",
+      "description": "",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "category",
+      "name": "カテゴリ",
+      "kind": "relation",
+      "required": true
+    },
+    {
+      "fieldId": "content",
+      "name": "内容",
+      "kind": "repeater",
+      "required": true,
+      "customFieldCreatedAtList": [
+        "2022-09-22T03:46:12.499Z",
+        "2022-09-22T03:50:21.066Z",
+        "2022-09-22T08:31:08.843Z"
+      ]
+    },
+    {
+      "fieldId": "description",
+      "name": "ディスクリプション",
+      "kind": "textArea",
+      "required": false
+    }
+  ],
+  "customFields": [
+    {
+      "createdAt": "2022-09-22T03:46:12.499Z",
+      "fieldId": "richEditor",
+      "name": "リッチエディタ",
+      "fields": [
+        {
+          "idValue": "KpK5shZ7wS",
+          "fieldId": "richEditor",
+          "name": "リッチエディタ",
+          "kind": "richEditor",
+          "required": false
+        }
+      ],
+      "position": [["KpK5shZ7wS", "qCpYAdD9ML", "Rnee6LTG3q"]],
+      "updatedAt": "2022-09-29T06:38:59.293Z",
+      "viewerGroup": "kdz"
+    },
+    {
+      "createdAt": "2022-09-22T08:31:08.843Z",
+      "fieldId": "html",
+      "name": "HTML",
+      "fields": [
+        {
+          "idValue": "GUKBqm0TH9",
+          "fieldId": "html",
+          "name": "HTML",
+          "kind": "textArea"
+        }
+      ],
+      "position": [["GUKBqm0TH9"]],
+      "updatedAt": "2022-09-22T08:31:08.843Z",
+      "viewerGroup": "kdz"
+    }
+  ]
+}

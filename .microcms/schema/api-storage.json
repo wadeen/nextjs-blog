@@ -1,0 +1,63 @@
+{
+  "apiFields": [
+    {
+      "idValue": "Kbwfd-SyWw",
+      "fieldId": "img",
+      "name": "サムネイル",
+      "kind": "media",
+      "required": true
+    },
+    {
+      "fieldId": "title",
+      "name": "タイトル",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "tags",
+      "name": "タグ",
+      "kind": "repeater",
+      "customFieldCreatedAtList": ["2023-01-21T18:02:39.455Z"],
+      "isUnique": false
+    },
+    {
+      "fieldId": "message",
+      "name": "ひとこと",
+      "kind": "text",
+      "isUnique": false
+    },
+    {
+      "fieldId": "github",
+      "name": "github",
+      "kind": "text",
+      "required": false,
+      "isUnique": false
+    },
+    {
+      "fieldId": "website",
+      "name": "サイトURL",
+      "kind": "text",
+      "required": true,
+      "isUnique": false
+    }
+  ],
+  "customFields": [
+    {
+      "createdAt": "2023-01-21T18:02:39.455Z",
+      "fieldId": "tags",
+      "name": "タグ",
+      "fields": [
+        {
+          "idValue": "I0C0tkBkkG",
+          "fieldId": "tag",
+          "name": "タグ",
+          "kind": "text"
+        }
+      ],
+      "position": [["I0C0tkBkkG"]],
+      "updatedAt": "2023-01-21T18:02:39.455Z",
+      "viewerGroup": "iah"
+    }
+  ]
+}
