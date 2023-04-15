@@ -1,5 +1,5 @@
 import { GetStaticPaths, NextPage } from 'next'
-import fetchAsideCategory from '../api/fetchAsideCategory'
+import fetchAsideCategory from '../../utils/fetchAsideCategory'
 import { client } from 'libs/client'
 import Comment from 'src/components/organisms/comment/Comment'
 

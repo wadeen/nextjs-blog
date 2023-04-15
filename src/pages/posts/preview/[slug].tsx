@@ -4,8 +4,8 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 // import PostSingle from '../../../components/organisms/post/PostSingle'
 import Post from '../[post]'
 import { client } from 'libs/client'
-import fetchAsideCategory from 'src/pages/api/fetchAsideCategory'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import fetchAsideCategory from 'src/utils/fetchAsideCategory'
 import { MicrocmsData, CategoryCountAndPost } from 'types/microCms'
 
 export const getStaticProps: GetStaticProps = async (context) => {
