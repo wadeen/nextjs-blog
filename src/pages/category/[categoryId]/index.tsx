@@ -15,9 +15,9 @@ import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
-import fetchAsideCategory from 'src/pages/api/fetchAsideCategory'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
+import fetchAsideCategory from 'src/utils/fetchAsideCategory'
 import {
   microCmsPostData,
   MicrocmsData,

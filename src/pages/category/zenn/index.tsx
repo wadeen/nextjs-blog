@@ -9,9 +9,9 @@ import PostArchive from 'src/components/organisms/post/PostArchive'
 import BlogLayout from 'src/components/templates/BlogLayout'
 import BlogLayoutBase from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
-import fetchAsideCategory from 'src/pages/api/fetchAsideCategory'
-import fetchZennData from 'src/pages/api/fetchZennData'
 import { mediaQuery } from 'src/utils/Breakpoints'
+import fetchAsideCategory from 'src/utils/fetchAsideCategory'
+import fetchZennData from 'src/utils/fetchZennData'
 import { PostDataType } from 'types/microCms'
 
 export default function CategoryId({
