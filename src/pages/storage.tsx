@@ -146,9 +146,10 @@ const itemImg = css`
   }
   img {
     width: 100%;
-    height: 100%;
-    max-height: 400px;
+    height: auto;
     object-fit: cover;
+    object-position: top;
+    aspect-ratio: 5 / 3;
   }
 `
 
