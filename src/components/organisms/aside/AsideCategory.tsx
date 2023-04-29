@@ -14,7 +14,10 @@ const AsideCategory = ({ categoryData }: Props) => {
       <AsideTitle text={'Category'} />
       <ul css={categoryList}>
         {categoryData.map((categoryData: CategoryCountAndPost) => (
-          <li key={categoryData.categoryId}>
+          <li
+            key={categoryData.categoryId}
+            css={categoryData.totalCount === '0' && isDisabledStyle}
+          >
             <Link href={`/category/${categoryData.categoryId}`}>
               {categoryData.categoryName}
               <span css={totalCount}>({categoryData.totalCount})</span>
@@ -30,14 +33,18 @@ export default AsideCategory
 
 // css
 const categoryList = css`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   li {
     font-size: 1.6rem;
-    line-height: 2;
+    line-height: 2.2;
     letter-spacing: 0.04em;
     background-color: #fff;
     border-radius: 4px;
     border: 1px solid var(--cSub);
     border-left: 6px solid var(--cSub);
+    width: calc((100% - 8px) / 2);
     &:hover {
       border-color: var(--cMain);
     }
@@ -45,34 +52,42 @@ const categoryList = css`
       display: block;
       width: 100%;
       height: 100%;
-      padding-left: 15px;
-    }
-    &:not(:last-of-type) {
-      margin-bottom: 10px;
+      padding-left: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      letter-spacing: 0.002em;
+      font-size: 14px;
     }
   }
 `
 
 const totalCount = css`
   display: inline-block;
-  margin-left: 10px;
+  margin-left: 5px;
+  font-size: 12px;
 `
 
-const loadingIcon = css`
-  margin-top: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+const isDisabledStyle = css`
+  opacity: 0.65;
+  pointer-events: none;
 `
 
-const loading = css`
-  display: grid;
-  place-content: center;
-  width: 100%;
-  height: 250px;
-`
+// const loadingIcon = css`
+//   margin-top: 30px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `
 
-const loadingText = css`
-  display: block;
-  margin-top: 15px;
-`
+// const loading = css`
+//   display: grid;
+//   place-content: center;
+//   width: 100%;
+//   height: 250px;
+// `
+
+// const loadingText = css`
+//   display: block;
+//   margin-top: 15px;
+// `

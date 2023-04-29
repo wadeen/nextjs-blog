@@ -12,6 +12,7 @@ export default BlogLayoutBase
 // css
 const main = css`
   width: calc(100% - 300px);
+  max-width: 909px;
   ${mediaQuery[2]} {
     width: 100%;
   }
