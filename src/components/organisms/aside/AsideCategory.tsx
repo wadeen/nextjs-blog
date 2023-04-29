@@ -14,7 +14,10 @@ const AsideCategory = ({ categoryData }: Props) => {
       <AsideTitle text={'Category'} />
       <ul css={categoryList}>
         {categoryData.map((categoryData: CategoryCountAndPost) => (
-          <li key={categoryData.categoryId}>
+          <li
+            key={categoryData.categoryId}
+            css={categoryData.totalCount === '0' && isDisabledStyle}
+          >
             <Link href={`/category/${categoryData.categoryId}`}>
               {categoryData.categoryName}
               <span css={totalCount}>({categoryData.totalCount})</span>
@@ -63,6 +66,11 @@ const totalCount = css`
   display: inline-block;
   margin-left: 5px;
   font-size: 12px;
+`
+
+const isDisabledStyle = css`
+  opacity: 0.65;
+  pointer-events: none;
 `
 
 // const loadingIcon = css`
