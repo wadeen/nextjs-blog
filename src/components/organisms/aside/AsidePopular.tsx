@@ -15,6 +15,7 @@ const AsidePopular: NextPage = () => {
     const microcmsData = await client.getList({
       endpoint: 'posts',
       queries: {
+        orders: 'publishedAt',
         limit: 3,
         ids: ['1_ytiaib3-f', '1s-m8k9rz', '85x6m39yk'], // しばらくは3件を固定する
       },
