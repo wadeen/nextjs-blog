@@ -118,7 +118,7 @@ const eyecatchIcon = css`
 `
 
 const textTitle = css`
-  font-size: 2.2rem;
+  font-size: 2rem;
   letter-spacing: 0.02em;
   line-height: 1.3;
   font-weight: 700;
