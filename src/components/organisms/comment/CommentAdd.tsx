@@ -3,8 +3,8 @@ import { css } from '@emotion/react'
 import { Timestamp, collection, addDoc } from 'firebase/firestore'
 import { NextPage } from 'next'
 import { useState } from 'react'
-import { db } from '../../../../libs/firebase'
-import Button from '../../atoms/Button'
+import { db } from 'libs/firebase'
+import Button from 'src/components/atoms/Button'
 import { mediaQuery } from 'src/utils/Breakpoints'
 
 const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
@@ -72,7 +72,7 @@ const CommentAdd: NextPage<{ id: string }> = ({ id }) => {
       </dl>
       <Button
         onClick={onClickSubmit}
-        disabled={(inputName && inputText) === ''}
+        disabled={inputName === '' || inputText === ''}
       >
         公開
       </Button>

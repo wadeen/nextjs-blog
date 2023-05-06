@@ -1,36 +1,40 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react'
+import type { DocumentData } from '@firebase/firestore/lite'
 import {
   collection,
   onSnapshot,
   query,
   orderBy,
   limit,
-  DocumentData, // eslint-disable-line
-  // 理由の解明要(firestoreにないと表示される)
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { db } from '../../../../libs/firebase'
-import { Comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
+import { db } from 'libs/firebase'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
+import { Comments } from 'types/comments'
 
 const Comment = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<Comments[]>([])
 
   useEffect(() => {
-    const commentsData = collection(db, id) // 記事のID ＝FirestoreのコメントのdataID
+    const commentsData = collection(db, id) // 記事のID ＝ FirestoreのコメントのdataID
+    // 最新順に並び替え/最大100件
     const commentsDataQuery = query(
       commentsData,
       orderBy('date', 'desc'),
       limit(100)
-    ) // 最新順に並び替え/最大100件
+    )
+    // クリーンアップ関数
     const unsubscribe = onSnapshot(commentsDataQuery, (snapshot) => {
-      setComments(snapshot.docs.map((doc: DocumentData) => doc.data())) 
+      const data = snapshot.docs.map((doc: DocumentData) => doc.data())
+      setComments(data)
     })
     return () => unsubscribe()
   }, [id])
+
+  const ADMIN_NAME = 'わでぃん'
 
   return (
     <div css={comment}>
@@ -42,10 +46,19 @@ const Comment = ({ id }: { id: string }) => {
           <ul css={commentList}>
             {comments.map(({ name, date, text }: Comments) => {
               const firestoreCommentDate = new Date(date.seconds * 1000)
-              const firestoreComment = dateToString(firestoreCommentDate,'YYYY.MM.DD')
+              const firestoreComment = dateToString(
+                firestoreCommentDate,
+                'YYYY.MM.DD'
+              )
               return (
                 <li key={date.seconds}>
-                  <p css={commentName}>{name}</p>
+                  <p css={commentName}>
+                    {name === ADMIN_NAME ? (
+                      <span css={admin}>{ADMIN_NAME}</span>
+                    ) : (
+                      name
+                    )}
+                  </p>
                   <p css={commentDetail}>{text}</p>
                   <p css={commentDate}>{firestoreComment}</p>
                 </li>
@@ -97,7 +110,7 @@ const commentList = css`
     padding: 25px;
     border-radius: 8px;
     ${mediaQuery[1]} {
-      padding: 15px;
+      padding: 30px 15px 20px;
     }
   }
 `
@@ -124,10 +137,23 @@ const commentDate = css`
   font-size: 1.4rem;
   color: gray;
   ${mediaQuery[1]} {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 `
 
 const noComment = css`
   padding-bottom: 30px;
+`
+
+const admin = css`
+  &::after {
+    content: '管理人';
+    display: inline-block;
+    font-size: 1.1rem;
+    vertical-align: middle;
+    margin-left: 10px;
+    padding: 2px 4px;
+    border: 1px solid var(--cSub);
+    color: var(--cSub);
+  }
 `

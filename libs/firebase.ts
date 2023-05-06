@@ -1,4 +1,4 @@
-// import { getAnalytics } from 'firebase/analytics'
+import { getAnalytics } from 'firebase/analytics'
 import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 
@@ -12,7 +12,11 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 }
 
+// 初期化
 const app = initializeApp(firebaseConfig)
 
-// const analytics = getAnalytics(app)
+if (typeof window !== 'undefined') {
+  const analytics = getAnalytics(app)
+}
+
 export const db = getFirestore(app)
