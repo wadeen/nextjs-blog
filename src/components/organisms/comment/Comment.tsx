@@ -9,24 +9,27 @@ import {
   limit,
 } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { Comments } from '../../../../types/comments'
 import CommentAdd from './CommentAdd'
 import { db } from 'libs/firebase'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import { dateToString } from 'src/utils/dateToString'
+import { Comments } from 'types/comments'
 
 const Comment = ({ id }: { id: string }) => {
   const [comments, setComments] = useState<Comments[]>([])
 
   useEffect(() => {
-    const commentsData = collection(db, id) // 記事のID ＝FirestoreのコメントのdataID
+    const commentsData = collection(db, id) // 記事のID ＝ FirestoreのコメントのdataID
+    // 最新順に並び替え/最大100件
     const commentsDataQuery = query(
       commentsData,
       orderBy('date', 'desc'),
       limit(100)
-    ) // 最新順に並び替え/最大100件
+    )
+    // クリーンアップ関数
     const unsubscribe = onSnapshot(commentsDataQuery, (snapshot) => {
-      setComments(snapshot.docs.map((doc: DocumentData) => doc.data()))
+      const data = snapshot.docs.map((doc: DocumentData) => doc.data())
+      setComments(data)
     })
     return () => unsubscribe()
   }, [id])
