@@ -23,7 +23,7 @@ const Comment = ({ id }: { id: string }) => {
     // 最新順に並び替え/最大100件
     const commentsDataQuery = query(
       commentsData,
-      orderBy('date', 'desc'),
+      orderBy('date', 'asc'),
       limit(100)
     )
     // クリーンアップ関数
@@ -59,7 +59,7 @@ const Comment = ({ id }: { id: string }) => {
                       name
                     )}
                   </p>
-                  <p css={commentDetail}>{text}</p>
+                  <pre css={commentDetail}>{text}</pre>
                   <p css={commentDate}>{firestoreComment}</p>
                 </li>
               )
@@ -119,12 +119,19 @@ const commentName = css`
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+
   ${mediaQuery[1]} {
     font-size: 1.8rem;
   }
 `
 
 const commentDetail = css`
+  white-space: pre-wrap;
   ${mediaQuery[1]} {
     font-size: 1.6rem;
   }
@@ -146,14 +153,16 @@ const noComment = css`
 `
 
 const admin = css`
+  display: flex;
+  align-items: center;
   &::after {
     content: '管理人';
     display: inline-block;
     font-size: 1.1rem;
-    vertical-align: middle;
     margin-left: 10px;
     padding: 2px 4px;
     border: 1px solid var(--cSub);
     color: var(--cSub);
+    border-radius: 2px;
   }
 `
