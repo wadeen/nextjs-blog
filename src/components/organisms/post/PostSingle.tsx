@@ -200,7 +200,7 @@ const content = css`
   font-family: var(--fontMain);
   overflow-wrap: break-word;
   h2 {
-    font-size: 3rem;
+    font-size: 2.6rem;
     background-color: whitesmoke;
     padding-left: 10px;
     border-left: 7px solid var(--cSub);
@@ -217,10 +217,10 @@ const content = css`
     }
   }
   h3 {
-    font-size: 2.6rem;
+    font-size: 2.2rem;
     font-weight: 700;
     border-bottom: 1px dashed var(--cSub);
-    margin-inline: 20px;
+    margin-block: 20px;
     scroll-margin-top: 80px;
     ${mediaQuery[1]} {
       font-size: 2.2rem;
@@ -228,7 +228,7 @@ const content = css`
     }
   }
   h4 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 700;
     margin: 15px 0 20px;
     ${mediaQuery[1]} {
@@ -236,7 +236,7 @@ const content = css`
     }
   }
   h5 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
     ${mediaQuery[1]} {
       font-size: 1.8rem;
