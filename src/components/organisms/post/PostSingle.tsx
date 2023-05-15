@@ -205,7 +205,7 @@ const content = css`
     padding-left: 10px;
     border-left: 7px solid var(--cSub);
     font-weight: 700;
-    margin: 10px 0 20px;
+    margin: 25px 0 20px;
     line-height: 2;
     scroll-margin-top: 80px;
     ${mediaQuery[1]} {
@@ -220,7 +220,7 @@ const content = css`
     font-size: 2.6rem;
     font-weight: 700;
     border-bottom: 1px dashed var(--cSub);
-    margin: 10px 0 20px;
+    margin-inline: 20px;
     scroll-margin-top: 80px;
     ${mediaQuery[1]} {
       font-size: 2.2rem;
@@ -230,7 +230,7 @@ const content = css`
   h4 {
     font-size: 2.2rem;
     font-weight: 700;
-    margin: 10px 0 20px;
+    margin: 15px 0 20px;
     ${mediaQuery[1]} {
       font-size: 2rem;
     }
