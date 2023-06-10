@@ -21,7 +21,7 @@ import fetchZennData from 'src/utils/fetchZennData'
 import { paginationRange } from 'src/utils/paginationRange'
 import { PostDataType } from 'types/microCms'
 
-// SSG: データの取得
+// ISR: データの取得
 export const getStaticProps: GetStaticProps = async (
   context: GetStaticPropsContext
 ) => {
@@ -52,6 +52,7 @@ export const getStaticProps: GetStaticProps = async (
       totalCount: data.length,
       categoryData,
     },
+    revalidate: 60 * 60 * 6, // 6時間
   }
 }
 
