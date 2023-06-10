@@ -14,7 +14,7 @@ type Props = {
   categoryData: CategoryCountAndPost[]
 }
 
-// SSG
+// ISR
 export const getStaticProps = async (context: { params: MicrocmsData }) => {
   const id = context.params.post
 
@@ -28,18 +28,14 @@ export const getStaticProps = async (context: { params: MicrocmsData }) => {
       post: data,
       categoryData,
     },
+    revalidate: 60 * 60 * 6, // 6時間
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { contents } = await client.getList({
-    endpoint: 'posts',
-    queries: { limit: 999 }, // API取得件数:デフォルト10件(上限5MB)
-  })
-  const paths = contents.map((content: MicrocmsData) => `/posts/${content.id}`)
   return {
-    paths,
-    fallback: false,
+    paths: [],
+    fallback: 'blocking',
   }
 }
 

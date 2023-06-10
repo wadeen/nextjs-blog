@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps = async (
   // microCMSデータの取得(api/fetchMicrocmsData.ts)
   const microcmsPostData = await fetchMicrocmsData()
 
-  // Zenn + microCMS合わせた記事
+  // Zenn + microCMS合わせた事記
   const data = [...microcmsPostData, ...zennPostData]
 
   // データの並び替え: 投稿日順
