@@ -13,10 +13,10 @@ import BlogLayoutBody from 'src/components/templates/BlogLayoutBase'
 import AsideArchive from 'src/components/templates/aside/AsideArchive'
 import { mediaQuery } from 'src/utils/Breakpoints'
 import fetchMicrocmsData from 'src/utils/fetchMicrocmsData'
-import fetchZennData from 'src/utils/fetchZennData';
+import fetchZennData from 'src/utils/fetchZennData'
 import { PostDataType } from 'types/microCms'
 
-// SSG
+// ISR
 export const getStaticProps: GetStaticProps = async () => {
   // Zennデータの取得(api/fetchZennData.ts)
   const zennPostData = await fetchZennData()
@@ -42,6 +42,7 @@ export const getStaticProps: GetStaticProps = async () => {
       totalCount: data.length,
       categoryData,
     },
+    revalidate: 60 * 60 * 6, // 6時間
   }
 }
 const Home = memo(
